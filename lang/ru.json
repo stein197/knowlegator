@@ -1,4 +1,4 @@
 {
-	"info.version.client": "клиент: value",
-	"info.version.server": "сервер: value"
+	"info.version.client": "клиент: :value",
+	"info.version.server": "сервер: :value"
 }

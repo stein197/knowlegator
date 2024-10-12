@@ -18,3 +18,7 @@ The whole frontend is located in `resources/js`:
 
 ## Tests
 In order to run backend-tests, run `php artisan test`
+
+## Contributing
+### Commits
+The project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) with [gitmoji](https://gitmoji.dev/)

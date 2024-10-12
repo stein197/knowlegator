@@ -1,0 +1,20 @@
+{
+	"compilerOptions": {
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"allowUnusedLabels": false,
+		"target": "ESNext",
+		"jsx": "react",
+		"baseUrl": "resources/js",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"sourceMap": true,
+		"inlineSources": true,
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"paths": {
+			"app/*": ["src/*"]
+		}
+	}
+}

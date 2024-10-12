@@ -1,0 +1,4 @@
+{
+	"info.version.client": "client: :value",
+	"info.version.server": "server: :value"
+}

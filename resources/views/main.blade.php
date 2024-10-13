@@ -24,10 +24,8 @@
 	</head>
 	<body class="d-flex flex-column">
 		<main class="flex-grow-1"></main>
-		<footer>
-			<div class="container-fluid">
-				<span class="lh-1">{{ __('info.version.client', ['value' => $version->getClientVersion()]) }} | {{ __('info.version.server', ['value' => $version->getServerVersion()]) }}</span>
-			</div>
+		<footer class="text-bg-dark lh-1 text-end">
+			<div class="container-fluid">{{ __('info.version.client', ['value' => $version->getClientVersion()]) }} | {{ __('info.version.server', ['value' => $version->getServerVersion()]) }}</div>
 		</footer>
 	</body>
 </html>

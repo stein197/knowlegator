@@ -5,9 +5,23 @@ use App\Services\LocaleService;
 
 final class LocaleServiceTest extends TestCase {
 
+	private LocaleService $localeService;
+
 	public function testLocaleStructure(): void {
-		$locales = (new LocaleService())->locales();
+		$locales = $this->localeService->locales();
 		$this->assertArrayHasKey('name', $locales['en']);
 		$this->assertArrayHasKey('flag-icon', $locales['en']);
+	}
+
+	public function testExistsReturnsTrueForEn(): void {
+		$this->assertTrue($this->localeService->exists('en'));
+	}
+
+	public function testExistsReturnsFalseForUnknownLocale(): void {
+		$this->assertFalse($this->localeService->exists('unknown'));
+	}
+
+	protected function setUp(): void {
+		$this->localeService = new LocaleService();
 	}
 }

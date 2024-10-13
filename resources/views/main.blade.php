@@ -34,15 +34,15 @@
 		<header>
 			<nav class="navbar navbar-expand-lg bg-body-tertiary">
 				<div class="container">
-					<a class="navbar-brand" href="#">Knowlegator</a>
+					<a class="navbar-brand" href="/">Knowlegator</a>
 					<div class="dropdown">
 						<button class="btn dropdown-toggle text-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 							<i class="bi bi-globe"></i>
 						</button>
 						<ul class="dropdown-menu dropdown-menu-end">
-							@foreach ($locales as $locale)
+							@foreach ($locales as $k => $locale)
 								<li>
-									<a class="dropdown-item" href="#">
+									<a class="dropdown-item {{ app()->getLocale() === $k ? 'active' : '' }}" href="{{ route('main', ['locale' => $k]) }}">
 										<span class="fi fi-{{ $locale['flag-icon'] }}"></span>
 										<span>{{ $locale['name'] }}</a>
 									</span>

@@ -2,14 +2,21 @@
 namespace App\Http\Controllers;
 
 use App\Services\ApplicationVersionService;
-use Illuminate\Http\Request;
+use App\Services\LocaleService;
 use Illuminate\View\View;
 
-class MainController extends Controller {
+final class MainController extends Controller {
 
-	public function __invoke(Request $request, ApplicationVersionService $version): View{
+	public function __construct(
+		private ApplicationVersionService $versionService,
+		private LocaleService $localeService,
+	) {}
+
+	public function __invoke(): View {
 		return view('main', [
-			'version' => $version
+			'title' => 'Knowlegator',
+			'locales' => $this->localeService->locales(),
+			'version' => $this->versionService
 		]);
 	}
 }

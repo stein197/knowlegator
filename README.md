@@ -7,6 +7,18 @@
 4. Run PHP server by running `php artisan serve`
 5. Open `http://localhost:8000` in a browser
 
+## Project dependencies
+**Client:**
+- React
+- Bootstrap
+- Bootstrap Icons
+- flag-icons
+- TypeScript
+- Webpack
+
+**Server:**
+- Laravel
+
 ## Frontend folder structure
 The whole frontend is located in `resources/js`:
 - `src/`: all TS source code. All the code within can be imported by using prefix `app/` (for example: `import App from "app/App"`)
@@ -19,6 +31,5 @@ The whole frontend is located in `resources/js`:
 ## Tests
 In order to run backend-tests, run `php artisan test`
 
-## Contributing
-### Commits
+## Commits
 The project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) with [gitmoji](https://gitmoji.dev/)

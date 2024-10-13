@@ -1,4 +1,6 @@
 {
+	"locale.name": "Deutsch",
+	"locale.flag-icon": "de",
 	"info.version.client": "client: :value",
 	"info.version.server": "server: :value"
 }

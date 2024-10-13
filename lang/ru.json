@@ -1,4 +1,6 @@
 {
+	"locale.name": "Русский",
+	"locale.flag-icon": "ru",
 	"info.version.client": "клиент: :value",
 	"info.version.server": "сервер: :value"
 }

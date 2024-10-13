@@ -18,6 +18,7 @@
 
 **Server:**
 - Laravel
+- CaptainHook
 
 ## Frontend folder structure
 The whole frontend is located in `resources/js`:

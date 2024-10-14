@@ -14,3 +14,7 @@ it('Accessing the route "/{locale}" with a locale should set the application\'s 
 	$this->get('/de');
 	$this->assertSame('de', $this->app->getLocale());
 });
+
+it('Accessing /<route>/ should redirect to /<route>', function () {
+	$this->markTestSkipped('$response always has no trailing slashes and returns 200');
+});

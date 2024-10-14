@@ -4,9 +4,9 @@ it('The route "/" should redirect to "/en"', function () {
 	$response->assertRedirect('/en');
 });
 
-it('The route "/{locale}" with an unknown locale should redirect to "/en"', function () {
+it('The route "/{locale}" with an unknown locale should return 404', function () {
 	$response = $this->get('/unknown');
-	$response->assertRedirect('/en');
+	$response->assertStatus(404);
 });
 
 it('Accessing the route "/{locale}" with a locale should set the application\'s locale', function () {

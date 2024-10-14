@@ -6,6 +6,10 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Check if the passed locale is correct. If so, the application changes its locale. If not, 404 is thrown.
+ * @package App\Http\Middleware
+ */
 final readonly class CheckLocaleMiddleware {
 
 	public function __construct(
@@ -19,7 +23,7 @@ final readonly class CheckLocaleMiddleware {
 		$route = $request->route();
 		$urlLocale = $route->parameter('locale');
 		if (!$this->localeService->exists($urlLocale))
-			return redirect()->route($route->getName(), [...$route->parameters, 'locale' => $this->localeService->default()]);
+			return abort(404);
 		if (app()->getLocale() !== $urlLocale)
 			app()->setLocale($urlLocale);
 		return $next($request);

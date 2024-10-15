@@ -28,6 +28,7 @@ The whole frontend is located in `resources/js`:
 ## NPM scripts
 - `build`: build frontend
 - `build:watch`: build frontend in live mode
+- `clean`: delete compiled JS files
 
 ## Tests
 In order to run backend-tests, run `php artisan test`

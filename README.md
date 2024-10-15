@@ -26,8 +26,9 @@ The whole frontend is located in `resources/js`:
 - `index.ts`: entry point
 
 ## NPM scripts
-- `build`: build frontend
-- `build:watch`: build frontend in live mode
+- `build`: build the frontend in the production mode
+- `build:dev`: build the frontend in the development mode
+- `build:watch`: build the frontend in the development live mode
 - `clean`: delete compiled JS files
 
 ## Tests

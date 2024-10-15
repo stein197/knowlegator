@@ -4,8 +4,9 @@
   "description": "Knowlegator",
   "main": "index.js",
   "scripts": {
-    "build": "webpack",
-    "build:watch": "webpack --watch",
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "build:watch": "webpack --watch --mode development",
     "clean": "rimraf --glob public/index.js public/index.js.*"
   },
   "author": "",

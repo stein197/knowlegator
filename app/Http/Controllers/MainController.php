@@ -14,9 +14,7 @@ final class MainController extends Controller {
 
 	public function __invoke(): View {
 		return view('main', [
-			'title' => 'Knowlegator',
-			'locales' => $this->localeService->locales(),
-			'version' => $this->versionService
+			'title' => 'Knowlegator'
 		]);
 	}
 }

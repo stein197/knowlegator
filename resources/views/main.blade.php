@@ -1,3 +1,6 @@
+@use('App\Services\ApplicationVersionService')
+@use('App\Services\LocaleService')
+
 <!DOCTYPE html>
 <html lang="{{ app()->currentLocale() }}">
 	<head>
@@ -40,7 +43,7 @@
 							<i class="bi bi-globe"></i>
 						</button>
 						<ul class="dropdown-menu dropdown-menu-end">
-							@foreach ($locales as $k => $locale)
+							@foreach (app(LocaleService::class)->locales() as $k => $locale)
 								<li>
 									<a class="dropdown-item {{ app()->getLocale() === $k ? 'active' : '' }}" href="{{ route('main', ['locale' => $k]) }}">
 										<span class="fi fi-{{ $locale['flag-icon'] }}"></span>
@@ -55,7 +58,7 @@
 		</header>
 		<main class="flex-grow-1"></main>
 		<footer class="text-bg-dark lh-1 text-end">
-			<div class="container-fluid">{{ __('info.version.client', ['value' => $version->getClientVersion()]) }} | {{ __('info.version.server', ['value' => $version->getServerVersion()]) }}</div>
+			<div class="container-fluid">{{ __('info.version.client', ['value' => app(ApplicationVersionService::class)->getClientVersion()]) }} | {{ __('info.version.server', ['value' => app(ApplicationVersionService::class)->getServerVersion()]) }}</div>
 		</footer>
 	</body>
 </html>

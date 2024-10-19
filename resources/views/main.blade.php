@@ -29,8 +29,8 @@
 		<!-- /flag-icons -->
 
 		<!-- app-assets -->
-		<link rel="stylesheet" href="index.css" />
-		<script src="index.js"></script>
+		<link rel="stylesheet" href="/index.css" />
+		<script src="/index.js"></script>
 		<!-- /app-assets -->
 	</head>
 	<body class="d-flex flex-column">
@@ -45,7 +45,7 @@
 						<ul class="dropdown-menu dropdown-menu-end">
 							@foreach (app(LocaleService::class)->locales() as $k => $locale)
 								<li>
-									<a class="dropdown-item {{ app()->getLocale() === $k ? 'active' : '' }}" href="{{ route('main', ['locale' => $k]) }}">
+									<a class="dropdown-item {{ app()->getLocale() === $k ? 'active' : '' }}" href="{{ route('login', ['locale' => $k]) }}">
 										<span class="fi fi-{{ $locale['flag-icon'] }}"></span>
 										<span>{{ $locale['name'] }}</a>
 									</span>
@@ -56,7 +56,7 @@
 				</div>
 			</nav>
 		</header>
-		<main class="flex-grow-1"></main>
+		<main class="flex-grow-1">@yield('main')</main>
 		@env('dev')
 			<footer class="text-bg-dark lh-1 text-end">
 				<div class="container-fluid">{{ __('info.version.client', ['value' => app(ApplicationVersionService::class)->getClientVersion()]) }} | {{ __('info.version.server', ['value' => app(ApplicationVersionService::class)->getServerVersion()]) }}</div>

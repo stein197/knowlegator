@@ -5,7 +5,7 @@ use App\Services\ApplicationVersionService;
 use App\Services\LocaleService;
 use Illuminate\View\View;
 
-final class MainController extends Controller {
+final class LoginController extends Controller {
 
 	public function __construct(
 		private ApplicationVersionService $versionService,
@@ -13,7 +13,7 @@ final class MainController extends Controller {
 	) {}
 
 	public function __invoke(): View {
-		return view('main', [
+		return view('page.login', [
 			'title' => 'Knowlegator'
 		]);
 	}

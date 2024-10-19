@@ -57,8 +57,10 @@
 			</nav>
 		</header>
 		<main class="flex-grow-1"></main>
-		<footer class="text-bg-dark lh-1 text-end">
-			<div class="container-fluid">{{ __('info.version.client', ['value' => app(ApplicationVersionService::class)->getClientVersion()]) }} | {{ __('info.version.server', ['value' => app(ApplicationVersionService::class)->getServerVersion()]) }}</div>
-		</footer>
+		@env('dev')
+			<footer class="text-bg-dark lh-1 text-end">
+				<div class="container-fluid">{{ __('info.version.client', ['value' => app(ApplicationVersionService::class)->getClientVersion()]) }} | {{ __('info.version.server', ['value' => app(ApplicationVersionService::class)->getServerVersion()]) }}</div>
+			</footer>
+		@endenv
 	</body>
 </html>

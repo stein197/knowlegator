@@ -18,3 +18,7 @@ it('Accessing the route "/{locale}" with a locale should set the application\'s 
 it('Accessing /<route>/ should redirect to /<route>', function () {
 	$this->markTestSkipped('$response always has no trailing slashes and returns 200');
 });
+
+it('Accessing a page with APP_ENV=dev will show the footer status bar', function () {
+	$this->markTestSkipped('Unable to override environment variables');
+});

@@ -1,24 +1,24 @@
 <?php
-it('The route "/" should redirect to "/en/login"', function () {
+it('should redirect to "/en/login" when accessing "/"', function () {
 	$response = $this->get('/');
 	$response->assertRedirect('/en/login');
 });
 
-it('The route "/{locale}/login" with an unknown locale should return 404', function () {
+it('should return 404 when the locale for the route route "/{locale}/login" is unknown', function () {
 	$response = $this->get('/unknown/login');
 	$response->assertStatus(404);
 });
 
-it('Accessing the route "/{locale}/login" with a locale should set the application\'s locale', function () {
+it('should set the application\'s locale when accessing the route "/{locale}/login" with another locale', function () {
 	$this->assertSame('en', $this->app->getLocale());
 	$this->get('/de/login');
 	$this->assertSame('de', $this->app->getLocale());
 });
 
-it('Accessing /<route>/ should redirect to /<route>', function () {
+it('should redirect to "/<route>" when accessing "/<route>/"', function () {
 	$this->markTestSkipped('$response always has no trailing slashes and returns 200');
 });
 
-it('Accessing a page with APP_ENV=dev will show the footer status bar', function () {
+it('should show the footer status bar when accessing a page with APP_ENV=dev', function () {
 	$this->markTestSkipped('Unable to override environment variables');
 });

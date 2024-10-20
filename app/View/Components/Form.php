@@ -16,6 +16,7 @@ final class Form extends Component {
 	public function __construct(
 		public string $action = '',
 		public string $method = 'GET',
+		public string $title = '',
 		public array $fields = [],
 		public array $buttons = []
 	) {

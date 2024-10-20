@@ -9,6 +9,12 @@ it('should containt enctype="multipart/form-data"', function (): void {
 	$view->assertSee('enctype="multipart/form-data"', false);
 });
 
+it('should render title correctly', function (): void {
+	/** @var \Tests\TestCase $this */
+	$view = $this->component(Form::class, ['title' => 'Form title']);
+	$view->assertSee('<strong>Form title</strong>', false);
+});
+
 it('should render an empty form when there are no input', function (): void {
 	/** @var \Tests\TestCase $this */
 	$view = $this->component(Form::class);
@@ -40,6 +46,20 @@ it('should render fields correctly', function (): void {
 	$view->assertSee('Text label', false);
 	$view->assertSee('type="text"', false);
 	$view->assertSee('required', false);
+});
+
+it('should render checkboxes', function (): void {
+	/** @var \Tests\TestCase $this */
+	$view = $this->component(Form::class, ['fields' => [
+		'checkbox' => [
+			'label' => 'Checkbox label',
+			'type' => 'checkbox',
+			'required' => true
+		]
+	]]);
+	$view->assertSee('Checkbox label', false);
+	$view->assertSee('type="checkbox"', false);
+	$view->assertSee('class="form-check-input"', false);
 });
 
 it('should render buttons correctly', function (): void {

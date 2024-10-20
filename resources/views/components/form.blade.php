@@ -1,12 +1,26 @@
-<form class="card" action="{{ $action }}" method="POST" enctype="multipart/form-data">
+<form class="card shadow" action="{{ $action }}" method="POST" enctype="multipart/form-data">
 	@csrf
 	@method($method)
 	<div class="card-body">
+		@if ($title)
+			<p>
+				<strong>{{ $title }}</strong>
+			</p>
+		@endif
 		@foreach ($fields as $name => $field)
-			<div class="mb-3">
-				<p class="form-label">{{ $field['label'] }}</p>
-				<input class="form-control" type="{{ $field['type'] }}" name="{{ $name }}" {{ @$field['required'] ? 'required' : '' }} />
-			</div>
+			@switch (@$field['type'])
+				@case ('checkbox')
+					<label class="form-label">
+						<input class="form-check-input" type="checkbox" name="{{ $name }}" {{ @$field['required'] ? 'required' : '' }} />
+						<span>{{ $field['label'] }}</span>
+					</label>
+					@break
+				@default
+					<div class="mb-3">
+						<p class="form-label">{{ $field['label'] }}</p>
+						<input class="form-control" type="{{ @$field['type'] ?? 'text' }}" name="{{ $name }}" {{ @$field['required'] ? 'required' : '' }} />
+					</div>
+			@endswitch
 		@endforeach
 		@if ($buttons)
 			<div class="row">

@@ -1,6 +1,25 @@
 {
 	"locale.name": "Русский",
 	"locale.flag-icon": "ru",
+
 	"info.version.client": "клиент: :value",
-	"info.version.server": "сервер: :value"
+	"info.version.server": "сервер: :value",
+
+	"form.login.title": "Войти или зарегистрироваться",
+	"form.login.field.email": "E-Mail",
+	"form.login.field.password": "Пароль",
+	"form.login.field.remember": "Запомнить меня",
+	"form.login.button.login": "Войти",
+	"form.login.button.register": "Зарегистрироваться",
+
+	"page.account.title": "Мой аккаунт",
+	"page.message.back": "Назад",
+
+	"message.user.doesNotExist": "Пользователь :user не существует",
+	"message.user.cannotCreate": "Не удалось создать пользователя :user",
+	"message.user.cannotLogin": "Неудалось войти пользователем :user",
+	"message.user.created": "Пользователь :user был успешно создан",
+	
+	"oops": "Упс!",
+	"logout": "Выйти"
 }

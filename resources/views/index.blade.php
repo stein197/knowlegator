@@ -38,25 +38,47 @@
 			<nav class="navbar navbar-expand-lg bg-body-tertiary">
 				<div class="container">
 					<a class="navbar-brand" href="/">Knowlegator</a>
-					<div class="dropdown">
-						<button class="btn dropdown-toggle text-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<i class="bi bi-globe"></i>
-						</button>
-						<ul class="dropdown-menu dropdown-menu-end">
-							@foreach (app(LocaleService::class)->locales() as $k => $locale)
-								<li>
-									<a class="dropdown-item {{ app()->getLocale() === $k ? 'active' : '' }}" href="{{ route('login', ['locale' => $k]) }}">
-										<span class="fi fi-{{ $locale['flag-icon'] }}"></span>
-										<span>{{ $locale['name'] }}</a>
-									</span>
-								</li>
-							@endforeach
-						</ul>
+					<div class="d-flex">
+						<div class="dropdown">
+							<button class="btn dropdown-toggle text-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<i class="bi bi-globe"></i>
+							</button>
+							<ul class="dropdown-menu dropdown-menu-end">
+								@foreach (app(LocaleService::class)->locales() as $k => $locale)
+									<li>
+										<a class="dropdown-item {{ app()->getLocale() === $k ? 'active' : '' }}" href="{{ route('login', ['locale' => $k], false) }}">
+											<span class="fi fi-{{ $locale['flag-icon'] }}"></span>
+											<span>{{ $locale['name'] }}</a>
+										</span>
+									</li>
+								@endforeach
+							</ul>
+						</div>
+						@auth
+							<div class="dropdown">
+								<button class="btn dropdown-toggle text-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+									<i class="bi bi-person-circle"></i>
+								</button>
+								<ul class="dropdown-menu dropdown-menu-end">
+									<li>
+										<span class="dropdown-item">
+											<form action="{{ route('logout', [], false) }}" method="POST" enctype="multipart/form-data">
+												@csrf
+												<button class="reset w-100">
+													<i class="bi bi-box-arrow-right"></i>
+													<span>{{ __('logout') }}</span>
+												</button>
+											</form>
+										</span>
+									</li>
+								</ul>
+							</div>
+						@endauth
 					</div>
 				</div>
 			</nav>
 		</header>
-		<main class="flex-grow-1">@yield('main')</main>
+		<main class="flex-grow-1 d-flex flex-column">@yield('main')</main>
 		@env('dev')
 			<footer class="text-bg-dark lh-1 text-end">
 				<div class="container-fluid">{{ __('info.version.client', ['value' => app(ApplicationVersionService::class)->getClientVersion()]) }} | {{ __('info.version.server', ['value' => app(ApplicationVersionService::class)->getServerVersion()]) }}</div>

@@ -1,7 +1,8 @@
 <?php
-namespace Tests;
+namespace Tests\Unit\Service;
 
 use App\Services\ApplicationVersionService;
+use Tests\TestCase;
 
 final class ApplicationVersionServiceTest extends TestCase {
 

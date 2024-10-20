@@ -1,6 +1,25 @@
 {
 	"locale.name": "Deutsch",
 	"locale.flag-icon": "de",
+
 	"info.version.client": "client: :value",
-	"info.version.server": "server: :value"
+	"info.version.server": "server: :value",
+
+	"form.login.title": "Anmelden oder registrieren",
+	"form.login.field.email": "E-Mail",
+	"form.login.field.password": "Passwort",
+	"form.login.field.remember": "Im System bleiben",
+	"form.login.button.login": "Anmelden",
+	"form.login.button.register": "Registrieren",
+
+	"page.account.title": "Mein Konto",
+	"page.message.back": "Zurück",
+
+	"message.user.doesNotExist": "Benutzer :user existiert nicht",
+	"message.user.cannotCreate": "Benutzer :user kann nicht erstellt werden",
+	"message.user.cannotLogin": "Anmeldung als :user nicht möglich",
+	"message.user.created": "Benutzer :user wurde erfolgreich erstellt",
+
+	"oops": "Hoppla",
+	"logout": "Abmelden"
 }

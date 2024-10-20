@@ -1,4 +1,4 @@
-<form class="card" action="{{ $action }}" method="POST" enctype="application/x-www-form-urlencoded">
+<form class="card" action="{{ $action }}" method="POST" enctype="multipart/form-data">
 	@csrf
 	@method($method)
 	<div class="card-body">

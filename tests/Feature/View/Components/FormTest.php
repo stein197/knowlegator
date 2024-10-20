@@ -3,6 +3,12 @@ namespace Tests\Feature\View\Components;
 
 use App\View\Components\Form;
 
+it('should containt enctype="multipart/form-data"', function (): void {
+	/** @var \Tests\TestCase $this */
+	$view = $this->component(Form::class);
+	$view->assertSee('enctype="multipart/form-data"', false);
+});
+
 it('should render an empty form when there are no input', function (): void {
 	/** @var \Tests\TestCase $this */
 	$view = $this->component(Form::class);

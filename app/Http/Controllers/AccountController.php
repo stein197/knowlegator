@@ -10,7 +10,7 @@ use Illuminate\View\View;
 final class AccountController extends Controller {
 
 	public function __invoke(): View {
-		return view('index', [
+		return view('template.index', [
 			'title' => __('page.account.title')
 		]);
 	}

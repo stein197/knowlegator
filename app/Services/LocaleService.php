@@ -1,6 +1,7 @@
 <?php
 namespace App\Services;
 
+use Illuminate\Http\Request;
 use function array_filter;
 use function array_map;
 use function file_get_contents;
@@ -17,19 +18,24 @@ final class LocaleService {
 
 	/**
 	 * Return an array of defined locales, where keys are codes and values are the information, where `name` is a
-	 * translated name and `flag-icon` is an icon name for the flag-icon CSS library.
+	 * translated name, `flag-icon` is an icon name for the flag-icon CSS library and `url` is a link to the current
+	 * resource but with another locale.
+	 * @param null|Request $request Request to build locale URLs for.
 	 * @return array Defined locales.
 	 */
-	public function locales(): array {
+	public function locales(?Request $request = null): array {
 		static $cache = [];
-		if (!$cache)
+		if (!$cache) {
+			$route = $request?->route();
 			foreach ($this->list() as $k) {
 				$cfg = $this->config($k);
 				$cache[$k] = [
 					'name'      => $cfg['locale.name'],
-					'flag-icon' => $cfg['locale.flag-icon']
+					'flag-icon' => $cfg['locale.flag-icon'],
+					'url'       => $route ? route($route->getName(), [...$route->parameters(), 'locale' => $k], false) : null
 				];
 			}
+		}
 		return $cache;
 	}
 

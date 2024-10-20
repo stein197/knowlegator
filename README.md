@@ -21,9 +21,15 @@
 - CaptainHook
 
 ## Frontend folder structure
-The whole frontend is located in `resources/js`:
-- `src/`: all TS source code. All the code within can be imported by using prefix `app/` (for example: `import App from "app/App"`)
-- `index.ts`: entry point
+- `resources/js/`:
+	- `src/`: all TypeScript source code. All the code within can be imported by using prefix `app/` (for example: `import App from "app/App"`)
+		- `view/`: all React components
+	- `index.ts`: entry point
+
+## Backed structure
+- `resources/views/`
+	- `page/`: complete page view to be used
+	- `template/`: templates to be extended and used by pages
 
 ## NPM scripts
 - `build`: build the frontend in the production mode

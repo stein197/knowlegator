@@ -13,7 +13,10 @@
 	"form.login.button.register": "Registrieren",
 
 	"page.account.title": "Mein Konto",
-	"page.message.back": "Zurück",
+	"page.settings.title": "Einstellungen",
+	"page.settings.deleteAccount": "Konto entfernen",
+	"page.settings.delete.confirmation": "Sind Sie sicher, dass Sie das Konto entfernen möchten?",
+	"page.settings.delete.consequences": "Diese Aktion kann nicht abgebrochen werden",
 
 	"message.user.doesNotExist": "Benutzer :user existiert nicht",
 	"message.user.cannotCreate": "Benutzer :user kann nicht erstellt werden",
@@ -21,5 +24,8 @@
 	"message.user.created": "Benutzer :user wurde erfolgreich erstellt",
 
 	"oops": "Hoppla",
-	"logout": "Abmelden"
+	"logout": "Abmelden",
+	"settings": "Einstellungen",
+	"back": "Zurück",
+	"yes": "Ja"
 }

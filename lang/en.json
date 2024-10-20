@@ -13,7 +13,10 @@
 	"form.login.button.register": "Register",
 
 	"page.account.title": "My account",
-	"page.message.back": "Back",
+	"page.settings.title": "Settings",
+	"page.settings.deleteAccount": "Delete account",
+	"page.settings.delete.confirmation": "Are you sure you want to delete the account?",
+	"page.settings.delete.consequences": "This action cannot be rewoked",
 
 	"message.user.doesNotExist": "User :user does not exist",
 	"message.user.cannotCreate": "Cannot create user :user",
@@ -21,5 +24,8 @@
 	"message.user.created": "User :user has been successfully created",
 
 	"oops": "Oops!",
-	"logout": "Log out"
+	"logout": "Log out",
+	"settings": "Settings",
+	"back": "Back",
+	"yes": "Yes"
 }

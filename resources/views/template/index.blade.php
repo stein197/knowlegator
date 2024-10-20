@@ -47,9 +47,9 @@
 								<i class="bi bi-globe"></i>
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end">
-								@foreach (app(LocaleService::class)->locales() as $k => $locale)
+								@foreach (app(LocaleService::class)->locales(app()->request) as $k => $locale)
 									<li>
-										<a class="dropdown-item {{ app()->getLocale() === $k ? 'active' : '' }}" href="{{ route('login', ['locale' => $k], false) }}">
+										<a class="dropdown-item {{ app()->getLocale() === $k ? 'active' : '' }}" href="{{ $locale['url'] }}">
 											<span class="fi fi-{{ $locale['flag-icon'] }}"></span>
 											<span>{{ $locale['name'] }}</a>
 										</span>
@@ -67,12 +67,18 @@
 										<span class="dropdown-item">
 											<form action="{{ route('logout', ['locale' => app()->getLocale()], false) }}" method="POST" enctype="multipart/form-data">
 												@csrf
-												<button class="reset w-100">
+												<button class="reset w-100 text-start">
 													<i class="bi bi-box-arrow-right"></i>
 													<span>{{ __('logout') }}</span>
 												</button>
 											</form>
 										</span>
+									</li>
+									<li>
+										<a class="dropdown-item" href={{ route('settings', ['locale' => app()->getLocale()], false) }}>
+											<i class="bi bi-gear-fill"></i>
+											<span>{{ __('settings') }}</span>
+										</a>
 									</li>
 								</ul>
 							</div>

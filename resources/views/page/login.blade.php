@@ -1,4 +1,4 @@
-@extends('index')
+@extends('template.index')
 
 @section('main')
 	<section class="flex-grow-1 d-flex align-items-center">

@@ -13,7 +13,10 @@
 	"form.login.button.register": "Зарегистрироваться",
 
 	"page.account.title": "Мой аккаунт",
-	"page.message.back": "Назад",
+	"page.settings.title": "Настройки",
+	"page.settings.deleteAccount": "Удалить аккаунт",
+	"page.settings.delete.confirmation": "Вы уверены, что хотите удалить аккаунт?",
+	"page.settings.delete.consequences": "Это действие нельзя будет отменить",
 
 	"message.user.doesNotExist": "Пользователь :user не существует",
 	"message.user.cannotCreate": "Не удалось создать пользователя :user",
@@ -21,5 +24,8 @@
 	"message.user.created": "Пользователь :user был успешно создан",
 	
 	"oops": "Упс!",
-	"logout": "Выйти"
+	"logout": "Выйти",
+	"settings": "Настройки",
+	"back": "Назад",
+	"yes": "Да"
 }

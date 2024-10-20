@@ -19,6 +19,11 @@
 					<div class="mb-3">
 						<p class="form-label">{{ $field['label'] }}</p>
 						<input class="form-control" type="{{ @$field['type'] ?? 'text' }}" name="{{ $name }}" {{ @$field['required'] ? 'required' : '' }} />
+						@isset($errors)
+							@error($name)
+								<p class="text-danger">{{ $message }}</p>
+							@enderror
+						@endisset
 					</div>
 			@endswitch
 		@endforeach

@@ -38,7 +38,10 @@
 			<nav class="navbar navbar-expand-lg bg-body-tertiary">
 				<div class="container">
 					<a class="navbar-brand" href="/">Knowlegator</a>
-					<div class="d-flex">
+					<div class="d-flex align-items-center">
+						@auth
+							<em>{{ auth()->user()->email }}</em>
+						@endauth
 						<div class="dropdown">
 							<button class="btn dropdown-toggle dropdown-toggle-noarrow text-dark fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 								<i class="bi bi-globe"></i>

@@ -62,7 +62,7 @@
 								<ul class="dropdown-menu dropdown-menu-end">
 									<li>
 										<span class="dropdown-item">
-											<form action="{{ route('logout', [], false) }}" method="POST" enctype="multipart/form-data">
+											<form action="{{ route('logout', ['locale' => app()->getLocale()], false) }}" method="POST" enctype="multipart/form-data">
 												@csrf
 												<button class="reset w-100">
 													<i class="bi bi-box-arrow-right"></i>

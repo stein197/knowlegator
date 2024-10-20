@@ -40,7 +40,7 @@
 					<a class="navbar-brand" href="/">Knowlegator</a>
 					<div class="d-flex">
 						<div class="dropdown">
-							<button class="btn dropdown-toggle text-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+							<button class="btn dropdown-toggle dropdown-toggle-noarrow text-dark fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 								<i class="bi bi-globe"></i>
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end">
@@ -56,7 +56,7 @@
 						</div>
 						@auth
 							<div class="dropdown">
-								<button class="btn dropdown-toggle text-primary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+								<button class="btn dropdown-toggle dropdown-toggle-noarrow text-dark fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 									<i class="bi bi-person-circle"></i>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-end">

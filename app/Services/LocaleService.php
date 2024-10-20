@@ -7,6 +7,7 @@ use function array_map;
 use function file_get_contents;
 use function in_array;
 use function json_decode;
+use function preg_replace;
 use function scandir;
 use function str_replace;
 
@@ -26,13 +27,13 @@ final class LocaleService {
 	public function locales(?Request $request = null): array {
 		static $cache = [];
 		if (!$cache) {
-			$route = $request?->route();
+			$requestUri = $request?->getRequestUri();
 			foreach ($this->list() as $k) {
 				$cfg = $this->config($k);
 				$cache[$k] = [
 					'name'      => $cfg['locale.name'],
 					'flag-icon' => $cfg['locale.flag-icon'],
-					'url'       => $route ? route($route->getName(), [...$route->parameters(), 'locale' => $k], false) : null
+					'url'       => $requestUri ? preg_replace('/^\\/[^\\/]+/', "/{$k}", $requestUri) : null
 				];
 			}
 		}

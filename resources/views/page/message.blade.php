@@ -1,11 +1,6 @@
-@extends('template.index')
+@extends('template.content')
 
-@section('main')
-	<section class="my-5">
-		<div class="container">
-			<h1>{{ __('oops') }}</h1>
-			<p class="alert alert-{{ $type }}">{{ $message }}</p>
-			<a class="btn btn-dark" href="/">{{ __('back') }}</a>
-		</div>
-	</section>
+@section('content')
+	<p class="alert alert-{{ $type }}">{{ $message }}</p>
+	<a class="btn btn-dark" href="/">{{ __('back') }}</a>
 @endsection

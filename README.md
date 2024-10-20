@@ -28,7 +28,8 @@
 
 ## Backed structure
 - `resources/views/`
-	- `page/`: complete page view to be used
+	- `components/`: Blade components
+	- `page/`: complete page views to be used
 	- `template/`: templates to be extended and used by pages
 
 ## NPM scripts

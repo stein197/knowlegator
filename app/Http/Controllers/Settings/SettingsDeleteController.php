@@ -1,6 +1,8 @@
 <?php
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Settings;
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\LogoutController;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -8,7 +10,7 @@ use Illuminate\View\View;
  * Deletes an account for the current authorized user.
  * @package App\Http\Controllers
  */
-class SettingsDeleteAccountController extends Controller {
+class SettingsDeleteController extends Controller {
 
 	public function get(): View {
 		return view('page.settings.delete', [

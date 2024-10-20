@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Feature\Controller;
+namespace Tests\Feature\Controller\Settings;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;

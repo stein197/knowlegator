@@ -64,6 +64,12 @@
 								</button>
 								<ul class="dropdown-menu dropdown-menu-end">
 									<li>
+										<a class="dropdown-item" href={{ route('settings', ['locale' => app()->getLocale()], false) }}>
+											<i class="bi bi-gear-fill"></i>
+											<span>{{ __('settings') }}</span>
+										</a>
+									</li>
+									<li>
 										<span class="dropdown-item">
 											<form action="{{ route('logout', ['locale' => app()->getLocale()], false) }}" method="POST" enctype="multipart/form-data">
 												@csrf
@@ -73,12 +79,6 @@
 												</button>
 											</form>
 										</span>
-									</li>
-									<li>
-										<a class="dropdown-item" href={{ route('settings', ['locale' => app()->getLocale()], false) }}>
-											<i class="bi bi-gear-fill"></i>
-											<span>{{ __('settings') }}</span>
-										</a>
 									</li>
 								</ul>
 							</div>

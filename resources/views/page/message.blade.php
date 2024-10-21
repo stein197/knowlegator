@@ -2,5 +2,5 @@
 
 @section('content')
 	<p class="alert alert-{{ $type }}">{{ $message }}</p>
-	<a class="btn btn-dark" href="/">{{ __('back') }}</a>
+	<a class="btn btn-dark" href="{{ url()->previous() }}">{{ __('back') }}</a>
 @endsection

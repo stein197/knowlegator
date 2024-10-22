@@ -1,7 +1,8 @@
 <?php
-namespace Tests;
+namespace Tests\Unit;
 
 use PHPUnit\Framework\Attributes\Depends;
+use Tests\TestCase;
 use function array_combine;
 use function array_filter;
 use function array_map;

@@ -1,7 +1,8 @@
 <?php
-namespace Tests;
+namespace Tests\Unit;
 
 use App\Services\LocaleService;
+use Tests\TestCase;
 
 final class LocaleServiceTest extends TestCase {
 

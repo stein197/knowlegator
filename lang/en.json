@@ -31,7 +31,6 @@
 	"message.user.password.changed": "The password has been successfully changed",
 	"message.user.password.couldNotChange": "Unable to change password",
 	
-	"info.version.client": "client: :value",
 	"info.version.server": "server: :value",
 
 	"oops": "Oops!",

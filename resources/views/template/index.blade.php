@@ -9,6 +9,10 @@
 		<link rel="icon" href="/favicon.ico" />
 		<title>{{ $title }}</title>
 
+		<!-- jQuery -->
+		<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+		<!-- /jQuery -->
+
 		<!-- bootstrap -->
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -29,9 +33,17 @@
 		<!-- /flag-icons -->
 
 		<!-- app-assets -->
-		<link rel="stylesheet" href="/index.css" />
-		<script src="/index.js"></script>
+		<link rel="stylesheet" href="/index.css?{{ filemtime(public_path('index.css')) }}" />
+		<script src="/index.js?{{ filemtime(public_path('index.js')) }}"></script>
 		<!-- /app-assets -->
+
+		@env('testing')
+			<!-- QUnit -->
+			<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.22.0.css" />
+			<script src="https://code.jquery.com/qunit/qunit-2.22.0.js" defer=""></script>
+			<script src="/index.test.js?{{ filemtime(public_path('index.test.js')) }}" defer=""></script>
+			<!-- /QUnit -->
+		@endenv
 	</head>
 	<body class="d-flex flex-column">
 		<header>
@@ -90,8 +102,12 @@
 		<main class="flex-grow-1 d-flex flex-column">@yield('main')</main>
 		@env('dev')
 			<footer class="text-bg-dark lh-1 text-end">
-				<div class="container-fluid">{{ __('info.version.client', ['value' => app(ApplicationVersionService::class)->getClientVersion()]) }} | {{ __('info.version.server', ['value' => app(ApplicationVersionService::class)->getServerVersion()]) }}</div>
+				<div class="container-fluid">{{ __('info.version.server', ['value' => app(ApplicationVersionService::class)->getServerVersion()]) }}</div>
 			</footer>
+		@endenv
+		@env('testing')
+			<div id="qunit"></div>
+			<div id="qunit-fixture"></div>
 		@endenv
 	</body>
 </html>

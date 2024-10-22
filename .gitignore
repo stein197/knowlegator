@@ -3,8 +3,6 @@
 /public/build
 /public/hot
 /public/storage
-/public/index.js
-/public/index.js.*
 /storage/*.key
 /vendor
 .env

@@ -13,14 +13,6 @@ final class ApplicationVersionService {
 	private array $cache = [];
 
 	/**
-	 * Return an information about client version that's read from the `package.json` file.
-	 * @return string Client version.
-	 */
-	public function getClientVersion(): string {
-		return $this->getVersion('package.json');
-	}
-
-	/**
 	 * Return an information about server version that's read from the `composer.json` file.
 	 * @return string Server version.
 	 */

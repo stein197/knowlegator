@@ -8,32 +8,32 @@
 					<x-form
 						action="{{ route('login', [], false) }}"
 						method="POST"
-						title="{{ __('form.login.title') }}"
+						title="{{ __('page.login.title') }}"
 						:fields="[
 							'email' => [
-								'label' => __('form.login.field.email'),
+								'label' => __('form.field.email'),
 								'type' => 'email',
 								'required' => true
 							],
 							'password' => [
-								'label' => __('form.login.field.password'),
+								'label' => __('form.field.password'),
 								'type' => 'password',
 								'required' => true
 							],
 							'remember' => [
-								'label' => __('form.login.field.remember'),
+								'label' => __('form.field.remember'),
 								'type' => 'checkbox'
 							]
 						]"
 						:buttons="[
 							[
-								'label' => __('form.login.button.login'),
+								'label' => __('form.button.login'),
 								'type' => 'primary',
 								'name' => 'action',
 								'value' => 'login'
 							],
 							[
-								'label' => __('form.login.button.register'),
+								'label' => __('form.button.register'),
 								'type' => 'success',
 								'name' => 'action',
 								'value' => 'register'

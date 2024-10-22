@@ -2,27 +2,26 @@
 	"locale.name": "Deutsch",
 	"locale.flag-icon": "de",
 
-	"info.version.client": "client: :value",
-	"info.version.server": "server: :value",
-
-	"form.login.title": "Anmelden oder registrieren",
-	"form.login.field.email": "E-Mail",
-	"form.login.field.password": "Passwort",
-	"form.login.field.remember": "Im System bleiben",
-	"form.login.button.login": "Anmelden",
-	"form.login.button.register": "Registrieren",
-	
-	"form.password.field.old": "Altes Passwort",
-	"form.password.field.new": "Neues Passwort",
-	"form.password.field.repeat": "Passwort wiederholen",
-	"form.password.button.confirm": "Bestätigen",
-
+	"page.login.title": "Anmelden oder registrieren",
 	"page.account.title": "Mein Konto",
 	"page.settings.title": "Einstellungen",
 	"page.settings.deleteAccount": "Konto entfernen",
 	"page.settings.changePassword": "Passwort ändern",
 	"page.settings.delete.confirmation": "Sind Sie sicher, dass Sie das Konto entfernen möchten?",
 	"page.settings.delete.consequences": "Diese Aktion kann nicht abgebrochen werden",
+
+	"menu.settings": "Einstellungen",
+	"menu.logout": "Abmelden",
+
+	"form.field.email": "E-Mail",
+	"form.field.password": "Passwort",
+	"form.field.remember": "Im System bleiben",
+	"form.field.oldPassword": "Altes Passwort",
+	"form.field.newPassword": "Neues Passwort",
+	"form.field.repeatPassword": "Passwort wiederholen",
+	"form.button.login": "Anmelden",
+	"form.button.register": "Registrieren",
+	"form.button.confirm": "Bestätigen",
 
 	"message.user.doesNotExist": "Benutzer :user existiert nicht",
 	"message.user.cannotCreate": "Benutzer :user kann nicht erstellt werden",
@@ -32,9 +31,10 @@
 	"message.user.password.changed": "Das Passwort wurde erfolgreich geändert",
 	"message.user.password.couldNotChange": "Das Password konnte nicht geändert werden",
 
+	"info.version.client": "client: :value",
+	"info.version.server": "server: :value",
+
 	"oops": "Hoppla",
-	"logout": "Abmelden",
-	"settings": "Einstellungen",
 	"back": "Zurück",
 	"yes": "Ja"
 }

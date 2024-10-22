@@ -66,7 +66,7 @@
 									<li>
 										<a class="dropdown-item" href={{ route('settings', ['locale' => app()->getLocale()], false) }}>
 											<i class="bi bi-gear-fill"></i>
-											<span>{{ __('settings') }}</span>
+											<span>{{ __('menu.settings') }}</span>
 										</a>
 									</li>
 									<li>
@@ -75,7 +75,7 @@
 												@csrf
 												<button class="reset w-100 text-start">
 													<i class="bi bi-box-arrow-right"></i>
-													<span>{{ __('logout') }}</span>
+													<span>{{ __('menu.logout') }}</span>
 												</button>
 											</form>
 										</span>

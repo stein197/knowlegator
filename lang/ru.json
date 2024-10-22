@@ -2,27 +2,26 @@
 	"locale.name": "Русский",
 	"locale.flag-icon": "ru",
 
-	"info.version.client": "клиент: :value",
-	"info.version.server": "сервер: :value",
-
-	"form.login.title": "Войти или зарегистрироваться",
-	"form.login.field.email": "E-Mail",
-	"form.login.field.password": "Пароль",
-	"form.login.field.remember": "Запомнить меня",
-	"form.login.button.login": "Войти",
-	"form.login.button.register": "Зарегистрироваться",
-
-	"form.password.field.old": "Старый пароль",
-	"form.password.field.new": "Новый пароль",
-	"form.password.field.repeat": "Повторите новый пароль",
-	"form.password.button.confirm": "Подтверить",
-
+	"page.login.title": "Войти или зарегистрироваться",
 	"page.account.title": "Мой аккаунт",
 	"page.settings.title": "Настройки",
 	"page.settings.deleteAccount": "Удалить аккаунт",
 	"page.settings.changePassword": "Изменить пароль",
 	"page.settings.delete.confirmation": "Вы уверены, что хотите удалить аккаунт?",
 	"page.settings.delete.consequences": "Это действие нельзя будет отменить",
+
+	"menu.settings": "Настройки",
+	"menu.logout": "Выйти",
+
+	"form.field.email": "E-Mail",
+	"form.field.password": "Пароль",
+	"form.field.remember": "Запомнить меня",
+	"form.field.oldPassword": "Старый пароль",
+	"form.field.newPassword": "Новый пароль",
+	"form.field.repeatPassword": "Повторите новый пароль",
+	"form.button.login": "Войти",
+	"form.button.register": "Зарегистрироваться",
+	"form.button.confirm": "Подтверить",
 
 	"message.user.doesNotExist": "Пользователь :user не существует",
 	"message.user.cannotCreate": "Не удалось создать пользователя :user",
@@ -32,9 +31,10 @@
 	"message.user.password.changed": "Пароль был успешно изменён",
 	"message.user.password.couldNotChange": "Не удалось изменить пароль",
 	
+	"info.version.client": "клиент: :value",
+	"info.version.server": "сервер: :value",
+
 	"oops": "Упс!",
-	"logout": "Выйти",
-	"settings": "Настройки",
 	"back": "Назад",
 	"yes": "Да"
 }

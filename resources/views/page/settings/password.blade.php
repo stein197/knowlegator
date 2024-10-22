@@ -6,24 +6,24 @@
 		method="PUT"
 		:fields="[
 			'old' => [
-				'label' => __('form.password.field.old'),
+				'label' => __('form.field.oldPassword'),
 				'type' => 'password',
 				'required' => true
 			],
 			'new' => [
-				'label' => __('form.password.field.new'),
+				'label' => __('form.field.newPassword'),
 				'type' => 'password',
 				'required' => true
 			],
 			'repeat' => [
-				'label' => __('form.password.field.repeat'),
+				'label' => __('form.field.repeatPassword'),
 				'type' => 'password',
 				'required' => true
 			],
 		]"
 		:buttons="[
 			[
-				'label' => __('form.password.button.confirm'),
+				'label' => __('form.button.confirm'),
 				'type' => 'primary'
 			]
 		]" />

@@ -14,6 +14,6 @@ class LogoutController extends Controller {
 		Auth::logout();
 		session()->invalidate();
 		session()->regenerateToken();
-		return to_route('login');
+		return to_lroute('login');
 	}
 }

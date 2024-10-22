@@ -2,7 +2,7 @@
 
 @section('content')
 	<x-form
-		action="{{ route('settings.password', [], false) }}"
+		action="{{ lroute('settings.password') }}"
 		method="PUT"
 		:fields="[
 			'old' => [

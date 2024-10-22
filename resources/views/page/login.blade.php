@@ -6,7 +6,7 @@
 			<div class="row">
 				<div class="col col-12 col-sm-8 col-md-6 offset-sm-2 offset-md-3">
 					<x-form
-						action="{{ route('login', [], false) }}"
+						action="{{ lroute('login') }}"
 						method="POST"
 						title="{{ __('page.login.title') }}"
 						:fields="[

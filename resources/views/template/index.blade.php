@@ -64,14 +64,14 @@
 								</button>
 								<ul class="dropdown-menu dropdown-menu-end">
 									<li>
-										<a class="dropdown-item" href={{ route('settings', ['locale' => app()->getLocale()], false) }}>
+										<a class="dropdown-item" href={{ lroute('settings') }}>
 											<i class="bi bi-gear-fill"></i>
 											<span>{{ __('menu.settings') }}</span>
 										</a>
 									</li>
 									<li>
 										<span class="dropdown-item">
-											<form action="{{ route('logout', ['locale' => app()->getLocale()], false) }}" method="POST" enctype="multipart/form-data">
+											<form action="{{ lroute('logout') }}" method="POST" enctype="multipart/form-data">
 												@csrf
 												<button class="reset w-100 text-start">
 													<i class="bi bi-box-arrow-right"></i>

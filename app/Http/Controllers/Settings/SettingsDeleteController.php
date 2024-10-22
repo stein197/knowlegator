@@ -23,6 +23,6 @@ class SettingsDeleteController extends Controller {
 		$user = auth()->user();
 		app(LogoutController::class)();
 		$user->forceDelete();
-		return to_route('login', ['locale' => app()->getLocale()]);
+		return to_lroute('login');
 	}
 }

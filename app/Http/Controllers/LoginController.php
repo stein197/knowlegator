@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use InvalidArgumentException;
 use App\Enum\LoginAction;
 use App\Models\User;
 use Illuminate\Contracts\Container\BindingResolutionException;
@@ -10,7 +11,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
-use InvalidArgumentException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -67,7 +67,7 @@ final class LoginController extends Controller {
 				'type' => 'danger'
 			]);
 		$result = Auth::attempt($credentials, $request->has('remember'));
-		return $result ? to_route('account') : view('page.message', [
+		return $result ? to_lroute('account') : view('page.message', [
 			'title' => __('oops'),
 			'h1' => __('oops'),
 			'message' => __('message.user.cannotLogin', ['user' => $email]),

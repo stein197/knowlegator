@@ -9,8 +9,8 @@ return Application::configure(basePath: dirname(__DIR__))
 		health: '/up',
 	)
 	->withMiddleware(function (Middleware $middleware): void {
-		$middleware->redirectGuestsTo(fn (): string => route('login', ['locale' => app()->getLocale()]));
-		$middleware->redirectUsersTo(fn (): string => route('account', ['locale' => app()->getLocale()]));
+		$middleware->redirectGuestsTo(fn (): string => lroute('login'));
+		$middleware->redirectUsersTo(fn (): string => lroute('account'));
 	})
 	->withExceptions()
 	->create();

@@ -12,9 +12,15 @@
 	"form.login.button.login": "Login",
 	"form.login.button.register": "Register",
 
+	"form.password.field.old": "Old password",
+	"form.password.field.new": "New password",
+	"form.password.field.repeat": "Repeat new password",
+	"form.password.button.confirm": "Confirm",
+
 	"page.account.title": "My account",
 	"page.settings.title": "Settings",
 	"page.settings.deleteAccount": "Delete account",
+	"page.settings.changePassword": "Change password",
 	"page.settings.delete.confirmation": "Are you sure you want to delete the account?",
 	"page.settings.delete.consequences": "This action cannot be rewoked",
 
@@ -22,6 +28,9 @@
 	"message.user.cannotCreate": "Cannot create user :user",
 	"message.user.cannotLogin": "Cannot login as :user",
 	"message.user.created": "User :user has been successfully created",
+	"message.user.password.doesNotMatch": "The new password and the repetition should match",
+	"message.user.password.changed": "The password has been successfully changed",
+	"message.user.password.couldNotChange": "Unable to change password",
 
 	"oops": "Oops!",
 	"logout": "Log out",

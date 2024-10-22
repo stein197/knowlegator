@@ -12,9 +12,15 @@
 	"form.login.button.login": "Войти",
 	"form.login.button.register": "Зарегистрироваться",
 
+	"form.password.field.old": "Старый пароль",
+	"form.password.field.new": "Новый пароль",
+	"form.password.field.repeat": "Повторите новый пароль",
+	"form.password.button.confirm": "Подтверить",
+
 	"page.account.title": "Мой аккаунт",
 	"page.settings.title": "Настройки",
 	"page.settings.deleteAccount": "Удалить аккаунт",
+	"page.settings.changePassword": "Изменить пароль",
 	"page.settings.delete.confirmation": "Вы уверены, что хотите удалить аккаунт?",
 	"page.settings.delete.consequences": "Это действие нельзя будет отменить",
 
@@ -22,6 +28,9 @@
 	"message.user.cannotCreate": "Не удалось создать пользователя :user",
 	"message.user.cannotLogin": "Неудалось войти пользователем :user",
 	"message.user.created": "Пользователь :user был успешно создан",
+	"message.user.password.doesNotMatch": "Пароль не совпадание с повторением",
+	"message.user.password.changed": "Пароль был успешно изменён",
+	"message.user.password.couldNotChange": "Не удалось изменить пароль",
 	
 	"oops": "Упс!",
 	"logout": "Выйти",

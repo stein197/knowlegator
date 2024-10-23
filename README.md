@@ -34,13 +34,12 @@
 ## Composer scripts
 - `server`: Run server in production mode on port 80
 - `server:dev`: Run server in development mode on port 80
-- `server:test`: Run server in test mode on port 80 and include QUnit tests
-- `generate-keys`: Generate APP_KEY keys for production and testing environments
+- `generate-keys`: Generate APP_KEY for production environment
 
 ## Tests
 **Frontend**
 
-Run the project in testing mode (`composer server:test`) and open the browser
+Run the project in dev mode (`composer server:dev`) and open the browser. Test logs are shown in the console.
 
 **Backend**
 

@@ -16,3 +16,11 @@ button.reset {
 .dropdown-toggle-noarrow::after {
 	content: none;
 }
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.bi {
+	color: var(--bs-body-color);
+}

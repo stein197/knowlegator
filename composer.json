@@ -44,8 +44,7 @@
         ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-            "@php -r \"file_exists('.env.production') || (copy('.env.example', '.env.production') && file_put_contents('.env.production', str_replace('APP_DEBUG=true', 'APP_DEBUG=', str_replace('APP_ENV=local', 'APP_ENV=production', file_get_contents('.env.example')))));\"",
-            "@php -r \"file_exists('.env.testing') || (copy('.env.example', '.env.testing') && file_put_contents('.env.testing', str_replace('APP_DEBUG=true', 'APP_DEBUG=', str_replace('APP_ENV=local', 'APP_ENV=testing', file_get_contents('.env.example')))));\""
+            "@php -r \"file_exists('.env.production') || (copy('.env.example', '.env.production') && file_put_contents('.env.production', str_replace('APP_DEBUG=true', 'APP_DEBUG=', str_replace('APP_ENV=local', 'APP_ENV=production', file_get_contents('.env.example')))));\""
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi",
@@ -54,17 +53,12 @@
         ],
         "server": "@php artisan serve --port=80 --env=production",
         "server:dev": "@php artisan serve --port=80",
-        "server:test": "@php artisan serve --port=80 --env=testing",
-        "generate-keys": [
-            "@php artisan key:generate --env=production",
-            "@php artisan key:generate --env=testing"
-        ]
+        "generate-keys": "@php artisan key:generate --env=production"
     },
     "scripts-descriptions": {
         "server": "Run server in production mode on port 80",
         "server:dev": "Run server in development mode on port 80",
-        "server:test": "Run server in test mode on port 80 and include QUnit tests",
-        "generate-keys": "Generate APP_KEY keys for production and testing environments"
+        "generate-keys": "Generate APP_KEY for production environment"
     },
     "extra": {
         "laravel": {
@@ -74,6 +68,7 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
+        "process-timeout": 0,
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,

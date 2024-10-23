@@ -37,7 +37,7 @@
 		<script src="/index.js?{{ filemtime(public_path('index.js')) }}"></script>
 		<!-- /app-assets -->
 
-		@env('testing')
+		@env('dev')
 			<!-- QUnit -->
 			<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.22.0.css" />
 			<script src="https://code.jquery.com/qunit/qunit-2.22.0.js" defer=""></script>
@@ -52,7 +52,8 @@
 					<a class="navbar-brand" href="/">Knowlegator</a>
 					<div class="d-flex align-items-center">
 						@auth
-							<em>{{ auth()->user()->email }}</em>
+							<em class="mx-2">{{ auth()->user()->email }}</em>
+							<div class="vr"></div>
 						@endauth
 						<div class="dropdown">
 							<button class="btn dropdown-toggle dropdown-toggle-noarrow text-dark fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -70,6 +71,7 @@
 							</ul>
 						</div>
 						@auth
+							<div class="vr"></div>
 							<div class="dropdown">
 								<button class="btn dropdown-toggle dropdown-toggle-noarrow text-dark fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 									<i class="bi bi-person-circle"></i>
@@ -104,10 +106,6 @@
 			<footer class="text-bg-dark lh-1 text-end">
 				<div class="container-fluid">{{ __('info.version.server', ['value' => app(ApplicationVersionService::class)->getServerVersion()]) }}</div>
 			</footer>
-		@endenv
-		@env('testing')
-			<div id="qunit"></div>
-			<div id="qunit-fixture"></div>
 		@endenv
 	</body>
 </html>

@@ -7,7 +7,7 @@ use Tests\TestCase;
 final class FromStringTest extends TestCase {
 
 	public function testFromShouldReturnNullWhenCaseDoesNotExist(): void {
-		$this->assertNull(TestEnum::from('SecondCase'));
+		$this->assertNull(TestEnum::from('NoCase'));
 	}
 
 	public function testFromShouldReturnCaseWhenCaseExistsAndStringCaseMatchesExactly(): void {
@@ -17,6 +17,14 @@ final class FromStringTest extends TestCase {
 	public function testFromShouldReturnCaseWhenCaseExistsAndStringCaseDoesNotMatch(): void {
 		$this->assertSame(TestEnum::FirstCase, TestEnum::from('firstcase'));
 	}
+
+	public function testNamesShouldReturnOriginalNamesWhenLcaseIsFalse(): void {
+		$this->assertSame(['FirstCase', 'SecondCase'], TestEnum::names(false));
+	}
+
+	public function testNamesShouldReturnLowercasedNamesWhenLcaseIsTrue(): void {
+		$this->assertSame(['firstcase', 'secondcase'], TestEnum::names(true));
+	}
 }
 
 enum TestEnum {
@@ -24,4 +32,5 @@ enum TestEnum {
 	use FromString;
 
 	case FirstCase;
+	case SecondCase;
 }

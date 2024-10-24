@@ -1,10 +1,12 @@
 <?php
 namespace App\Enum;
 
+use function array_map;
 use function strcasecmp;
+use function strtolower;
 
 /**
- * Trait to be used by enums that adds a method `from()`.
+ * Trait to be used by enums that adds methods `from()` and `names()`.
  */
 trait FromString {
 
@@ -28,5 +30,26 @@ trait FromString {
 			if (strcasecmp($name, $case->name) === 0)
 				return $case;
 		return null;
+	}
+
+	/**
+	 * Return case names array.
+	 * @param bool $lcase Return names in lowercase when `true`.
+	 * @return string[] Names of cases.
+	 * ```
+	 * enum TestEnum {
+	 * 	use FromString;
+	 * 
+	 * 	case First;
+	 * 	case Second;
+	 * }
+	 * TestEnum::names(true); // ['first', 'second']
+	 * ```
+	 */
+	public static function names(bool $lcase = true): array {
+		return array_map(
+			fn (self $case): string => $lcase ? strtolower($case->name) : $case->name,
+			static::cases()
+		);
 	}
 }

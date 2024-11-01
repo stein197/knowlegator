@@ -1,6 +1,8 @@
 <?php
 namespace Tests\Unit;
 
+use App\MenuItem;
+use Illuminate\Http\Request;
 use Tests\TestCase;
 
 final class HelperTest extends TestCase {
@@ -23,5 +25,20 @@ final class HelperTest extends TestCase {
 		$this->assertStringEndsWith('/de/settings/password', to_lroute('settings.password')->getTargetUrl());
 		$app->setLocale('ru');
 		$this->assertStringEndsWith('/ru/settings/password', to_lroute('settings.password')->getTargetUrl());
+	}
+
+	public function testMenuShouldReturnRegisteredMenu(): void {
+		$menuItem = new MenuItem(
+			title: 'Test Title',
+			link: '/test/link',
+			routeName: 'test.route',
+			active: true
+		);
+		menu('test', fn (Request $request): array => [$menuItem]);
+		$this->assertEquals([$menuItem], menu('test'));
+	}
+	
+	public function testMenuShouldReturnNullWhenMenuIsNotRegistered(): void {
+		$this->assertNull(menu('Undefined Menu'));
 	}
 }

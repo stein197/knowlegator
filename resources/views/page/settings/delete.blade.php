@@ -1,4 +1,4 @@
-@extends('template.content')
+@extends('template.settings')
 
 @section('content')
 	<p>{{ __('page.settings.delete.confirmation') }}</p>

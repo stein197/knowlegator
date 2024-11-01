@@ -5,14 +5,14 @@
 	"page.login.title": "Login or register",
 	"page.account.title": "My account",
 	"page.settings.title": "Settings",
-	"page.settings.deleteAccount": "Delete account",
-	"page.settings.changePassword": "Change password",
+	"page.settings.delete.title": "Delete account",
+	"page.settings.password.title": "Change password",
 	"page.settings.delete.confirmation": "Are you sure you want to delete the account?",
 	"page.settings.delete.consequences": "This action cannot be rewoked",
 	
 	"menu.settings": "Settings",
 	"menu.logout": "Log out",
-	
+
 	"form.field.email": "E-Mail",
 	"form.field.password": "Password",
 	"form.field.remember": "Remember me",

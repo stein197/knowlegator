@@ -5,8 +5,8 @@
 	"page.login.title": "Войти или зарегистрироваться",
 	"page.account.title": "Мой аккаунт",
 	"page.settings.title": "Настройки",
-	"page.settings.deleteAccount": "Удалить аккаунт",
-	"page.settings.changePassword": "Изменить пароль",
+	"page.settings.delete.title": "Удалить аккаунт",
+	"page.settings.password.title": "Изменить пароль",
 	"page.settings.delete.confirmation": "Вы уверены, что хотите удалить аккаунт?",
 	"page.settings.delete.consequences": "Это действие нельзя будет отменить",
 

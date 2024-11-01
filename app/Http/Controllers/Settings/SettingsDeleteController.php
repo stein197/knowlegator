@@ -14,8 +14,8 @@ class SettingsDeleteController extends Controller {
 
 	public function get(): View {
 		return view('page.settings.delete', [
-			'title' => __('page.settings.deleteAccount'),
-			'h1' => __('page.settings.deleteAccount')
+			'title' => __('page.settings.delete.title'),
+			'h1' => __('page.settings.delete.title')
 		]);
 	}
 

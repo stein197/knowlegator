@@ -5,8 +5,8 @@
 	"page.login.title": "Anmelden oder registrieren",
 	"page.account.title": "Mein Konto",
 	"page.settings.title": "Einstellungen",
-	"page.settings.deleteAccount": "Konto entfernen",
-	"page.settings.changePassword": "Passwort ändern",
+	"page.settings.delete.title": "Konto entfernen",
+	"page.settings.password.title": "Passwort ändern",
 	"page.settings.delete.confirmation": "Sind Sie sicher, dass Sie das Konto entfernen möchten?",
 	"page.settings.delete.consequences": "Diese Aktion kann nicht abgebrochen werden",
 

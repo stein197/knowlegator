@@ -9,7 +9,7 @@ use Illuminate\View\View;
 class SettingsPasswordController extends Controller {
 
 	public function get(): View {
-		$title = __('page.settings.changePassword');
+		$title = __('page.settings.password.title');
 		return view('page.settings.password', [
 			'title' => $title,
 			'h1' => $title

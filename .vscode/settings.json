@@ -1,7 +1,8 @@
 {
 	"conventionalCommits.scopes": [
 		"composer",
+		"gitignore",
 		"ide",
-		"gitignore"
+		"middleware"
 	]
 }

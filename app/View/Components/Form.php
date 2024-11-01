@@ -5,7 +5,6 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use function sizeof;
 
-// TODO: Add error messages
 final class Form extends Component {
 
 	public int $btnBSSize;

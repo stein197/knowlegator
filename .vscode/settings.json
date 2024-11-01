@@ -3,6 +3,7 @@
 		"composer",
 		"gitignore",
 		"ide",
-		"middleware"
+		"middleware",
+		"readme"
 	]
 }

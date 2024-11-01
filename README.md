@@ -46,3 +46,7 @@ Run `php artisan test`
 
 ## Commits
 The project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) with [gitmoji](https://gitmoji.dev/)
+
+## TODO
+- [ ] Add "Forget Password?" functionality
+- [ ] Move theme saving from session to the database

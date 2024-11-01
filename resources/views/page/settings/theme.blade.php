@@ -1,4 +1,4 @@
-@extends('template.settings')
+@extends('template.menu')
 
 @section('content')
 	<x-form

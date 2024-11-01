@@ -4,6 +4,8 @@
 
 	"page.login.title": "Login or register",
 	"page.account.title": "My account",
+	"page.account.entity-list.title": "Entities",
+	"page.account.tag-list.title": "Tags",
 	"page.settings.title": "Settings",
 	"page.settings.delete.title": "Delete account",
 	"page.settings.password.title": "Change password",

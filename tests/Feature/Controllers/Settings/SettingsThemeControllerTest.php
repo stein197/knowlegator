@@ -23,10 +23,10 @@ it('should contain theme in <html />', function (): void {
 	/** @var \Tests\TestCase $this */
 	$user = User::factory()->create();
 	$this->actingAs($user);
-	$content = $this->get('/en/account')->getContent();
+	$content = $this->get('/en/settings/theme')->getContent();
 	$this->assertStringContainsString('data-bs-theme=""', $content);
 	$this->post('/en/settings/theme', ['theme' => 'dark']);
-	$content = $this->get('/en/account')->getContent();
+	$content = $this->get('/en/settings/theme')->getContent();
 	$this->assertStringContainsString('data-bs-theme="dark"', $content);
 });
 

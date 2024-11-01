@@ -1,4 +1,6 @@
 <?php
+use App\Http\Controllers\Account\AccountEntityListController;
+use App\Http\Controllers\Account\AccountTagListController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -21,8 +23,12 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 			Route::post('/login', [LoginController::class, 'post']);
 		});
 		Route::middleware(Authenticate::class)->group(function (): void {
-			Route::get('/account', AccountController::class)->name('account');
 			Route::post('/logout', LogoutController::class)->name('logout');
+			Route::prefix('/account')->group(function (): void {
+				Route::get('/', AccountController::class)->name('account');
+				Route::get('/entities', AccountEntityListController::class)->name('account.entity-list');
+				Route::get('/tags', AccountTagListController::class)->name('account.tag-list');
+			});
 			Route::prefix('/settings')->group(function (): void {
 				Route::get('/', SettingsController::class)->name('settings');
 				Route::prefix('/password')->group(function (): void {

@@ -4,6 +4,8 @@
 
 	"page.login.title": "Войти или зарегистрироваться",
 	"page.account.title": "Мой аккаунт",
+	"page.account.entity-list.title": "Сущности",
+	"page.account.tag-list.title": "Теги",
 	"page.settings.title": "Настройки",
 	"page.settings.delete.title": "Удалить аккаунт",
 	"page.settings.password.title": "Изменить пароль",

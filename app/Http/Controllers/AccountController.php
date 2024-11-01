@@ -1,7 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
-use Illuminate\View\View;
+use Illuminate\Http\RedirectResponse;
 
 /**
  * Show default page for authorized users.
@@ -9,9 +9,8 @@ use Illuminate\View\View;
  */
 final class AccountController extends Controller {
 
-	public function __invoke(): View {
-		return view('template.index', [
-			'title' => __('page.account.title')
-		]);
+	public function __invoke(): RedirectResponse {
+		$firstMenuItem = menu('account')[0];
+		return to_lroute($firstMenuItem->routeName);
 	}
 }

@@ -13,7 +13,12 @@ use function str_starts_with;
 class AppServiceProvider extends ServiceProvider {
 
 	public function register(): void {
-		menu('settings', fn (Request $request): array => [...array_map(
+		$this->registerMenuFor('account');
+		$this->registerMenuFor('settings');
+	}
+
+	private function registerMenuFor(string $prefix): void {
+		menu($prefix, fn (Request $request): array => [...array_map(
 			fn (Route $route): MenuItem => new MenuItem(
 				title: __('page.' . $route->getName() . '.title'),
 				link: lroute($route->getName()),
@@ -22,7 +27,7 @@ class AppServiceProvider extends ServiceProvider {
 			),
 			array_filter(
 				[...RouteFacade::getRoutes()],
-				fn (Route $route): bool => str_starts_with($route->getName(), 'settings.')
+				fn (Route $route): bool => str_starts_with($route->getName(), "$prefix.")
 			)
 		)]);
 	}

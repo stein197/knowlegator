@@ -50,3 +50,5 @@ The project uses [Conventional Commits](https://www.conventionalcommits.org/en/v
 ## TODO
 - [ ] Add "Forget Password?" functionality
 - [ ] Move theme saving from session to the database
+- [ ] Use test database for testing
+	- [ ] Preserve test data instead of flushing

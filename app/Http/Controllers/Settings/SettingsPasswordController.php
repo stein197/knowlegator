@@ -9,10 +9,8 @@ use Illuminate\View\View;
 class SettingsPasswordController extends Controller {
 
 	public function get(): View {
-		$title = __('page.settings.password.title');
 		return view('page.settings.password', [
-			'title' => $title,
-			'h1' => $title
+			'title' => __('page.settings.password.title')
 		]);
 	}
 
@@ -31,7 +29,6 @@ class SettingsPasswordController extends Controller {
 		$result = $user->save();
 		return view('page.message', [
 			'title' => __('page.settings.password.title'),
-			'h1' => __('page.settings.password.title'),
 			'message' => __('message.user.password.' . ($result ? 'changed' : 'cannotChange')),
 			'type' => $result ? 'success' : 'danger'
 		]);

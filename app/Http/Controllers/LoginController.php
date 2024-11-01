@@ -62,14 +62,12 @@ final class LoginController extends Controller {
 		if (!$user)
 			return view('page.message', [
 				'title' => __('oops'),
-				'h1' => __('oops'),
 				'message' => __('message.user.doesNotExist', ['user' => $email]),
 				'type' => 'danger'
 			]);
 		$result = Auth::attempt($credentials, $request->has('remember'));
 		return $result ? to_lroute('account') : view('page.message', [
 			'title' => __('oops'),
-			'h1' => __('oops'),
 			'message' => __('message.user.cannotLogin', ['user' => $email]),
 			'type' => 'danger'
 		]);
@@ -86,7 +84,6 @@ final class LoginController extends Controller {
 		$message = __($result ? 'message.user.created' : 'message.user.cannotCreate', ['user' => $email]);
 		return view('page.message', [
 			'title' => $message,
-			'h1' => $message,
 			'message' => $message,
 			'type' => $result ? 'success' : 'danger'
 		]);

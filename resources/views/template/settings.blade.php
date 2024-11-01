@@ -14,7 +14,7 @@
 					</aside>
 				</div>
 				<div class="col col-12 col-md-8 col-lg-10">
-					<h1>{{ $h1 }}</h1>
+					<h1>{{ $title }}</h1>
 					<hr />
 					@yield('content')
 				</div>

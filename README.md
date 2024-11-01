@@ -17,7 +17,6 @@
 
 **Server:**
 - Laravel
-- CaptainHook
 
 ## Frontend structure
 - `public/`

@@ -5,6 +5,7 @@ use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\Settings\SettingsDeleteController;
 use App\Http\Controllers\Settings\SettingsPasswordController;
+use App\Http\Controllers\Settings\SettingsThemeController;
 use App\Http\Middleware\CheckLocaleMiddleware;
 use App\Http\Middleware\DefaultLocaleMiddleware;
 use App\Http\Middleware\RedirectMiddleware;
@@ -31,6 +32,10 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 				Route::prefix('/delete')->group(function (): void {
 					Route::get('/', [SettingsDeleteController::class, 'get'])->name('settings.delete');
 					Route::delete('/', [SettingsDeleteController::class, 'delete']);
+				});
+				Route::prefix('/theme')->group(function (): void {
+					Route::get('/', [SettingsThemeController::class, 'get'])->name('settings.theme');
+					Route::post('/', [SettingsThemeController::class, 'post']);
 				});
 			});
 		});

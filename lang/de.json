@@ -7,6 +7,8 @@
 	"page.settings.title": "Einstellungen",
 	"page.settings.delete.title": "Konto entfernen",
 	"page.settings.password.title": "Passwort ändern",
+	"page.settings.theme.title": "Theme",
+	"page.settings.theme.warning": "Das Thema wird nur für die aktuelle Sitzung gespeichert. Der Wert wird nach der Abmeldung gelöscht",
 	"page.settings.delete.confirmation": "Sind Sie sicher, dass Sie das Konto entfernen möchten?",
 	"page.settings.delete.consequences": "Diese Aktion kann nicht abgebrochen werden",
 
@@ -22,6 +24,9 @@
 	"form.button.login": "Anmelden",
 	"form.button.register": "Registrieren",
 	"form.button.confirm": "Bestätigen",
+
+	"theme.light": "Hell",
+	"theme.dark": "Dunkel",
 
 	"message.user.doesNotExist": "Benutzer :user existiert nicht",
 	"message.user.cannotCreate": "Benutzer :user kann nicht erstellt werden",

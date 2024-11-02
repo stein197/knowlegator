@@ -4,6 +4,7 @@
 		"gitignore",
 		"ide",
 		"middleware",
-		"readme"
+		"readme",
+		"test"
 	]
 }

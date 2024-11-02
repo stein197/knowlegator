@@ -1,6 +1,7 @@
 {
 	"conventionalCommits.scopes": [
 		"composer",
+		"css",
 		"gitignore",
 		"ide",
 		"middleware",

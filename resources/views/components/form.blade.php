@@ -16,9 +16,9 @@
 					</label>
 					@break
 				@default
-					<div class="mb-3">
-						<p class="form-label">{{ $field['label'] }}</p>
-						<input class="form-control" type="{{ @$field['type'] ?? 'text' }}" name="{{ $name }}" {{ @$field['required'] ? 'required' : '' }} />
+					<div class="mb-3 form-floating">
+						<input class="form-control @isset($errors) @error($name) border-danger bg-danger bg-opacity-10 @enderror @endisset" type="{{ @$field['type'] ?? 'text' }}" name="{{ $name }}" {{ @$field['required'] ? 'required' : '' }} />
+						<label>{{ $field['label'] }}</label>
 						@isset($errors)
 							@error($name)
 								<p class="text-danger">{{ $message }}</p>

@@ -1,9 +1,9 @@
 <?php
 namespace Tests\Feature\Model;
 
+use App\Exceptions\TagInvalidNameException;
 use App\Models\Tag;
 use App\Models\User;
-use Exception;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 uses(DatabaseTransactions::class);
@@ -11,7 +11,8 @@ uses(DatabaseTransactions::class);
 describe('name', function (): void {
 	it('should not accept empty name when creating a tag', function (): void {
 		/** @var \Tests\TestCase $this */
-		$this->expectException(Exception::class);
+		$this->expectException(TagInvalidNameException::class);
+		$this->expectExceptionCode(TagInvalidNameException::REASON_EMPTY);
 		$u = User::factory()->create();
 		new Tag([
 			'name' => '',
@@ -21,7 +22,8 @@ describe('name', function (): void {
 
 	it('should not accept invalid name when creating a tag', function (): void {
 		/** @var \Tests\TestCase $this */
-		$this->expectException(Exception::class);
+		$this->expectException(TagInvalidNameException::class);
+		$this->expectExceptionCode(TagInvalidNameException::REASON_INVALID);
 		$u = User::factory()->create();
 		new Tag([
 			'name' => 'invalid name',
@@ -31,7 +33,8 @@ describe('name', function (): void {
 
 	it('should not accept empty name after creating a tag', function (): void {
 		/** @var \Tests\TestCase $this */
-		$this->expectException(Exception::class);
+		$this->expectException(TagInvalidNameException::class);
+		$this->expectExceptionCode(TagInvalidNameException::REASON_EMPTY);
 		$u = User::factory()->create();
 		$t = new Tag([
 			'name' => 'Tag',
@@ -42,7 +45,8 @@ describe('name', function (): void {
 
 	it('should not accept invalid name after creating a tag', function (): void {
 		/** @var \Tests\TestCase $this */
-		$this->expectException(Exception::class);
+		$this->expectException(TagInvalidNameException::class);
+		$this->expectExceptionCode(TagInvalidNameException::REASON_INVALID);
 		$u = User::factory()->create();
 		$t = new Tag([
 			'name' => 'Tag',

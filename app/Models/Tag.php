@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-use Exception;
+use App\Exceptions\TagInvalidNameException;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -27,7 +27,13 @@ class Tag extends Model {
 
 	protected function name(): Attribute {
 		return new Attribute(
-			set: fn (string $value): string => preg_match(static::NAME_REGEX, $value) ? $value : throw new Exception("Name '{$this->name}' contains invalid characters. The name should complain the given regex: " . static::NAME_REGEX)
+			set: function (string $value): string {
+				if (!$value)
+					throw new TagInvalidNameException('Name is invalid', TagInvalidNameException::REASON_EMPTY);
+				if (!preg_match(static::NAME_REGEX, $value))
+					throw new TagInvalidNameException("Name '{$this->name}' contains invalid characters. The name should complain the given regex: " . static::NAME_REGEX, TagInvalidNameException::REASON_INVALID);
+				return $value;
+			}
 		);
 	}
 }

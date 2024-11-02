@@ -27,7 +27,9 @@ final readonly class TestDOM {
 		$nodes = [];
 		foreach ($source as $src) {
 			$domDocument = new DOMDocument();
-			$domDocument->loadHTML($src);
+			$domDocument->recover = true;
+			$domDocument->strictErrorChecking = false;
+			@$domDocument->loadHTML($src);
 			$nodes[] = [
 				'document' => $domDocument,
 				'xpath' => new DOMXPath($domDocument)

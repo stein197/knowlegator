@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Route as RouteFacade;
 use Illuminate\Support\ServiceProvider;
 use function array_filter;
 use function array_map;
-use function str_starts_with;
+use function explode;
+use function sizeof;
 
 class AppServiceProvider extends ServiceProvider {
 
@@ -23,11 +24,11 @@ class AppServiceProvider extends ServiceProvider {
 				title: __('page.' . $route->getName() . '.title'),
 				link: lroute($route->getName()),
 				routeName: $route->getName(),
-				active: $request->route() === $route
+				active: $request->route() === $route // TODO: Check for parents
 			),
 			array_filter(
 				[...RouteFacade::getRoutes()],
-				fn (Route $route): bool => str_starts_with($route->getName(), "$prefix.")
+				fn (Route $route): bool => str_starts_with($route->getName(), "$prefix.") && sizeof(explode('.', $route->getName())) === 2 // Only 2 level depth
 			)
 		)]);
 	}

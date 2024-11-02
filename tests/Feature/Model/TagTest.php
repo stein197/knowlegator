@@ -3,16 +3,61 @@ namespace Tests\Feature\Model;
 
 use App\Models\Tag;
 use App\Models\User;
+use Exception;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 uses(DatabaseTransactions::class);
+
+describe('name', function (): void {
+	it('should not accept empty name when creating a tag', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->expectException(Exception::class);
+		$u = User::factory()->create();
+		new Tag([
+			'name' => '',
+			'user_id' => $u
+		]);
+	});
+
+	it('should not accept invalid name when creating a tag', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->expectException(Exception::class);
+		$u = User::factory()->create();
+		new Tag([
+			'name' => 'invalid name',
+			'user_id' => $u
+		]);
+	});
+
+	it('should not accept empty name after creating a tag', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->expectException(Exception::class);
+		$u = User::factory()->create();
+		$t = new Tag([
+			'name' => 'Tag',
+			'user_id' => $u
+		]);
+		$t->name = '';
+	});
+
+	it('should not accept invalid name after creating a tag', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->expectException(Exception::class);
+		$u = User::factory()->create();
+		$t = new Tag([
+			'name' => 'Tag',
+			'user_id' => $u
+		]);
+		$t->name = 'invalid name';
+	});
+});
 
 describe('user()', function (): void {
 
 	it('should return assigned user', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::factory()->create();
-		$t = Tag::factory()->create(['user_id' => $u->id]);
+		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
 		$this->assertEquals($u->id, $t->user->id);
 	});
 

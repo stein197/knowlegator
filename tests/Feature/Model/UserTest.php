@@ -21,9 +21,9 @@ describe('tags()', function (): void {
 		/** @var \Tests\TestCase $this */
 		$user = User::factory()->create();
 		[$t1, $t2, $t3] = Tag::factory()->createMany([
-			['user_id' => $user->id],
-			['user_id' => $user->id],
-			['user_id' => $user->id],
+			['name' => 'Tag1', 'user_id' => $user->id],
+			['name' => 'Tag2', 'user_id' => $user->id],
+			['name' => 'Tag3', 'user_id' => $user->id],
 		]);
 		$this->assertSame(3, sizeof($user->tags));
 		$ids = [$t1->id, $t2->id, $t3->id];
@@ -36,12 +36,12 @@ describe('tags()', function (): void {
 		/** @var \Tests\TestCase $this */
 		[$u1, $u2] = User::factory()->createMany(2);
 		[$t1, $t2] = Tag::factory()->createMany([
-			['user_id' => $u1->id],
-			['user_id' => $u1->id],
+			['name' => 'Tag1', 'user_id' => $u1->id],
+			['name' => 'Tag2', 'user_id' => $u1->id],
 		]);
 		[$t3, $t4] = Tag::factory()->createMany([
-			['user_id' => $u2->id],
-			['user_id' => $u2->id],
+			['name' => 'Tag1', 'user_id' => $u2->id],
+			['name' => 'Tag2', 'user_id' => $u2->id],
 		]);
 		$u1Tags = array_map(fn (Tag $tag): string => $tag->id, [...$u1->tags]);
 		$u2Tags = array_map(fn (Tag $tag): string => $tag->id, [...$u2->tags]);

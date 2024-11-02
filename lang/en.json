@@ -6,6 +6,7 @@
 	"page.account.title": "My account",
 	"page.account.entity-list.title": "Entities",
 	"page.account.tag-list.title": "Tags",
+	"page.account.tag-list.empty": "How empty!\nCreate a new tag",
 	"page.settings.title": "Settings",
 	"page.settings.delete.title": "Delete account",
 	"page.settings.password.title": "Change password",

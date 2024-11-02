@@ -24,3 +24,7 @@ button.reset {
 .bi {
 	color: var(--bs-body-color);
 }
+
+.m-n1 {
+	margin: -.25rem;
+}

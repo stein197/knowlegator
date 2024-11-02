@@ -9,7 +9,8 @@ class AccountTagListController extends Controller {
 
 	public function __invoke(): View {
 		return view('page.account.tag-list', [
-			'title' => __('page.account.tag-list.title')
+			'title' => __('page.account.tag-list.title'),
+			'tags' => auth()->user()->tags
 		]);
 	}
 }

@@ -27,7 +27,9 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 			Route::prefix('/account')->group(function (): void {
 				Route::get('/', AccountController::class)->name('account');
 				Route::get('/entities', AccountEntityListController::class)->name('account.entity-list');
-				Route::get('/tags', AccountTagListController::class)->name('account.tag-list');
+				Route::prefix('/tags')->group(function (): void {
+					Route::get('/', AccountTagListController::class)->name('account.tag-list');
+				});
 			});
 			Route::prefix('/settings')->group(function (): void {
 				Route::get('/', SettingsController::class)->name('settings');

@@ -6,6 +6,7 @@
 	"page.account.title": "Мой аккаунт",
 	"page.account.entity-list.title": "Сущности",
 	"page.account.tag-list.title": "Теги",
+	"page.account.tag-list.empty": "Тут пусто!\nСоздать новый тег",
 	"page.settings.title": "Настройки",
 	"page.settings.delete.title": "Удалить аккаунт",
 	"page.settings.password.title": "Изменить пароль",

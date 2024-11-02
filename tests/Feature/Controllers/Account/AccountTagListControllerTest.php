@@ -38,3 +38,11 @@ test('should show list of tags without message when there are tags', function ()
 	$badges->assertTextContent($t1->name);
 	$badges->assertTextContent($t2->name);
 });
+
+test('should show link to create page', function (): void {
+	/** @var \Tests\TestCase $this */
+	$user = User::factory()->create();
+	$content = $this->actingAs($user)->get('/en/account/tags')->getContent();
+	$dom = $this->dom($content);
+	$dom->assertExists('//a[@href="/en/account/tags/create"]');
+});

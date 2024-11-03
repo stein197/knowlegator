@@ -1,6 +1,6 @@
 <?php
 
-use App\MenuItem;
+use App\Records\MenuRecord;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
@@ -36,10 +36,10 @@ function to_lroute(string $name): RedirectResponse {
  * @param string $key Key by which to return or register the menu.
  * @param null|callable $f Function that is called when the specified menu is returned. Accepts a `Request` object. If
  *                         the function is passed, registers a new menu. A function should return an array of
- *                         `MenuItem` objects.
- * @return null|MenuItem[] Array of menu items returned from the function or `null` when the menu is undefined.
+ *                         `MenuRecord` objects.
+ * @return null|MenuRecord[] Array of menu items returned from the function or `null` when the menu is undefined.
  * ```php
- * menu('main', fn (Request $request): array => [new MenuItem(...)]);
+ * menu('main', fn (Request $request): array => [new MenuRecord(...)]);
  * menu('main'); // [...]
  * ```
  */

@@ -1,7 +1,7 @@
 <?php
 namespace App\Services;
 
-use App\BreadcrumbItem;
+use App\Records\BreadcrumbRecord;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Routing\RouteCollectionInterface;
@@ -12,7 +12,7 @@ use function sizeof;
 
 final class BreadcrumbService {
 
-	/** @var BreadcrumbItem[] */
+	/** @var BreadcrumbRecord[] */
 	private array $result = [];
 
 	public function __construct(
@@ -22,7 +22,7 @@ final class BreadcrumbService {
 
 	/**
 	 * Return breadcrumb chain based on URL nesting.
-	 * @return BreadcrumbItem[]
+	 * @return BreadcrumbRecord[]
 	 */
 	public function list(): array {
 		if (!$this->result) {
@@ -32,7 +32,7 @@ final class BreadcrumbService {
 			while (!self::isDepth($url, 2)) {
 				// var_dump($url);
 				$route = $routes->match($this->request->create($url));
-				array_unshift($this->result, new BreadcrumbItem(
+				array_unshift($this->result, new BreadcrumbRecord(
 					title: __('page.' . $route->getName() . '.title'),
 					link: $url === $this->request->getRequestUri() || self::isDepth($url, 3) ? '' : $url
 				));

@@ -1,8 +1,7 @@
 <?php
 namespace Tests\Unit;
 
-use App\MenuItem;
-use Illuminate\Http\Request;
+use App\Records\MenuRecord;
 use Tests\TestCase;
 
 final class HelperTest extends TestCase {
@@ -35,14 +34,14 @@ final class HelperTest extends TestCase {
 	}
 
 	public function testMenuShouldReturnRegisteredMenu(): void {
-		$menuItem = new MenuItem(
+		$menuRecord = new MenuRecord(
 			title: 'Test Title',
 			link: '/test/link',
 			routeName: 'test.route',
 			active: true
 		);
-		menu('test', fn (Request $request): array => [$menuItem]);
-		$this->assertEquals([$menuItem], menu('test'));
+		menu('test', fn (): array => [$menuRecord]);
+		$this->assertEquals([$menuRecord], menu('test'));
 	}
 	
 	public function testMenuShouldReturnNullWhenMenuIsNotRegistered(): void {

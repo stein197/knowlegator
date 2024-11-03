@@ -3,5 +3,9 @@ namespace App\Services;
 
 final class MenuService {
 
-	// TODO
+	public function get(string $name): array {}
+
+	public function register(string $name): void {
+		
+	}
 }

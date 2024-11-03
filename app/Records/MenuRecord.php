@@ -1,11 +1,11 @@
 <?php
-namespace App;
+namespace App\Records;
 
 /**
  * Represent a single menu item.
  * @package App
  */
-final readonly class MenuItem {
+final readonly class MenuRecord {
 
 	public function __construct(
 		/** Title to show */

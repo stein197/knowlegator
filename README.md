@@ -16,21 +16,11 @@
 **Server:**
 - Laravel
 
-## Composer scripts
-- `server`: Run server in production mode on port 80
-- `server:dev`: Run server in development mode on port 80
-- `generate-keys`: Generate APP_KEY for production environment
-
-## Artisan commands
-- `app:make:service <service>`: create a new service in the `app/Services/` folder
-
-## Testing
-Run `php artisan test`
-
 ## Commits
 The project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) with [gitmoji](https://gitmoji.dev/)
 
 ## Documentation
+- [CLI](/docs/CLI.md)
 - [Localization](/docs/localization.md)
 - [Routing](/docs/routing.md)
 - [Testing](/docs/testing.md)

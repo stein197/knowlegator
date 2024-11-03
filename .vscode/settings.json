@@ -2,6 +2,7 @@
 	"conventionalCommits.scopes": [
 		"composer",
 		"css",
+		"font",
 		"gitignore",
 		"ide",
 		"locale",

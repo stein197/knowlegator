@@ -52,8 +52,8 @@
 									<li>
 										<a class="dropdown-item {{ app()->getLocale() === $k ? 'active' : '' }}" href="{{ $locale['url'] }}">
 											<span class="fi fi-{{ $locale['flag-icon'] }}"></span>
-											<span>{{ $locale['name'] }}</a>
-										</span>
+											<span>{{ $locale['name'] }}</span>
+										</a>
 									</li>
 								@endforeach
 							</ul>

@@ -32,10 +32,10 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 					Route::get('/', AccountTagListController::class)->name('account.tag-list');
 					Route::get('/create', [AccountTagController::class, 'showCreate'])->name('account.tag.create');
 					Route::post('/create', [AccountTagController::class, 'create']);
-					Route::get('/{id}', [AccountTagController::class, 'read'])->name('account.tag.read');
-					Route::put('/{id}', [AccountTagController::class, 'update']);
-					Route::get('/{id}/delete', [AccountTagController::class, 'showDelete'])->name('account.tag.delete');
-					Route::delete('/{id}', [AccountTagController::class, 'delete']);
+					Route::get('/{id}', [AccountTagController::class, 'read'])->name('account.tag.read')->whereUuid('id');
+					Route::put('/{id}', [AccountTagController::class, 'update'])->whereUuid('id');
+					Route::get('/{id}/delete', [AccountTagController::class, 'showDelete'])->name('account.tag.delete')->whereUuid('id');
+					Route::delete('/{id}', [AccountTagController::class, 'delete'])->whereUuid('id');
 				});
 			});
 			Route::prefix('/settings')->group(function (): void {

@@ -8,14 +8,15 @@ use Symfony\Component\Routing\Exception\RouteNotFoundException;
 /**
  * Build an absolute localized route (without hostname) with the current locale.
  * @param string $name Route name.
+ * @param array $parameters Route parameters.
  * @return string Resolved URL.
  * @throws BindingResolutionException
  * ```php
  * lroute('login'); // '/en/login'
  * ```
  */
-function lroute(string $name): string {
-	return route($name, ['locale' => app()->getLocale()], false);
+function lroute(string $name, array $parameters = []): string {
+	return route($name, ['locale' => app()->getLocale(), ...$parameters], false);
 }
 
 /**

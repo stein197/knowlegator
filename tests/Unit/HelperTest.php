@@ -17,6 +17,13 @@ final class HelperTest extends TestCase {
 		$this->assertSame('/ru/settings/password', lroute('settings.password'));
 	}
 
+	public function testLrouteShouldAcceptParameters(): void {
+		$app = $this->createApplication();
+		$app->setLocale('en');
+		$uuid = fake()->uuid();
+		$this->assertSame("/en/account/tags/{$uuid}", lroute('account.tag.read', ['id' => $uuid]));
+	}
+
 	public function testTo_lrouteShouldWork(): void {
 		$app = $this->createApplication();
 		$app->setLocale('en');

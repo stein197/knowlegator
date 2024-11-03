@@ -23,5 +23,6 @@ The project uses [Conventional Commits](https://www.conventionalcommits.org/en/v
 - [CLI](/docs/CLI.md)
 - [Localization](/docs/localization.md)
 - [Routing](/docs/routing.md)
+- [Structure](/docs/structure.md)
 - [Testing](/docs/testing.md)
 - [Views](/docs/views.md)

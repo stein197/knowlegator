@@ -3,7 +3,7 @@
 	"locale.flag-icon": "de",
 
 	"page.login.title": "Anmelden oder registrieren",
-	"page.account.title": "Mein Konto",
+	"page.account.title": "Konto",
 	"page.account.entity-list.title": "Entitäten",
 	"page.account.tag-list.title": "Tags",
 	"page.account.tag-list.empty": "Wie leer!\nErstell ein neues Tag",

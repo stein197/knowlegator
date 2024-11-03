@@ -3,7 +3,7 @@
 	"locale.flag-icon": "ru",
 
 	"page.login.title": "Войти или зарегистрироваться",
-	"page.account.title": "Мой аккаунт",
+	"page.account.title": "Аккаунт",
 	"page.account.entity-list.title": "Сущности",
 	"page.account.tag-list.title": "Теги",
 	"page.account.tag-list.empty": "Тут пусто!\nСоздать новый тег",

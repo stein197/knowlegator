@@ -1,3 +1,4 @@
+@use('App\Services\BreadcrumbService')
 @extends('template.index')
 
 @php
@@ -22,6 +23,19 @@
 					@endif
 				</div>
 				<div class="col col-12 col-md-8 col-lg-10">
+					<nav>
+						<ol class="breadcrumb">
+							@foreach (app(BreadcrumbService::class)->list() as $i => $item)
+								<li class="breadcrumb-item">
+									@if ($item->link)
+										<a href="{{ $item->link }}">{{ $item->title }}</a>
+									@else
+										<span>{{ $item->title }}</span>
+									@endif
+								</li>
+							@endforeach
+						</ol>
+					</nav>
 					<h1>{{ $title }}</h1>
 					<hr />
 					@yield('content')

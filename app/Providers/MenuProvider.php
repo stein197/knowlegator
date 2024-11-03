@@ -11,7 +11,7 @@ use function array_map;
 use function explode;
 use function sizeof;
 
-class AppServiceProvider extends ServiceProvider {
+class MenuProvider extends ServiceProvider {
 
 	public function register(): void {
 		$this->registerMenuFor('account');

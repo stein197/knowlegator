@@ -1,7 +1,7 @@
 <?php
-use App\Http\Controllers\Account\AccountEntityListController;
-use App\Http\Controllers\Account\AccountTagController;
-use App\Http\Controllers\Account\AccountTagListController;
+use App\Http\Controllers\Account\EntityListController;
+use App\Http\Controllers\Account\TagController;
+use App\Http\Controllers\Account\TagListController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
@@ -27,15 +27,15 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 			Route::post('/logout', LogoutController::class)->name('logout');
 			Route::prefix('/account')->group(function (): void {
 				Route::get('/', AccountController::class)->name('account');
-				Route::get('/entities', AccountEntityListController::class)->name('account.entity-list');
+				Route::get('/entities', EntityListController::class)->name('account.entity-list');
 				Route::prefix('/tags')->group(function (): void {
-					Route::get('/', AccountTagListController::class)->name('account.tag-list');
-					Route::get('/create', [AccountTagController::class, 'showCreate'])->name('account.tag.create');
-					Route::post('/create', [AccountTagController::class, 'create']);
-					Route::get('/{id}', [AccountTagController::class, 'read'])->name('account.tag.read')->whereUuid('id');
-					Route::put('/{id}', [AccountTagController::class, 'update'])->whereUuid('id');
-					Route::get('/{id}/delete', [AccountTagController::class, 'showDelete'])->name('account.tag.delete')->whereUuid('id');
-					Route::delete('/{id}', [AccountTagController::class, 'delete'])->whereUuid('id');
+					Route::get('/', TagListController::class)->name('account.tag-list');
+					Route::get('/create', [TagController::class, 'showCreate'])->name('account.tag.create');
+					Route::post('/create', [TagController::class, 'create']);
+					Route::get('/{id}', [TagController::class, 'read'])->name('account.tag.read')->whereUuid('id');
+					Route::put('/{id}', [TagController::class, 'update'])->whereUuid('id');
+					Route::get('/{id}/delete', [TagController::class, 'showDelete'])->name('account.tag.delete')->whereUuid('id');
+					Route::delete('/{id}', [TagController::class, 'delete'])->whereUuid('id');
 				});
 			});
 			Route::prefix('/settings')->group(function (): void {

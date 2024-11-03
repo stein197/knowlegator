@@ -9,7 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class AccountTagController extends Controller {
+class TagController extends Controller {
 
 	public function showCreate(): View {
 		return view('page.account.tag.create', [

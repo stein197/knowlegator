@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Account;
 use App\Http\Controllers\Controller;
 use Illuminate\View\View;
 
-class AccountTagListController extends Controller {
+class TagListController extends Controller {
 
 	public function __invoke(): View {
 		return view('page.account.tag-list', [

@@ -11,7 +11,7 @@ use function array_map;
 use function explode;
 use function sizeof;
 
-class MenuProvider extends ServiceProvider {
+final class MenuProvider extends ServiceProvider {
 
 	public function register(): void {
 		$this->registerMenuFor('account');
@@ -24,12 +24,25 @@ class MenuProvider extends ServiceProvider {
 				title: __('page.' . $route->getName() . '.title'),
 				link: lroute($route->getName()),
 				routeName: $route->getName(),
-				active: $request->route() === $route // TODO: Check for parents
+				active: static::isActive($request, $route)
 			),
 			array_filter(
 				[...RouteFacade::getRoutes()],
 				fn (Route $route): bool => str_starts_with($route->getName(), "$prefix.") && sizeof(explode('.', $route->getName())) === 2 // Only 2 level depth
 			)
 		)]);
+	}
+
+	private static function isActive(Request $request, Route $route): bool {
+		$requestRouteURI = explode('/', $request->route()->uri());
+		$routeURI = explode('/', $route->uri());
+		if (sizeof($requestRouteURI) < sizeof($routeURI))
+			return false;
+		foreach ($routeURI as $i => $routePart) {
+			$requestPart = $requestRouteURI[$i];
+			if ($routePart !== $requestPart)
+				return false;
+		}
+		return true;
 	}
 }

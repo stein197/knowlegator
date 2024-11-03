@@ -15,10 +15,11 @@ class Tag extends Model {
 	use HasFactory;
 	use HasUuids;
 
-	private const string NAME_REGEX = '/^[[:alnum:]_-]+$/';
+	public const string NAME_REGEX = '/^[[:alnum:]_-]+$/';
 
 	protected $fillable = [
-		'name'
+		'name',
+		'user_id'
 	];
 
 	public function user(): BelongsTo {

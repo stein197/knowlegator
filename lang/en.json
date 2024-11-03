@@ -29,6 +29,9 @@
 	"form.button.login": "Login",
 	"form.button.register": "Register",
 	"form.button.confirm": "Confirm",
+	"form.message.name.empty": "Name is empty",
+	"form.message.name.exists": "Name \":name\" already exists",
+	"form.message.name.invalid": "Name \":name\" has an invalid format",
 
 	"theme.light": "Light",
 	"theme.dark": "Dark",
@@ -40,6 +43,7 @@
 	"message.user.password.doesNotMatch": "The new password and the repetition should match",
 	"message.user.password.changed": "The password has been successfully changed",
 	"message.user.password.couldNotChange": "Unable to change password",
+	"message.tag.created": "Tag :tag has been successfully created",
 	
 	"info.version.server": "server: :value",
 

@@ -6,8 +6,8 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 uses(DatabaseTransactions::class);
 
-describe('/en/account/tags/create', function (): void {
-	it('should redirect to /en/route for guests', function (): void {
+describe('GET /{locale}/account/tags/create', function (): void {
+	it('should redirect to /{locale}/route for guests', function (): void {
 		/** @var \Tests\TestCase $this */
 		$this->get('/en/account/tags/create')->assertRedirect('/en/login');
 	});
@@ -19,5 +19,34 @@ describe('/en/account/tags/create', function (): void {
 		$dom = $this->dom($content);
 		$dom->assertExists('//form//input[@name="name"]');
 		$dom->assertExists('//form//button');
+	});
+});
+
+describe('POST /{locale}/account/tags/create', function (): void {
+
+	it('should show a success message when the tag is created', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::factory()->create();
+		$content = $this->actingAs($u)->post('/en/account/tags/create', ['name' => 'Tag'])->getContent();
+		$dom = $this->dom($content);
+		$dom->find('//p[contains(@class, "alert")]')->assertTextContent(__('message.tag.created', ['tag' => 'Tag']));
+	});
+
+	it('should show an error when the name is empty', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::factory()->create();
+		$this->actingAs($u)->post('/en/account/tags/create', [])->assertSessionHasErrors(['name']);
+	});
+
+	it('should show an error when the name is invalid', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::factory()->create();
+		$this->actingAs($u)->post('/en/account/tags/create', [])->assertSessionHasErrors(['name']);
+	});
+
+	it('should show an error when the tag already exists', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::factory()->create();
+		$this->actingAs($u)->post('/en/account/tags/create', [])->assertSessionHasErrors(['name']);
 	});
 });

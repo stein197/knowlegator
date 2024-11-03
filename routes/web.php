@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\Account\AccountEntityListController;
+use App\Http\Controllers\Account\AccountTagController;
 use App\Http\Controllers\Account\AccountTagListController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\LoginController;
@@ -29,7 +30,12 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 				Route::get('/entities', AccountEntityListController::class)->name('account.entity-list');
 				Route::prefix('/tags')->group(function (): void {
 					Route::get('/', AccountTagListController::class)->name('account.tag-list');
-					Route::get('/create', [AccountTagController::class, 'showPost'])->name('account.tag.create');
+					Route::get('/create', [AccountTagController::class, 'showCreate'])->name('account.tag.create');
+					Route::post('/create', [AccountTagController::class, 'create']);
+					Route::get('/{id}', [AccountTagController::class, 'read'])->name('account.tag.get');
+					Route::put('/{id}', [AccountTagController::class, 'update']);
+					Route::get('/{id}/delete', [AccountTagController::class, 'showDelete'])->name('account.tag.delete');
+					Route::delete('/{id}', [AccountTagController::class, 'delete']);
 				});
 			});
 			Route::prefix('/settings')->group(function (): void {

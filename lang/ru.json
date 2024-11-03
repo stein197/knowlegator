@@ -29,6 +29,9 @@
 	"form.button.login": "Войти",
 	"form.button.register": "Зарегистрироваться",
 	"form.button.confirm": "Подтверить",
+	"form.message.name.empty": "Имя пусто",
+	"form.message.name.exists": "Имя \":name\" уже существует",
+	"form.message.name.invalid": "Имя \":name\" некорректно",
 
 	"theme.light": "Светлая",
 	"theme.dark": "Тёмная",
@@ -40,7 +43,8 @@
 	"message.user.password.doesNotMatch": "Пароль не совпадание с повторением",
 	"message.user.password.changed": "Пароль был успешно изменён",
 	"message.user.password.couldNotChange": "Не удалось изменить пароль",
-	
+	"message.tag.created": "Тег :tag был успешно создан",
+
 	"info.version.server": "сервер: :value",
 
 	"oops": "Упс!",

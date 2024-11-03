@@ -10,14 +10,13 @@ use function array_map;
 uses(DatabaseTransactions::class);
 
 describe('tags()', function (): void {
-
-	it('should return empty collection when user does not have any tags', function (): void {
+	test('should return empty collection when user does not have any tags', function (): void {
 		/** @var \Tests\TestCase $this */
 		$user = User::factory()->create();
 		$this->assertEmpty($user->tags);
 	});
 
-	it('should return only assigned collection of tags', function (): void {
+	test('should return only assigned collection of tags', function (): void {
 		/** @var \Tests\TestCase $this */
 		$user = User::factory()->create();
 		[$t1, $t2, $t3] = Tag::factory()->createMany([
@@ -32,7 +31,7 @@ describe('tags()', function (): void {
 		$this->assertContains($user->tags[2]->id, $ids);
 	});
 
-	it('should not return tags for other users', function (): void {
+	test('should not return tags for other users', function (): void {
 		/** @var \Tests\TestCase $this */
 		[$u1, $u2] = User::factory()->createMany(2);
 		[$t1, $t2] = Tag::factory()->createMany([

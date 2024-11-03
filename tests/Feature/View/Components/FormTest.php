@@ -3,38 +3,38 @@ namespace Tests\Feature\View\Components;
 
 use App\View\Components\Form;
 
-it('should containt enctype="multipart/form-data"', function (): void {
+test('should containt enctype="multipart/form-data"', function (): void {
 	/** @var \Tests\TestCase $this */
 	$view = $this->component(Form::class);
 	$view->assertSee('enctype="multipart/form-data"', false);
 });
 
-it('should render title correctly', function (): void {
+test('should render title correctly', function (): void {
 	/** @var \Tests\TestCase $this */
 	$view = $this->component(Form::class, ['title' => 'Form title']);
 	$view->assertSee('<strong>Form title</strong>', false);
 });
 
-it('should render an empty form when there are no input', function (): void {
+test('should render an empty form when there are no input', function (): void {
 	/** @var \Tests\TestCase $this */
 	$view = $this->component(Form::class);
 	$view->assertSee('action=""', false);
 	$view->assertSee('method="POST"', false);
 });
 
-it('should render action correctly', function (): void {
+test('should render action correctly', function (): void {
 	/** @var \Tests\TestCase $this */
 	$view = $this->component(Form::class, ['action' => '/url']);
 	$view->assertSee('action="/url"', false);
 });
 
-it('should render method correctly', function (): void {
+test('should render method correctly', function (): void {
 	/** @var \Tests\TestCase $this */
 	$view = $this->component(Form::class, ['method' => 'PUT']);
 	$view->assertSee('type="hidden" name="_method" value="PUT"', false);
 });
 
-it('should render fields correctly', function (): void {
+test('should render fields correctly', function (): void {
 	/** @var \Tests\TestCase $this */
 	$view = $this->component(Form::class, ['fields' => [
 		'text' => [
@@ -48,7 +48,7 @@ it('should render fields correctly', function (): void {
 	$view->assertSee('required', false);
 });
 
-it('should render checkboxes', function (): void {
+test('should render checkboxes', function (): void {
 	/** @var \Tests\TestCase $this */
 	$view = $this->component(Form::class, ['fields' => [
 		'checkbox' => [
@@ -62,7 +62,7 @@ it('should render checkboxes', function (): void {
 	$view->assertSee('class="form-check-input"', false);
 });
 
-it('should render buttons correctly', function (): void {
+test('should render buttons correctly', function (): void {
 	/** @var \Tests\TestCase $this */
 	$view = $this->component(Form::class, ['buttons' => [
 		[

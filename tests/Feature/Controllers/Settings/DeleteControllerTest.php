@@ -6,27 +6,32 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 uses(DatabaseTransactions::class);
 
-it('should redirect to "/en/login" when the user is not authenticated', function (): void {
-	/** @var \Tests\TestCase $this */
-	$this->get('/en/settings/delete')->assertRedirect('/en/login');
+describe('GET /{locale}/settings/delete', function (): void {
+	test('should redirect to "/{locale}/login" for guests', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->get('/en/settings/delete')->assertRedirect('/en/login');
+	});
+	
+	test('should show page for users', function (): void {
+		/** @var \Tests\TestCase $this */
+		$user = User::factory()->create();
+		$content = $this->actingAs($user)->get('/en/settings/delete')->getContent();
+		$dom = $this->dom($content);
+		$dom->find('//h1')->assertTextContent('Delete account');
+		$dom->assertExists('//form[@action="/en/settings/delete"]');
+	});
 });
 
-it('should show deletion page', function (): void {
-	/** @var \Tests\TestCase $this */
-	$user = User::factory()->create();
-	$response = $this->actingAs($user)->get('/en/settings/delete');
-	$this->assertStringContainsString("<h1>Delete account</h1>", $response->getContent());
-	$this->assertStringContainsString("action=\"/en/settings/delete", $response->getContent());
-});
-
-it('should delete the current user and redirect to "/en/login"', function (): void {
-	/** @var \Tests\TestCase $this */
-	$user = User::factory()->create();
-	$this->actingAs($user);
-	$this->assertAuthenticated();
-	$this->assertTrue($user->exists);
-	$response = $this->delete('/en/settings/delete');
-	$this->assertFalse($user->exists);
-	$this->assertGuest();
-	$response->assertRedirect('/en/login');
+describe('DELETE /{locale}/settings/delete', function (): void {
+	test('should delete the current user and redirect to "/{locale}/login"', function (): void {
+		/** @var \Tests\TestCase $this */
+		$user = User::factory()->create();
+		$this->actingAs($user);
+		$this->assertAuthenticated();
+		$this->assertTrue($user->exists);
+		$response = $this->delete('/en/settings/delete');
+		$this->assertFalse($user->exists);
+		$this->assertGuest();
+		$response->assertRedirect('/en/login');
+	});
 });

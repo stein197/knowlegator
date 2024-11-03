@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 uses(DatabaseTransactions::class);
 
-it('should mark menu item as active when the request is deeper than the menu route', function (): void {
+test('should mark menu item as active when the request is deeper than the menu route', function (): void {
 	/** @var \Tests\TestCase $this */
 	$u = User::factory()->create();
 	$content = $this->actingAs($u)->get('/en/account/tags/create')->getContent();

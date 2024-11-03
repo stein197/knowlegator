@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 uses(DatabaseTransactions::class);
 
 describe('name', function (): void {
-	it('should not accept empty name when creating a tag', function (): void {
+	test('should not accept empty name when creating a tag', function (): void {
 		/** @var \Tests\TestCase $this */
 		$this->expectException(TagInvalidNameException::class);
 		$this->expectExceptionCode(TagInvalidNameException::REASON_EMPTY);
@@ -20,7 +20,7 @@ describe('name', function (): void {
 		]);
 	});
 
-	it('should not accept invalid name when creating a tag', function (): void {
+	test('should not accept invalid name when creating a tag', function (): void {
 		/** @var \Tests\TestCase $this */
 		$this->expectException(TagInvalidNameException::class);
 		$this->expectExceptionCode(TagInvalidNameException::REASON_INVALID);
@@ -31,7 +31,7 @@ describe('name', function (): void {
 		]);
 	});
 
-	it('should not accept empty name after creating a tag', function (): void {
+	test('should not accept empty name after creating a tag', function (): void {
 		/** @var \Tests\TestCase $this */
 		$this->expectException(TagInvalidNameException::class);
 		$this->expectExceptionCode(TagInvalidNameException::REASON_EMPTY);
@@ -43,7 +43,7 @@ describe('name', function (): void {
 		$t->name = '';
 	});
 
-	it('should not accept invalid name after creating a tag', function (): void {
+	test('should not accept invalid name after creating a tag', function (): void {
 		/** @var \Tests\TestCase $this */
 		$this->expectException(TagInvalidNameException::class);
 		$this->expectExceptionCode(TagInvalidNameException::REASON_INVALID);
@@ -58,14 +58,14 @@ describe('name', function (): void {
 
 describe('user()', function (): void {
 
-	it('should return assigned user', function (): void {
+	test('should return assigned user', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::factory()->create();
 		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
 		$this->assertEquals($u->id, $t->user->id);
 	});
 
-	it('cannot create two tags with the same name for the same user', function (): void {
+	test('cannot create two tags with the same name for the same user', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::factory()->create();
 		Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
@@ -76,7 +76,7 @@ describe('user()', function (): void {
 		}
 	});
 
-	it('can create two tags with the same name for different users', function (): void {
+	test('can create two tags with the same name for different users', function (): void {
 		/** @var \Tests\TestCase $this */
 		[$u1, $u2] = User::factory()->createMany(2);
 		[$t1, $t2] = Tag::factory()->createMany([

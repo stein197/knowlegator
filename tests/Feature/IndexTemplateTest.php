@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 uses(DatabaseTransactions::class);
 
-it('should contain correct links to locales', function (): void {
+test('should contain correct links to locales', function (): void {
 	/** @var \Tests\TestCase $this */
 	$this->markTestSkipped('Request URI is empty for some reason');
 	$content = $this->get('/en/login')->getContent();

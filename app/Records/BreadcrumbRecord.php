@@ -1,7 +1,9 @@
 <?php
 namespace App\Records;
 
-final readonly class BreadcrumbRecord {
+use App\Record;
+
+final readonly class BreadcrumbRecord extends Record {
 
 	public function __construct(
 		/** Title to display */

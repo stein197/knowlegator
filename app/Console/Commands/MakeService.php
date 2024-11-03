@@ -35,7 +35,7 @@ final class MakeService extends Command {
 		
 		PHP;
 		if (file_put_contents($file, $content) === false) {
-			$this->error("Cannot write to{$file}");
+			$this->error("Cannot write to {$file}");
 			return self::CODE_UNKNOWN;
 		}
 		$this->	info("Service {$file} has been successfully created");

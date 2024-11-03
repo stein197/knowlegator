@@ -10,4 +10,5 @@ The naming of the commands should follow the next rules:
 - Classnames should be the same as command names. For example - class [`App\Console\Commands\MakeService`](/app/Console/Commands/MakeService.php) defines a command `app:make:service`
 
 ### Available commands
+- `app:make:record <record>`: create a new record in the `app/Records/` folder
 - `app:make:service <service>`: create a new service in the `app/Services/` folder

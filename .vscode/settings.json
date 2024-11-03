@@ -2,6 +2,7 @@
 	"conventionalCommits.scopes": [
 		"breadcrumb",
 		"composer",
+		"command",
 		"controller",
 		"css",
 		"font",

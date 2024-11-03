@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
+// TODO: Replace with resource controller
 class TagController extends Controller {
 
 	public function showCreate(): View {

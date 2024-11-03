@@ -9,6 +9,7 @@
 		"menu",
 		"middleware",
 		"provider",
+		"route",
 		"readme",
 		"tag",
 		"test"

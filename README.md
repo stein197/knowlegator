@@ -21,6 +21,9 @@
 - `server:dev`: Run server in development mode on port 80
 - `generate-keys`: Generate APP_KEY for production environment
 
+## Artisan commands
+- `app:make:service <service>`: create a new service in the `app/Services/` folder
+
 ## Testing
 Run `php artisan test`
 

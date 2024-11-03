@@ -45,8 +45,6 @@
 	"message.user.password.couldNotChange": "Не удалось изменить пароль",
 	"message.tag.created": "Тег :tag был успешно создан",
 
-	"info.version.server": "сервер: :value",
-
 	"oops": "Упс!",
 	"back": "Назад",
 	"yes": "Да"

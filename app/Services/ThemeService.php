@@ -5,6 +5,7 @@ use App\Enum\Theme;
 use Illuminate\Session\SessionManager;
 use function strtolower;
 
+// TODO: Move theme saving from session to the database
 final readonly class ThemeService {
 
 	public function __construct(

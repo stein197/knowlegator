@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+// TODO: Add "Forget Password?" functionality
 /**
  * Contains the functionality to manage the process of authentication and registration.
  * @package App\Http\Controllers

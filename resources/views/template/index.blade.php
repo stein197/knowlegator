@@ -66,6 +66,12 @@
 								</button>
 								<ul class="dropdown-menu dropdown-menu-end">
 									<li>
+										<a class="dropdown-item" href={{ lroute('account') }}>
+											<i class="bi bi-person-circle"></i>
+											<span>{{ __('menu.account') }}</span>
+										</a>
+									</li>
+									<li>
 										<a class="dropdown-item" href={{ lroute('settings') }}>
 											<i class="bi bi-gear-fill"></i>
 											<span>{{ __('menu.settings') }}</span>

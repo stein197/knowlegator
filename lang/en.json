@@ -16,6 +16,7 @@
 	"page.settings.delete.confirmation": "Are you sure you want to delete the account?",
 	"page.settings.delete.consequences": "This action cannot be rewoked",
 	
+	"menu.account": "Account",
 	"menu.settings": "Settings",
 	"menu.logout": "Log out",
 

@@ -16,6 +16,7 @@
 	"page.settings.delete.confirmation": "Вы уверены, что хотите удалить аккаунт?",
 	"page.settings.delete.consequences": "Это действие нельзя будет отменить",
 
+	"menu.account": "Аккаунт",
 	"menu.settings": "Настройки",
 	"menu.logout": "Выйти",
 

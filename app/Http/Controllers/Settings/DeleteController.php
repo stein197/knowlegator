@@ -10,7 +10,7 @@ use Illuminate\View\View;
  * Deletes an account for the current authorized user.
  * @package App\Http\Controllers
  */
-class SettingsDeleteController extends Controller {
+class DeleteController extends Controller {
 
 	public function get(): View {
 		return view('page.settings.delete', [

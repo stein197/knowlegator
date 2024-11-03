@@ -6,9 +6,9 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\SettingsController;
-use App\Http\Controllers\Settings\SettingsDeleteController;
-use App\Http\Controllers\Settings\SettingsPasswordController;
-use App\Http\Controllers\Settings\SettingsThemeController;
+use App\Http\Controllers\Settings\DeleteController;
+use App\Http\Controllers\Settings\PasswordController;
+use App\Http\Controllers\Settings\ThemeController;
 use App\Http\Middleware\CheckLocaleMiddleware;
 use App\Http\Middleware\DefaultLocaleMiddleware;
 use App\Http\Middleware\RedirectMiddleware;
@@ -41,16 +41,16 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 			Route::prefix('/settings')->group(function (): void {
 				Route::get('/', SettingsController::class)->name('settings');
 				Route::prefix('/password')->group(function (): void {
-					Route::get('/', [SettingsPasswordController::class, 'get'])->name('settings.password');
-					Route::put('/', [SettingsPasswordController::class, 'put']);
+					Route::get('/', [PasswordController::class, 'get'])->name('settings.password');
+					Route::put('/', [PasswordController::class, 'put']);
 				});
 				Route::prefix('/delete')->group(function (): void {
-					Route::get('/', [SettingsDeleteController::class, 'get'])->name('settings.delete');
-					Route::delete('/', [SettingsDeleteController::class, 'delete']);
+					Route::get('/', [DeleteController::class, 'get'])->name('settings.delete');
+					Route::delete('/', [DeleteController::class, 'delete']);
 				});
 				Route::prefix('/theme')->group(function (): void {
-					Route::get('/', [SettingsThemeController::class, 'get'])->name('settings.theme');
-					Route::post('/', [SettingsThemeController::class, 'post']);
+					Route::get('/', [ThemeController::class, 'get'])->name('settings.theme');
+					Route::post('/', [ThemeController::class, 'post']);
 				});
 			});
 		});

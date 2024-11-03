@@ -6,7 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class SettingsPasswordController extends Controller {
+class PasswordController extends Controller {
 
 	public function get(): View {
 		return view('page.settings.password', [

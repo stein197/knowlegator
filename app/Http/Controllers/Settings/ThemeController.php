@@ -8,7 +8,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class SettingsThemeController extends Controller {
+class ThemeController extends Controller {
 
 	public function __construct(
 		private readonly ThemeService $themeService

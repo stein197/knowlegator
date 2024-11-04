@@ -2,27 +2,23 @@
 namespace Tests\Feature\Servicse;
 
 use App\Services\LocaleService;
-use Tests\TestCase;
 
-final class LocaleServiceTest extends TestCase {
+test('locale structure', function(): void {
+	/** @var \Tests\TestCase $this */
+	$localeService = new LocaleService();
+	$locales = $localeService->locales();
+	$this->assertArrayHasKey('name', $locales['en']);
+	$this->assertArrayHasKey('flag-icon', $locales['en']);
+});
 
-	private LocaleService $localeService;
+test('exists returns true for en', function(): void {
+	/** @var \Tests\TestCase $this */
+	$localeService = new LocaleService();
+	$this->assertTrue($localeService->exists('en'));
+});
 
-	public function testLocaleStructure(): void {
-		$locales = $this->localeService->locales();
-		$this->assertArrayHasKey('name', $locales['en']);
-		$this->assertArrayHasKey('flag-icon', $locales['en']);
-	}
-
-	public function testExistsReturnsTrueForEn(): void {
-		$this->assertTrue($this->localeService->exists('en'));
-	}
-
-	public function testExistsReturnsFalseForUnknownLocale(): void {
-		$this->assertFalse($this->localeService->exists('unknown'));
-	}
-
-	protected function setUp(): void {
-		$this->localeService = new LocaleService();
-	}
-}
+test('exists returns false for unknown locale', function(): void {
+	/** @var \Tests\TestCase $this */
+	$localeService = new LocaleService();
+	$this->assertFalse($localeService->exists('unknown'));
+});

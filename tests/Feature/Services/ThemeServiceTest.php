@@ -4,14 +4,14 @@ namespace Tests\Feature\Services;
 use App\Enum\Theme;
 use App\Services\ThemeService;
 
-it('should return null for the first get() call', function (): void {
+test('should return null for the first get() call', function (): void {
 	/** @var \Tests\TestCase $this */
 	$app = $this->createApplication();
 	$themeService = $app->get(ThemeService::class);
 	$this->assertNull($themeService->get());
 });
 
-it('should return saved value for the get() call after calling set()', function (): void {
+test('should return saved value for the get() call after calling set()', function (): void {
 	/** @var \Tests\TestCase $this */
 	$app = $this->createApplication();
 	$themeService = $app->get(ThemeService::class);

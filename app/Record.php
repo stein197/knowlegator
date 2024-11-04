@@ -34,7 +34,7 @@ abstract readonly class Record {
 	 * ```
 	 */
 	public final function with(array $properties): static {
-		return static::fromArray($properties);
+		return self::fromArray([...$this->toArray(), ...$properties]);
 	}
 
 	/**

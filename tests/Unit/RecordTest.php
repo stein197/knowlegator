@@ -43,6 +43,12 @@ describe('with()', function (): void {
 		$r = new TestRecord;
 		$this->assertTrue((new TestRecord(a: 'first', b: 'second'))->equals($r->with(['a' => 'first', 'b' => 'second'])));
 	});
+
+	test('should not erase not listed properties', function (): void {
+		/** @var \Tests\TestCase $this */
+		$r = new TestRecord(a: 'first', b: 'second');
+		$this->assertTrue((new TestRecord(a: 'first', b: 'SECOND'))->equals($r->with(['b' => 'SECOND'])));
+	});
 });
 
 describe('toArray()', function (): void {

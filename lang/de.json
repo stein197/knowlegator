@@ -16,9 +16,9 @@
 	"page.settings.delete.confirmation": "Sind Sie sicher, dass Sie das Konto entfernen möchten?",
 	"page.settings.delete.consequences": "Diese Aktion kann nicht abgebrochen werden",
 
-	"menu.account": "Konto",
-	"menu.settings": "Einstellungen",
-	"menu.logout": "Abmelden",
+	"menu.main.account": "Konto",
+	"menu.main.settings": "Einstellungen",
+	"menu.main.logout": "Abmelden",
 
 	"form.field.email": "E-Mail",
 	"form.field.password": "Passwort",

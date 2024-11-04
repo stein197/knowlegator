@@ -49,3 +49,29 @@ function menu(string $key, ?callable $f = null): ?array {
 		$cache[$key] = $f;
 	return @$cache[$key] ? $cache[$key](request()) : null;
 }
+
+// TODO: Extract to a library
+/**
+ * Take an array of strings and convert into an HTML classname.
+ * @param array|string|null ...$classname Classnames. Empty values are not considered.
+ * @return string CSS-class.
+ * ```php
+ * classname('a', null, 'b'); // 'a b'
+ * classname(['a', 'b']);     // 'a b'
+ * classname(['a' => true, 'b' => false, 'c', null], 'd', ['e']); // 'a c d e'
+ * ```
+ */
+function classname(array | string | null ...$classname): string {
+	$result = [];
+	foreach ($classname as $arg)
+		if (is_array($arg))
+			foreach ($arg as $k => $v) {
+				if (is_int($k))
+					$result[] = $v;
+				elseif ($v)
+					$result[] = $k;
+			}
+		elseif ($arg)
+			$result[] = $arg;
+	return join(' ', $result);
+}

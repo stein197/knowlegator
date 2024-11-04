@@ -10,7 +10,6 @@ use function explode;
 use function preg_replace;
 use function sizeof;
 
-// TODO: Register in the provider as 'breadcrumb'
 final class BreadcrumbService {
 
 	/** @var BreadcrumbRecord[] */

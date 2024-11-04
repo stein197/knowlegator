@@ -1,5 +1,6 @@
 <?php
 
 return [
-	App\Providers\MenuProvider::class,
+    App\Providers\BreadcrumbProvider::class,
+    App\Providers\MenuProvider::class,
 ];

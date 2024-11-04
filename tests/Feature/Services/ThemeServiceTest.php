@@ -1,11 +1,8 @@
 <?php
-namespace Tests\Services;
+namespace Tests\Feature\Services;
 
 use App\Enum\Theme;
 use App\Services\ThemeService;
-use Tests\TestCase;
-
-pest()->extend(TestCase::class);
 
 it('should return null for the first get() call', function (): void {
 	/** @var \Tests\TestCase $this */
@@ -23,4 +20,3 @@ it('should return saved value for the get() call after calling set()', function 
 	$themeService->set(Theme::Dark);
 	$this->assertSame(Theme::Dark, $themeService->get());
 });
-

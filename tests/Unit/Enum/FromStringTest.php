@@ -2,33 +2,33 @@
 namespace Tests\Unit\Enum;
 
 use App\Enum\FromString;
-use Tests\TestCase;
 
-final class FromStringTest extends TestCase {
-
-	public function testFromShouldReturnNullWhenCaseDoesNotExist(): void {
+describe('from()', function (): void {
+	test('should return null when case does not exist', function (): void {
 		$this->assertNull(TestEnum::from('NoCase'));
-	}
+	});
 
-	public function testFromShouldReturnCaseWhenCaseExistsAndStringCaseMatchesExactly(): void {
+	test('should return case when case exists and string case matches exactly', function (): void {
 		$this->assertSame(TestEnum::FirstCase, TestEnum::from('FirstCase'));
-	}
-	
-	public function testFromShouldReturnCaseWhenCaseExistsAndStringCaseDoesNotMatch(): void {
+	});
+
+	test('should return case when case exists and string case does not match', function (): void {
 		$this->assertSame(TestEnum::FirstCase, TestEnum::from('firstcase'));
-	}
+	});
+});
 
-	public function testNamesShouldReturnOriginalNamesWhenLcaseIsFalse(): void {
+describe('names()', function (): void {
+	test('should return original names when lcase is false', function (): void {
 		$this->assertSame(['FirstCase', 'SecondCase'], TestEnum::names(false));
-	}
+	});
 
-	public function testNamesShouldReturnLowercasedNamesWhenLcaseIsTrue(): void {
+	test('should return lowercased names when lcase is true', function (): void {
 		$this->assertSame(['firstcase', 'secondcase'], TestEnum::names(true));
-	}
-}
+	});
+});
 
 enum TestEnum {
-	
+
 	use FromString;
 
 	case FirstCase;

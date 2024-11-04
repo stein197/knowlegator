@@ -65,18 +65,14 @@
 									<i class="bi bi-person-circle"></i>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-end">
-									<li>
-										<a class="dropdown-item" href={{ lroute('account') }}>
-											<i class="bi bi-person-circle"></i>
-											<span>{{ __('menu.account') }}</span>
-										</a>
-									</li>
-									<li>
-										<a class="dropdown-item" href={{ lroute('settings') }}>
-											<i class="bi bi-gear-fill"></i>
-											<span>{{ __('menu.settings') }}</span>
-										</a>
-									</li>
+									@foreach (app('menu')->get('main') as $menu)
+										<li>
+											<a class="dropdown-item" href={{ $menu->link }}>
+												<i class="bi bi-{{ $menu->icon }}"></i>
+												<span>{{ $menu->title }}</span>
+											</a>
+										</li>
+									@endforeach
 									<li>
 										<span class="dropdown-item">
 											<form action="{{ lroute('logout') }}" method="POST" enctype="multipart/form-data">

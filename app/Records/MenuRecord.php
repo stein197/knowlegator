@@ -14,9 +14,9 @@ final readonly class MenuRecord extends Record {
 		public string $title = '',
 		/** URL link */
 		public string $link = '',
-		/** Route name */
-		public string $routeName = '',
 		/** `true` if the current route equals to this route */
-		public bool $active = false
+		public bool $active = false,
+		/** Bootstrap icon class */
+		public string $icon = ''
 	) {}
 }

@@ -38,24 +38,6 @@ describe('to_lroute()', function (): void {
 	});
 });
 
-describe('menu()', function (): void {
-	test('should return registered menu', function (): void {
-		/** @var \Tests\TestCase $this */
-		$menuRecord = new MenuRecord(
-			title: 'Test Title',
-			link: '/test/link',
-			active: true
-		);
-		menu('test', fn (): array => [$menuRecord]);
-		$this->assertEquals([$menuRecord], menu('test'));
-	});
-
-	test('should return null when menu is not registered', function (): void {
-		/** @var \Tests\TestCase $this */
-		$this->assertNull(menu('Undefined Menu'));
-	});
-});
-
 describe('classname()', function (): void {
 	test('should return empty string when there are no arguments', function (): void {
 		/** @var \Tests\TestCase $this */

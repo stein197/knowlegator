@@ -4,7 +4,6 @@
 @php
 	$routeName = request()->route()->getName();
 	[$routeNamePrefix] = explode('.', $routeName);
-	$menu = menu($routeNamePrefix);
 @endphp
 
 @section('main')
@@ -12,15 +11,13 @@
 		<div class="container">
 			<div class="row">
 				<div class="col col-12 col-md-4 col-lg-2">
-					@if ($menu)
-						<aside>
-							<div class="list-group">
-								@foreach ($menu as $item)
-									<a class="list-group-item list-group-item-action {{ $item->active ? 'active' : '' }}" href="{{ $item->link }}">{{ $item->title }}</a>
-								@endforeach
-							</div>
-						</aside>
-					@endif
+					<aside>
+						<div class="list-group">
+							@foreach (app('menu')->get($routeNamePrefix) as $item)
+								<a class="{{ classname('list-group-item list-group-item-action', $item->active ? 'active' : null) }}" href="{{ $item->link }}">{{ $item->title }}</a>
+							@endforeach
+						</div>
+					</aside>
 				</div>
 				<div class="col col-12 col-md-8 col-lg-10">
 					<nav>

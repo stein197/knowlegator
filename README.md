@@ -9,12 +9,12 @@
 
 ## Project dependencies
 **Client:**
-- Bootstrap
-- Bootstrap Icons
-- flag-icons
+- [Bootstrap](https://getbootstrap.com/)
+- [Bootstrap Icons](https://icons.getbootstrap.com/)
+- [flag-icons](https://flagicons.lipis.dev/)
 
 **Server:**
-- Laravel
+- [Laravel](https://laravel.com/)
 
 ## Commits
 The project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) with [gitmoji](https://gitmoji.dev/)

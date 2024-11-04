@@ -20,7 +20,7 @@ abstract readonly class Record {
 	 * (new Record())->equals(new Record()); // true
 	 * ```
 	 */
-	public function equals(mixed $record): bool {
+	public final function equals(mixed $record): bool {
 		return $record === $this || $record instanceof static && $this->toArray() === $record->toArray();
 	}
 
@@ -33,7 +33,7 @@ abstract readonly class Record {
 	 * (new Record(...))->with(['property' => 'value']);
 	 * ```
 	 */
-	public function with(array $properties): static {
+	public final function with(array $properties): static {
 		return static::fromArray($properties);
 	}
 
@@ -44,7 +44,7 @@ abstract readonly class Record {
 	 * (new Record(a: 'first'))->toArray(); // ['a' => 'first']
 	 * ```
 	 */
-	public function toArray(): array {
+	public final function toArray(): array {
 		$parameters = static::parameters();
 		$result = [];
 		foreach ($parameters as $p)
@@ -61,7 +61,7 @@ abstract readonly class Record {
 	 * Record::fromArray(['a' => 'first']); // Record {a: 'first'}
 	 * ```
 	 */
-	public static function fromArray(array $properties): static {
+	public final static function fromArray(array $properties): static {
 		$parameters = static::parameters();
 		$result = [];
 		foreach ($parameters as $p)

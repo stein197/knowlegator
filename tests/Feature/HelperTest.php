@@ -1,7 +1,6 @@
 <?php
 namespace Tests\Unit;
 
-use App\Records\MenuRecord;
 use function classname;
 
 describe('lroute()', function (): void {
@@ -56,12 +55,12 @@ describe('classname()', function (): void {
 
 	test('should accept array varags', function (): void {
 		/** @var \Tests\TestCase $this */
-		$this->assertSame('a', 'b', 'c', classname(['a'], ['b', 'c']));
+		$this->assertSame('a b c', classname(['a'], ['b', 'c']));
 	});
 
 	test('should accept array with nulls varags', function (): void {
 		/** @var \Tests\TestCase $this */
-		$this->assertSame('a', 'b', 'c', classname(['a', null], ['b', 'c']));
+		$this->assertSame('a b c', classname(['a', null], ['b', 'c']));
 	});
 
 	test('should accept map varags', function (): void {

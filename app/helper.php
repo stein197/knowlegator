@@ -45,7 +45,7 @@ function classname(array | string | null ...$classname): string {
 	foreach ($classname as $arg)
 		if (is_array($arg))
 			foreach ($arg as $k => $v) {
-				if (is_int($k))
+				if (is_int($k) && $v)
 					$result[] = $v;
 				elseif ($v)
 					$result[] = $k;

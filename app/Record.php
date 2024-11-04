@@ -74,9 +74,6 @@ abstract readonly class Record {
 	 * @return ReflectionParameter[]
 	 */
 	private static function parameters(): array {
-		static $cache = [];
-		if (!$cache)
-			$cache = (new ReflectionClass(static::class))->getConstructor()->getParameters();
-		return $cache;
+		return (new ReflectionClass(static::class))->getConstructor()->getParameters();
 	}
 }

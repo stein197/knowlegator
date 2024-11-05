@@ -42,7 +42,7 @@ final class MenuProvider extends ServiceProvider {
 
 		$menuService->register('account', fn (): array => [
 			new MenuRecord(
-				title: __('resource.tag.index.title'),
+				title: __('resource.entity.index.title'),
 				link: lroute('entities.index')
 			),
 			new MenuRecord(

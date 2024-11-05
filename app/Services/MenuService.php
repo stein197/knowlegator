@@ -5,7 +5,6 @@ use App\Records\MenuRecord;
 use Generator;
 use Illuminate\Http\Request;
 
-// FIXME
 final class MenuService {
 
 	/** @var MenuRecord[] */
@@ -28,6 +27,15 @@ final class MenuService {
 			return null;
 		foreach ($menu as $item)
 			yield $item->with(['active' => $this->isActive($item)]);
+	}
+
+	/**
+	 * Check of the menu with the given name exists.
+	 * @param string $name Menu name.
+	 * @return bool `true` if menu exists.
+	 */
+	public function exists(string $name): bool {
+		return isset($this->cache[$name]);
 	}
 
 	/**

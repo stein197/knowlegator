@@ -1,9 +1,8 @@
 <?php
-use App\Http\Controllers\Account\EntityListController;
-use App\Http\Controllers\Account\TagController;
-use App\Http\Controllers\Account\TagListController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\Resource\EntityController;
+use App\Http\Controllers\Resource\TagController;
 use App\Http\Controllers\Settings\DeleteController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ThemeController;
@@ -25,16 +24,8 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 		Route::middleware(Authenticate::class)->group(function (): void {
 			Route::post('/logout', LogoutController::class)->name('logout');
 			Route::prefix('/account')->group(function (): void {
-				Route::get('/entities', EntityListController::class)->name('account.entity-list');
-				Route::prefix('/tags')->group(function (): void {
-					Route::get('/', TagListController::class)->name('account.tag-list');
-					Route::get('/create', [TagController::class, 'showCreate'])->name('account.tag.create');
-					Route::post('/create', [TagController::class, 'create']);
-					Route::get('/{id}', [TagController::class, 'read'])->name('account.tag.read')->whereUuid('id');
-					Route::put('/{id}', [TagController::class, 'update'])->whereUuid('id');
-					Route::get('/{id}/delete', [TagController::class, 'showDelete'])->name('account.tag.delete')->whereUuid('id');
-					Route::delete('/{id}', [TagController::class, 'delete'])->whereUuid('id');
-				});
+				Route::resource('entities', EntityController::class);
+				Route::resource('tags', TagController::class);
 			});
 			Route::prefix('/settings')->group(function (): void {
 				Route::prefix('/password')->group(function (): void {
@@ -56,7 +47,7 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 
 // TODO: Delete account and settings names
 // Redirects
-Route::get('/', fn (Request $request): RedirectResponse => to_lroute($request->user() ? 'account.entity-list' : 'login'));
-Route::get('/{locale}', fn (Request $request): RedirectResponse => to_lroute($request->user() ? 'account.entity-list' : 'login'));
-Route::get('/{locale}/account', fn (Request $request): RedirectResponse => to_lroute($request->user() ? 'account.entity-list' : 'login'))->name('account');
+Route::get('/', fn (Request $request): RedirectResponse => to_lroute($request->user() ? 'entities.index' : 'login'));
+Route::get('/{locale}', fn (Request $request): RedirectResponse => to_lroute($request->user() ? 'entities.index' : 'login'));
+Route::get('/{locale}/account', fn (Request $request): RedirectResponse => to_lroute($request->user() ? 'entities.index' : 'login'))->name('account');
 Route::get('/{locale}/settings', fn (Request $request): RedirectResponse => to_lroute($request->user() ? 'settings.password' : 'login'))->name('settings');

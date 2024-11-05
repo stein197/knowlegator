@@ -4,10 +4,6 @@
 
 	"page.login.title": "Anmelden oder registrieren",
 	"page.account.title": "Konto",
-	"page.account.entity-list.title": "Entitäten",
-	"page.account.tag-list.title": "Tags",
-	"page.account.tag-list.empty": "Wie leer!\nErstell ein neues Tag",
-	"page.account.tag.create.title": "Neues Tag",
 	"page.settings.title": "Einstellungen",
 	"page.settings.delete.title": "Konto entfernen",
 	"page.settings.password.title": "Passwort ändern",
@@ -15,6 +11,11 @@
 	"page.settings.theme.warning": "Das Thema wird nur für die aktuelle Sitzung gespeichert. Der Wert wird nach der Abmeldung gelöscht",
 	"page.settings.delete.confirmation": "Sind Sie sicher, dass Sie das Konto entfernen möchten?",
 	"page.settings.delete.consequences": "Diese Aktion kann nicht abgebrochen werden",
+
+	"resource.entity.index.title": "Entitäten",
+	"resource.tag.index.title": "Tags",
+	"resource.tag.index.message.empty": "Wie leer!\nErstell ein neues Tag",
+	"resource.tag.create.title": "Neues Tag",
 
 	"menu.main.account": "Konto",
 	"menu.main.settings": "Einstellungen",

@@ -2,7 +2,7 @@
 
 @section('content')
 	<x-form
-		action="{{ lroute('account.tag.create') }}"
+		action="{{ lroute('tags.create') }}"
 		method="POST"
 		:fields="[
 			'name' => [

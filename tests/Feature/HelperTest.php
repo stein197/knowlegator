@@ -20,7 +20,7 @@ describe('lroute()', function (): void {
 		$app = $this->createApplication();
 		$app->setLocale('en');
 		$uuid = fake()->uuid();
-		$this->assertSame("/en/account/tags/{$uuid}", lroute('account.tag.read', ['id' => $uuid]));
+		$this->assertSame("/en/account/tags/{$uuid}", lroute('tags.show', ['id' => $uuid]));
 	});
 });
 

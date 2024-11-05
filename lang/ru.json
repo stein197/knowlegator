@@ -4,10 +4,6 @@
 
 	"page.login.title": "Войти или зарегистрироваться",
 	"page.account.title": "Аккаунт",
-	"page.account.entity-list.title": "Сущности",
-	"page.account.tag-list.title": "Теги",
-	"page.account.tag-list.empty": "Тут пусто!\nСоздать новый тег",
-	"page.account.tag.create.title": "Новый тег",
 	"page.settings.title": "Настройки",
 	"page.settings.delete.title": "Удалить аккаунт",
 	"page.settings.password.title": "Изменить пароль",
@@ -15,6 +11,11 @@
 	"page.settings.theme.warning": "Тема сохраняется только для текущего сеанса. Значение будет удалено после выхода из системы",
 	"page.settings.delete.confirmation": "Вы уверены, что хотите удалить аккаунт?",
 	"page.settings.delete.consequences": "Это действие нельзя будет отменить",
+
+	"resource.entity.index.title": "Сущности",
+	"resource.tag.index.title": "Теги",
+	"resource.tag.index.message.empty": "Тут пусто!\nСоздать новый тег",
+	"resource.tag.create.title": "Новый тег",
 
 	"menu.main.account": "Аккаунт",
 	"menu.main.settings": "Настройки",

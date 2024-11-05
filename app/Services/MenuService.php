@@ -5,6 +5,7 @@ use App\Records\MenuRecord;
 use Generator;
 use Illuminate\Http\Request;
 
+// FIXME
 final class MenuService {
 
 	/** @var MenuRecord[] */

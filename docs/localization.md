@@ -6,6 +6,7 @@ Translation keys define categories separated by a dot. The next categories are a
 - `locale.*`: locale-related values
 - `page.{page}`: translations depending on every page
 - `page.{page}.title`: title and H1 for a page
+- `resource.{resource}.{action}`: translations for resources
 - `menu.{menu}.*`: menu-related translations
 - `form.*`: form-related translations
 - `form.field.{field}`: translations for fields

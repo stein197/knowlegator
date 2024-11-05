@@ -1,5 +1,5 @@
 <?php
-namespace App\Http\Controllers\Account;
+namespace App\Http\Controllers\Resource;
 
 use App\Exceptions\TagInvalidNameException;
 use App\Http\Controllers\Controller;
@@ -9,24 +9,22 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-// TODO: Replace with resource controller
 class TagController extends Controller {
 
-	public function showCreate(): View {
-		return view('page.account.tag.create', [
-			'title' => __('page.account.tag.create.title')
+	public function index(): View {
+		return view('resource.tag.index', [
+			'title' => __('resource.tag.index.title'),
+			'tags' => auth()->user()->tags
 		]);
 	}
 
-	public function showDelete(): void {
-		// TODO
+	public function create(): View {
+		return view('resource.tag.create', [
+			'title' => __('resource.tag.create.title')
+		]);
 	}
 
-	public function read(): void {
-		// TODO
-	}
-
-	public function create(Request $request): View | RedirectResponse {
+	public function store(Request $request): View | RedirectResponse {
 		$name = $request->post('name', '');
 		try {
 			$tag = new Tag([
@@ -35,7 +33,7 @@ class TagController extends Controller {
 			]);
 			$tag->save();
 			return view('page.message', [
-				'title' => __('page.account.tag.create.title'),
+				'title' => __('resource.tag.create.title'),
 				'type' => 'success',
 				'message' => __('message.tag.created', ['tag' => $name])
 			]);
@@ -53,11 +51,11 @@ class TagController extends Controller {
 		}
 	}
 
-	public function update(): void {
-		// TODO
-	}
+	public function show(string $id): void {} // TODO
 
-	public function delete(): void {
-		// TODO
-	}
+	public function edit(string $id): void {} // TODO
+
+	public function update(Request $request, string $id): void {} // TODO
+
+	public function destroy(string $id): void {} // TODO
 }

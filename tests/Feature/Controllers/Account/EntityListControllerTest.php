@@ -6,6 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 uses(DatabaseTransactions::class);
 
+// TODO: Place in EntityControllerTest
 test('GET /{locale}/account/entities should redirect to /{locale}/login for a guest', function (): void {
 	/** @var \Tests\TestCase $this */
 	$this->get('/en/account/entities')->assertRedirect('/en/login');

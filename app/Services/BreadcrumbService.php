@@ -10,6 +10,7 @@ use function explode;
 use function preg_replace;
 use function sizeof;
 
+// FIXME
 final class BreadcrumbService {
 
 	/** @var BreadcrumbRecord[] */

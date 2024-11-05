@@ -20,7 +20,7 @@ describe('lroute()', function (): void {
 		$app = $this->createApplication();
 		$app->setLocale('en');
 		$uuid = fake()->uuid();
-		$this->assertSame("/en/account/tags/{$uuid}", lroute('tags.show', ['id' => $uuid]));
+		$this->assertSame("/en/account/tags/{$uuid}", lroute('tags.show', ['tag' => $uuid]));
 	});
 });
 
@@ -71,5 +71,19 @@ describe('classname()', function (): void {
 	test('should accept string, array, map and nulls varargs', function (): void {
 		/** @var \Tests\TestCase $this */
 		$this->assertSame('a b c', classname('a', null, ['b', null], null, ['c' => true, 'd' => false]));
+	});
+});
+
+describe('path_split()', function (): void {
+	test('should return an empty array when the path is root', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertEmpty(path_split('/'));
+	});
+
+	test('should work', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertSame(['en'], path_split('/en'));
+		$this->assertSame(['en', 'settings'], path_split('/en/settings/'));
+
 	});
 });

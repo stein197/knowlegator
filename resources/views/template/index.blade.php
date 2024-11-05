@@ -79,7 +79,7 @@
 												@csrf
 												<button class="reset w-100 text-start">
 													<i class="bi bi-box-arrow-right"></i>
-													<span>{{ __('menu.logout') }}</span>
+													<span>{{ __('menu.main.logout') }}</span>
 												</button>
 											</form>
 										</span>

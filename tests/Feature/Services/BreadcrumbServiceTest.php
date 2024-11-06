@@ -1,21 +1,37 @@
 <?php
 namespace Tests\Feature\Services;
 
-use Illuminate\Support\Facades\Request;
+use App\Models\User;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-test('should work correctly when the depth is 2', function (): void {
+uses(DatabaseTransactions::class);
+
+//FIXME: XPath does not work with <script /> and <style />
+test('GET /en/settings/password', function (): void {
 	/** @var \Tests\TestCase $this */
-	$app = $this->createApplication();
-	$list = $app->makeWith('breadcrumb', ['app' => $app, 'request' => Request::create('/en/account/tags')])->list();
-	$this->assertSame(['title' => 'Account', 'link' => ''], (array) $list[0]);
-	$this->assertSame(['title' => 'Tags', 'link' => ''], (array) $list[1]);
+	$u = User::factory()->create();
+	$content = $this->actingAs($u)->get('/en/settings/password')->getContent();
+	$dom = $this->dom($content);
+	$dom->find('//ol[@class="breadcrumb"]/li[position() = 1]')->assertTextContent('Settings');
+	$dom->find('//ol[@class="breadcrumb"]/li[position() = 2]')->assertTextContent('Change Password');
 });
 
-test('should work correctly when the depth is 3', function (): void {
+test('GET /en/account/tags', function (): void {
 	/** @var \Tests\TestCase $this */
-	$app = $this->createApplication();
-	$list = $app->makeWith('breadcrumb', ['app' => $app, 'request' => Request::create('/en/account/tags/create')])->list();
-	$this->assertSame(['title' => 'Account', 'link' => ''], (array) $list[0]);
-	$this->assertSame(['title' => 'Tags', 'link' => '/en/account/tags'], (array) $list[1]);
-	$this->assertSame(['title' => 'New tag', 'link' => ''], (array) $list[2]);
+	$u = User::factory()->create();
+	$content = $this->actingAs($u)->get('/en/account/tags')->getContent();
+	$dom = $this->dom($content);
+	$dom->find('//ol[@class="breadcrumb"]/li[position() = 1]')->assertTextContent('Account');
+	$dom->find('//ol[@class="breadcrumb"]/li[position() = 2]')->assertTextContent('Tags');
+});
+
+test('GET /en/account/tags/create', function (): void {
+	/** @var \Tests\TestCase $this */
+	$u = User::factory()->create();
+	$content = $this->actingAs($u)->get('/en/account/tags/create')->getContent();
+	$dom = $this->dom($content);
+	$dom->find('//ol[@class="breadcrumb"]/li[position() = 1]')->assertTextContent('Account');
+	$dom->find('//ol[@class="breadcrumb"]/li[position() = 2]')->assertTextContent('Tags');
+	$dom->assertExists('//ol[@class="breadcrumb"]/li[position() = 2]/a[@href = "/en/account/tags"]');
+	$dom->find('//ol[@class="breadcrumb"]/li[position() = 3]')->assertTextContent('New Tag');
 });

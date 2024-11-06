@@ -2,6 +2,7 @@
 namespace Tests\Unit;
 
 use function classname;
+use function singularize;
 
 describe('lroute()', function (): void {
 	test('should work', function (): void {

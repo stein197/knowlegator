@@ -20,19 +20,21 @@
 					@endif
 				</div>
 				<div class="col col-12 col-md-8 col-lg-10">
-					<nav>
-						<ol class="breadcrumb">
-							@foreach (app('breadcrumb')->list() as $i => $item)
-								<li class="breadcrumb-item">
+					@if (app('breadcrumb')->exists($section))
+						<nav>
+							<ol class="breadcrumb">
+								@foreach (app('breadcrumb')->get($section) as $item)
 									@if ($item->link)
-										<a href="{{ $item->link }}">{{ $item->title }}</a>
+										<li class="breadcrumb-item">
+											<a href="{{ $item->link }}">{{ $item->title }}</a>
+										</li>
 									@else
-										<span>{{ $item->title }}</span>
+										<li class="breadcrumb-item">{{ $item->title }}</li>
 									@endif
-								</li>
-							@endforeach
-						</ol>
-					</nav>
+								@endforeach
+							</ol>
+						</nav>
+					@endif
 					<h1>{{ $title }}</h1>
 					<hr />
 					@yield('content')

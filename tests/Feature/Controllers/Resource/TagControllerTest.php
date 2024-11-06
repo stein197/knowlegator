@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Feature\Controllers\Resource;
 
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 

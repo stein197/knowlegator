@@ -69,3 +69,60 @@ function path_split(string $path): array {
 		fn (string $segment): bool => $segment !== ''
 	)];
 }
+
+// TODO: Extract to a library
+/**
+ * Try to singularize an english word.
+ * @param string $word Word to singularize.
+ * @return string Singularized word if the word is plural or the original one if the word isn't plural.
+ * ```php
+ * singularize('words');      // 'word'
+ * singularize('word');       // 'word'
+ * ```
+ */
+function singularize(string $word): string {
+	static $rules = [
+		'/zzes$/i' => 'z',
+		'/(ss|sh|ch)es$/i' => '\\1',
+		'/ies$/i' => 'y',
+		'/(a|e|i|o|u)ys$/i' => '\\1y',
+		'/(o|s|x|z)es$/i' => '\\1',
+		'/es$/i' => 'is',
+		'/(b|c|d|f|g|h|j|k|l|m|n|p|q|r|s|t|v|w|x|y|z)i$/i' => '\\1us',
+		'/s$/i' => '',
+		'/a$/i' => 'on'
+	];
+	static $exceptions = [
+		'busses' => 'bus',
+		'children' => 'child',
+		'deer' => 'deer',
+		'feet' => 'foot',
+		'geese' => 'goose',
+		'halos' => 'halo',
+		'indices' => 'index',
+		'oxen' => 'ox',
+		'people' => 'person',
+		'photos' => 'photo',
+		'pianos' => 'piano',
+		'matrices' => 'matrix',
+		'men' => 'man',
+		'mice' => 'mouse',
+		'movies' => 'movie',
+		'news' => 'news',
+		'series' => 'series',
+		'sheep' => 'sheep',
+		'species' => 'species',
+		'teeth' => 'tooth',
+		'toes' => 'toe',
+		'vertices' => 'vertex',
+		'wives' => 'wife',
+		'wolves' => 'wolf',
+		'women' => 'woman'
+	];
+	if (@$exceptions[$word])
+		return $exceptions[$word];
+	foreach ($rules as $regex => $replacement)
+		if (preg_match($regex, $word))
+			return preg_replace($regex, $replacement, $word);
+	return $word;
+}

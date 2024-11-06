@@ -30,8 +30,7 @@ class ThemeController extends Controller {
 		]);
 	}
 
-	// TODO: Replace with PUT
-	public function post(Request $request): RedirectResponse {
+	public function put(Request $request): RedirectResponse {
 		$this->themeService->set(Theme::from($request->post('theme')));
 		return back();
 	}

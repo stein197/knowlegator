@@ -24,8 +24,10 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 		Route::middleware(Authenticate::class)->group(function (): void {
 			Route::post('/logout', LogoutController::class)->name('logout');
 			Route::prefix('/account')->group(function (): void {
-				Route::resource('entities', EntityController::class);
-				Route::resource('tags', TagController::class);
+				Route::resources([
+					'entities' => EntityController::class,
+					'tags' => TagController::class
+				]);
 			});
 			Route::prefix('/settings')->group(function (): void {
 				Route::prefix('/password')->group(function (): void {

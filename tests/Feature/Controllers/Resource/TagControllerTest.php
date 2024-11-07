@@ -38,6 +38,8 @@ describe('tags.index (GET /{locale}/account/tags)', function (): void {
 		$badges = $dom->find('//section//a[contains(@class, "badge")]');
 		$badges->assertTextContent($t1->name);
 		$badges->assertTextContent($t2->name);
+		$badges->assertLinkExists("/en/account/tags/{$t1->id}");
+		$badges->assertLinkExists("/en/account/tags/{$t2->id}");
 	});
 
 	test('should show link to create page', function (): void {

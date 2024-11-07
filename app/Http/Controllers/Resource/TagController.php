@@ -51,7 +51,15 @@ class TagController extends Controller {
 		}
 	}
 
-	public function show(string $id): void {} // TODO
+	// TODO: Add delete button
+	public function show(string $locale, string $tag, Request $request): View {
+		$tag = $request->user()->tags->firstWhere('id', $tag);
+		if (!$tag)
+			return abort(404);
+		return view('resource.tag.show', [
+			'title' => __('resource.tag.show.title', ['tag' => $tag->name])
+		]);
+	}
 
 	public function edit(string $id): void {} // TODO
 

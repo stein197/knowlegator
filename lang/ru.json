@@ -16,6 +16,7 @@
 	"resource.tag.index.title": "Теги",
 	"resource.tag.index.message.empty": "Тут пусто!\nСоздать новый тег",
 	"resource.tag.create.title": "Новый тег",
+	"resource.tag.show.title": "Тег: :tag",
 
 	"menu.main.account": "Аккаунт",
 	"menu.main.settings": "Настройки",

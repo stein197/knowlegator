@@ -16,6 +16,7 @@
 	"resource.tag.index.title": "Tags",
 	"resource.tag.index.message.empty": "Wie leer!\nErstell ein neues Tag",
 	"resource.tag.create.title": "Neues Tag",
+	"resource.tag.show.title": "Tag: :tag",
 
 	"menu.main.account": "Konto",
 	"menu.main.settings": "Einstellungen",

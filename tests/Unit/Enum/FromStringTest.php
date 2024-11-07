@@ -3,6 +3,12 @@ namespace Tests\Unit\Enum;
 
 use App\Enum\FromString;
 
+describe('name()', function (): void {
+	test('should return lowercased name', function (): void {
+		$this->assertSame('firstcase', TestEnum::FirstCase->name());
+	});
+});
+
 describe('from()', function (): void {
 	test('should return null when case does not exist', function (): void {
 		$this->assertNull(TestEnum::from('NoCase'));

@@ -14,8 +14,5 @@
 			</form>
 		</div>
 	</div>
-	<p class="alert alert-danger text-danger">
-		<i class="bi bi-exclamation-triangle-fill"></i>
-		<span>{{ __('page.settings.delete.consequences') }}</span>
-	</p>
+	<x-alert type="danger" message="page.settings.delete.consequences" />
 @endsection

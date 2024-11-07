@@ -11,8 +11,5 @@
 			@endforeach
 		</div>
 	</x-form>
-	<p class="my-3 alert alert-warning">
-		<i class="bi bi-exclamation-triangle-fill"></i>
-		<span>{{ __('page.settings.theme.warning') }}</span>
-	</p>
+	<x-alert type="warning" message="page.settings.theme.warning" />
 @endsection

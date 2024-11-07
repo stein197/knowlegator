@@ -6,7 +6,6 @@ use ReflectionException;
 use ReflectionParameter;
 
 // TODO: Extract to a library
-// TODO: Add optional parameters
 /**
  * Base class for records.
  * @package App

@@ -26,18 +26,18 @@
 							]
 						]"
 						:buttons="[
-							[
-								'label' => __('form.button.login'),
-								'type' => 'primary',
-								'name' => 'action',
-								'value' => 'login'
-							],
-							[
-								'label' => __('form.button.register'),
-								'type' => 'success',
-								'name' => 'action',
-								'value' => 'register'
-							]
+							new ButtonRecord(
+								label: __('form.button.login'),
+								type: 'primary',
+								name: 'action',
+								value: 'login'
+							),
+							new ButtonRecord(
+								label: __('form.button.register'),
+								type: 'success',
+								name: 'action',
+								value: 'register'
+							)
 						]" />
 				</div>
 			</div>

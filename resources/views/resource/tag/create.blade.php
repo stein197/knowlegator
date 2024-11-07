@@ -10,9 +10,9 @@
 			]
 		]"
 		:buttons="[
-			[
-				'label' => __('form.button.confirm'),
-				'type' => 'success'
-			]
+			new ButtonRecord(
+				label: __('form.button.confirm'),
+				type: 'success'
+			)
 		]" />
 @endsection

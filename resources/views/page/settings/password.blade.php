@@ -22,9 +22,9 @@
 			],
 		]"
 		:buttons="[
-			[
-				'label' => __('form.button.confirm'),
-				'type' => 'primary'
-			]
+			new ButtonRecord(
+				label: __('form.button.confirm'),
+				type: 'primary'
+			)
 		]" />
 @endsection

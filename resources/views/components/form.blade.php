@@ -31,7 +31,7 @@
 			<div class="row">
 				@foreach ($buttons as $btn)
 					<div class="col col-12 col-sm-{{ $btnBSSize }} mb-3 mb-sm-0">
-						<button class="btn btn-{{ $btn['type'] }} w-100" name="{{ @$btn['name'] }}" value="{{ @$btn['value'] }}">{{ $btn['label'] }}</button>
+						<button class="btn btn-{{ $btn->type }} w-100" name="{{ $btn->name }}" value="{{ $btn->value }}">{{ $btn->label }}</button>
 					</div>
 				@endforeach
 			</div>

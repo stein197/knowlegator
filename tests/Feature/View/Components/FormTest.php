@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Feature\View\Components;
 
+use App\Records\ButtonRecord;
 use App\View\Components\Form;
 
 test('should containt enctype="multipart/form-data"', function (): void {
@@ -65,12 +66,12 @@ test('should render checkboxes', function (): void {
 test('should render buttons correctly', function (): void {
 	/** @var \Tests\TestCase $this */
 	$view = $this->component(Form::class, ['buttons' => [
-		[
-			'label' => 'Button label',
-			'type' => 'primary',
-			'name' => 'NAME',
-			'value' => 'VALUE',
-		]
+		new ButtonRecord(
+			label: 'Button label',
+			type: 'primary',
+			name: 'NAME',
+			value: 'VALUE',
+		)
 	]]);
 	$view->assertSee('Button label', false);
 	$view->assertSee('btn-primary', false);

@@ -101,7 +101,6 @@ describe('tags.show (GET /{locale}/account/tags/{tag})', function (): void {
 		$content = $this->actingAs($u)->get("/en/account/tags/{$t->id}")->getContent();
 		$dom = $this->dom($content);
 		$dom->find('//h1')->assertTextContent('Tag: Tag');
-		$dom->find('//ol[@class = "breadcrumb"]/li[position() = 3]')->assertTextContent($t->name);
 	});
 
 	test('should return 404 when the tag does not exist', function (): void {

@@ -70,7 +70,7 @@ function path_split(string $path): array {
 	)];
 }
 
-// TODO: Extract to a library
+// TODO: Delete if unused
 /**
  * Try to singularize an english word.
  * @param string $word Word to singularize.

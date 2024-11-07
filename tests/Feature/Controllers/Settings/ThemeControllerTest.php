@@ -13,7 +13,7 @@ describe('GET /{locale}/settings/theme', function (): void {
 		/** @var \Tests\TestCase $this */
 		$this->get('/en/settings/theme')->assertRedirect('/en/login');
 	});
-	
+
 	test('should show page for users', function (): void {
 		/** @var \Tests\TestCase $this */
 		$user = User::factory()->create();
@@ -26,7 +26,7 @@ describe('GET /{locale}/settings/theme', function (): void {
 		$this->actingAs($user);
 		$content = $this->get('/en/settings/theme')->getContent();
 		$this->dom($content)->assertExists('/*[@data-bs-theme=""]');
-		$this->post('/en/settings/theme', ['theme' => 'dark']);
+		$this->put('/en/settings/theme', ['theme' => 'dark']);
 		$content = $this->get('/en/settings/theme')->getContent();
 		$this->dom($content)->assertExists('/*[@data-bs-theme="dark"]');
 	});
@@ -38,9 +38,9 @@ describe('POST /{locale}/settings/theme', function (): void {
 		$user = User::factory()->create();
 		$themeService = app(ThemeService::class);
 		$this->actingAs($user);
-		$this->post('/en/settings/theme', ['theme' => 'dark']);
+		$this->put('/en/settings/theme', ['theme' => 'dark']);
 		$this->assertEquals(Theme::Dark, $themeService->get());
-		$this->post('/en/settings/theme', ['theme' => 'light']);
+		$this->put('/en/settings/theme', ['theme' => 'light']);
 		$this->assertEquals(Theme::Light, $themeService->get());
 	});
 });

@@ -3,7 +3,7 @@
 @section('content')
 	<x-form
 		action="{{ lroute('settings.theme') }}"
-		method="POST"
+		method="put"
 		>
 		<div class="btn-group w-100">
 			@foreach ($themes as $tName => $theme)

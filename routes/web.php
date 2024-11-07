@@ -40,7 +40,7 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 				});
 				Route::prefix('/theme')->group(function (): void {
 					Route::get('/', [ThemeController::class, 'get'])->name('settings.theme');
-					Route::post('/', [ThemeController::class, 'post']);
+					Route::put('/', [ThemeController::class, 'put']);
 				});
 			});
 		});

@@ -1,7 +1,8 @@
 @extends('template.index')
 
 @php
-	[, $section] = path_split(request()->getRequestUri());
+	$path = path_split(request()->getRequestUri());
+	[, $section] = $path;
 @endphp
 
 @section('main')
@@ -20,6 +21,9 @@
 					@endif
 				</div>
 				<div class="col col-12 col-md-8 col-lg-10">
+					@isset($path[3])
+						<a class="fs-5" href="..">&laquo; {{ __('back') }}</a>
+					@endisset
 					<h1>{{ $title }}</h1>
 					<hr />
 					@yield('content')

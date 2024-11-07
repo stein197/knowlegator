@@ -67,6 +67,17 @@ final readonly class TestDOM {
 	}
 
 	/**
+	 * Assert that there is at least one link with the given href attribute.
+	 * @param string $link Link that the link should have.
+	 * @return void
+	 * @throws ExpectationFailedException
+	 * @throws GeneratorNotSupportedException
+	 */
+	public function assertLinkExists(string $link): void {
+		$this->assertExists("//a[@href = \"{$link}\"]");
+	}
+
+	/**
 	 * Assert that the given document is empty.
 	 * @return void
 	 * @throws ExpectationFailedException

@@ -92,3 +92,29 @@ describe('tags.store (POST /{locale}/account/tags)', function (): void {
 		$this->actingAs($u)->post('/en/account/tags', [])->assertSessionHasErrors(['name']);
 	});
 });
+
+describe('tags.show (GET /{locale}/account/tags/{tag})', function (): void {
+	test('should show for a user', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::factory()->create();
+		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
+		$content = $this->actingAs($u)->get("/en/account/tags/{$t->id}")->getContent();
+		$dom = $this->dom($content);
+		$dom->find('//h1')->assertTextContent('Tag: Tag');
+		$dom->find('//ol[@class = "breadcrumb"]/li[position() = 3]')->assertTextContent($t->name);
+	});
+
+	test('should return 404 when the tag does not exist', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::factory()->create();
+		$this->actingAs($u)->get('/en/account/tags/' . fake()->uuid())->assertNotFound();
+	});
+
+	test('should return 404 when accessing a tag for another user', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u1 = User::factory()->create();
+		$u2 = User::factory()->create();
+		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u2->id]);
+		$this->actingAs($u1)->get("/en/account/tags/{$t->id}")->assertNotFound();
+	});
+});

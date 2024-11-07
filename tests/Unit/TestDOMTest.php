@@ -26,6 +26,7 @@ final class TestDOMTest extends TestCase {
 							</div>
 						</div>
 					</div>
+					<a href="/link-1"></a>
 				</body>
 			</html>
 		HTML);
@@ -94,5 +95,9 @@ final class TestDOMTest extends TestCase {
 	public function testAssertTextContextShouldFailAfterFindWhenElementDoNotExist(): void {
 		$this->expectException(AssertionFailedError::class);
 		$this->testDom->find('//span')->assertTextContent('Depth N');
+	}
+
+	public function testAssertLinkExists(): void {
+		$this->testDom->assertLinkExists('/link-1');
 	}
 }

@@ -28,3 +28,7 @@ button.reset {
 .m-n1 {
 	margin: -.25rem;
 }
+
+.color-inherit {
+	color: inherit;
+}

@@ -19,7 +19,7 @@ class User extends Authenticatable {
 		'email',
 		'password',
 	];
-	
+
 	/**
 	 * The attributes that should be hidden for serialization.
 	 * @var array<int, string>
@@ -31,6 +31,15 @@ class User extends Authenticatable {
 
 	public function tags(): HasMany {
 		return $this->hasMany(Tag::class);
+	}
+
+	/**
+	 * Find a tag by id for this user.
+	 * @param string $id Tag id to find by.
+	 * @return ?Tag Found tag or `null` if the user doesn't have a tag with the given id.
+	 */
+	public function findTag(string $id): ?Tag {
+		return $this->tags->firstWhere('id', $id);
 	}
 
 	/**

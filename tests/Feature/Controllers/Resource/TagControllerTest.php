@@ -62,6 +62,7 @@ describe('tags.create (GET /{locale}/account/tags/create)', function (): void {
 		$u = User::factory()->create();
 		$content = $this->actingAs($u)->get('/en/account/tags/create')->getContent();
 		$dom = $this->dom($content);
+		$dom->assertExists('//form[@action = "/en/account/tags"]');
 		$dom->assertExists('//form//input[@name="name"]');
 		$dom->assertExists('//form//button');
 	});

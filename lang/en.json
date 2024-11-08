@@ -17,6 +17,10 @@
 	"resource.tag.index.message.empty": "How empty!\nCreate a new tag",
 	"resource.tag.create.title": "New tag",
 	"resource.tag.show.title": "Tag: :tag",
+	"resource.tag.delete.confirmation": "Delete tag \":tag\"?",
+	"resource.tag.delete.title": "Delete tag",
+
+	"action.delete": "Delete",
 
 	"menu.main.account": "Account",
 	"menu.main.settings": "Settings",
@@ -47,6 +51,8 @@
 	"message.user.password.changed": "The password has been successfully changed",
 	"message.user.password.couldNotChange": "Unable to change password",
 	"message.tag.created": "Tag :tag has been successfully created",
+	"message.tag.deleted": "Tag :tag has been successfully deleted",
+	"message.tag.cannotDelete": "Tag \":tag\" cannot be deleted",
 
 	"oops": "Oops!",
 	"back": "Back",

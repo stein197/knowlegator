@@ -17,6 +17,10 @@
 	"resource.tag.index.message.empty": "Тут пусто!\nСоздать новый тег",
 	"resource.tag.create.title": "Новый тег",
 	"resource.tag.show.title": "Тег: :tag",
+	"resource.tag.delete.confirmation": "Удалить тег \":tag\"?",
+	"resource.tag.delete.title": "Удалить тег",
+
+	"action.delete": "Удалить",
 
 	"menu.main.account": "Аккаунт",
 	"menu.main.settings": "Настройки",
@@ -47,6 +51,8 @@
 	"message.user.password.changed": "Пароль был успешно изменён",
 	"message.user.password.couldNotChange": "Не удалось изменить пароль",
 	"message.tag.created": "Тег :tag был успешно создан",
+	"message.tag.deleted": "Тег :tag был успешно удалён",
+	"message.tag.cannotDelete": "Тег :tag не может быть удалён",
 
 	"oops": "Упс!",
 	"back": "Назад",

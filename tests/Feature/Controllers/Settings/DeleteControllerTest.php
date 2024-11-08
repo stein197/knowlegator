@@ -11,7 +11,7 @@ describe('GET /{locale}/settings/delete', function (): void {
 		/** @var \Tests\TestCase $this */
 		$this->get('/en/settings/delete')->assertRedirect('/en/login');
 	});
-	
+
 	test('should show page for users', function (): void {
 		/** @var \Tests\TestCase $this */
 		$user = User::factory()->create();

@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers\Resource;
 
+use App\Enum\Action;
 use App\Exceptions\TagInvalidNameException;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
@@ -51,13 +52,17 @@ class TagController extends Controller {
 		}
 	}
 
-	// TODO: Add delete button
 	public function show(string $locale, string $tag, Request $request): View {
-		$tag = $request->user()->tags->firstWhere('id', $tag);
+		$tag = $request->user()->findTag($tag);
 		if (!$tag)
 			return abort(404);
 		return view('resource.tag.show', [
-			'title' => __('resource.tag.show.title', ['tag' => $tag->name])
+			'title' => __(Action::from($request->query('action') ?? '') === Action::Delete ? 'resource.tag.delete.title' : 'resource.tag.show.title', ['tag' => $tag->name]),
+			'tag' => $tag,
+			'link' => [
+				'delete' => url()->query($request->path(), ['action' => Action::Delete->name()])
+			],
+			'action' => Action::from($request->query('action') ?? '')
 		]);
 	}
 
@@ -65,5 +70,15 @@ class TagController extends Controller {
 
 	public function update(Request $request, string $id): void {} // TODO
 
-	public function destroy(string $id): void {} // TODO
+	public function destroy(string $locale, string $tag, Request $request): View {
+		$tag = $request->user()->findTag($tag);
+		if (!$tag)
+			return abort(404);
+		$result = $tag->forceDelete();
+		return view('page.message', [
+			'title' => __('resource.tag.delete.title'),
+			'message' => __($result ? 'message.tag.deleted' : 'message.tag.cannotDelete', ['tag' => $tag->name]),
+			'type' => $result ? 'success' : 'danger'
+		]);
+	}
 }

@@ -118,4 +118,27 @@ describe('tags.show (GET /{locale}/account/tags/{tag})', function (): void {
 		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u2->id]);
 		$this->actingAs($u1)->get("/en/account/tags/{$t->id}")->assertNotFound();
 	});
+
+	test('should be available to deletion', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::factory()->create();
+		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
+		$content = $this->actingAs($u)->get("/en/account/tags/{$t->id}?action=delete")->getContent();
+		$dom = $this->dom($content);
+		$dom->find('//h1')->assertTextContent('Delete tag');
+		$dom->assertExists('//form/input[@name = "_method" and @value = "DELETE"]');
+		$dom->assertExists('//form//button');
+	});
+});
+
+describe('tags.destroy (DELETE /{locale}/account/tags/{tag})', function (): void {
+	test('should delete a tag', function (): void {
+		var_dump(getenv('XDEBUG_CONFIG'));
+		/** @var \Tests\TestCase $this */
+		$u = User::factory()->create();
+		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
+		$content = $this->actingAs($u)->delete("/en/account/tags/{$t->id}")->getContent();
+		$this->dom($content)->find('//p[contains(@class, "alert-success")]')->assertTextContent(__('message.tag.deleted', ['tag' => $t->name]));
+		$this->assertFalse(auth()->user()->findTag($t->id)->exists);
+	});
 });

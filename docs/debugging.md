@@ -7,5 +7,5 @@ Using the [Xdebug helper for Chrome](https://chromewebstore.google.com/detail/xd
 ## Via CLI (Windows)
 Set the `XDEBUG_CONFIG` environment variable like this:
 ```
-set XDEBUG_CONFIG="idekey=VSCODE"
+set XDEBUG_CONFIG=idekey=VSCODE
 ```

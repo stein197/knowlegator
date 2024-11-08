@@ -10,20 +10,23 @@
 						method="POST"
 						title="{{ __('page.login.title') }}"
 						:fields="[
-							'email' => [
-								'label' => __('form.field.email'),
-								'type' => 'email',
-								'required' => true
-							],
-							'password' => [
-								'label' => __('form.field.password'),
-								'type' => 'password',
-								'required' => true
-							],
-							'remember' => [
-								'label' => __('form.field.remember'),
-								'type' => 'checkbox'
-							]
+							new FormFieldRecord(
+								name: 'email',
+								label: __('form.field.email'),
+								type: FormFieldType::EMail,
+								required: true
+							),
+							new FormFieldRecord(
+								name: 'password',
+								label: __('form.field.password'),
+								type: FormFieldType::Password,
+								required: true
+							),
+							new FormFieldRecord(
+								name: 'remember',
+								label: __('form.field.remember'),
+								type: FormFieldType::Checkbox,
+							)
 						]"
 						:buttons="[
 							new ButtonRecord(

@@ -7,20 +7,20 @@
 				<strong>{{ $title }}</strong>
 			</p>
 		@endif
-		@foreach ($fields as $name => $field)
-			@switch (@$field['type'])
-				@case ('checkbox')
+		@foreach ($fields as $field)
+			@switch ($field->type)
+				@case (FormFieldType::Checkbox)
 					<label class="form-label">
-						<input class="form-check-input" type="checkbox" name="{{ $name }}" {{ @$field['required'] ? 'required' : '' }} />
-						<span>{{ $field['label'] }}</span>
+						<input class="form-check-input" type="checkbox" name="{{ $field->name }}" {{ $field->required ? 'required=""' : '' }} />
+						<span>{{ $field->label }}</span>
 					</label>
 					@break
 				@default
 					<div class="mb-3 form-floating">
-						<input class="form-control @isset($errors) @error($name) border-danger bg-danger bg-opacity-10 @enderror @endisset" type="{{ @$field['type'] ?? 'text' }}" name="{{ $name }}" {{ @$field['required'] ? 'required' : '' }} />
-						<label>{{ $field['label'] }}</label>
+						<input class="form-control @isset($errors) @error($field->name) border-danger bg-danger bg-opacity-10 @enderror @endisset" type="{{ $field->type->name() }}" name="{{ $field->name }}" {{ $field->required ? 'required=""' : '' }} />
+						<label>{{ $field->label }}</label>
 						@isset($errors)
-							@error($name)
+							@error($field->name)
 								<p class="text-danger">{{ $message }}</p>
 							@enderror
 						@endisset

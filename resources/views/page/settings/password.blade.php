@@ -5,21 +5,24 @@
 		action="{{ lroute('settings.password') }}"
 		method="PUT"
 		:fields="[
-			'old' => [
-				'label' => __('form.field.oldPassword'),
-				'type' => 'password',
-				'required' => true
-			],
-			'new' => [
-				'label' => __('form.field.newPassword'),
-				'type' => 'password',
-				'required' => true
-			],
-			'repeat' => [
-				'label' => __('form.field.repeatPassword'),
-				'type' => 'password',
-				'required' => true
-			],
+			new FormFieldRecord(
+				name: 'old',
+				label: __('form.field.oldPassword'),
+				type: FormFieldType::Password,
+				required: true
+			),
+			new FormFieldRecord(
+				name: 'new',
+				label: __('form.field.newPassword'),
+				type: FormFieldType::Password,
+				required: true
+			),
+			new FormFieldRecord(
+				name: 'repeat',
+				label: __('form.field.repeatPassword'),
+				type: FormFieldType::Password,
+				required: true
+			),
 		]"
 		:buttons="[
 			new ButtonRecord(

@@ -18,6 +18,10 @@
 
 		@default
 			<div>
+				<a class="btn btn-primary" href="{{ lroute('tags.edit', ['tag' => $tag->id]) }}">
+					<i class="bi bi-pen-fill color-inherit"></i>
+					<span>{{ __('action.edit') }}</span>
+				</a>
 				<a class="btn btn-danger" href="{{ $link['delete'] }}">
 					<i class="bi bi-trash-fill color-inherit"></i>
 					<span>{{ __('action.delete') }}</span>

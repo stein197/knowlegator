@@ -1,7 +1,9 @@
 <?php
 namespace Tests\Feature\View\Components;
 
+use App\Enum\FormFieldType;
 use App\Records\ButtonRecord;
+use App\Records\FormFieldRecord;
 use App\View\Components\Form;
 
 test('should containt enctype="multipart/form-data"', function (): void {
@@ -38,11 +40,12 @@ test('should render method correctly', function (): void {
 test('should render fields correctly', function (): void {
 	/** @var \Tests\TestCase $this */
 	$view = $this->component(Form::class, ['fields' => [
-		'text' => [
-			'label' => 'Text label',
-			'type' => 'text',
-			'required' => true
-		]
+		new FormFieldRecord(
+			name: 'text',
+			label: 'Text label',
+			type: FormFieldType::Text,
+			required: true
+		)
 	]]);
 	$view->assertSee('Text label', false);
 	$view->assertSee('type="text"', false);
@@ -52,11 +55,12 @@ test('should render fields correctly', function (): void {
 test('should render checkboxes', function (): void {
 	/** @var \Tests\TestCase $this */
 	$view = $this->component(Form::class, ['fields' => [
-		'checkbox' => [
-			'label' => 'Checkbox label',
-			'type' => 'checkbox',
-			'required' => true
-		]
+		new FormFieldRecord(
+			name: 'checkbox',
+			label: 'Checkbox label',
+			type: FormFieldType::Checkbox,
+			required: true
+		)
 	]]);
 	$view->assertSee('Checkbox label', false);
 	$view->assertSee('type="checkbox"', false);

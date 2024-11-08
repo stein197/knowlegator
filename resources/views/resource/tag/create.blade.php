@@ -5,9 +5,10 @@
 		action="{{ lroute('tags.index') }}"
 		method="POST"
 		:fields="[
-			'name' => [
-				'label' => __('form.field.name')
-			]
+			new FormFieldRecord(
+				name: 'name',
+				label: __('form.field.name')
+			)
 		]"
 		:buttons="[
 			new ButtonRecord(

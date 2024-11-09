@@ -2,6 +2,7 @@
 namespace Tests\Unit;
 
 use function classname;
+use function path_parent;
 use function singularize;
 
 describe('lroute()', function (): void {
@@ -85,6 +86,29 @@ describe('path_split()', function (): void {
 		/** @var \Tests\TestCase $this */
 		$this->assertSame(['en'], path_split('/en'));
 		$this->assertSame(['en', 'settings'], path_split('/en/settings/'));
+	});
+});
+
+describe('path_parent()', function (): void {
+	test('should return parent path if the path is absolute', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertSame('/a', path_parent('/a/b'));
+	});
+	test('should return parent path if the path is relative', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertSame('a', path_parent('a/b'));
+	});
+	test('should return the root for a subroot path', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertSame('/', path_parent('/a'));
+	});
+	test('should return null for a relative root path', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertNull(path_parent('a'));
+	});
+	test('should return null for a root', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertNull(path_parent('/'));
 	});
 });
 

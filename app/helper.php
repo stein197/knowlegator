@@ -1,4 +1,5 @@
 <?php
+// TODO: Replace the path_* functions with stein197/path
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
@@ -68,6 +69,25 @@ function path_split(string $path): array {
 		explode('/', $path),
 		fn (string $segment): bool => $segment !== ''
 	)];
+}
+
+/**
+ * Get parent of the current path.
+ * @param string $path Path to get the parent of.
+ * @return null|string Parent path of `null` if the path is already root.
+ * ```php
+ * path_parent('/a/b'); // '/a'
+ * path_parent('/a');   // '/'
+ * path_parent('/');    // null
+ * ```
+ */
+function path_parent(string $path): ?string {
+	$isAbs = str_starts_with($path, '/');
+	$segments = path_split($path);
+	array_pop($segments);
+	if (preg_match('/^\\/[^\\/]+$/', $path) && !$segments)
+		$segments[] = '';
+	return $segments ? ($isAbs ? '/' : '') . join('/', $segments) : null;
 }
 
 // TODO: Delete if unused

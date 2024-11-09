@@ -32,3 +32,11 @@ button.reset {
 .color-inherit {
 	color: inherit;
 }
+
+.btn {
+	transform-origin: center;
+
+	&:active {
+		transform: scale(.95);
+	}
+}

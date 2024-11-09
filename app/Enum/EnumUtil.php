@@ -5,11 +5,10 @@ use function array_map;
 use function strcasecmp;
 use function strtolower;
 
-// TODO: Rename
 /**
- * Trait to be used by enums that adds methods `from()` and `names()`.
+ * Provide basic functions for enumerations.
  */
-trait FromString {
+trait EnumUtil {
 
 	/**
 	 * Return lowercased case name.

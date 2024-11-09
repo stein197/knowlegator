@@ -3,7 +3,7 @@ namespace App\Enum;
 
 enum Theme {
 
-	use FromString;
+	use EnumUtil;
 
 	case Light;
 	case Dark;

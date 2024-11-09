@@ -6,7 +6,7 @@ namespace App\Enum;
  */
 enum LoginAction {
 
-	use FromString;
+	use EnumUtil;
 
 	case Login;
 	case Register;

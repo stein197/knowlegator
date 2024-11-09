@@ -3,7 +3,7 @@ namespace App\Enum;
 
 enum FormFieldType {
 
-	use FromString;
+	use EnumUtil;
 
 	case Text;
 	case Password;

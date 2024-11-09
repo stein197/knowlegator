@@ -1,7 +1,7 @@
 <?php
 namespace Tests\Unit\Enum;
 
-use App\Enum\FromString;
+use App\Enum\EnumUtil;
 
 describe('name()', function (): void {
 	test('should return lowercased name', function (): void {
@@ -35,7 +35,7 @@ describe('names()', function (): void {
 
 enum TestEnum {
 
-	use FromString;
+	use EnumUtil;
 
 	case FirstCase;
 	case SecondCase;

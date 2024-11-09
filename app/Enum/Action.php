@@ -3,7 +3,7 @@ namespace App\Enum;
 
 enum Action {
 
-	use FromString;
+	use EnumUtil;
 
 	case Delete;
 }

@@ -35,7 +35,11 @@
 			<div class="row">
 				@foreach ($buttons as $btn)
 					<div class="col col-12 col-sm-{{ $btnBSSize }} mb-3 mb-sm-0">
-						<button class="btn btn-{{ $btn->type }} w-100" name="{{ $btn->name }}" value="{{ $btn->value }}">{{ $btn->label }}</button>
+						@if ($btn->url)
+							<a class="btn btn-{{ $btn->type }} w-100" href="{{ $btn->url }}">{{ $btn->label }}</a>
+						@else
+							<button class="btn btn-{{ $btn->type }} w-100" name="{{ $btn->name }}" value="{{ $btn->value }}">{{ $btn->label }}</button>
+						@endif
 					</div>
 				@endforeach
 			</div>

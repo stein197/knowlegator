@@ -9,6 +9,7 @@ final readonly class ButtonRecord extends Record {
 		public string $label = '',
 		public string $type = '',
 		public string $name = '',
-		public string $value = ''
+		public string $value = '',
+		public ?string $url = null,
 	) {}
 }

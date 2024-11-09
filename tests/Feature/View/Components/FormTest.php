@@ -64,6 +64,17 @@ test('should render default input values', function (): void {
 	])->component->render())->assertExists('//input[@name = "text" and @value = "custom value"]');
 });
 
+test('should render <a /> buttons when URL is provided', function (): void {
+	/** @var \Tests\TestCase $this */
+	$this->dom((string) $this->component(Form::class, [
+		'buttons' => [
+			new ButtonRecord(
+				url: '/en'
+			)
+		]
+	])->component->render())->assertExists('//a[@href = "/en"]');
+});
+
 test('should render checkboxes', function (): void {
 	/** @var \Tests\TestCase $this */
 	$view = $this->component(Form::class, ['fields' => [

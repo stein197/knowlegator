@@ -1,4 +1,6 @@
 <p class="my-3 alert alert-{{ $type }}">
-	<i class="bi bi-exclamation-triangle-fill color-inherit"></i>
+	@if ($icon)
+		<i class="bi bi-{{ $icon }} color-inherit"></i>
+	@endif
 	<span>{{ $message }}</span>
 </p>

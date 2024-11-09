@@ -17,10 +17,14 @@
 	"resource.tag.index.message.empty": "Тут пусто!\nСоздать новый тег",
 	"resource.tag.create.title": "Новый тег",
 	"resource.tag.show.title": "Тег: :tag",
+	"resource.tag.edit.title": "Редактирование :tag",
 	"resource.tag.delete.confirmation": "Удалить тег \":tag\"?",
 	"resource.tag.delete.title": "Удалить тег",
 
+	"action.edit": "Редактировать",
 	"action.delete": "Удалить",
+	"action.cancel": "Отменить",
+	"action.save": "Сохранить",
 
 	"menu.main.account": "Аккаунт",
 	"menu.main.settings": "Настройки",
@@ -53,6 +57,8 @@
 	"message.tag.created": "Тег :tag был успешно создан",
 	"message.tag.deleted": "Тег :tag был успешно удалён",
 	"message.tag.cannotDelete": "Тег :tag не может быть удалён",
+	"message.tag.updated": "Тег \":tag\" был успешно обновлён",
+	"message.tag.cannotUpdate": "Тег \":tag\"не удалось обновить",
 
 	"rule.userTagNotExists": "Тег с именем \":tag\" уже существует",
 

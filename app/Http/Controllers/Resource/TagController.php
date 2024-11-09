@@ -27,7 +27,7 @@ class TagController extends Controller {
 
 	public function store(Request $request): View | RedirectResponse {
 		$request->validate([
-			'name' => ['filled', new TagNotExistsRule($request->user())]
+			'name' => ['required', 'filled', new TagNotExistsRule($request->user())]
 		]);
 		$name = $request->post('name', '');
 		try {
@@ -48,17 +48,11 @@ class TagController extends Controller {
 					TagInvalidNameException::REASON_INVALID => __('form.message.name.invalid', ['name' => $name])
 				}
 			]);
-		} catch (QueryException $ex) {
-			return back()->withErrors([
-				'name' => __('form.message.name.exists', ['name' => $name])
-			]);
 		}
 	}
 
 	public function show(string $locale, string $tag, Request $request): View {
-		$tag = $request->user()->findTagById($tag);
-		if (!$tag)
-			return abort(404);
+		$tag = self::fetchModel($request, $tag);
 		return view('resource.tag.show', [
 			'title' => __(Action::from($request->query('action') ?? '') === Action::Delete ? 'resource.tag.delete.title' : 'resource.tag.show.title', ['tag' => $tag->name]),
 			'tag' => $tag,
@@ -69,19 +63,55 @@ class TagController extends Controller {
 		]);
 	}
 
-	public function edit(string $id): void {} // TODO
+	public function edit(string $locale, string $tag, Request $request): View {
+		$tag = self::fetchModel($request, $tag);
+		return self::viewEdit($tag);
+	}
 
-	public function update(Request $request, string $id): void {} // TODO
+	public function update(string $locale, string $tag, Request $request): View | RedirectResponse {
+		$tag = self::fetchModel($request, $tag);
+		$request->validate([
+			'name' => ['required', 'filled', new TagNotExistsRule($request->user())]
+		]);
+		$name = $request->post('name');
+		try {
+			$tag->name = $name;
+			$result = $tag->save();
+			return self::viewEdit($tag, [
+				'text' => __($result ? 'message.tag.updated' : 'message.tag.cannotUpdate', ['tag' => $name]),
+				'type' => $result ? 'success' : 'danger'
+			]);
+		} catch (TagInvalidNameException $ex) {
+			return back()->withErrors([
+				'name' => match ($ex->getCode()) {
+					TagInvalidNameException::REASON_EMPTY => __('form.message.name.empty'),
+					TagInvalidNameException::REASON_INVALID => __('form.message.name.invalid', ['name' => $name])
+				}
+			]);
+		}
+	}
 
 	public function destroy(string $locale, string $tag, Request $request): View {
-		$tag = $request->user()->findTag($tag);
-		if (!$tag)
-			return abort(404);
+		$tag = self::fetchModel($request, $tag);
 		$result = $tag->forceDelete();
 		return view('page.message', [
 			'title' => __('resource.tag.delete.title'),
 			'message' => __($result ? 'message.tag.deleted' : 'message.tag.cannotDelete', ['tag' => $tag->name]),
 			'type' => $result ? 'success' : 'danger'
+		]);
+	}
+
+	private static function fetchModel(Request $request, string $tag): Tag {
+		return $request->user()->findTagById($tag) ?? abort(404);
+	}
+
+	private static function viewEdit(Tag $tag, array $message = []): View {
+		return view('resource.tag.edit', [
+			'title' => __('resource.tag.edit.title', ['tag' => $tag->name]),
+			'tag' => $tag,
+			'action' => lroute('tags.update', ['tag' => $tag->id]),
+			'cancelUrl' => lroute('tags.show', ['tag' => $tag->id]),
+			'message' => $message
 		]);
 	}
 }

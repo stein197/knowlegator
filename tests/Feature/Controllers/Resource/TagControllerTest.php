@@ -52,12 +52,12 @@ describe('tags.index (GET /{locale}/account/tags)', function (): void {
 });
 
 describe('tags.create (GET /{locale}/account/tags/create)', function (): void {
-	it('should redirect guests to /{locale}/route', function (): void {
+	test('should redirect guests to /{locale}/route', function (): void {
 		/** @var \Tests\TestCase $this */
 		$this->get('/en/account/tags/create')->assertRedirect('/en/login');
 	});
 
-	it('should show for users', function (): void {
+	test('should show for users', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::factory()->create();
 		$content = $this->actingAs($u)->get('/en/account/tags/create')->getContent();
@@ -69,7 +69,7 @@ describe('tags.create (GET /{locale}/account/tags/create)', function (): void {
 });
 
 describe('tags.store (POST /{locale}/account/tags)', function (): void {
-	it('should show a success message when the tag is created', function (): void {
+	test('should show a success message when the tag is created', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::factory()->create();
 		$content = $this->actingAs($u)->post('/en/account/tags', ['name' => 'Tag'])->getContent();
@@ -77,19 +77,19 @@ describe('tags.store (POST /{locale}/account/tags)', function (): void {
 		$dom->find('//p[contains(@class, "alert")]')->assertTextContent(__('message.tag.created', ['tag' => 'Tag']));
 	});
 
-	it('should show an error when the name is empty', function (): void {
+	test('should show an error when the name is empty', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::factory()->create();
 		$this->actingAs($u)->post('/en/account/tags', [])->assertSessionHasErrors(['name']);
 	});
 
-	it('should show an error when the name is invalid', function (): void {
+	test('should show an error when the name is invalid', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::factory()->create();
 		$this->actingAs($u)->post('/en/account/tags', [])->assertSessionHasErrors(['name']);
 	});
 
-	it('should show an error when the tag already exists', function (): void {
+	test('should show an error when the tag already exists', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::factory()->create();
 		$this->actingAs($u)->post('/en/account/tags', [])->assertSessionHasErrors(['name']);
@@ -132,9 +132,62 @@ describe('tags.show (GET /{locale}/account/tags/{tag})', function (): void {
 	});
 });
 
+describe('tags.edit (GET /{locale}/account/tags/{tag}/edit)', function (): void {
+	test('should show 404 when tag does not exist', function (): void  {
+		/** @var \Tests\TestCase $this */
+		$u = User::factory()->create();
+		$this->actingAs($u)->get('/en/account/tags/' . fake()->uuid())->assertNotFound();
+	});
+
+	test('should show 404 when tag exists but belongs to another user', function (): void  {
+		/** @var \Tests\TestCase $this */
+		$u1 = User::factory()->create();
+		$u2 = User::factory()->create();
+		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u2->id]);
+		$this->actingAs($u1)->get("/en/account/tags/{$t->id}/edit")->assertNotFound();
+	});
+
+	test('should show edit page', function (): void  {
+		/** @var \Tests\TestCase $this */
+		$u = User::factory()->create();
+		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
+		$content = $this->actingAs($u)->get("/en/account/tags/{$t->id}/edit")->getContent();
+		$dom = $this->dom($content);
+		$form = $dom->find("//form[@action = \"/en/account/tags/{$t->id}\"]");
+		$form->assertExists('//input[@name = "_method" and @value="PUT"]');
+		$form->assertExists('//input[@name = "name"]');
+		$form->find("//a[@href = \"/en/account/tags/{$t->id}\"]")->assertTextContent('Cancel');
+		$form->find('//button')->assertTextContent('Save');
+	});
+});
+
+describe('tags.update (PUT /{locale}/account/tag/{tag})', function (): void {
+	test('should show an error when the name is empty', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::factory()->create();
+		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
+		$this->actingAs($u)->put("/en/account/tags/{$t->id}", ['name' => ''])->assertSessionHasErrors(['name']);
+	});
+
+	test('should show an error when a tag with the given name already exists', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::factory()->create();
+		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
+		$this->actingAs($u)->put("/en/account/tags/{$t->id}", ['name' => 'Tag'])->assertSessionHasErrors(['name']);
+	});
+
+	test('should save', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::factory()->create();
+		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
+		$content = $this->actingAs($u)->put("/en/account/tags/{$t->id}", ['name' => 'NewTag'])->getContent();
+		$dom = $this->dom($content);
+		$dom->find('//p[contains(@class, "alert-success")]/span')->assertTextContent('Tag "NewTag" has been successfully updated');
+	});
+});
+
 describe('tags.destroy (DELETE /{locale}/account/tags/{tag})', function (): void {
 	test('should delete a tag', function (): void {
-		var_dump(getenv('XDEBUG_CONFIG'));
 		/** @var \Tests\TestCase $this */
 		$u = User::factory()->create();
 		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);

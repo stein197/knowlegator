@@ -17,10 +17,14 @@
 	"resource.tag.index.message.empty": "Wie leer!\nErstell ein neues Tag",
 	"resource.tag.create.title": "Neues Tag",
 	"resource.tag.show.title": "Tag: :tag",
+	"resource.tag.edit.title": "Editieren das Tag :tag",
 	"resource.tag.delete.confirmation": "Tag \":tag\" löschen?",
 	"resource.tag.delete.title": "Tag Entfernung",
 
+	"action.edit": "Editieren",
 	"action.delete": "Löschen",
+	"action.cancel": "Abbrechen",
+	"action.save": "Speichern",
 
 	"menu.main.account": "Konto",
 	"menu.main.settings": "Einstellungen",
@@ -53,6 +57,8 @@
 	"message.tag.created": "Das Tag :tag wurde erfolgreich erstellt",
 	"message.tag.deleted": "Tag :tag wurde erfolgreich gelöscht",
 	"message.tag.cannotDelete": "Tag :tag konnte nicht gelöscht werden",
+	"message.tag.updated": "Das Tag \":tag\" wurde erfolgreich geändert",
+	"message.tag.cannotUpdate": "Das Tag \":tag\" konnte nicht geändert werden",
 
 	"rule.userTagNotExists": "Ein Tag mit dem Namen \":tag\" schon existiert",
 

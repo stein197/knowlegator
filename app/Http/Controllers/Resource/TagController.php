@@ -5,7 +5,7 @@ use App\Enum\Action;
 use App\Exceptions\TagInvalidNameException;
 use App\Http\Controllers\Controller;
 use App\Models\Tag;
-use Illuminate\Database\QueryException;
+use App\Rules\TagNotExistsRule;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -26,6 +26,9 @@ class TagController extends Controller {
 	}
 
 	public function store(Request $request): View | RedirectResponse {
+		$request->validate([
+			'name' => ['filled', new TagNotExistsRule($request->user())]
+		]);
 		$name = $request->post('name', '');
 		try {
 			$tag = new Tag([

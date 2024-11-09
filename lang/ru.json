@@ -54,6 +54,8 @@
 	"message.tag.deleted": "Тег :tag был успешно удалён",
 	"message.tag.cannotDelete": "Тег :tag не может быть удалён",
 
+	"rule.userTagNotExists": "Тег с именем \":tag\" уже существует",
+
 	"oops": "Упс!",
 	"back": "Назад",
 	"yes": "Да"

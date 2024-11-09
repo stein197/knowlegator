@@ -54,6 +54,8 @@
 	"message.tag.deleted": "Tag :tag wurde erfolgreich gelöscht",
 	"message.tag.cannotDelete": "Tag :tag konnte nicht gelöscht werden",
 
+	"rule.userTagNotExists": "Ein Tag mit dem Namen \":tag\" schon existiert",
+
 	"oops": "Hoppla",
 	"back": "Zurück",
 	"yes": "Ja"

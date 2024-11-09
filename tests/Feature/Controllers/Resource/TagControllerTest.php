@@ -140,6 +140,6 @@ describe('tags.destroy (DELETE /{locale}/account/tags/{tag})', function (): void
 		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
 		$content = $this->actingAs($u)->delete("/en/account/tags/{$t->id}")->getContent();
 		$this->dom($content)->find('//p[contains(@class, "alert-success")]')->assertTextContent(__('message.tag.deleted', ['tag' => $t->name]));
-		$this->assertFalse(auth()->user()->findTag($t->id)->exists);
+		$this->assertFalse(auth()->user()->findTagById($t->id)->exists);
 	});
 });

@@ -31,6 +31,7 @@
 
 		<!-- app-assets -->
 		<link rel="stylesheet" href="/index.css?{{ filemtime(public_path('index.css')) }}" />
+		<script src="/index.js?{{ filemtime(public_path('index.js')) }}"></script>
 		<!-- /app-assets -->
 	</head>
 	<body class="d-flex flex-column">

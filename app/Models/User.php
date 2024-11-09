@@ -33,6 +33,7 @@ class User extends Authenticatable {
 		return $this->hasMany(Tag::class);
 	}
 
+	// TODO: Rename to findTagById()
 	/**
 	 * Find a tag by id for this user.
 	 * @param string $id Tag id to find by.
@@ -40,6 +41,18 @@ class User extends Authenticatable {
 	 */
 	public function findTag(string $id): ?Tag {
 		return $this->tags->firstWhere('id', $id);
+	}
+
+	/**
+	 * Find a tag by its name.
+	 * @param string $name Tag name.
+	 * @return ?Tag Tag with the given name or `null` if there are no tags with the given name.
+	 * ```php
+	 * echo $user->findTagByName('tag-name')?->name;
+	 * ```
+	 */
+	public function findTagByName(string $name): ?Tag {
+		return $this->tags->firstWhere('name', $name);
 	}
 
 	/**

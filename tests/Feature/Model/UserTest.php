@@ -77,3 +77,26 @@ describe('findTag()', function (): void {
 		$this->assertNull($u1->findTag($t->id));
 	});
 });
+
+describe('findTagByName()', function (): void {
+	test('should return corresponding tag when it exists', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::factory()->create();
+		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
+		$this->assertNotNull($u->findTagByName('Tag'));
+	});
+
+	test('should return null when tag does not exist', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::factory()->create();
+		$this->assertNull($u->findTagByName('non-existent-tag'));
+	});
+
+	test('should return null when accessing a tag for another user', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u1 = User::factory()->create();
+		$u2 = User::factory()->create();
+		Tag::factory()->create(['name' => 'Tag', 'user_id' => $u2->id]);
+		$this->assertNull($u1->findTagByName('Tag'));
+	});
+});

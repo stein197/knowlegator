@@ -71,6 +71,7 @@ function path_split(string $path): array {
 	)];
 }
 
+// TODO: Delete if unused
 /**
  * Get parent of the current path.
  * @param string $path Path to get the parent of.

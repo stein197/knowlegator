@@ -7,17 +7,17 @@ use function sizeof;
 
 final class Form extends Component {
 
-	public int $btnBSSize;
+	private int $btnBSSize;
 
 	/**
 	 * Create a new component instance.
 	 */
 	public function __construct(
-		public string $action = '',
-		public string $method = 'GET',
-		public string $title = '',
-		public array $fields = [],
-		public array $buttons = []
+		private readonly string $action = '',
+		private readonly string $method = 'GET',
+		private readonly string $title = '',
+		private readonly array $fields = [],
+		private readonly array $buttons = []
 	) {
 		$this->btnBSSize = $buttons ? 12 / sizeof($buttons) : 0;
 	}
@@ -26,6 +26,13 @@ final class Form extends Component {
 	 * Get the view / contents that represent the component.
 	 */
 	public function render(): View {
-		return view('components.form');
+		return $this->view('components.form', [
+			'action' => $this->action,
+			'method' => $this->method,
+			'title' => $this->title,
+			'fields' => $this->fields,
+			'buttons' => $this->buttons,
+			'btnBSSize' => $this->btnBSSize
+		]);
 	}
 }

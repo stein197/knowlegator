@@ -1,5 +1,6 @@
 {
 	"conventionalCommits.scopes": [
+		"component",
 		"composer",
 		"command",
 		"config",

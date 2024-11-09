@@ -52,6 +52,18 @@ test('should render fields correctly', function (): void {
 	$view->assertSee('required', false);
 });
 
+test('should render default input values', function (): void {
+	/** @var \Tests\TestCase $this */
+	$this->dom((string) $this->component(Form::class, [
+		'fields' => [
+			new FormFieldRecord(
+				name: 'text',
+				value: 'custom value'
+			)
+		]
+	])->component->render())->assertExists('//input[@name = "text" and @value = "custom value"]');
+});
+
 test('should render checkboxes', function (): void {
 	/** @var \Tests\TestCase $this */
 	$view = $this->component(Form::class, ['fields' => [

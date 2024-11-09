@@ -17,7 +17,11 @@
 					@break
 				@default
 					<div class="mb-3 form-floating">
-						<input class="form-control @isset($errors) @error($field->name) border-danger bg-danger bg-opacity-10 @enderror @endisset" type="{{ $field->type->name() }}" name="{{ $field->name }}" {{ $field->required ? 'required=""' : '' }} />
+						<input
+							class="form-control @isset($errors) @error($field->name) border-danger bg-danger bg-opacity-10 @enderror @endisset"
+							type="{{ $field->type->name() }}"
+							name="{{ $field->name }}" {{ $field->required ? 'required=""' : '' }}
+							value="{{ $field->value }}" />
 						<label>{{ $field->label }}</label>
 						@isset($errors)
 							@error($field->name)

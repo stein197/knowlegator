@@ -55,18 +55,18 @@ describe('tags()', function (): void {
 	});
 });
 
-describe('findTag()', function (): void {
+describe('findTagById()', function (): void {
 	test('should return corresponding tag when it exists', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::factory()->create();
 		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
-		$this->assertNotNull($u->findTag($t->id));
+		$this->assertNotNull($u->findTagById($t->id));
 	});
 
 	test('should return null when tag does not exist', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::factory()->create();
-		$this->assertNull($u->findTag(fake()->uuid()));
+		$this->assertNull($u->findTagById(fake()->uuid()));
 	});
 
 	test('should return null when accessing a tag for another user', function (): void {
@@ -74,7 +74,7 @@ describe('findTag()', function (): void {
 		$u1 = User::factory()->create();
 		$u2 = User::factory()->create();
 		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u2->id]);
-		$this->assertNull($u1->findTag($t->id));
+		$this->assertNull($u1->findTagById($t->id));
 	});
 });
 

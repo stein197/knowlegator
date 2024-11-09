@@ -33,13 +33,12 @@ class User extends Authenticatable {
 		return $this->hasMany(Tag::class);
 	}
 
-	// TODO: Rename to findTagById()
 	/**
 	 * Find a tag by id for this user.
 	 * @param string $id Tag id to find by.
 	 * @return ?Tag Found tag or `null` if the user doesn't have a tag with the given id.
 	 */
-	public function findTag(string $id): ?Tag {
+	public function findTagById(string $id): ?Tag {
 		return $this->tags->firstWhere('id', $id);
 	}
 

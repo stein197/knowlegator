@@ -42,7 +42,7 @@ class TagController extends Controller {
 			return back()->withErrors([
 				'name' => match ($ex->getCode()) {
 					TagInvalidNameException::REASON_EMPTY => __('form.message.name.empty'),
-					TagInvalidNameException::REASON_INVALID => __('form.message.name.invalid', ['name' => $name]),
+					TagInvalidNameException::REASON_INVALID => __('form.message.name.invalid', ['name' => $name])
 				}
 			]);
 		} catch (QueryException $ex) {
@@ -53,7 +53,7 @@ class TagController extends Controller {
 	}
 
 	public function show(string $locale, string $tag, Request $request): View {
-		$tag = $request->user()->findTag($tag);
+		$tag = $request->user()->findTagById($tag);
 		if (!$tag)
 			return abort(404);
 		return view('resource.tag.show', [

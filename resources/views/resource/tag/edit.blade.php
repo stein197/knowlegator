@@ -11,7 +11,8 @@
 			new FormFieldRecord(
 				name: 'name',
 				label: __('form.field.name'),
-				value: $tag->name
+				value: $tag->name,
+				tooltip: __('form.tooltip.tagName')
 			)
 		]"
 		:buttons="[

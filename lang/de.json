@@ -43,6 +43,7 @@
 	"form.message.name.empty": "Name ist leer",
 	"form.message.name.exists": "Name \":name\" ist schon vorhanden",
 	"form.message.name.invalid": "Name \":name\" ist invalid",
+	"form.tooltip.tagName": "Der Name muss einzig sein und enthält \"_\", \"-\", Buchstaben und Ziffern",
 
 	"theme.light": "Hell",
 	"theme.dark": "Dunkel",

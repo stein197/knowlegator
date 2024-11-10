@@ -43,6 +43,7 @@
 	"form.message.name.empty": "Имя пусто",
 	"form.message.name.exists": "Имя \":name\" уже существует",
 	"form.message.name.invalid": "Имя \":name\" некорректно",
+	"form.tooltip.tagName": "Имя должно быть уникальным и содержать \"_\", \"-\", буквы или цифры",
 
 	"theme.light": "Светлая",
 	"theme.dark": "Тёмная",

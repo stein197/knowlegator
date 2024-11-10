@@ -49,7 +49,7 @@
 							<button class="reset d-flex align-items-center fs-5 cursor-pointer mx-2">
 								<i class="bi bi-sun-fill"></i>
 								<div class="form-check form-switch p-0 mb-0 mx-2 d-flex align-items-center">
-									<input class="form-check-input cursor-pointer m-0 float-none pe-none" type="checkbox" {{ app('theme')->dark() ? 'checked=""' : '' }} />
+									<input class="form-check-input cursor-pointer m-0 float-none pe-none" type="checkbox" @checked(app('theme')->dark()) />
 								</div>
 								<i class="bi bi-moon-fill"></i>
 							</button>

@@ -14,7 +14,7 @@
 						<aside>
 							<div class="list-group">
 								@foreach (app('menu')->get($section) as $item)
-									<a class="{{ classname('list-group-item list-group-item-action', $item->active ? 'active' : null) }}" href="{{ $item->link }}">{{ $item->title }}</a>
+									<a @class(['list-group-item list-group-item-action', 'active' => $item->active]) href="{{ $item->link }}">{{ $item->title }}</a>
 								@endforeach
 							</div>
 						</aside>
@@ -22,7 +22,7 @@
 				</div>
 				<div class="col col-12 col-md-8 col-lg-10">
 					@isset($path[3])
-						<a class="fs-5" href="..">&laquo; {{ __('back') }}</a>
+						<a class="fs-5" href=".">&laquo; {{ __('back') }}</a>
 					@endisset
 					<h1>{{ $title }}</h1>
 					<hr />

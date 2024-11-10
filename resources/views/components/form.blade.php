@@ -33,8 +33,8 @@
 		@endforeach
 		@if ($buttons)
 			<div class="row">
-				@foreach ($buttons as $btn)
-					<div class="col col-12 col-sm-{{ $btnBSSize }} mb-3 mb-sm-0">
+				@foreach ($buttons as $i => $btn)
+					<div class="{{ classname("col col-12 col-sm-{$btnBSSize}", @$buttons[$i + 1] ? 'mb-3 mb-sm-0' : null) }}">
 						@if ($btn->url)
 							<a class="btn btn-{{ $btn->type }} w-100" href="{{ $btn->url }}">{{ $btn->label }}</a>
 						@else

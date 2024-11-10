@@ -28,6 +28,11 @@
 								<p class="text-danger">{{ $message }}</p>
 							@enderror
 						@endisset
+						@if ($field->tooltip)
+							<div class="position-absolute end-0 top-0 h-100 d-flex align-items-center me-3 pe-none">
+								<i class="bi bi-info-circle-fill pe-auto text-info" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-title="{{ $field->tooltip }}"></i>
+							</div>
+						@endif
 					</div>
 			@endswitch
 		@endforeach

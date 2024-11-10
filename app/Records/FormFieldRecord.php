@@ -14,6 +14,8 @@ final readonly class FormFieldRecord extends Record {
 		/** Default value */
 		public ?string $value = null,
 		public FormFieldType $type = FormFieldType::Text,
+		/** Tooltip to show */
+		public ?string $tooltip = null,
 		public bool $required = false
 	) {}
 }

@@ -12,5 +12,6 @@ test('should render search bar with the given parameters', function (): void {
 	]);
 	$form = $component->find('//form[@action = "/en/search" and @method = "GET"]');
 	$form->assertExists('//button/i[contains(@class, "bi-search")]');
+	$form->assertExists('//a[@href = "/en/search"]/i[contains(@class, "bi-x-lg")]');
 	$form->assertExists('//input[@placeholder = "Placeholder" and @value = "value" and @name = "q"]');
 });

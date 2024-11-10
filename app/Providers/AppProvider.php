@@ -11,8 +11,9 @@ class AppProvider extends ServiceProvider {
 		$this->app->singleton('theme', ThemeService::class);
 	}
 
-	// TODO: Extract @null to a library
+	// TODO: Extract @null, @notnull to a library
 	public function boot(): void {
 		Blade::if('null', fn (mixed $value): bool => $value === null);
+		Blade::if('notnull', fn (mixed $value): bool => $value !== null);
 	}
 }

@@ -8,3 +8,4 @@ The [views folder](/resources/views) have the next structure:
 ## Blade Directives
 The next custom Blade directives are defined:
 - [`@null`](/app/Providers/AppProvider.php): if-like statement that checks if the passed variable is null
+- [`@notnull`](/app/Providers/AppProvider.php): if-like statement that checks if the passed variable is not null

@@ -28,3 +28,31 @@ describe('@null', function (): void {
 		$view->assertDontSee('IS NULL');
 	});
 });
+
+describe('@notnull', function (): void {
+	test('@notnull ... @endnotnull when null', function (): void {
+		/** @var \Tests\TestCase $this */
+		$view = $this->blade('@notnull(null) IS NOT NULL @endnotnull');
+		$view->assertDontSee('IS NOT NULL');
+	});
+
+	test('@notnull ... @endnotnull when not null', function (): void {
+		/** @var \Tests\TestCase $this */
+		$view = $this->blade('@notnull(true) IS NOT NULL @endnotnull');
+		$view->assertSee('IS NOT NULL');
+	});
+
+	test('@notnull ... @else ... @endnotnull when null', function (): void {
+		/** @var \Tests\TestCase $this */
+		$view = $this->blade('@notnull(null) IS NOT NULL @else IS NULL @endnotnull');
+		$view->assertSee('IS NULL');
+		$view->assertDontSee('IS NOT NULL');
+	});
+
+	test('@notnull ... @else ... @endnotnull when not null', function (): void {
+		/** @var \Tests\TestCase $this */
+		$view = $this->blade('@notnull(true) IS NOT NULL @else IS NULL @endnotnull');
+		$view->assertSee('IS NOT NULL');
+		$view->assertDontSee('IS NULL');
+	});
+});

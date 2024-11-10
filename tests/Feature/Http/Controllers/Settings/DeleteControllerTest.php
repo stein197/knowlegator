@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Feature\Controller\Settings;
+namespace Tests\Feature\Http\Controllers\Settings;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -14,8 +14,7 @@ describe('GET /{locale}/settings/delete', function (): void {
 
 	test('should show page for users', function (): void {
 		/** @var \Tests\TestCase $this */
-		$user = User::factory()->create();
-		$content = $this->actingAs($user)->get('/en/settings/delete')->getContent();
+		$content = $this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/settings/delete')->getContent();
 		$dom = $this->dom($content);
 		$dom->find('//h1')->assertTextContent('Delete account');
 		$dom->assertExists('//form[@action="/en/settings/delete"]');
@@ -25,12 +24,12 @@ describe('GET /{locale}/settings/delete', function (): void {
 describe('DELETE /{locale}/settings/delete', function (): void {
 	test('should delete the current user and redirect to "/{locale}/login"', function (): void {
 		/** @var \Tests\TestCase $this */
-		$user = User::factory()->create();
-		$this->actingAs($user);
+		$u = User::findByEmail('user-1@example.com');
+		$this->actingAs($u);
 		$this->assertAuthenticated();
-		$this->assertTrue($user->exists);
+		$this->assertTrue($u->exists);
 		$response = $this->delete('/en/settings/delete');
-		$this->assertFalse($user->exists);
+		$this->assertFalse($u->exists);
 		$this->assertGuest();
 		$response->assertRedirect('/en/login');
 	});

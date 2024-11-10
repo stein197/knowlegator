@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => '/{locale}'], function (): void {
 	Route::middleware([TrimSlashesMiddleware::class, DefaultLocaleMiddleware::class, CheckLocaleMiddleware::class])->group(function (): void {
+		Route::put('/theme', ThemeController::class)->name('theme');
 		Route::middleware(RedirectIfAuthenticated::class)->group(function (): void {
 			Route::get('/login', [LoginController::class, 'get'])->name('login');
 			Route::post('/login', [LoginController::class, 'post']);
@@ -37,10 +38,6 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 				Route::prefix('/delete')->group(function (): void {
 					Route::get('/', [DeleteController::class, 'get'])->name('settings.delete');
 					Route::delete('/', [DeleteController::class, 'delete']);
-				});
-				Route::prefix('/theme')->group(function (): void {
-					Route::get('/', [ThemeController::class, 'get'])->name('settings.theme');
-					Route::put('/', [ThemeController::class, 'put']);
 				});
 			});
 		});

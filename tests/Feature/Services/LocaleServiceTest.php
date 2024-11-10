@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Feature\Servicse;
+namespace Tests\Feature\Services;
 
 use App\Services\LocaleService;
 

@@ -16,12 +16,14 @@
 **Server:**
 - [Laravel](https://laravel.com/)
 - [Debugbar for Laravel](https://github.com/barryvdh/laravel-debugbar)
+- [SQLite](https://www.sqlite.org/)
 
 ## Commits
 The project uses [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) with [gitmoji](https://gitmoji.dev/)
 
 ## Documentation
 - [CLI](/docs/CLI.md)
+- [Configuration](/docs/configuration.md)
 - [Debugging](/docs/debugging.md)
 - [Localization](/docs/localization.md)
 - [Routing](/docs/routing.md)

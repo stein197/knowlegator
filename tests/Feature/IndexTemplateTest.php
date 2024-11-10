@@ -2,9 +2,6 @@
 namespace Tests\Feature;
 
 use App\Models\User;
-use Illuminate\Foundation\Testing\DatabaseTransactions;
-
-uses(DatabaseTransactions::class);
 
 test('should contain correct links to locales', function (): void {
 	/** @var \Tests\TestCase $this */
@@ -13,8 +10,7 @@ test('should contain correct links to locales', function (): void {
 	$this->assertStringContainsString('href="/en/login', $content);
 	$this->assertStringContainsString('href="/de/login', $content);
 	$this->assertStringContainsString('href="/ru/login', $content);
-	$user = User::factory()->create();
-	$content = $this->actingAs($user)->get('/en/settings/delete')->getContent();
+	$content = $this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/settings/delete')->getContent();
 	$this->assertStringContainsString('href="/en/settings/delete', $content);
 	$this->assertStringContainsString('href="/de/settings/delete', $content);
 	$this->assertStringContainsString('href="/ru/settings/delete', $content);

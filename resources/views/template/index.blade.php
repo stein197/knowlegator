@@ -1,9 +1,8 @@
 @use('App\Services\ApplicationVersionService')
 @use('App\Services\LocaleService')
-@use('App\Services\ThemeService')
 
 <!DOCTYPE html>
-<html lang="{{ app()->currentLocale() }}" data-bs-theme="{{ app(ThemeService::class) }}">
+<html lang="{{ app()->currentLocale() }}" data-bs-theme="{{ app('theme') }}">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,6 +43,18 @@
 							<em class="mx-2">{{ auth()->user()->email }}</em>
 							<div class="vr"></div>
 						@endauth
+						<form action="{{ lroute('theme') }}" method="POST" enctype="multipart/form-data">
+							@csrf
+							@method('PUT')
+							<button class="reset d-flex align-items-center fs-5 cursor-pointer mx-2">
+								<i class="bi bi-sun-fill"></i>
+								<div class="form-check form-switch p-0 mb-0 mx-2 d-flex align-items-center">
+									<input class="form-check-input cursor-pointer m-0 float-none pe-none" type="checkbox" {{ app('theme')->dark() ? 'checked=""' : '' }} />
+								</div>
+								<i class="bi bi-moon-fill"></i>
+							</button>
+						</form>
+						<div class="vr"></div>
 						<div class="dropdown">
 							<button class="btn dropdown-toggle dropdown-toggle-noarrow text-dark fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 								<i class="bi bi-globe"></i>

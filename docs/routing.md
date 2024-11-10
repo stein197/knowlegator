@@ -5,6 +5,6 @@ The routes only exist inside the root locale. Accessing to `/` and `/{locale}` r
 - `/{locale}/settings`: user-related settings
 - `/{locale}/account`: main user data
 
-In order to show routes in the menu, those routes should be named. The name should be compliant with [translations](/docs/localization.md) `page.{page}.title`. For example, there is a settings menu and in order to show theme page in the menu, one needs to:
-1. Name the corresponding menu with `settings.theme`. The nesting level should be equal to 2.
-2. Define the correspoding translation with the key `page.settings.theme.title`.
+In order to show routes in the menu, those routes should be named. The name should be compliant with [translations](/docs/localization.md) `page.{page}.title`. For example, there is a settings menu and in order to show the passwords page in the menu, one needs to:
+1. Name the corresponding menu with `settings.password`. The nesting level should be equal to 2.
+2. Define the correspoding translation with the key `page.password.theme.title`.

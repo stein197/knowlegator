@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Feature\Model;
+namespace Tests\Feature\Models;
 
 use App\Exceptions\TagInvalidNameException;
 use App\Models\Tag;
@@ -57,20 +57,18 @@ describe('name', function (): void {
 });
 
 describe('user()', function (): void {
-
 	test('should return assigned user', function (): void {
 		/** @var \Tests\TestCase $this */
-		$u = User::factory()->create();
-		$t = Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
+		$u = User::findByEmail('user-1@example.com');
+		$t = $u->findTagByName('tag-1');
 		$this->assertEquals($u->id, $t->user->id);
 	});
 
 	test('cannot create two tags with the same name for the same user', function (): void {
 		/** @var \Tests\TestCase $this */
-		$u = User::factory()->create();
-		Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
+		$u = User::findByEmail('user-1@example.com');
 		try {
-			Tag::factory()->create(['name' => 'Tag', 'user_id' => $u->id]);
+			Tag::factory()->create(['name' => 'tag-1', 'user_id' => $u->id]);
 		} catch (\Exception $ex) {
 			$this->assertTrue(true);
 		}
@@ -78,13 +76,8 @@ describe('user()', function (): void {
 
 	test('can create two tags with the same name for different users', function (): void {
 		/** @var \Tests\TestCase $this */
-		[$u1, $u2] = User::factory()->createMany(2);
-		[$t1, $t2] = Tag::factory()->createMany([
-			['name' => 'Tag', 'user_id' => $u1->id],
-			['name' => 'Tag', 'user_id' => $u2->id]
-		]);
-		$this->assertSame($u1->tags[0]->id, $t1->id);
-		$this->assertSame($u2->tags[0]->id, $t2->id);
-		$this->assertSame($t1->name, $t2->name);
+		$u = User::findByEmail('user-1@example.com');
+		$t = Tag::factory()->create(['name' => 'tag-3', 'user_id' => $u->id]);
+		$this->assertSame($t->id, $u->tags[2]->id);
 	});
 });

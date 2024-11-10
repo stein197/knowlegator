@@ -31,10 +31,6 @@ final class MenuProvider extends ServiceProvider {
 				link: lroute('settings.password')
 			),
 			new MenuRecord(
-				title: __('page.settings.theme.title'),
-				link: lroute('settings.theme')
-			),
-			new MenuRecord(
 				title: __('page.settings.delete.title'),
 				link: lroute('settings.delete')
 			)

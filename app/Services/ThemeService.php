@@ -5,7 +5,6 @@ use App\Enum\Theme;
 use Illuminate\Session\SessionManager;
 use function strtolower;
 
-// TODO: Move theme saving from session to the database
 final readonly class ThemeService {
 
 	public function __construct(
@@ -26,7 +25,7 @@ final readonly class ThemeService {
 		return $value ? Theme::from($value) : null;
 	}
 
-	public function set(?Theme $theme): void {
-		$this->sessionManager->put('theme', $theme->name);
+	public function toggle(): void {
+		$this->sessionManager->put('theme', Theme::{$this->get() === Theme::Dark ? 'Light' : 'Dark'}->name);
 	}
 }

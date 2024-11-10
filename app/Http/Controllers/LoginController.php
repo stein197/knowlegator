@@ -58,7 +58,7 @@ final class LoginController extends Controller {
 			'password' => 'required|filled'
 		]);
 		$email = $credentials['email'];
-		$user = User::where('email', $email)->first();
+		$user = User::findByEmail($email);
 		if (!$user)
 			return view('page.message', [
 				'title' => __('oops'),

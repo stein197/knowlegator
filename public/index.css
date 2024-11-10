@@ -7,10 +7,11 @@ body {
 	min-height: 100vh;
 }
 
-button.reset {
+.reset {
 	border: none;
 	padding: 0;
-	background-color: transparent;
+	margin: 0;
+	background: none;
 }
 
 .dropdown-toggle-noarrow::after {

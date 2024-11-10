@@ -7,8 +7,6 @@
 	"page.settings.title": "Настройки",
 	"page.settings.delete.title": "Удалить аккаунт",
 	"page.settings.password.title": "Изменить пароль",
-	"page.settings.theme.title": "Тема",
-	"page.settings.theme.warning": "Тема сохраняется только для текущего сеанса. Значение будет удалено после выхода из системы",
 	"page.settings.delete.confirmation": "Вы уверены, что хотите удалить аккаунт?",
 	"page.settings.delete.consequences": "Это действие нельзя будет отменить",
 

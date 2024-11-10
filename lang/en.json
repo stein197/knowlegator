@@ -13,6 +13,7 @@
 	"resource.entity.index.title": "Entities",
 	"resource.tag.index.title": "Tags",
 	"resource.tag.index.message.empty": "How empty!\nCreate a new tag",
+	"resource.tag.index.message.emptySearchResult": "There are no tags matching the query",
 	"resource.tag.create.title": "New tag",
 	"resource.tag.show.title": "Tag: :tag",
 	"resource.tag.edit.title": "Edit tag :tag",
@@ -42,6 +43,7 @@
 	"form.message.name.exists": "Name \":name\" already exists",
 	"form.message.name.invalid": "Name \":name\" has an invalid format",
 	"form.tooltip.tagName": "The name should be unique and contain only \"_\", \"-\" or alphanumeric characters",
+	"form.placeholder.searchTag": "Search tag",
 
 	"theme.light": "Light",
 	"theme.dark": "Dark",

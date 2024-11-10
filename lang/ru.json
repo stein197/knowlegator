@@ -13,6 +13,7 @@
 	"resource.entity.index.title": "Сущности",
 	"resource.tag.index.title": "Теги",
 	"resource.tag.index.message.empty": "Тут пусто!\nСоздать новый тег",
+	"resource.tag.index.message.emptySearchResult": "Нет тегов по запросу",
 	"resource.tag.create.title": "Новый тег",
 	"resource.tag.show.title": "Тег: :tag",
 	"resource.tag.edit.title": "Редактирование :tag",
@@ -42,6 +43,7 @@
 	"form.message.name.exists": "Имя \":name\" уже существует",
 	"form.message.name.invalid": "Имя \":name\" некорректно",
 	"form.tooltip.tagName": "Имя должно быть уникальным и содержать \"_\", \"-\", буквы или цифры",
+	"form.placeholder.searchTag": "Поиск тега",
 
 	"theme.light": "Светлая",
 	"theme.dark": "Тёмная",

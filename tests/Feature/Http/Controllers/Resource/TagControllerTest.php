@@ -43,6 +43,68 @@ describe('tags.index (GET /{locale}/account/tags)', function (): void {
 		$dom = $this->dom($content);
 		$dom->assertExists('//a[@href="/en/account/tags/create"]');
 	});
+
+	describe('search', function (): void {
+		test('should not render the search bar when there are no tags', function (): void {
+			/** @var \Tests\TestCase $this */
+			$dom = $this->dom($this->actingAs(User::findByEmail('user-3@example.com'))->get('/en/account/tags')->getContent());
+			$dom->assertNotExists('//form[@action = "/en/account/tags"]//button/i[contains(@class, "bi-search")]');
+		});
+
+		test('should render the search bar when there are tags', function (): void {
+			/** @var \Tests\TestCase $this */
+			$dom = $this->dom($this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/account/tags')->getContent());
+			$dom->assertExists('//form[@action = "/en/account/tags" and @method = "GET"]//input[@name = "q"]');
+		});
+
+		test('should render the search bar where there are tags and the search query', function (): void {
+			/** @var \Tests\TestCase $this */
+			$dom = $this->dom($this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/account/tags?q=tag')->getContent());
+			$dom->assertExists('//form[@action = "/en/account/tags" and @method = "GET"]//input[@name = "q"]');
+		});
+
+		test('should render all tags when the query is empty', function (): void {
+			/** @var \Tests\TestCase $this */
+			$u = User::findByEmail('user-1@example.com');
+			$dom = $this->dom($this->actingAs($u)->get('/en/account/tags?q=')->getContent());
+			$dom->assertLinkExists("/en/account/tags/{$u->tags[0]->id}");
+			$dom->assertLinkExists("/en/account/tags/{$u->tags[1]->id}");
+		});
+
+		test('should render only matching tags when the query is not empty', function (): void {
+			/** @var \Tests\TestCase $this */
+			$u = User::findByEmail('user-1@example.com');
+			$dom = $this->dom($this->actingAs($u)->get('/en/account/tags?q=g-1')->getContent());
+			$dom->assertExists("//a[@href = \"/en/account/tags/{$u->tags[0]->id}\"]");
+			$dom->assertNotExists("//a[@href = \"/en/account/tags/{$u->tags[1]->id}\"]");
+		});
+
+		test('should render only matching tags when the query is not empty and the case doesn\'t match', function (): void {
+			/** @var \Tests\TestCase $this */
+			$u = User::findByEmail('user-1@example.com');
+			$dom = $this->dom($this->actingAs($u)->get('/en/account/tags?q=G-1')->getContent());
+			$dom->assertExists("//a[@href = \"/en/account/tags/{$u->tags[0]->id}\"]");
+			$dom->assertNotExists("//a[@href = \"/en/account/tags/{$u->tags[1]->id}\"]");
+		});
+
+		test('should render an empty result message when no tags match the given query', function (): void {
+			/** @var \Tests\TestCase $this */
+			$u = User::findByEmail('user-1@example.com');
+			$dom = $this->dom($this->actingAs($u)->get('/en/account/tags?q=unknown')->getContent());
+			$dom->find('//p[contains(@class, "alert-info")]')->assertTextContent('There are no tags matching the query');
+			$dom->assertNotExists("//a[@href = \"/en/account/tags/{$u->tags[0]->id}\"]");
+			$dom->assertNotExists("//a[@href = \"/en/account/tags/{$u->tags[1]->id}\"]");
+		});
+
+		test('should render all tags and the search bar when the query is an array', function (): void {
+			/** @var \Tests\TestCase $this */
+			$u = User::findByEmail('user-1@example.com');
+			$dom = $this->dom($this->actingAs($u)->get('/en/account/tags')->getContent());
+			$dom->assertExists('//form[@action = "/en/account/tags" and @method = "GET"]//input[@name = "q"]');
+			$dom->assertLinkExists("/en/account/tags/{$u->tags[0]->id}");
+			$dom->assertLinkExists("/en/account/tags/{$u->tags[1]->id}");
+		});
+	});
 });
 
 describe('tags.create (GET /{locale}/account/tags/create)', function (): void {

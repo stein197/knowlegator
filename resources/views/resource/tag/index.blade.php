@@ -1,8 +1,11 @@
 @extends('template.menu')
 
 @section('content')
+	@if (!$tags->isEmpty() || $search['value'] !== null)
+		<x-search-bar action="{{ $search['action'] }}" placeholder="{{ $search['placeholder'] }}" value="{{ $search['value'] }}" />
+	@endif
 	@if ($tags->isEmpty())
-		<p class="alert alert-primary text-center text-primary m-0">{{ __('resource.tag.index.message.empty') }}</p>
+		<p class="alert alert-info text-center m-0">{{ __($search['value'] === null ? 'resource.tag.index.message.empty' : 'resource.tag.index.message.emptySearchResult') }}</p>
 	@else
 		<div class="d-flex flex-wrap m-n1">
 			@foreach ($tags as $tag)

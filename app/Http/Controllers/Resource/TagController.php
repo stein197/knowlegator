@@ -9,13 +9,22 @@ use App\Rules\TagNotExistsRule;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use function is_array;
 
 class TagController extends Controller {
 
-	public function index(): View {
+	public function index(Request $request): View {
+		$q = $request->query('q');
+		if (is_array($q))
+			$q = null;
 		return view('resource.tag.index', [
 			'title' => __('resource.tag.index.title'),
-			'tags' => auth()->user()->tags
+			'tags' => $request->user()->findTagsByQuery($q ?? ''),
+			'search' => [
+				'action' => lroute('tags.index'),
+				'placeholder' => __('form.placeholder.searchTag'),
+				'value' => $q
+			]
 		]);
 	}
 

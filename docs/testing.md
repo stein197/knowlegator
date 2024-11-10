@@ -1,6 +1,11 @@
 # Testing
 ## Execution
-Run `php artisan test`
+1. If tests are run for the first time, run the next commands to initialize a database schema and test data:
+```
+artisan migrate --env=testing
+artisan db:seed --env=testing
+```
+2. Run `artisan test`
 
 ## Structure
 - Structure of the [`/tests/Feature/`](/tests/Feature/) folder should be compliant to the structure of the [`/app/`](/app/)
@@ -8,3 +13,4 @@ Run `php artisan test`
 - If testing routes, description of the test should contain the route in format `<method> <route>`. For example, the description for testing a route `/{locale}/login` should contain a string like "GET /{locale}/login"
 - Unauthorized users should be called "guest", authorised ones - "user"
 - `test()` function should be used instead of `it()`
+- Instead of creating new data for testing, use the data defined in the [`/database/seeders/DatabaseSeeder.php`](/database/seeders/DatabaseSeeder.php)

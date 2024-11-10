@@ -4,8 +4,6 @@ namespace Tests;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 
-// TODO: Use test database for testing
-// TODO: Preserve test data instead of flushing
 abstract class TestCase extends BaseTestCase {
 
 	/**

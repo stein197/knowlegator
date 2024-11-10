@@ -1,7 +1,4 @@
 <?php
-
-// TODO: Use only one user for all requests
-
 /*
 |--------------------------------------------------------------------------
 | Test Case

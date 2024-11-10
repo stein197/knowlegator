@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Feature\Controller;
+namespace Tests\Feature\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -16,10 +16,10 @@ describe('Login (POST /{locale}/login)', function (): void {
 
 	test('should show an error message when the password is not correct', function (): void {
 		/** @var \Tests\TestCase $this */
-		$user = User::factory()->create(['email' => 'new@user.com', 'password' => '12345']);
-		$content = $this->post('/en/login', ['email' => $user->email, 'password' => 'qwerty', 'action' => 'login'])->getContent();
+		$u = User::findByEmail('user-1@example.com');
+		$content = $this->post('/en/login', ['email' => $u->email, 'password' => 'qwerty', 'action' => 'login'])->getContent();
 		$this->assertGuest();
-		$this->dom($content)->find('//p[contains(@class, "alert")]')->assertTextContent("Cannot login as {$user->email}");
+		$this->dom($content)->find('//p[contains(@class, "alert")]')->assertTextContent("Cannot login as {$u->email}");
 	});
 
 	test('should show an error message in the form when email has an invalid format', function (): void {
@@ -28,14 +28,14 @@ describe('Login (POST /{locale}/login)', function (): void {
 		$response->assertSessionHasErrors(['email']);
 		$this->assertGuest();
 	});
-	
+
 	test('should show an error message in the form when the email is empty', function (): void {
 		/** @var \Tests\TestCase $this */
 		$response = $this->post('/en/login', ['email' => '', 'password' => '12345', 'action' => 'login']);
 		$response->assertSessionHasErrors(['email']);
 		$this->assertGuest();
 	});
-	
+
 	test('should show an error message in the form when the password is empty', function (): void {
 		/** @var \Tests\TestCase $this */
 		$response = $this->post('/en/login', ['email' => 'new@user.com', 'password' => '', 'action' => 'login']);
@@ -45,10 +45,7 @@ describe('Login (POST /{locale}/login)', function (): void {
 
 	test('should successfully authenticate when the credentials are correct', function (): void {
 		/** @var \Tests\TestCase $this */
-		$email = 'new@user.com';
-		$password = '12345';
-		User::factory()->create(['email' => $email, 'password' => $password]);
-		$response = $this->post('/en/login', ['email' => $email, 'password' => $password, 'action' => 'login']);
+		$response = $this->post('/en/login', ['email' => 'user-1@example.com', 'password' => 'password-1', 'action' => 'login']);
 		$response->assertRedirect('/en/account');
 		$this->assertAuthenticated();
 	});
@@ -61,8 +58,7 @@ describe('Login (POST /{locale}/login)', function (): void {
 describe('Register (POST /{locale}/login)', function (): void {
 	test('should show an error message when the user already exists', function (): void {
 		/** @var \Tests\TestCase $this */
-		$user = User::factory()->create();
-		$response = $this->post('/en/login', ['email' => $user->email, 'password' => '12345', 'action' => 'register']);
+		$response = $this->post('/en/login', ['email' => 'user-1@example.com', 'password' => '12345', 'action' => 'register']);
 		$response->assertSessionHasErrors(['email']);
 	});
 
@@ -70,7 +66,7 @@ describe('Register (POST /{locale}/login)', function (): void {
 		/** @var \Tests\TestCase $this */
 		$this->post('/en/login', ['email' => '', 'password' => '12345', 'action' => 'register'])->assertSessionHasErrors(['email']);
 	});
-	
+
 	test('should show an error message when the password is empty', function (): void {
 		/** @var \Tests\TestCase $this */
 		$this->post('/en/login', ['email' => 'new@user.com', 'password' => '', 'action' => 'register'])->assertSessionHasErrors(['password']);

@@ -1,5 +1,5 @@
 <?php
-namespace Tests\Services\Controllers;
+namespace Tests\Feature\Http\Controllers;
 
 use App\Enum\Theme;
 use App\Models\User;
@@ -23,9 +23,8 @@ describe('GET *', function (): void {
 describe('PUT /{locale}/theme', function (): void {
 	test('should set theme for a user', function (): void {
 		/** @var \Tests\TestCase $this */
-		$user = User::factory()->create();
 		$themeService = app('theme');
-		$this->actingAs($user);
+		$this->actingAs(User::findByEmail('user-1@example.com'));
 		$this->put('/en/theme');
 		$this->assertEquals(Theme::Dark, $themeService->get());
 		$this->put('/en/theme');

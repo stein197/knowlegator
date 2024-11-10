@@ -86,6 +86,34 @@ describe('findTagByName()', function (): void {
 	});
 });
 
+describe('findTagsByQuery()', function (): void {
+	test('should return all tags when then query is empty', function (): void {
+		/** @var \Tests\TestCase $this */
+		$result = [...User::findByEmail('user-1@example.com')->findTagsByQuery('')];
+		$this->assertSame(2, sizeof($result));
+	});
+
+	test('should return matching tags when the case matches', function (): void {
+		/** @var \Tests\TestCase $this */
+		$result = [...User::findByEmail('user-1@example.com')->findTagsByQuery('g-1')];
+		$this->assertSame(1, sizeof($result));
+		$this->assertSame('tag-1', $result[0]->name);
+	});
+
+	test('should return matching tags when the case doesn\'t match', function (): void {
+		/** @var \Tests\TestCase $this */
+		$result = [...User::findByEmail('user-1@example.com')->findTagsByQuery('G-1')];
+		$this->assertSame(1, sizeof($result));
+		$this->assertSame('tag-1', $result[0]->name);
+	});
+
+	test('should return an empty collection when no tag matches the query', function (): void {
+		/** @var \Tests\TestCase $this */
+		$result = [...User::findByEmail('user-1@example.com')->findTagsByQuery('unknown')];
+		$this->assertEmpty($result);
+	});
+});
+
 describe('static findByEmail()', function (): void {
 	test('should return a user when it exist', function (): void {
 		/** @var Tests\TestCase $this */

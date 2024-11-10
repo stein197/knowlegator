@@ -1,10 +1,12 @@
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use function stripos;
 
 class User extends Authenticatable {
 
@@ -64,6 +66,18 @@ class User extends Authenticatable {
 	 */
 	public function findTagByName(string $name): ?Tag {
 		return $this->tags->firstWhere('name', $name);
+	}
+
+	/**
+	 * Find tags by the given search query. The matching is case-insensetive.
+	 * @param string $q Search query.
+	 * @return Collection Tags matching the query.
+	 * ```php
+	 * $u->findTagsByQuery('tag'); // Collection
+	 * ```
+	 */
+	public function findTagsByQuery(string $q): Collection {
+		return $q ? $this->tags->filter(fn (Tag $t): bool => stripos($t->name, $q) !== false) : $this->tags;
 	}
 
 	/**

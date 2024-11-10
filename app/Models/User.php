@@ -64,4 +64,13 @@ class User extends Authenticatable {
 			'password' => 'hashed',
 		];
 	}
+
+	/**
+	 * Find a user by email.
+	 * @param string $email Email to find a user by.
+	 * @return ?static User with the given email or `null` if the user was not found.
+	 */
+	public static function findByEmail(string $email): ?static {
+		return static::firstWhere('email', $email);
+	}
 }

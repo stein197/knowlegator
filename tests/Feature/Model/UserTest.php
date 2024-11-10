@@ -100,3 +100,14 @@ describe('findTagByName()', function (): void {
 		$this->assertNull($u1->findTagByName('Tag'));
 	});
 });
+
+describe('static fundByEmail()', function (): void {
+	test('should return a user when it exist', function (): void {
+		/** @var Tests\TestCase $this */
+		$this->assertNotNull(User::findByEmail('user-1@example.com'));
+	});
+	test('should return null when it doesn\'t exist', function (): void {
+		/** @var Tests\TestCase $this */
+		$this->assertNull(User::findByEmail('user-unknown@example.com'));
+	});
+});

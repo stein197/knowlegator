@@ -26,7 +26,7 @@ final readonly class ThemeService {
 		return $value ? Theme::from($value) : null;
 	}
 
-	public function set(?Theme $theme): void {
-		$this->sessionManager->put('theme', $theme->name);
+	public function toggle(): void {
+		$this->sessionManager->put('theme', Theme::{$this->get() === Theme::Dark ? 'Light' : 'Dark'}->name);
 	}
 }

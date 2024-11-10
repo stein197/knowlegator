@@ -7,8 +7,6 @@
 	"page.settings.title": "Einstellungen",
 	"page.settings.delete.title": "Konto entfernen",
 	"page.settings.password.title": "Passwort ändern",
-	"page.settings.theme.title": "Theme",
-	"page.settings.theme.warning": "Das Thema wird nur für die aktuelle Sitzung gespeichert. Der Wert wird nach der Abmeldung gelöscht",
 	"page.settings.delete.confirmation": "Sind Sie sicher, dass Sie das Konto entfernen möchten?",
 	"page.settings.delete.consequences": "Diese Aktion kann nicht abgebrochen werden",
 

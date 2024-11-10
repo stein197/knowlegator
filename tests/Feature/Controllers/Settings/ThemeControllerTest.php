@@ -3,44 +3,40 @@ namespace Tests\Services\Controllers;
 
 use App\Enum\Theme;
 use App\Models\User;
-use App\Services\ThemeService;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 uses(DatabaseTransactions::class);
 
-describe('GET /{locale}/settings/theme', function (): void {
-	test('should redirect to /{locale}/login for guests', function (): void {
+describe('GET *', function (): void {
+	test('header should contain the form to change the theme', function (): void {
 		/** @var \Tests\TestCase $this */
-		$this->get('/en/settings/theme')->assertRedirect('/en/login');
-	});
-
-	test('should show page for users', function (): void {
-		/** @var \Tests\TestCase $this */
-		$user = User::factory()->create();
-		$this->actingAs($user)->get('/en/settings/theme')->assertOk();
-	});
-
-	test('should contain theme in <html />', function (): void {
-		/** @var \Tests\TestCase $this */
-		$user = User::factory()->create();
-		$this->actingAs($user);
-		$content = $this->get('/en/settings/theme')->getContent();
-		$this->dom($content)->assertExists('/*[@data-bs-theme=""]');
-		$this->put('/en/settings/theme', ['theme' => 'dark']);
-		$content = $this->get('/en/settings/theme')->getContent();
-		$this->dom($content)->assertExists('/*[@data-bs-theme="dark"]');
+		$content = $this->get('/en/login')->getContent();
+		$form = $this->dom($content)->find('//header//form[@action = "/en/theme" and @method = "POST"]');
+		$form->assertExists('//input[@name = "_token"]');
+		$form->assertExists('//input[@name = "_method" and @value = "PUT"]');
+		$form->assertExists('//i[contains(@class, "bi-sun-fill")]');
+		$form->assertExists('//i[contains(@class, "bi-sun-fill")]');
+		$form->assertExists('//input[contains(@class, "form-check-input")]');
 	});
 });
 
-describe('POST /{locale}/settings/theme', function (): void {
-	test('should set theme for user', function (): void {
+describe('PUT /{locale}/theme', function (): void {
+	test('should set theme for a user', function (): void {
 		/** @var \Tests\TestCase $this */
 		$user = User::factory()->create();
-		$themeService = app(ThemeService::class);
+		$themeService = app('theme');
 		$this->actingAs($user);
-		$this->put('/en/settings/theme', ['theme' => 'dark']);
+		$this->put('/en/theme');
 		$this->assertEquals(Theme::Dark, $themeService->get());
-		$this->put('/en/settings/theme', ['theme' => 'light']);
+		$this->put('/en/theme');
+		$this->assertEquals(Theme::Light, $themeService->get());
+	});
+	test('should set theme for a guest', function (): void {
+		/** @var \Tests\TestCase $this */
+		$themeService = app('theme');
+		$this->put('/en/theme');
+		$this->assertEquals(Theme::Dark, $themeService->get());
+		$this->put('/en/theme');
 		$this->assertEquals(Theme::Light, $themeService->get());
 	});
 });

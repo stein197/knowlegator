@@ -7,8 +7,6 @@
 	"page.settings.title": "Settings",
 	"page.settings.delete.title": "Delete account",
 	"page.settings.password.title": "Change password",
-	"page.settings.theme.title": "Theme",
-	"page.settings.theme.warning": "Theme is saved for the current session only. The value will be removed after logout",
 	"page.settings.delete.confirmation": "Are you sure you want to delete the account?",
 	"page.settings.delete.consequences": "This action cannot be rewoked",
 

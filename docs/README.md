@@ -1,5 +1,6 @@
 # Documentation
 - [CLI](/docs/CLI.md)
+- [Configuration](/docs/configuration.md)
 - [Debugging](/docs/debugging.md)
 - [Localization](/docs/localization.md)
 - [Routing](/docs/routing.md)

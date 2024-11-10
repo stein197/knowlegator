@@ -34,6 +34,18 @@ class User extends Authenticatable {
 	}
 
 	/**
+	 * Create a tag that automatically linked to this user.
+	 * @param string $name Tag name.
+	 * @return Tag Freshly created tag.
+	 * ```php
+	 * $t = $u->createTag('tag-1');
+	 * ```
+	 */
+	public function createTag(string $name): Tag {
+		return new Tag(['name' => $name, 'user_id' => $this->id]);
+	}
+
+	/**
 	 * Find a tag by id for this user.
 	 * @param string $id Tag id to find by.
 	 * @return ?Tag Found tag or `null` if the user doesn't have a tag with the given id.

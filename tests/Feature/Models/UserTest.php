@@ -44,6 +44,12 @@ describe('tags()', function (): void {
 	});
 });
 
+describe('createTag()', function (): void {
+	test('should create a tag', function (): void {
+		$this->assertSame('tag-3', User::findByEmail('user-1@example.com')->createTag('tag-3')->name);
+	});
+});
+
 describe('findTagById()', function (): void {
 	test('should return corresponding tag when it exists', function (): void {
 		/** @var \Tests\TestCase $this */

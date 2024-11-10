@@ -1,9 +1,8 @@
 @use('App\Services\ApplicationVersionService')
 @use('App\Services\LocaleService')
-@use('App\Services\ThemeService')
 
 <!DOCTYPE html>
-<html lang="{{ app()->currentLocale() }}" data-bs-theme="{{ app(ThemeService::class) }}">
+<html lang="{{ app()->currentLocale() }}" data-bs-theme="{{ app('theme') }}">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />

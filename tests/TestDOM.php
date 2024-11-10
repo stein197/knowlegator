@@ -11,6 +11,8 @@ use function array_map;
 use function array_reduce;
 use function preg_match;
 
+// TODO: assertLength()
+// TODO: assertNotTextContent()
 /**
  * Provide means to test DOM structure.
  * @package Tests

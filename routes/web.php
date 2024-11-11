@@ -2,6 +2,7 @@
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Resource\EntityController;
+use App\Http\Controllers\Resource\ETypeController;
 use App\Http\Controllers\Resource\TagController;
 use App\Http\Controllers\Settings\DeleteController;
 use App\Http\Controllers\Settings\PasswordController;
@@ -27,6 +28,7 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 			Route::prefix('/account')->group(function (): void {
 				Route::resources([
 					'entities' => EntityController::class,
+					'etypes' => ETypeController::class,
 					'tags' => TagController::class
 				]);
 			});

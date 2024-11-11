@@ -11,6 +11,7 @@
 	"page.settings.delete.consequences": "This action cannot be rewoked",
 
 	"resource.entity.index.title": "Entities",
+	"resource.etype.index.title": "Entity Types",
 	"resource.tag.index.title": "Tags",
 	"resource.tag.index.message.empty": "How empty!\nCreate a new tag",
 	"resource.tag.index.message.emptySearchResult": "There are no tags matching the query",

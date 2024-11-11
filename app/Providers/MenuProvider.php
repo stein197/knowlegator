@@ -42,6 +42,10 @@ final class MenuProvider extends ServiceProvider {
 				link: lroute('entities.index')
 			),
 			new MenuRecord(
+				title: __('resource.etype.index.title'),
+				link: lroute('etypes.index')
+			),
+			new MenuRecord(
 				title: __('resource.tag.index.title'),
 				link: lroute('tags.index')
 			)

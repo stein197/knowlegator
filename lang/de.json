@@ -11,6 +11,7 @@
 	"page.settings.delete.consequences": "Diese Aktion kann nicht abgebrochen werden",
 
 	"resource.entity.index.title": "Entitäten",
+	"resource.etype.index.title": "Entitätentypen",
 	"resource.tag.index.title": "Tags",
 	"resource.tag.index.message.empty": "Wie leer!\nErstell ein neues Tag",
 	"resource.tag.index.message.emptySearchResult": "Es gibt keine Tags gemäß der Abfrage",

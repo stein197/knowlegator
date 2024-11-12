@@ -1,10 +1,6 @@
 # Testing
 ## Execution
-1. If tests are run for the first time, run the next commands to initialize a database schema and test data:
-```
-artisan migrate --env=testing
-artisan db:seed --env=testing
-```
+1. If tests are run for the first time, initialize a test database and populate with data: `artisan migrate --env=testing --seed`
 2. Run `artisan test`
 
 ## Structure

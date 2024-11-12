@@ -42,3 +42,23 @@ test('should work', function (): void {
 		active: true
 	)));
 });
+
+test('should mark active menu item where there is a search query in a request', function (): void {
+	/** @var \Tests\TestCase $this */
+	$app = $this->createApplication();
+	/** @var \App\Services\MenuService */
+	$menuService = $app->makeWith('menu', ['request' => $app->get('request')->create('/en/account/tags?q=')]);
+	$menuService->register('menu', fn (): array => [
+		new MenuRecord(
+			title: 'Item 1',
+			link: '/en/account/tags'
+		)
+	]);
+	[$mRecord] = [...$menuService->get('menu')];
+	$this->assertTrue($mRecord->equals(new MenuRecord(
+		title: 'Item 1',
+		link: '/en/account/tags',
+		icon: '',
+		active: true
+	)));
+});

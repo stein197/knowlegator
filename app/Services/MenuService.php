@@ -49,7 +49,7 @@ final class MenuService {
 	}
 
 	private function isActive(MenuRecord $menu): bool {
-		$requestRouteURI = explode('/', $this->request->getRequestUri());
+		$requestRouteURI = explode('/', '/' . $this->request->path());
 		$routeURI = explode('/', $menu->link);
 		if (sizeof($requestRouteURI) < sizeof($routeURI))
 			return false;

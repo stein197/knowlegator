@@ -46,7 +46,10 @@ describe('tags()', function (): void {
 
 describe('createTag()', function (): void {
 	test('should create a tag', function (): void {
-		$this->assertSame('tag-3', User::findByEmail('user-1@example.com')->createTag('tag-3')->name);
+		$u = User::findByEmail('user-1@example.com');
+		$t = $u->createTag('tag-3');
+		$this->assertSame('tag-3', $t->name);
+		$this->assertSame($u->id, $t->user_id);
 	});
 });
 

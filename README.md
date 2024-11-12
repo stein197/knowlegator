@@ -24,6 +24,7 @@ The project uses [Conventional Commits](https://www.conventionalcommits.org/en/v
 ## Documentation
 - [CLI](/docs/CLI.md)
 - [Configuration](/docs/configuration.md)
+- [Database](/docs/database.md)
 - [Debugging](/docs/debugging.md)
 - [Localization](/docs/localization.md)
 - [Routing](/docs/routing.md)

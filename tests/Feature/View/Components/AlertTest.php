@@ -5,8 +5,8 @@ use App\View\Components\Alert;
 
 test('should render a message', function (): void {
 	/** @var \Tests\TestCase $this */
-	$content = (string) $this->component(Alert::class, ['message' => 'yes'])->component->render();
-	$this->dom($content)->find('//p/span')->assertTextContent('Yes');
+	$dom = $this->dom((string) $this->blade('<x-alert>Yes</x-alert>'));
+	$dom->find('//p/span')->assertTextContent('Yes');
 });
 
 test('should render an exclamation-triangle-fill icon', function (): void {

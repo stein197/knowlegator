@@ -2,5 +2,7 @@
 	@if ($icon)
 		<i class="bi bi-{{ $icon }} color-inherit"></i>
 	@endif
-	<span>{{ $message }}</span>
+	@isset ($slot)
+		<span>{{ $slot }}</span>
+	@endisset
 </p>

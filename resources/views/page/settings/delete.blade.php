@@ -14,5 +14,5 @@
 			</form>
 		</div>
 	</div>
-	<x-alert type="danger" message="page.settings.delete.consequences" />
+	<x-alert type="danger">{{ __('page.settings.delete.consequences') }} </x-alert>
 @endsection

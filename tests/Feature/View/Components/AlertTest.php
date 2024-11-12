@@ -25,3 +25,8 @@ test('should render specified type', function (): void {
 	$content = (string) $this->component(Alert::class, ['type' => 'warning'])->component->render();
 	$this->dom($content)->assertExists('//p[contains(@class, "alert-warning")]');
 });
+
+test('should render custom CSS class', function (): void {
+	/** @var \Tests\TestCase $this */
+	$this->domComponent(Alert::class, ['class' => 'text-center'])->assertExists('//p[contains(@class, "text-center")]');
+});

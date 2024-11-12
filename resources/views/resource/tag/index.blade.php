@@ -5,7 +5,7 @@
 		<x-search-bar action="{{ $search['action'] }}" placeholder="{{ $search['placeholder'] }}" value="{{ $search['value'] }}" />
 	@endif
 	@if ($tags->isEmpty())
-		<p class="alert alert-info text-center m-0">{{ __($search['value'] === null ? 'resource.tag.index.message.empty' : 'resource.tag.index.message.emptySearchResult') }}</p>
+		<x-alert class="text-center" type="info">{{ __($search['value'] === null ? 'resource.tag.index.message.empty' : 'resource.tag.index.message.emptySearchResult') }}</x-alert>
 	@else
 		<div class="d-flex flex-wrap m-n1">
 			@foreach ($tags as $tag)

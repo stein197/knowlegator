@@ -8,13 +8,15 @@ final class Alert extends Component {
 
 	public function __construct(
 		private readonly string $type = '',
-		private readonly ?string $icon = null
+		private readonly ?string $icon = null,
+		private readonly ?string $class = null
 	) {}
 
 	public function render(): View {
 		return view('components.alert', [
 			'type' => $this->type,
-			'icon' => $this->icon
+			'icon' => $this->icon,
+			'class' => $this->class
 		]);
 	}
 }

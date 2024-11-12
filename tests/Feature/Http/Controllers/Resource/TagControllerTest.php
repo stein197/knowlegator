@@ -21,7 +21,7 @@ describe('tags.index (GET /{locale}/account/tags)', function (): void {
 		/** @var \Tests\TestCase $this */
 		$content = $this->actingAs(User::findByEmail('user-3@example.com'))->get('/en/account/tags')->getContent();
 		$dom = $this->dom($content);
-		$dom->find('//section//p[contains(@class, "alert")]')->assertTextContent(__('resource.tag.index.message.empty'));
+		$dom->find('//section//p[contains(@class, "alert")]/span')->assertTextContent(__('resource.tag.index.message.empty'));
 	});
 
 	test('should show list of tags without message when there are tags', function (): void {
@@ -91,7 +91,7 @@ describe('tags.index (GET /{locale}/account/tags)', function (): void {
 			/** @var \Tests\TestCase $this */
 			$u = User::findByEmail('user-1@example.com');
 			$dom = $this->dom($this->actingAs($u)->get('/en/account/tags?q=unknown')->getContent());
-			$dom->find('//p[contains(@class, "alert-info")]')->assertTextContent('There are no tags matching the query');
+			$dom->find('//p[contains(@class, "alert-info")]/span')->assertTextContent('There are no tags matching the query');
 			$dom->assertNotExists("//a[@href = \"/en/account/tags/{$u->tags[0]->id}\"]");
 			$dom->assertNotExists("//a[@href = \"/en/account/tags/{$u->tags[1]->id}\"]");
 		});
@@ -128,7 +128,7 @@ describe('tags.store (POST /{locale}/account/tags)', function (): void {
 		/** @var \Tests\TestCase $this */
 		$content = $this->actingAs(User::findByEmail('user-1@example.com'))->post('/en/account/tags', ['name' => 'Tag'])->getContent();
 		$dom = $this->dom($content);
-		$dom->find('//p[contains(@class, "alert")]')->assertTextContent(__('message.tag.created', ['tag' => 'Tag']));
+		$dom->find('//p[contains(@class, "alert")]/span')->assertTextContent(__('message.tag.created', ['tag' => 'Tag']));
 	});
 
 	test('should show an error when the name is empty', function (): void {
@@ -233,7 +233,7 @@ describe('tags.destroy (DELETE /{locale}/account/tags/{tag})', function (): void
 		$u = User::findByEmail('user-1@example.com');
 		$t = $u->findTagByName('tag-1');
 		$content = $this->actingAs($u)->delete("/en/account/tags/{$t->id}")->getContent();
-		$this->dom($content)->find('//p[contains(@class, "alert-success")]')->assertTextContent(__('message.tag.deleted', ['tag' => $t->name]));
+		$this->dom($content)->find('//p[contains(@class, "alert-success")]/span')->assertTextContent(__('message.tag.deleted', ['tag' => $t->name]));
 		$this->assertFalse(auth()->user()->findTagById($t->id)->exists);
 	});
 });

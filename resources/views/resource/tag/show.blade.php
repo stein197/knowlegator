@@ -5,7 +5,7 @@
 @section('content')
 	@switch ($action)
 		@case (Action::Delete)
-			<x-alert type="danger">{{ __('resource.tag.delete.confirmation', ['tag' => $tag->name]) }}</x-alert>
+			<x-alert type="danger" icon="exclamation-triangle-fill">{{ __('resource.tag.delete.confirmation', ['tag' => $tag->name]) }}</x-alert>
 			<x-form method="DELETE" :buttons="[
 				new ButtonRecord(
 					label: __('action.delete'),

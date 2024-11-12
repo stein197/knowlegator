@@ -9,15 +9,15 @@ test('should render a message', function (): void {
 	$dom->find('//p/span')->assertTextContent('Yes');
 });
 
-test('should render an exclamation-triangle-fill icon', function (): void {
+test('should render passed icon', function (): void {
 	/** @var \Tests\TestCase $this */
-	$content = (string) $this->component(Alert::class)->component->render();
+	$content = (string) $this->component(Alert::class, ['icon' => 'exclamation-triangle-fill'])->component->render();
 	$this->dom($content)->assertExists('//i[contains(@class, "bi-exclamation-triangle-fill")]');
 });
 
-test('should not render an icon if it was not explicitly defined', function (): void {
+test('should not render icon when it\'s not passed', function (): void {
 	/** @var \Tests\TestCase $this */
-	$this->domComponent(Alert::class, ['icon' => null])->assertNotExists('//i');
+	$this->domComponent(Alert::class)->assertNotExists('//i');
 });
 
 test('should render specified type', function (): void {

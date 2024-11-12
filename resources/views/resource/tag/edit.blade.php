@@ -2,7 +2,7 @@
 
 @section('content')
 	@if ($message)
-		<x-alert type="{{ $message['type'] }}" :icon="null">{!! $message['text'] !!}</x-alert>
+		<x-alert type="{{ $message['type'] }}">{!! $message['text'] !!}</x-alert>
 	@endif
 	<x-form
 		method="PUT"

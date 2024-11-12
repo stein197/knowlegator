@@ -14,5 +14,5 @@
 			</form>
 		</div>
 	</div>
-	<x-alert type="danger">{{ __('page.settings.delete.consequences') }} </x-alert>
+	<x-alert type="danger" icon="exclamation-triangle-fill">{{ __('page.settings.delete.consequences') }} </x-alert>
 @endsection

@@ -8,7 +8,7 @@ final class Alert extends Component {
 
 	public function __construct(
 		private readonly string $type = '',
-		private readonly ?string $icon = 'exclamation-triangle-fill'
+		private readonly ?string $icon = null
 	) {}
 
 	public function render(): View {

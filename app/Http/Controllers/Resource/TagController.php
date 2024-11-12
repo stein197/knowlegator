@@ -40,10 +40,7 @@ class TagController extends Controller {
 		]);
 		$name = $request->post('name', '');
 		try {
-			$tag = new Tag([
-				'name' => $name,
-				'user_id' => $request->user()->id
-			]);
+			$tag = $request->user()->createTag($name);
 			$tag->save();
 			return view('page.message', [
 				'title' => __('resource.tag.create.title'),

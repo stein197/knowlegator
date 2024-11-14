@@ -1,6 +1,7 @@
 <?php
 namespace Tests\Feature\Models;
 
+use App\Models\EType;
 use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
@@ -9,7 +10,7 @@ use function array_map;
 
 uses(DatabaseTransactions::class);
 
-describe('tags()', function (): void {
+describe('tags', function (): void {
 	test('should return empty collection when user does not have any tags', function (): void {
 		/** @var \Tests\TestCase $this */
 		$this->assertEmpty(User::findByEmail('user-3@example.com')->tags);
@@ -41,6 +42,21 @@ describe('tags()', function (): void {
 		$this->assertNotContains('tag-4', $tagNames1);
 		$this->assertNotContains('tag-1', $tagNames2);
 		$this->assertNotContains('tag-2', $tagNames2);
+	});
+});
+
+describe('etypes', function (): void {
+	test('should return an empty collection when user doesn\'t have any etypes', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertEmpty(User::findByEmail('user-3@example.com')->etypes);
+	});
+
+	test('should return only assigned etypes', function (): void {
+		/** @var \Tests\TestCase $this */
+		$eTypeNames = array_map(fn (EType $etype): string => $etype->name, [...User::findByEmail('user-1@example.com')->etypes]);
+		$this->assertSame(2, sizeof($eTypeNames));
+		$this->assertContains('Etype 1', $eTypeNames);
+		$this->assertContains('Etype 2', $eTypeNames);
 	});
 });
 

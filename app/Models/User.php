@@ -35,6 +35,10 @@ class User extends Authenticatable {
 		return $this->hasMany(Tag::class);
 	}
 
+	public function etypes(): HasMany {
+		return $this->hasMany(EType::class);
+	}
+
 	/**
 	 * Create a tag that automatically linked to this user.
 	 * @param string $name Tag name.

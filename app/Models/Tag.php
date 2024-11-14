@@ -2,14 +2,12 @@
 namespace App\Models;
 
 use App\Exceptions\TagInvalidNameException;
+use App\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use function preg_match;
 
-// TODO: user() should accept User instance
 class Tag extends Model {
 
 	use HasFactory;
@@ -21,10 +19,6 @@ class Tag extends Model {
 		'name',
 		'user_id'
 	];
-
-	public function user(): BelongsTo {
-		return $this->belongsTo(User::class);
-	}
 
 	protected function name(): Attribute {
 		return new Attribute(

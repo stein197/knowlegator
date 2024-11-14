@@ -48,7 +48,7 @@ class User extends Authenticatable {
 	 * ```
 	 */
 	public function createTag(string $name): Tag {
-		return new Tag(['name' => $name, 'user_id' => $this->id]);
+		return new Tag(['name' => $name, 'user' => $this]);
 	}
 
 	/**

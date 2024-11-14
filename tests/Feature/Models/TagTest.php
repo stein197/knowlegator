@@ -16,7 +16,7 @@ describe('name', function (): void {
 		$u = User::factory()->create();
 		new Tag([
 			'name' => '',
-			'user_id' => $u
+			'user' => $u
 		]);
 	});
 
@@ -27,7 +27,7 @@ describe('name', function (): void {
 		$u = User::factory()->create();
 		new Tag([
 			'name' => 'invalid name',
-			'user_id' => $u
+			'user' => $u
 		]);
 	});
 
@@ -38,7 +38,7 @@ describe('name', function (): void {
 		$u = User::factory()->create();
 		$t = new Tag([
 			'name' => 'Tag',
-			'user_id' => $u
+			'user' => $u
 		]);
 		$t->name = '';
 	});
@@ -50,13 +50,13 @@ describe('name', function (): void {
 		$u = User::factory()->create();
 		$t = new Tag([
 			'name' => 'Tag',
-			'user_id' => $u
+			'user' => $u
 		]);
 		$t->name = 'invalid name';
 	});
 });
 
-describe('user()', function (): void {
+describe('user', function (): void {
 	test('should return assigned user', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::findByEmail('user-1@example.com');
@@ -79,5 +79,26 @@ describe('user()', function (): void {
 		$u = User::findByEmail('user-1@example.com');
 		$t = Tag::factory()->create(['name' => 'tag-3', 'user_id' => $u->id]);
 		$this->assertSame($t->id, $u->tags[2]->id);
+	});
+
+	test('can get, set and save User object', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::findByEmail('user-1@example.com');
+		$etype = new Tag(['name' => 'tag-10']);
+		$etype->user = $u;
+		$etype->save();
+		$this->assertEquals($u, $etype->user);
+		$this->assertEquals($u->id, $etype->user_id);
+	});
+});
+
+describe('__construct()', function (): void {
+	test('can save \'user\' property', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::findByEmail('user-1@example.com');
+		$etype = new Tag(['name' => 'tag-10', 'user' => $u]);
+		$etype->save();
+		$this->assertEquals($u, $etype->user);
+		$this->assertEquals($u->id, $etype->user_id);
 	});
 });

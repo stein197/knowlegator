@@ -1,6 +1,3 @@
-@use('App\Services\ApplicationVersionService')
-@use('App\Services\LocaleService')
-
 <!DOCTYPE html>
 <html lang="{{ app()->currentLocale() }}" data-bs-theme="{{ app('theme') }}">
 	<head>
@@ -60,7 +57,7 @@
 								<i class="bi bi-globe-americas"></i>
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end">
-								@foreach (app(LocaleService::class)->locales(app()->request) as $k => $locale)
+								@foreach (app('locale')->locales(app()->request) as $k => $locale)
 									<li>
 										<a class="dropdown-item {{ app()->getLocale() === $k ? 'active' : '' }}" href="{{ $locale['url'] }}">
 											<span class="fi fi-{{ $locale['flag-icon'] }}"></span>

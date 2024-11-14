@@ -49,6 +49,8 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 // TODO: Delete account and settings names
 // Redirects
 Route::get('/', fn (Request $request): RedirectResponse => to_lroute($request->user() ? 'entities.index' : 'login'));
-Route::get('/{locale}', fn (Request $request): RedirectResponse => to_lroute($request->user() ? 'entities.index' : 'login'));
-Route::get('/{locale}/account', fn (Request $request): RedirectResponse => to_lroute($request->user() ? 'entities.index' : 'login'))->name('account');
-Route::get('/{locale}/settings', fn (Request $request): RedirectResponse => to_lroute($request->user() ? 'settings.password' : 'login'))->name('settings');
+Route::middleware(CheckLocaleMiddleware::class)->group(function (): void {
+	Route::get('/{locale}', fn (Request $request): RedirectResponse => to_lroute($request->user() ? 'entities.index' : 'login'));
+	Route::get('/{locale}/account', fn (Request $request): RedirectResponse => to_lroute($request->user() ? 'entities.index' : 'login'))->name('account');
+	Route::get('/{locale}/settings', fn (Request $request): RedirectResponse => to_lroute($request->user() ? 'settings.password' : 'login'))->name('settings');
+});

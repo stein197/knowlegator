@@ -9,7 +9,7 @@
 	@else
 		<div class="d-flex flex-wrap m-n1">
 			@foreach ($tags as $tag)
-				<a class="badge text-bg-primary rounded-pill fs-6 m-1 flex-grow-1" href="{{ lroute('tags.show', ['tag' => $tag->id]) }}">{{ $tag->name }}</a>
+				<a class="badge text-bg-primary fs-6 m-1 flex-grow-1" href="{{ lroute('tags.show', ['tag' => $tag->id]) }}">{{ $tag->name }}</a>
 			@endforeach
 		</div>
 	@endif

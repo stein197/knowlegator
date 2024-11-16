@@ -22,7 +22,7 @@
 	"resource.tag.create.title": "New tag",
 	"resource.tag.show.title": "Tag: :tag",
 	"resource.tag.edit.title": "Edit tag :tag",
-	"resource.tag.delete.confirmation": "Delete tag \":tag\"?",
+	"resource.tag.delete.confirmation": "Delete tag \":name\"?",
 	"resource.tag.delete.title": "Delete :name",
 
 	"action.edit": "Edit",

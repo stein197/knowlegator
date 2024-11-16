@@ -61,6 +61,15 @@ class User extends Authenticatable {
 	}
 
 	/**
+	 * Find an entity type by id.
+	 * @param string $id Entity type id to find by.
+	 * @return ?Tag Found entity type or `null` if the user doesn't have an entity type with the given id.
+	 */
+	public function findEtypeById(string $id): ?EType {
+		return $this->etypes->firstWhere('id', $id);
+	}
+
+	/**
 	 * Find a tag by its name.
 	 * @param string $name Tag name.
 	 * @return ?Tag Tag with the given name or `null` if there are no tags with the given name.

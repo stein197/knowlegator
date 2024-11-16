@@ -88,6 +88,24 @@ describe('findTagById()', function (): void {
 	});
 });
 
+describe('findEtypeById()', function (): void {
+	test('should return corresponding etype when it exists', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::findByEmail('user-1@example.com');
+		$this->assertNotNull($u->findEtypeById($u->etypes[0]->id));
+	});
+
+	test('should return null when etype does not exist', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertNull(User::findByEmail('user-1@example.com')->findEtypeById(fake()->uuid()));
+	});
+
+	test('should return null when accessing a etype for another user', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertNull(User::findByEmail('user-1@example.com')->findEtypeById(User::findByEmail('user-2@example.com')->etypes[0]->id));
+	});
+});
+
 describe('findTagByName()', function (): void {
 	test('should return corresponding tag when it exists', function (): void {
 		/** @var \Tests\TestCase $this */

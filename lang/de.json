@@ -14,7 +14,8 @@
 	"resource.etype.index.title": "Entitätentypen",
 	"resource.tag.index.title": "Tags",
 	"resource.tag.index.message.empty": "Wie leer!\nErstell ein neues Tag",
-	"resource.tag.index.message.emptySearchResult": "Es gibt keine Tags gemäß der Abfrage",
+	"resource.tag.index.message.emptySearchResult": "Keine Tags gemäß der Abfrage",
+	"resource.tag.index.search-placeholder": "Tag suchen",
 	"resource.tag.create.title": "Neues Tag",
 	"resource.tag.show.title": "Tag: :tag",
 	"resource.tag.edit.title": "Editieren das Tag :tag",
@@ -44,7 +45,6 @@
 	"form.message.name.exists": "Name \":name\" ist schon vorhanden",
 	"form.message.name.invalid": "Name \":name\" ist invalid",
 	"form.tooltip.tagName": "Der Name muss einzig sein und enthält \"_\", \"-\", Buchstaben und Ziffern",
-	"form.placeholder.searchTag": "Tag suchen",
 
 	"theme.light": "Hell",
 	"theme.dark": "Dunkel",

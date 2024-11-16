@@ -91,7 +91,7 @@ describe('tags.index (GET /{locale}/account/tags)', function (): void {
 			/** @var \Tests\TestCase $this */
 			$u = User::findByEmail('user-1@example.com');
 			$dom = $this->dom($this->actingAs($u)->get('/en/account/tags?q=unknown')->getContent());
-			$dom->find('//p[contains(@class, "alert-info")]/span')->assertTextContent('There are no tags matching the query');
+			$dom->find('//p[contains(@class, "alert-info")]/span')->assertTextContent('No tags matching the query');
 			$dom->assertNotExists("//a[@href = \"/en/account/tags/{$u->tags[0]->id}\"]");
 			$dom->assertNotExists("//a[@href = \"/en/account/tags/{$u->tags[1]->id}\"]");
 		});
@@ -99,7 +99,7 @@ describe('tags.index (GET /{locale}/account/tags)', function (): void {
 		test('should render all tags and the search bar when the query is an array', function (): void {
 			/** @var \Tests\TestCase $this */
 			$u = User::findByEmail('user-1@example.com');
-			$dom = $this->dom($this->actingAs($u)->get('/en/account/tags')->getContent());
+			$dom = $this->dom($this->actingAs($u)->get('/en/account/tags?q[]=query')->getContent());
 			$dom->assertExists('//form[@action = "/en/account/tags" and @method = "GET"]//input[@name = "q"]');
 			$dom->assertLinkExists("/en/account/tags/{$u->tags[0]->id}");
 			$dom->assertLinkExists("/en/account/tags/{$u->tags[1]->id}");

@@ -3,30 +3,15 @@ namespace App\Http\Controllers\Resource;
 
 use App\Enum\Action;
 use App\Exceptions\TagInvalidNameException;
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ResourceController;
 use App\Models\Tag;
 use App\Rules\TagNotExistsRule;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
-use function is_array;
 
-class TagController extends Controller {
-
-	public function index(Request $request): View {
-		$q = $request->query('q');
-		if (is_array($q))
-			$q = null;
-		return view('resource.tag.index', [
-			'title' => __('resource.tag.index.title'),
-			'tags' => $request->user()->findTagsByQuery($q ?? ''),
-			'search' => [
-				'action' => lroute('tags.index'),
-				'placeholder' => __('form.placeholder.searchTag'),
-				'value' => $q
-			]
-		]);
-	}
+class TagController extends ResourceController {
 
 	public function create(): View {
 		return view('resource.tag.create', [
@@ -105,6 +90,10 @@ class TagController extends Controller {
 			'message' => __($result ? 'message.tag.deleted' : 'message.tag.cannotDelete', ['tag' => $tag->name]),
 			'type' => $result ? 'success' : 'danger'
 		]);
+	}
+
+	protected function data(?string $query): Collection {
+		return $this->request->user()->findTagsByQuery($query ?? '');
 	}
 
 	private static function fetchModel(Request $request, string $tag): Tag {

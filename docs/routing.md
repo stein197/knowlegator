@@ -3,7 +3,12 @@ The routes only exist inside the root locale. Accessing to `/` and `/{locale}` r
 - `/{locale}/login`: login page
 - `/{locale}/logout`: logout page
 - `/{locale}/settings`: user-related settings
+	- `/password`: update password for a user
+	- `/delete`: delete account
 - `/{locale}/account`: main user data
+	- `/entities`: resource route - entities
+	- `/etypes`: resource route - entity types
+	- `/tags`: resource route - tags
 
 In order to show routes in the menu, those routes should be named. The name should be compliant with [translations](/docs/localization.md) `page.{page}.title`. For example, there is a settings menu and in order to show the passwords page in the menu, one needs to:
 1. Name the corresponding menu with `settings.password`. The nesting level should be equal to 2.

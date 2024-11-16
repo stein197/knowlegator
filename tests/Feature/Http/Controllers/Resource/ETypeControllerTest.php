@@ -106,3 +106,34 @@ describe('etypes.index (GET /{locale}/account/etypes)', function (): void {
 		});
 	});
 });
+
+describe('etypes.show (GET /{locale}/account/etypes/{etype})', function (): void {
+	test('should show for a user', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::findByEmail('user-1@example.com');
+		$content = $this->actingAs($u)->get('/en/account/etypes/' . $u->etypes[0]->id)->getContent();
+		$dom = $this->dom($content);
+		$dom->find('//h1')->assertTextContent('Entity types / Etype 1');
+	});
+
+	test('should return 404 when the etype does not exist', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/account/etypes/' . fake()->uuid())->assertNotFound();
+	});
+
+	test('should return 404 when accessing a etype for another user', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/account/etypes/' . User::findByEmail('user-2@example.com')->etypes[0]->id)->assertNotFound();
+	});
+
+	test('should be available to deletion', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::findByEmail('user-1@example.com');
+		$etype = $u->etypes[0];
+		$content = $this->actingAs($u)->get("/en/account/etypes/{$etype->id}?action=delete")->getContent();
+		$dom = $this->dom($content);
+		$dom->find('//h1')->assertTextContent('Entity types / Delete / Etype 1');
+		$dom->assertExists('//form/input[@name = "_method" and @value = "DELETE"]');
+		$dom->assertExists('//form//button');
+	});
+});

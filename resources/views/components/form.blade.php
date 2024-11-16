@@ -12,7 +12,7 @@
 				@case (FormFieldType::Checkbox)
 					<label class="form-label">
 						<input class="form-check-input" type="checkbox" name="{{ $field->name }}" @required($field->required) />
-						<span>{{ $field->label }}</span>
+						<span>{{ $field->label ?? $field->name }}</span>
 					</label>
 					@break
 				@default
@@ -23,7 +23,7 @@
 							name="{{ $field->name }}"
 							value="{{ $field->value }}"
 							@required($field->required) />
-						<label>{{ $field->label }}</label>
+						<label>{{ $field->label ?? $field->name }}</label>
 						@isset($errors)
 							@error($field->name)
 								<p class="text-danger">{{ $message }}</p>

@@ -10,7 +10,7 @@ final readonly class FormFieldRecord extends Record {
 		/** Field name */
 		public string $name = '',
 		/** Title to render */
-		public string $label = '',
+		public ?string $label = null,
 		/** Default value */
 		public ?string $value = null,
 		public FormFieldType $type = FormFieldType::Text,

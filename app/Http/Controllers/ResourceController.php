@@ -3,14 +3,17 @@ namespace App\Http\Controllers;
 
 use App\Model;
 use App\Records\ButtonRecord;
+use App\Records\FormFieldRecord;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use ReflectionClass;
+use function array_map;
 use function explode;
 use function is_string;
 use function preg_replace;
 use function strtolower;
+use function App\array_entries;
 
 abstract class ResourceController extends Controller {
 
@@ -40,6 +43,34 @@ abstract class ResourceController extends Controller {
 					url: $this->getActionUrl('create')
 				)
 			]
+		]);
+	}
+
+	public function edit(string $locale, string $id): View {
+		$model = $this->tryGetModel($id);
+		$name = static::getModelName();
+		return $this->view('edit', [
+			'title' => __("resource.{$name}.index.title") . ' / ' . __('action.edit') . ' / ' . $model->name,
+			'model' => $model,
+			'action' => $this->getActionUrl('update', [$name => $model->id]),
+			'fields' => array_map(
+				fn (array $entry) => new FormFieldRecord(
+					name: $entry[0],
+					value: $entry[1]
+				),
+				array_entries($model->getPublicAttributes())
+			),
+			'actions' => [
+				new ButtonRecord(
+					label: __('action.cancel'),
+					type: 'warning',
+					url: $this->getActionUrl('show', [$name => $model->id])
+				),
+				new ButtonRecord(
+					label: __('action.save'),
+					type: 'success'
+				)
+			],
 		]);
 	}
 

@@ -42,11 +42,6 @@ class TagController extends ResourceController {
 		}
 	}
 
-	public function edit(string $locale, string $tag, Request $request): View {
-		$tag = self::fetchModel($request, $tag);
-		return self::viewEdit($tag);
-	}
-
 	public function update(string $locale, string $tag, Request $request): View | RedirectResponse {
 		$tag = self::fetchModel($request, $tag);
 		$request->validate([

@@ -187,7 +187,7 @@ describe('tags.delete (GET /{locale}/account/tags/{tag}/delete)', function (): v
 describe('tags.edit (GET /{locale}/account/tags/{tag}/edit)', function (): void {
 	test('should show 404 when tag does not exist', function (): void  {
 		/** @var \Tests\TestCase $this */
-		$this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/account/tags/' . fake()->uuid())->assertNotFound();
+		$this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/account/tags/' . fake()->uuid() . '/edit')->assertNotFound();
 	});
 
 	test('should show 404 when tag exists but belongs to another user', function (): void  {

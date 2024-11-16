@@ -12,8 +12,6 @@ class ETypeController extends ResourceController {
 
 	public function store(Request $request): void {} // TODO
 
-	public function edit(string $id): void {} // TODO
-
 	public function update(Request $request, string $id): void {} // TODO
 
 	public function destroy(string $id): void {} // TODO

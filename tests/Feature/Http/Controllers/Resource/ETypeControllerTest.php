@@ -143,3 +143,28 @@ describe('etypes.delete (GET /{locale}/account/etypes/{etype}/delete)', function
 		$dom->assertExists("//form[@action = \"/en/account/etypes/{$etype->id}\"]/input[@name = \"_method\" and @value = \"DELETE\"]");
 	});
 });
+
+describe('etypes.edit (GET /{locale}/account/etypes/{etype}/edit)', function (): void {
+	test('should show 404 when etype does not exist', function (): void  {
+		/** @var \Tests\TestCase $this */
+		$this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/account/etypes/' . fake()->uuid() . '/edit')->assertNotFound();
+	});
+
+	test('should show 404 when etype exists but belongs to another user', function (): void  {
+		/** @var \Tests\TestCase $this */
+		$this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/account/etypes/' . User::findByEmail('user-2@example.com')->etypes[0]->id . '/edit')->assertNotFound();
+	});
+
+	test('should show edit page', function (): void  {
+		/** @var \Tests\TestCase $this */
+		$u = User::findByEmail('user-1@example.com');
+		$etype = $u->etypes[0];
+		$content = $this->actingAs($u)->get("/en/account/etypes/{$etype->id}/edit")->getContent();
+		$dom = $this->dom($content);
+		$form = $dom->find("//form[@action = \"/en/account/etypes/{$etype->id}\"]");
+		$form->assertExists('//input[@name = "_method" and @value="PUT"]');
+		$form->assertExists('//input[@name = "name"]');
+		$form->find("//a[@href = \"/en/account/etypes/{$etype->id}\"]")->assertTextContent('Cancel');
+		$form->find('//button')->assertTextContent('Save');
+	});
+});

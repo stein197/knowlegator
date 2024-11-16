@@ -50,7 +50,7 @@ abstract class ResourceController extends Controller {
 		$name = static::getModelName();
 		return $this->view('show', [
 			'title' => __("resource.{$name}.index.title") . ' / ' . match ($action) {
-				Action::Delete => __("resource.{$name}.delete.title", ['name' => $model->name]),
+				Action::Delete => __('action.delete') . ' / ' . $model->name,
 				default => $model->name
 			},
 			'model' => $model,

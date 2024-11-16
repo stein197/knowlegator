@@ -113,7 +113,7 @@ describe('etypes.show (GET /{locale}/account/etypes/{etype})', function (): void
 		$u = User::findByEmail('user-1@example.com');
 		$content = $this->actingAs($u)->get('/en/account/etypes/' . $u->etypes[0]->id)->getContent();
 		$dom = $this->dom($content);
-		$dom->find('//h1')->assertTextContent('Entity types / Etype 1');
+		$dom->find('//h1')->assertTextContent('Entity Types / Etype 1');
 	});
 
 	test('should return 404 when the etype does not exist', function (): void {
@@ -132,7 +132,7 @@ describe('etypes.show (GET /{locale}/account/etypes/{etype})', function (): void
 		$etype = $u->etypes[0];
 		$content = $this->actingAs($u)->get("/en/account/etypes/{$etype->id}?action=delete")->getContent();
 		$dom = $this->dom($content);
-		$dom->find('//h1')->assertTextContent('Entity types / Delete / Etype 1');
+		$dom->find('//h1')->assertTextContent('Entity Types / Delete / Etype 1');
 		$dom->assertExists('//form/input[@name = "_method" and @value = "DELETE"]');
 		$dom->assertExists('//form//button');
 	});

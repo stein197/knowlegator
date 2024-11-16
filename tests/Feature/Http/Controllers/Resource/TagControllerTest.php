@@ -153,7 +153,7 @@ describe('tags.show (GET /{locale}/account/tags/{tag})', function (): void {
 		$u = User::findByEmail('user-1@example.com');
 		$content = $this->actingAs($u)->get('/en/account/tags/' . $u->findTagByName('tag-1')->id)->getContent();
 		$dom = $this->dom($content);
-		$dom->find('//h1')->assertTextContent('Tag: tag-1');
+		$dom->find('//h1')->assertTextContent('Tags / tag-1');
 	});
 
 	test('should return 404 when the tag does not exist', function (): void {
@@ -171,7 +171,7 @@ describe('tags.show (GET /{locale}/account/tags/{tag})', function (): void {
 		$u = User::findByEmail('user-1@example.com');
 		$content = $this->actingAs($u)->get("/en/account/tags/{$u->findTagByName('tag-1')->id}?action=delete")->getContent();
 		$dom = $this->dom($content);
-		$dom->find('//h1')->assertTextContent('Delete tag');
+		$dom->find('//h1')->assertTextContent('Tags / Delete / tag-1');
 		$dom->assertExists('//form/input[@name = "_method" and @value = "DELETE"]');
 		$dom->assertExists('//form//button');
 	});

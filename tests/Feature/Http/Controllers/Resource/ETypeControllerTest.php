@@ -15,6 +15,6 @@ describe('etypes.index (GET /{locale}/account/etypes)', function (): void {
 	// TODO: Update when the page is being updated
 	test('should show page for users', function (): void {
 		/** @var \Tests\TestCase $this */
-		$this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/account/etype')->assertOk();
+		$this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/account/etypes')->assertOk();
 	});
 });

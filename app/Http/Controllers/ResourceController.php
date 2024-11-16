@@ -47,7 +47,7 @@ abstract class ResourceController extends Controller {
 	}
 
 	public function edit(string $locale, string $id): View {
-		$model = $this->tryGetModel($id);
+		$model = $this->tryFetchModel($id);
 		$name = static::getModelName();
 		return $this->view('edit', [
 			'title' => __("resource.{$name}.index.title") . ' / ' . __('action.edit') . ' / ' . $model->name,
@@ -75,7 +75,7 @@ abstract class ResourceController extends Controller {
 	}
 
 	public function show(string $locale, string $id): View {
-		$model = $this->tryGetModel($id);
+		$model = $this->tryFetchModel($id);
 		$name = static::getModelName();
 		return $this->view('show', [
 			'title' => __("resource.{$name}.index.title") . ' / ' . $model->name,
@@ -98,7 +98,7 @@ abstract class ResourceController extends Controller {
 	}
 
 	public function delete(string $locale, string $id): View {
-		$model = $this->tryGetModel($id);
+		$model = $this->tryFetchModel($id);
 		$name = static::getModelName();
 		return $this->view('delete', [
 			'title' => __("resource.{$name}.index.title") . ' / ' . __('action.delete') . ' / ' . $model->name,
@@ -113,7 +113,7 @@ abstract class ResourceController extends Controller {
 		return view("resource.{$name}.{$action}", $data);
 	}
 
-	final protected function tryGetModel(string $id): Model {
+	final protected function tryFetchModel(string $id): Model {
 		return $this->model($id) ?? abort(404);
 	}
 

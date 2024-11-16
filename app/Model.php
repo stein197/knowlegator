@@ -4,6 +4,7 @@ namespace App;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
+use function App\array_unset;
 
 /**
  * Base model class. Provices a convenient way to set `user_id` property.
@@ -26,5 +27,15 @@ abstract class Model extends EloquentModel {
 				'user_id' => $u->id
 			]
 		);
+	}
+
+	/**
+	 * Return publicly available properties that can be edited or be shown.
+	 * @return array Publicly available attributes.
+	 */
+	final public function getPublicAttributes(): array {
+		return array_unset($this->attributes, [
+			'id', 'user_id', 'created_at', 'updated_at'
+		]);
 	}
 }

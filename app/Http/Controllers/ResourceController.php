@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Enum\Action;
 use App\Model;
 use App\Records\ButtonRecord;
 use Illuminate\Contracts\View\View;
@@ -46,21 +45,10 @@ abstract class ResourceController extends Controller {
 
 	public function show(string $locale, string $id): View {
 		$model = $this->tryGetModel($id);
-		$action = Action::from($this->request->query('action') ?? '');
 		$name = static::getModelName();
 		return $this->view('show', [
-			'title' => __("resource.{$name}.index.title") . ' / ' . match ($action) {
-				Action::Delete => __('action.delete') . ' / ' . $model->name,
-				default => $model->name
-			},
+			'title' => __("resource.{$name}.index.title") . ' / ' . $model->name,
 			'model' => $model,
-			'action' => Action::from($this->request->query('action') ?? ''),
-			'actions' => [
-				'delete' => [
-					'alert' => __("resource.{$name}.delete.confirmation", ['name' => $model->name]),
-					'url' => $this->getActionUrl('destroy', [$name => $model->id])
-				]
-			],
 			'buttons' => [
 				new ButtonRecord(
 					label: __('action.edit'),
@@ -72,9 +60,20 @@ abstract class ResourceController extends Controller {
 					label: __('action.delete'),
 					type: 'danger',
 					icon: 'trash-fill',
-					url: url()->query($this->request->path(), ['action' => Action::Delete->name()])
+					url: $this->getActionUrl('delete', [$name => $model->id])
 				)
 			]
+		]);
+	}
+
+	public function delete(string $locale, string $id): View {
+		$model = $this->tryGetModel($id);
+		$name = static::getModelName();
+		return $this->view('delete', [
+			'title' => __("resource.{$name}.index.title") . ' / ' . __('action.delete') . ' / ' . $model->name,
+			'model' => $model,
+			'message' => __("resource.{$name}.delete.confirmation", ['name' => $model->name]),
+			'action' => $this->getActionUrl('destroy', [$name => $model->id]),
 		]);
 	}
 

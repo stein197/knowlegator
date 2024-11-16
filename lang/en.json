@@ -15,6 +15,7 @@
 	"resource.etype.index.message.empty": "How empty!\nCreate a new entity type",
 	"resource.etype.index.message.emptySearchResult": "No entity types matching the query",
 	"resource.etype.index.search-placeholder": "Search entity type",
+	"resource.etype.delete.confirmation": "Delete entity type \":name\"? Entities with this type will also be deleted",
 	"resource.tag.index.title": "Tags",
 	"resource.tag.index.message.empty": "How empty!\nCreate a new tag",
 	"resource.tag.index.message.emptySearchResult": "No tags matching the query",

@@ -26,11 +26,15 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 		Route::middleware(Authenticate::class)->group(function (): void {
 			Route::post('/logout', LogoutController::class)->name('logout');
 			Route::prefix('/account')->group(function (): void {
-				Route::resources([
-					'entities' => EntityController::class,
-					'etypes' => ETypeController::class,
-					'tags' => TagController::class
-				]);
+				static $resources = [
+					['entities', 'entity', EntityController::class],
+					['etypes', 'etype', ETypeController::class],
+					['tags', 'tag', TagController::class]
+				];
+				foreach ($resources as [$prefix, $name, $controller]) {
+					Route::resource($prefix, $controller);
+					Route::get("/{$prefix}/{{$name}}/delete", [$controller, 'delete'])->name("{$prefix}.delete");
+				}
 			});
 			Route::prefix('/settings')->group(function (): void {
 				Route::prefix('/password')->group(function (): void {

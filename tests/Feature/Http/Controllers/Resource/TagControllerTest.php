@@ -165,15 +165,22 @@ describe('tags.show (GET /{locale}/account/tags/{tag})', function (): void {
 		/** @var \Tests\TestCase $this */
 		$this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/account/tags/' . User::findByEmail('user-2@example.com')->findTagByName('tag-3')->id)->assertNotFound();
 	});
+});
 
-	test('should be available to deletion', function (): void {
+describe('tags.delete (GET /{locale}/account/tags/{tag}/delete)', function (): void {
+	test('should return 404 when accessing a tag for another user', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/account/tags/' . User::findByEmail('user-2@example.com')->findTagByName('tag-3')->id . '/delete')->assertNotFound();
+	});
+
+	test('should show for a user', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::findByEmail('user-1@example.com');
-		$content = $this->actingAs($u)->get("/en/account/tags/{$u->findTagByName('tag-1')->id}?action=delete")->getContent();
+		$t = $u->findTagByName('tag-1');
+		$content = $this->actingAs($u)->get("/en/account/tags/{$t->id}/delete")->getContent();
 		$dom = $this->dom($content);
 		$dom->find('//h1')->assertTextContent('Tags / Delete / tag-1');
-		$dom->assertExists('//form/input[@name = "_method" and @value = "DELETE"]');
-		$dom->assertExists('//form//button');
+		$dom->assertExists("//form[@action = \"/en/account/tags/{$t->id}\"]/input[@name = \"_method\" and @value = \"DELETE\"]");
 	});
 });
 

@@ -1,8 +1,23 @@
-@use('App\Enum\Action')
-
 @extends('template.menu')
 
 @section('content')
+	<table class="table">
+		<caption class="caption-top">{{ __('table.resource.caption') }}</caption>
+		<thead>
+			<tr>
+				<th>{{ __('table.resource.col.key') }}</th>
+				<th>{{ __('table.resource.col.value') }}</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach ($model->getPublicAttributes() as $k => $v)
+				<tr>
+					<td>{{ $k }}</td>
+					<td>{{ $v }}</td>
+				</tr>
+			@endforeach
+		</tbody>
+	</table>
 	@foreach ($buttons as $btn)
 		@if ($btn->icon)
 			<a class="btn btn-{{ $btn->type }}" href="{{ $btn->url }}">

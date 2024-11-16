@@ -13,6 +13,9 @@ Translation keys define categories separated by a dot. The next categories are a
 - `form.button.{button}`: translations for buttons
 - `form.message.{field}.*`: error messages for fields
 - `form.tooltip.{field}`: tooltips for form fields
+- `table.*`: HTML table translations
+- `table.{name}.caption`: table caption
+- `table.{name}.col.{col}`: table column name
 - `theme.{theme}`: theme-related translations
 - `message.*`: messages that are shown in the template [`resources/views/page/message.blade.php`](/resources/views/page/message.blade.php)
 - `rule.{rule}`: messages related to the validation rules in the [`App\Rules`](/app/Rules). The rule name should be the same as the class name.

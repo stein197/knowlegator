@@ -23,7 +23,7 @@
 	"resource.tag.show.title": "Тег: :tag",
 	"resource.tag.edit.title": "Редактирование :tag",
 	"resource.tag.delete.confirmation": "Удалить тег \":tag\"?",
-	"resource.tag.delete.title": "Удалить тег",
+	"resource.tag.delete.title": "Удалить :name",
 
 	"action.edit": "Редактировать",
 	"action.delete": "Удалить",

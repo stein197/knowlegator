@@ -1,9 +1,9 @@
 <?php
 namespace App\Http\Controllers\Resource;
 
-use App\Enum\Action;
 use App\Exceptions\TagInvalidNameException;
 use App\Http\Controllers\ResourceController;
+use App\Model;
 use App\Models\Tag;
 use App\Rules\TagNotExistsRule;
 use Illuminate\Database\Eloquent\Collection;
@@ -40,18 +40,6 @@ class TagController extends ResourceController {
 				}
 			]);
 		}
-	}
-
-	public function show(string $locale, string $tag, Request $request): View {
-		$tag = self::fetchModel($request, $tag);
-		return view('resource.tag.show', [
-			'title' => __(Action::from($request->query('action') ?? '') === Action::Delete ? 'resource.tag.delete.title' : 'resource.tag.show.title', ['tag' => $tag->name]),
-			'tag' => $tag,
-			'link' => [
-				'delete' => url()->query($request->path(), ['action' => Action::Delete->name()])
-			],
-			'action' => Action::from($request->query('action') ?? '')
-		]);
 	}
 
 	public function edit(string $locale, string $tag, Request $request): View {
@@ -96,6 +84,11 @@ class TagController extends ResourceController {
 		return $this->request->user()->findTagsByQuery($query ?? '');
 	}
 
+	protected function model(string $id): ?Model {
+		return $this->request->user()->findTagById($id);
+	}
+
+	// TODO: Replace with tryGetModel()
 	private static function fetchModel(Request $request, string $tag): Tag {
 		return $request->user()->findTagById($tag) ?? abort(404);
 	}

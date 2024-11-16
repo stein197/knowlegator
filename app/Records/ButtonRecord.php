@@ -11,5 +11,6 @@ final readonly class ButtonRecord extends Record {
 		public string $name = '',
 		public string $value = '',
 		public ?string $url = null,
+		public ?string $icon = null
 	) {}
 }

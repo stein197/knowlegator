@@ -1,7 +1,7 @@
 @extends('template.index')
 
 @php
-	$path = path_split(request()->getRequestUri());
+	$path = App\path_split(request()->getRequestUri());
 	[, $section] = $path;
 @endphp
 

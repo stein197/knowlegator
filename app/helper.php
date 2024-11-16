@@ -1,5 +1,4 @@
 <?php
-// TODO: Replace the path_* functions with stein197/path
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\RedirectResponse;
 use Symfony\Component\Routing\Exception\RouteNotFoundException;
@@ -28,19 +27,4 @@ function lroute(string $name, array $parameters = []): string {
  */
 function to_lroute(string $name): RedirectResponse {
 	return to_route($name, ['locale' => app()->getLocale()]);
-}
-
-/**
- * Split path into an array of segments
- * @param string $path Path to split
- * @return string[] Segments
- * ```php
- * path_split('/en/settings'); // ['en', 'settings']
- * ```
- */
-function path_split(string $path): array {
-	return [...array_filter(
-		explode('/', $path),
-		fn (string $segment): bool => $segment !== ''
-	)];
 }

@@ -133,6 +133,34 @@ describe('findTagsByQuery()', function (): void {
 	});
 });
 
+describe('findEtypesByQuery()', function (): void {
+	test('should return all etypes when then query is empty', function (): void {
+		/** @var \Tests\TestCase $this */
+		$result = [...User::findByEmail('user-1@example.com')->findEtypesByQuery('')];
+		$this->assertSame(2, sizeof($result));
+	});
+
+	test('should return matching etypes when the case matches', function (): void {
+		/** @var \Tests\TestCase $this */
+		$result = [...User::findByEmail('user-1@example.com')->findEtypesByQuery('Etype 1')];
+		$this->assertSame(1, sizeof($result));
+		$this->assertSame('Etype 1', $result[0]->name);
+	});
+
+	test('should return matching tags when the case doesn\'t match', function (): void {
+		/** @var \Tests\TestCase $this */
+		$result = [...User::findByEmail('user-1@example.com')->findEtypesByQuery('etype 1')];
+		$this->assertSame(1, sizeof($result));
+		$this->assertSame('Etype 1', $result[0]->name);
+	});
+
+	test('should return an empty collection when no tag matches the query', function (): void {
+		/** @var \Tests\TestCase $this */
+		$result = [...User::findByEmail('user-1@example.com')->findEtypesByQuery('unknown')];
+		$this->assertEmpty($result);
+	});
+});
+
 describe('static findByEmail()', function (): void {
 	test('should return a user when it exist', function (): void {
 		/** @var Tests\TestCase $this */

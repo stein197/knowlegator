@@ -85,6 +85,18 @@ class User extends Authenticatable {
 	}
 
 	/**
+	 * Find entity types by the given search query. The matching is case-insensetive.
+	 * @param string $q Search query.
+	 * @return Collection Entity types matching the query.
+	 * ```php
+	 * $u->findEtypesByQuery('entity'); // Collection
+	 * ```
+	 */
+	public function findEtypesByQuery(string $q): Collection {
+		return $q ? $this->etypes->filter(fn (EType $etype): bool => stripos($etype->name, $q) !== false) : $this->etypes;
+	}
+
+	/**
 	 * Get the attributes that should be cast.
 	 * @return array<string, string>
 	 */

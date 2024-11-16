@@ -12,6 +12,9 @@
 
 	"resource.entity.index.title": "Сущности",
 	"resource.etype.index.title": "Типы сущностей",
+	"resource.etype.index.message.empty": "Так пусто!\nСоздать новый тип сущности",
+	"resource.etype.index.message.emptySearchResult": "Нет типов сущности по запросу",
+	"resource.etype.index.search-placeholder": "Поиск типа сущности",
 	"resource.tag.index.title": "Теги",
 	"resource.tag.index.message.empty": "Тут пусто!\nСоздать новый тег",
 	"resource.tag.index.message.emptySearchResult": "Нет тегов по запросу",

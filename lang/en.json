@@ -12,6 +12,9 @@
 
 	"resource.entity.index.title": "Entities",
 	"resource.etype.index.title": "Entity Types",
+	"resource.etype.index.message.empty": "How empty!\nCreate a new entity type",
+	"resource.etype.index.message.emptySearchResult": "No entity types matching the query",
+	"resource.etype.index.search-placeholder": "Search entity type",
 	"resource.tag.index.title": "Tags",
 	"resource.tag.index.message.empty": "How empty!\nCreate a new tag",
 	"resource.tag.index.message.emptySearchResult": "No tags matching the query",

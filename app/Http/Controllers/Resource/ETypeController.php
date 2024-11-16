@@ -1,18 +1,11 @@
 <?php
 namespace App\Http\Controllers\Resource;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ResourceController;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
-class ETypeController extends Controller {
-
-	// TODO
-	public function index(): View {
-		return view('resource.etype.index', [
-			'title' => __('resource.etype.index.title')
-		]);
-	}
+class ETypeController extends ResourceController {
 
 	public function create(): void {} // TODO
 
@@ -25,4 +18,8 @@ class ETypeController extends Controller {
 	public function update(Request $request, string $id): void {} // TODO
 
 	public function destroy(string $id): void {} // TODO
+
+    protected function data(?string $query): Collection {
+		return $this->request->user()->findEtypesByQuery($query ?? '');
+	}
 }

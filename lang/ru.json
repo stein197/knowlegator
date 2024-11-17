@@ -26,6 +26,7 @@
 	"resource.tag.edit.title": "Редактирование :tag",
 	"resource.tag.delete.confirmation": "Удалить тег \":name\"?",
 
+	"action.show": "Показать",
 	"action.edit": "Редактировать",
 	"action.delete": "Удалить",
 	"action.cancel": "Отменить",

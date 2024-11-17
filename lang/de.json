@@ -26,6 +26,7 @@
 	"resource.tag.edit.title": "Editieren das Tag :tag",
 	"resource.tag.delete.confirmation": "Tag \":name\" löschen?",
 
+	"action.show": "Zeigen",
 	"action.edit": "Editieren",
 	"action.delete": "Löschen",
 	"action.cancel": "Abbrechen",

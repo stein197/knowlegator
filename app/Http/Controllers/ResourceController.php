@@ -116,6 +116,14 @@ abstract class ResourceController extends Controller {
 		]);
 	}
 
+	public function destroy(string $locale, string $id): View {
+		$model = $this->tryFetchModel($id);
+		$tName = static::getModelTypeName(true);
+		$result = $model->forceDelete();
+		return view('page.message', [
+			'title' => __("resource.{$tName}.delete.title"),
+			'message' => __($result ? "message.{$tName}.deleted" : "message.{$tName}.cannotDelete", ['name' => $model->name]),
+			'type' => $result ? 'success' : 'danger'
 		]);
 	}
 

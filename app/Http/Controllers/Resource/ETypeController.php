@@ -12,8 +12,6 @@ class ETypeController extends ResourceController {
 
 	public function update(Request $request, string $id): void {} // TODO
 
-	public function destroy(string $id): void {} // TODO
-
 	protected function data(?string $query): Collection {
 		return $this->request->user()->findEtypesByQuery($query ?? '');
 	}

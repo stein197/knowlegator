@@ -65,8 +65,10 @@
 	"message.user.password.changed": "Das Passwort wurde erfolgreich geändert",
 	"message.user.password.couldNotChange": "Das Password konnte nicht geändert werden",
 	"message.tag.created": "Das Tag :tag wurde erfolgreich erstellt",
-	"message.tag.deleted": "Tag :tag wurde erfolgreich gelöscht",
-	"message.tag.cannotDelete": "Tag :tag konnte nicht gelöscht werden",
+	"message.etype.deleted": "Entitätstyp :name wurde erfolgreich gelöscht",
+	"message.etype.cannotDelete": "Entitätstyp :name konnte nicht gelöscht werden",
+	"message.tag.deleted": "Tag :name wurde erfolgreich gelöscht",
+	"message.tag.cannotDelete": "Tag :name konnte nicht gelöscht werden",
 	"message.tag.updated": "Das Tag \":tag\" wurde erfolgreich geändert",
 	"message.tag.cannotUpdate": "Das Tag \":tag\" konnte nicht geändert werden",
 

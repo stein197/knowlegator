@@ -65,8 +65,10 @@
 	"message.user.password.changed": "Пароль был успешно изменён",
 	"message.user.password.couldNotChange": "Не удалось изменить пароль",
 	"message.tag.created": "Тег :tag был успешно создан",
-	"message.tag.deleted": "Тег :tag был успешно удалён",
-	"message.tag.cannotDelete": "Тег :tag не может быть удалён",
+	"message.etype.deleted": "Тип сущности :name был успешно удалён",
+	"message.etype.cannotDelete": "Тип сущности :name не может быть удалён",
+	"message.tag.deleted": "Тег :name был успешно удалён",
+	"message.tag.cannotDelete": "Тег :name не может быть удалён",
 	"message.tag.updated": "Тег \":tag\" был успешно обновлён",
 	"message.tag.cannotUpdate": "Тег \":tag\"не удалось обновить",
 

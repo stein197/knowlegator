@@ -240,7 +240,7 @@ describe('tags.destroy (DELETE /{locale}/account/tags/{tag})', function (): void
 		$u = User::findByEmail('user-1@example.com');
 		$t = $u->findTagByName('tag-1');
 		$content = $this->actingAs($u)->delete("/en/account/tags/{$t->id}")->getContent();
-		$this->dom($content)->find('//p[contains(@class, "alert-success")]/span')->assertTextContent(__('message.tag.deleted', ['tag' => $t->name]));
+		$this->dom($content)->find('//p[contains(@class, "alert-success")]/span')->assertTextContent(__('message.tag.deleted', ['name' => $t->name]));
 		$this->assertFalse(auth()->user()->findTagById($t->id)->exists);
 	});
 });

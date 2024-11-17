@@ -59,16 +59,6 @@ class TagController extends ResourceController {
 		}
 	}
 
-	public function destroy(string $locale, string $tag, Request $request): View {
-		$tag = self::fetchModel($request, $tag);
-		$result = $tag->forceDelete();
-		return view('page.message', [
-			'title' => __('resource.tag.delete.title'),
-			'message' => __($result ? 'message.tag.deleted' : 'message.tag.cannotDelete', ['tag' => $tag->name]),
-			'type' => $result ? 'success' : 'danger'
-		]);
-	}
-
 	protected function data(?string $query): Collection {
 		return $this->request->user()->findTagsByQuery($query ?? '');
 	}

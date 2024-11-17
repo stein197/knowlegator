@@ -184,3 +184,14 @@ describe('etypes.edit (GET /{locale}/account/etypes/{etype}/edit)', function ():
 		$form->find('//button')->assertTextContent('Save');
 	});
 });
+
+describe('etypes.destroy (DELETE /{locale}/account/etypes/{tag})', function (): void {
+	test('should delete an etype', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::findByEmail('user-1@example.com');
+		$etype = $u->etypes[0];
+		$content = $this->actingAs($u)->delete("/en/account/etypes/{$etype->id}")->getContent();
+		$this->dom($content)->find('//p[contains(@class, "alert-success")]/span')->assertTextContent(__('message.etype.deleted', ['name' => $etype->name]));
+		$this->assertFalse(auth()->user()->findEtypeById($etype->id)->exists);
+	});
+});

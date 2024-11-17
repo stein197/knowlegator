@@ -15,6 +15,7 @@
 	"resource.etype.index.message.empty": "Wie leer!\nErstell einen neuen Entitätstyp",
 	"resource.etype.index.message.emptySearchResult": "Keine Entitätstypen entsprechend der Abfrage",
 	"resource.etype.index.search-placeholder": "Entitätstyp suchen",
+	"resource.etype.create.title": "Neuer Entitätstyp",
 	"resource.etype.delete.confirmation": "Entitätstyp \":name\" löschen? Entitäten mit diesem Typ werden auch gelöscht werden",
 	"resource.tag.index.title": "Tags",
 	"resource.tag.index.message.empty": "Wie leer!\nErstell ein neues Tag",

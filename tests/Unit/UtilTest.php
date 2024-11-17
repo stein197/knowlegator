@@ -19,18 +19,6 @@ describe('array_entries()', function (): void {
 	});
 });
 
-describe('array_unset()', function (): void {
-	test('should unset provided keys', function (): void {
-		/** @var \Tests\TestCase $this */
-		$this->assertSame(['a' => 1], array_unset(['a' => 1, 'b' => 2], ['b']));
-	});
-
-	test('should do nothing when the provided keys don\'t exist', function (): void {
-		/** @var \Tests\TestCase $this */
-		$this->assertSame(['a' => 1], array_unset(['a' => 1], ['b']));
-	});
-});
-
 describe('path_split()', function (): void {
 	test('should return an empty array when the path is root', function (): void {
 		/** @var \Tests\TestCase $this */

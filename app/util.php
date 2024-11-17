@@ -18,21 +18,6 @@ function array_entries(array $array): array {
 }
 
 /**
- * Unset array keys.
- * @param array $array Array to unset keys from.
- * @param array $keys Keys to unset.
- * @return array Array with unset keys.
- * ```php
- * array_unset(['a' => 1, 'b' => 2], ['b']); // ['a' => 1]
- * ```
- */
-function array_unset(array $array, array $keys): array {
-	foreach ($keys as $k)
-		unset($array[$k]);
-	return $array;
-}
-
-/**
  * Split path into an array of segments
  * @param string $path Path to split
  * @return string[] Segments

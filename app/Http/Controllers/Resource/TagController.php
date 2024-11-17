@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Resource;
 use App\Exceptions\TagInvalidNameException;
 use App\Http\Controllers\ResourceController;
 use App\Model;
-use App\Models\Tag;
 use App\Rules\TagNotExistsRule;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
@@ -37,7 +36,7 @@ class TagController extends ResourceController {
 	}
 
 	public function update(string $locale, string $tag, Request $request): View | RedirectResponse {
-		$tag = self::fetchModel($request, $tag);
+		$tag = $this->tryFetchModel($tag);
 		$request->validate([
 			'name' => ['required', 'filled', new TagNotExistsRule($request->user())]
 		]);
@@ -45,9 +44,15 @@ class TagController extends ResourceController {
 		try {
 			$tag->name = $name;
 			$result = $tag->save();
-			return self::viewEdit($tag, [
-				'text' => __($result ? 'message.tag.updated' : 'message.tag.cannotUpdate', ['tag' => $name]),
-				'type' => $result ? 'success' : 'danger'
+			return view('resource.tag.edit', [
+				'title' => __('resource.tag.edit.title', ['tag' => $tag->name]),
+				'tag' => $tag,
+				'action' => lroute('tags.update', ['tag' => $tag->id]),
+				'cancelUrl' => lroute('tags.show', ['tag' => $tag->id]),
+				'message' => [
+					'text' => __($result ? 'message.tag.updated' : 'message.tag.cannotUpdate', ['tag' => $name]),
+					'type' => $result ? 'success' : 'danger'
+				]
 			]);
 		} catch (TagInvalidNameException $ex) {
 			return back()->withErrors([
@@ -65,20 +70,5 @@ class TagController extends ResourceController {
 
 	protected function model(string $id): ?Model {
 		return $this->user->findTagById($id);
-	}
-
-	// TODO: Replace with tryGetModel()
-	private static function fetchModel(Request $request, string $tag): Tag {
-		return $request->user()->findTagById($tag) ?? abort(404);
-	}
-
-	private static function viewEdit(Tag $tag, array $message = []): View {
-		return view('resource.tag.edit', [
-			'title' => __('resource.tag.edit.title', ['tag' => $tag->name]),
-			'tag' => $tag,
-			'action' => lroute('tags.update', ['tag' => $tag->id]),
-			'cancelUrl' => lroute('tags.show', ['tag' => $tag->id]),
-			'message' => $message
-		]);
 	}
 }

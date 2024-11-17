@@ -9,6 +9,8 @@
 	"page.settings.password.title": "Изменить пароль",
 	"page.settings.delete.confirmation": "Вы уверены, что хотите удалить аккаунт?",
 	"page.settings.delete.consequences": "Это действие нельзя будет отменить",
+	"page.fields.title": "Поля",
+	"page.fields.desc": "Это доступный для чтения список заданных в системе типов полей, которые могут быть использованы в типах сущностей, чтобы определить структуру сущностей",
 
 	"resource.entity.index.title": "Сущности",
 	"resource.etype.index.title": "Типы сущностей",

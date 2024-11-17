@@ -50,4 +50,10 @@ body {
 .m-n1 {
 	margin: -.25rem;
 }
+
+.alert.callout {
+	border-radius: 0;
+	border-width: 0;
+	border-left-width: 5px;
+}
 /* #endregion */

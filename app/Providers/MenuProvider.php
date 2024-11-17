@@ -48,6 +48,10 @@ final class MenuProvider extends ServiceProvider {
 			new MenuRecord(
 				title: __('resource.tag.index.title'),
 				link: lroute('tags.index')
+			),
+			new MenuRecord(
+				title: __('page.fields.title'),
+				link: lroute('fields')
 			)
 		]);
 	}

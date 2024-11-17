@@ -9,6 +9,8 @@
 	"page.settings.password.title": "Change password",
 	"page.settings.delete.confirmation": "Are you sure you want to delete the account?",
 	"page.settings.delete.consequences": "This action cannot be rewoked",
+	"page.fields.title": "Fields",
+	"page.fields.desc": "This is a readonly list of defined field types in the system. These field types can be used to define entity type structures",
 
 	"resource.entity.index.title": "Entities",
 	"resource.etype.index.title": "Entity Types",

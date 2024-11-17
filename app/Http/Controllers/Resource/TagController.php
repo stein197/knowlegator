@@ -13,12 +13,6 @@ use Illuminate\View\View;
 
 class TagController extends ResourceController {
 
-	public function create(): View {
-		return view('resource.tag.create', [
-			'title' => __('resource.tag.create.title')
-		]);
-	}
-
 	public function store(Request $request): View | RedirectResponse {
 		$request->validate([
 			'name' => ['required', 'filled', new TagNotExistsRule($request->user())]

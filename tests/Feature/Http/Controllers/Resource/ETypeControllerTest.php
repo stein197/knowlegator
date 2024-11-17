@@ -107,6 +107,22 @@ describe('etypes.index (GET /{locale}/account/etypes)', function (): void {
 	});
 });
 
+describe('etypes.create (GET /{locale}/account/etypes/create)', function (): void {
+	test('should redirect guests to /{locale}/route', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->get('/en/account/etypes/create')->assertRedirect('/en/login');
+	});
+
+	test('should show for users', function (): void {
+		/** @var \Tests\TestCase $this */
+		$content = $this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/account/etypes/create')->getContent();
+		$dom = $this->dom($content);
+		$dom->assertExists('//form[@action = "/en/account/etypes"]');
+		$dom->assertExists('//form//input[@name = "name"]');
+		$dom->assertExists('//form//button');
+	});
+});
+
 describe('etypes.show (GET /{locale}/account/etypes/{etype})', function (): void {
 	test('should show for a user', function (): void {
 		/** @var \Tests\TestCase $this */

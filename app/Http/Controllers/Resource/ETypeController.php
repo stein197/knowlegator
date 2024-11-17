@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 
 class ETypeController extends ResourceController {
 
-	public function create(): void {} // TODO
-
 	public function store(Request $request): void {} // TODO
 
 	public function update(Request $request, string $id): void {} // TODO

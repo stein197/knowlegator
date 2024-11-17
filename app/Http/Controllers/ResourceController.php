@@ -23,7 +23,7 @@ abstract class ResourceController extends Controller {
 
 	public function index(): View {
 		$q = $this->request->query('q');
-		$name = static::getModelName();
+		$name = static::getModelName(true);
 		if (!is_string($q))
 			$q = null;
 		$data = $this->data($q);
@@ -46,20 +46,29 @@ abstract class ResourceController extends Controller {
 		]);
 	}
 
+	public function create(): View {
+		$name = static::getModelName(true);
+		return $this->view('create', [
+			'title' => __("resource.{$name}.create.title"),
+			'action' => $this->getActionUrl('store'),
+			'fields' => static::fields(null),
+			'buttons' => [
+				new ButtonRecord(
+					label: __('action.save'),
+					type: 'success'
+				)
+			]
+		]);
+	}
+
 	public function edit(string $locale, string $id): View {
 		$model = $this->tryFetchModel($id);
-		$name = static::getModelName();
+		$name = static::getModelName(true);
 		return $this->view('edit', [
 			'title' => __("resource.{$name}.index.title") . ' / ' . __('action.edit') . ' / ' . $model->name,
 			'model' => $model,
 			'action' => $this->getActionUrl('update', [$name => $model->id]),
-			'fields' => array_map(
-				fn (array $entry) => new FormFieldRecord(
-					name: $entry[0],
-					value: $entry[1]
-				),
-				array_entries($model->getPublicAttributes())
-			),
+			'fields' => static::fields($model),
 			'actions' => [
 				new ButtonRecord(
 					label: __('action.cancel'),
@@ -76,7 +85,7 @@ abstract class ResourceController extends Controller {
 
 	public function show(string $locale, string $id): View {
 		$model = $this->tryFetchModel($id);
-		$name = static::getModelName();
+		$name = static::getModelName(true);
 		return $this->view('show', [
 			'title' => __("resource.{$name}.index.title") . ' / ' . $model->name,
 			'model' => $model,
@@ -99,7 +108,7 @@ abstract class ResourceController extends Controller {
 
 	public function delete(string $locale, string $id): View {
 		$model = $this->tryFetchModel($id);
-		$name = static::getModelName();
+		$name = static::getModelName(true);
 		return $this->view('delete', [
 			'title' => __("resource.{$name}.index.title") . ' / ' . __('action.delete') . ' / ' . $model->name,
 			'model' => $model,
@@ -109,7 +118,7 @@ abstract class ResourceController extends Controller {
 	}
 
 	final protected function view(string $action, array $data = []): View {
-		$name = static::getModelName();
+		$name = static::getModelName(true);
 		return view("resource.{$name}.{$action}", $data);
 	}
 
@@ -122,10 +131,29 @@ abstract class ResourceController extends Controller {
 		return lroute($model . '.' . $action, $parameters);
 	}
 
-	private static function getModelName(): string {
+	/**
+	 * @param ?Model $model
+	 * @return FormFieldRecord[]
+	 */
+	private static function fields(?Model $model): array {
+		return array_map(
+			fn (string $key) => new FormFieldRecord(
+				name: $key,
+				value: $model?->{$key}
+			),
+			static::getModelClass()::getPublicAttributes()
+		);
+	}
+
+	private static function getModelName(bool $lc): string {
 		$class = new ReflectionClass(static::class);
 		$name = preg_replace('/Controller$/', '', $class->getShortName());
-		return strtolower($name);
+		return $lc ? strtolower($name) : $name;
+	}
+
+	private static function getModelClass(): string {
+		$name = static::getModelName(false);
+		return "App\\Models\\{$name}";
 	}
 
 	abstract protected function data(?string $query): Collection;

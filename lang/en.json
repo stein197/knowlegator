@@ -64,6 +64,8 @@
 	"message.user.password.doesNotMatch": "The new password and the repetition should match",
 	"message.user.password.changed": "The password has been successfully changed",
 	"message.user.password.couldNotChange": "Unable to change password",
+	"message.etype.created": "Entity type :name has been successfully created",
+	"message.etype.couldNotCreate": "Entity type :name could not be created",
 	"message.etype.deleted": "Entity type :name has been successfully deleted",
 	"message.etype.cannotDelete": "Entity type \":name\" cannot be deleted",
 	"message.tag.created": "Tag :name has been successfully created",

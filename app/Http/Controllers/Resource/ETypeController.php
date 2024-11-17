@@ -5,10 +5,23 @@ use App\Http\Controllers\ResourceController;
 use App\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class ETypeController extends ResourceController {
 
-	public function store(Request $request): void {} // TODO
+	public function store(): View {
+		$this->request->validate([
+			'name' => 'required|filled'
+		]);
+		$name = $this->request->post('name');
+		$etype = $this->request->user()->createEtype($name);
+		$result = $etype->save();
+		return view('page.message', [
+			'title' => __('resource.etype.create.title'),
+			'type' => $result ? 'success' : 'danger',
+			'message' => __($result ? 'message.etype.created' : 'message.etype.couldNotCreate', ['name' => $name])
+		]);
+	}
 
 	public function update(Request $request, string $id): void {} // TODO
 

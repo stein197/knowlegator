@@ -128,7 +128,7 @@ describe('tags.store (POST /{locale}/account/tags)', function (): void {
 		/** @var \Tests\TestCase $this */
 		$content = $this->actingAs(User::findByEmail('user-1@example.com'))->post('/en/account/tags', ['name' => 'Tag'])->getContent();
 		$dom = $this->dom($content);
-		$dom->find('//p[contains(@class, "alert")]/span')->assertTextContent(__('message.tag.created', ['tag' => 'Tag']));
+		$dom->find('//p[contains(@class, "alert")]/span')->assertTextContent(__('message.tag.created', ['name' => 'Tag']));
 	});
 
 	test('should show an error when the name is empty', function (): void {

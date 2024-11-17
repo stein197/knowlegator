@@ -123,6 +123,21 @@ describe('etypes.create (GET /{locale}/account/etypes/create)', function (): voi
 	});
 });
 
+describe('etypes.store (POST /{locale}/account/etypes)', function (): void {
+	test('should show a success message when a etype is created', function (): void {
+		/** @var \Tests\TestCase $this */
+		$content = $this->actingAs(User::findByEmail('user-1@example.com'))->post('/en/account/etypes', ['name' => 'Etype'])->getContent();
+		$dom = $this->dom($content);
+		$dom->find('//p[contains(@class, "alert")]/span')->assertTextContent(__('message.etype.created', ['name' => 'Etype']));
+	});
+
+	test('should show an error when the name is empty', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->actingAs(User::findByEmail('user-1@example.com'))->post('/en/account/etypes', [])->assertSessionHasErrors(['name']);
+	});
+});
+
+
 describe('etypes.show (GET /{locale}/account/etypes/{etype})', function (): void {
 	test('should show for a user', function (): void {
 		/** @var \Tests\TestCase $this */
@@ -185,7 +200,7 @@ describe('etypes.edit (GET /{locale}/account/etypes/{etype}/edit)', function ():
 	});
 });
 
-describe('etypes.destroy (DELETE /{locale}/account/etypes/{tag})', function (): void {
+describe('etypes.destroy (DELETE /{locale}/account/etypes/{etype})', function (): void {
 	test('should delete an etype', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::findByEmail('user-1@example.com');

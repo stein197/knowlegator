@@ -44,7 +44,7 @@ class TagController extends ResourceController {
 			$tag->name = $name;
 			$result = $tag->save();
 			return back()->with('alert', [
-				'text' => __($result ? 'message.tag.updated' : 'message.tag.cannotUpdate', ['tag' => $name]),
+				'text' => $result ? __('message.tag.updated', ['tag' => $name]) : __('message.tag.cannotUpdate', ['tag' => $name]),
 				'type' => $result ? 'success' : 'danger'
 			]);
 		} catch (TagInvalidNameException $ex) {

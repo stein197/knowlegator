@@ -81,7 +81,7 @@ final class LoginController extends Controller {
 		$user = new User($credentials);
 		$email = $credentials['email'];
 		$result = $user->save();
-		$message = __($result ? 'message.user.created' : 'message.user.cannotCreate', ['user' => $email]);
+		$message = $result ? __('message.user.created', ['user' => $email]) : __('message.user.cannotCreate', ['user' => $email]);
 		return view('page.message', [
 			'title' => $message,
 			'message' => $message,

@@ -32,7 +32,7 @@ class ETypeController extends ResourceController {
 		$tag->name = $name;
 		$result = $tag->save();
 		return back()->with('alert', [
-			'text' => __($result ? 'message.etype.updated' : 'message.etype.cannotUpdate', ['name' => $name]),
+			'text' => $result ? __('message.etype.updated', ['name' => $name]) : __('message.etype.cannotUpdate', ['name' => $name]),
 			'type' => $result ? 'success' : 'danger'
 		]);
 	}

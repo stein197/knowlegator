@@ -26,3 +26,4 @@ There is a test [`tests/Unit/LangTest.php`](/tests/Unit/LangTest.php). It tests 
 - A file with the defaul locale is defined
 - All translation keys are defined in all locale files
 - There are no hanging placeholders
+- Function `__()` with a string literal as the first argument use existent translation

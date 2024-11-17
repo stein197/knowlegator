@@ -69,6 +69,15 @@ describe('createTag()', function (): void {
 	});
 });
 
+describe('createEtype()', function (): void {
+	test('should create an etype', function (): void {
+		$u = User::findByEmail('user-1@example.com');
+		$etype = $u->createEtype('Entity 1');
+		$this->assertSame('Entity 1', $etype->name);
+		$this->assertSame($u->id, $etype->user_id);
+	});
+});
+
 describe('findTagById()', function (): void {
 	test('should return corresponding tag when it exists', function (): void {
 		/** @var \Tests\TestCase $this */

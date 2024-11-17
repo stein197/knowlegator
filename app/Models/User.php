@@ -52,6 +52,18 @@ class User extends Authenticatable {
 	}
 
 	/**
+	 * Create an etype that automatically linked to this user.
+	 * @param string $name Entity type name.
+	 * @return EType Freshly created etype.
+	 * ```php
+	 * $t = $u->createEtype('Entity type');
+	 * ```
+	 */
+	public function createEtype(string $name): EType {
+		return new EType(['name' => $name, 'user' => $this]);
+	}
+
+	/**
 	 * Find a tag by id for this user.
 	 * @param string $id Tag id to find by.
 	 * @return ?Tag Found tag or `null` if the user doesn't have a tag with the given id.

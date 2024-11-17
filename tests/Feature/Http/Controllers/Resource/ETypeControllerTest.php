@@ -200,6 +200,24 @@ describe('etypes.edit (GET /{locale}/account/etypes/{etype}/edit)', function ():
 	});
 });
 
+describe('etypes.update (PUT /{locale}/account/etypes/{etype})', function (): void {
+	test('should show an error when the name is empty', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::findByEmail('user-1@example.com');
+		$etype = $u->etypes[0];
+		$this->actingAs($u)->put("/en/account/etypes/{$etype->id}", ['name' => ''])->assertSessionHasErrors(['name']);
+	});
+
+	test('should save', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::findByEmail('user-1@example.com');
+		$etype = $u->etypes[0];
+		$content = $this->actingAs($u)->put("/en/account/etypes/{$etype->id}", ['name' => 'Etype 10'])->getContent();
+		$dom = $this->dom($content);
+		$dom->find('//p[contains(@class, "alert-success")]/span')->assertTextContent('Entity type "Entity 10" has been successfully updated');
+	});
+});
+
 describe('etypes.destroy (DELETE /{locale}/account/etypes/{etype})', function (): void {
 	test('should delete an etype', function (): void {
 		/** @var \Tests\TestCase $this */

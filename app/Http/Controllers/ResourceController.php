@@ -73,6 +73,7 @@ abstract class ResourceController extends Controller {
 			'model' => $model,
 			'action' => $this->getActionUrl('update', [$tName => $model->id]),
 			'fields' => static::fields($model),
+			'alert' => $this->request->session()->get('alert'),
 			'actions' => [
 				new ButtonRecord(
 					label: __('action.cancel'),

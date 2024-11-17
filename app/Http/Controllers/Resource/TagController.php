@@ -34,8 +34,8 @@ class TagController extends ResourceController {
 		}
 	}
 
-	public function update(string $locale, string $tag): View | RedirectResponse {
-		$tag = $this->tryFetchModel($tag);
+	public function update(string $locale, string $id): View | RedirectResponse {
+		$tag = $this->tryFetchModel($id);
 		$this->request->validate([
 			'name' => ['required', 'filled', new TagNotExistsRule($this->request->user())]
 		]);
@@ -43,15 +43,9 @@ class TagController extends ResourceController {
 		try {
 			$tag->name = $name;
 			$result = $tag->save();
-			return view('resource.tag.edit', [
-				'title' => __('resource.tag.edit.title', ['tag' => $tag->name]),
-				'tag' => $tag,
-				'action' => lroute('tags.update', ['tag' => $tag->id]),
-				'cancelUrl' => lroute('tags.show', ['tag' => $tag->id]),
-				'message' => [
-					'text' => __($result ? 'message.tag.updated' : 'message.tag.cannotUpdate', ['tag' => $name]),
-					'type' => $result ? 'success' : 'danger'
-				]
+			return back()->with('alert', [
+				'text' => __($result ? 'message.tag.updated' : 'message.tag.cannotUpdate', ['tag' => $name]),
+				'type' => $result ? 'success' : 'danger'
 			]);
 		} catch (TagInvalidNameException $ex) {
 			return back()->withErrors([

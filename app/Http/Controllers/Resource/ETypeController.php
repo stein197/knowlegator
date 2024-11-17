@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Resource;
 use App\Http\Controllers\ResourceController;
 use App\Model;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class ETypeController extends ResourceController {
@@ -22,7 +23,19 @@ class ETypeController extends ResourceController {
 		]);
 	}
 
-	public function update(Request $request, string $id): void {} // TODO
+	public function update(string $locale, string $id): RedirectResponse {
+		$tag = $this->tryFetchModel($id);
+		$this->request->validate([
+			'name' => 'required|filled'
+		]);
+		$name = $this->request->post('name');
+		$tag->name = $name;
+		$result = $tag->save();
+		return back()->with('alert', [
+			'text' => __($result ? 'message.etype.updated' : 'message.etype.cannotUpdate', ['name' => $name]),
+			'type' => $result ? 'success' : 'danger'
+		]);
+	}
 
 	protected function data(?string $query): Collection {
 		return $this->user->findEtypesByQuery($query ?? '');

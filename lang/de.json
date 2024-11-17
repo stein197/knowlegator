@@ -68,6 +68,8 @@
 	"message.etype.couldNotCreate": "Entitätstyp :name konnte nicht erstellt werden",
 	"message.etype.deleted": "Entitätstyp :name wurde erfolgreich gelöscht",
 	"message.etype.cannotDelete": "Entitätstyp :name konnte nicht gelöscht werden",
+	"message.etype.updated": "Entitätstyp \":name\" wurde erfolgreich geändert",
+	"message.etype.cannotUpdate": "Entitätstyp \":name\" konnte nicht geändert werden",
 	"message.tag.created": "Das Tag :name wurde erfolgreich erstellt",
 	"message.tag.deleted": "Tag :name wurde erfolgreich gelöscht",
 	"message.tag.cannotDelete": "Tag :name konnte nicht gelöscht werden",

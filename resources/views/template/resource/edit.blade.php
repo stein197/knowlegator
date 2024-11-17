@@ -1,9 +1,9 @@
 @extends('template.menu')
 
 @section('content')
-	@isset ($message)
-		<x-alert type="{{ $message['type'] }}">{!! $message['text'] !!}</x-alert>
-	@endisset
+	@if ($alert)
+		<x-alert type="{{ $alert['type'] }}">{!! $alert['text'] !!}</x-alert>
+	@endif
 	<x-form
 		method="PUT"
 		action="{{ $action }}"

@@ -68,11 +68,13 @@
 	"message.etype.couldNotCreate": "Тип сущности :name не удалось создать",
 	"message.etype.deleted": "Тип сущности :name был успешно удалён",
 	"message.etype.cannotDelete": "Тип сущности :name не может быть удалён",
+	"message.etype.updated": "Тип сущности \":name\" был успешно оьновлён",
+	"message.etype.cannotUpdate": "Тип сущности \":name\" не удалось обновить",
 	"message.tag.created": "Тег :name был успешно создан",
 	"message.tag.deleted": "Тег :name был успешно удалён",
 	"message.tag.cannotDelete": "Тег :name не может быть удалён",
 	"message.tag.updated": "Тег \":tag\" был успешно обновлён",
-	"message.tag.cannotUpdate": "Тег \":tag\"не удалось обновить",
+	"message.tag.cannotUpdate": "Тег \":tag\" не удалось обновить",
 
 	"rule.userTagNotExists": "Тег с именем \":tag\" уже существует",
 

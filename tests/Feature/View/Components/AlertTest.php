@@ -30,3 +30,8 @@ test('should render custom CSS class', function (): void {
 	/** @var \Tests\TestCase $this */
 	$this->domComponent(Alert::class, ['class' => 'text-center'])->assertExists('//p[contains(@class, "text-center")]');
 });
+
+test('should have the \'callout\' css-class when the \'callout\' parameter is provided', function (): void {
+	/** @var \Tests\TestCase */
+	$this->domComponent(Alert::class, ['callout' => true])->assertExists('//p[contains(@class, "callout")]');
+});

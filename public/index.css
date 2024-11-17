@@ -1,3 +1,4 @@
+/* #region global */
 :root {
 	--bs-body-font-family: "Roboto", sans-serif;
 }
@@ -6,32 +7,15 @@ html,
 body {
 	min-height: 100vh;
 }
+/* #endregion */
 
-.reset {
-	border: none;
-	padding: 0;
-	margin: 0;
-	background: none;
-}
-
+/* #region bootstrap */
 .dropdown-toggle-noarrow::after {
 	content: none;
 }
 
-.cursor-pointer {
-	cursor: pointer;
-}
-
 .bi {
 	color: var(--bs-body-color);
-}
-
-.m-n1 {
-	margin: -.25rem;
-}
-
-.color-inherit {
-	color: inherit;
 }
 
 .btn {
@@ -41,3 +25,29 @@ body {
 		transform: scale(.95);
 	}
 }
+/* #endregion */
+
+/* #region util */
+.reset {
+	border: none;
+	padding: 0;
+	margin: 0;
+	background: none;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.color-inherit {
+	color: inherit;
+}
+
+.hover-warning:hover {
+	color: var(--bs-warning);
+}
+
+.m-n1 {
+	margin: -.25rem;
+}
+/* #endregion */

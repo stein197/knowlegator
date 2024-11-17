@@ -54,7 +54,7 @@
 						<div class="vr"></div>
 						<div class="dropdown">
 							<button class="btn dropdown-toggle dropdown-toggle-noarrow text-dark fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-								<i class="bi bi-globe-americas"></i>
+								<i class="bi bi-globe-americas hover-warning"></i>
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end">
 								@foreach (app('locale')->locales(app()->request) as $k => $locale)
@@ -71,7 +71,7 @@
 							<div class="vr"></div>
 							<div class="dropdown">
 								<button class="btn dropdown-toggle dropdown-toggle-noarrow text-dark fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-									<i class="bi bi-person-circle"></i>
+									<i class="bi bi-person-circle hover-warning"></i>
 								</button>
 								<ul class="dropdown-menu dropdown-menu-end">
 									@foreach (app('menu')->get('main') as $menu)

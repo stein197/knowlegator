@@ -64,7 +64,7 @@
 	"message.user.password.doesNotMatch": "Das neue Passwort stimmt mit der Wiederholung zusammen nicht",
 	"message.user.password.changed": "Das Passwort wurde erfolgreich geändert",
 	"message.user.password.couldNotChange": "Das Password konnte nicht geändert werden",
-	"message.tag.created": "Das Tag :tag wurde erfolgreich erstellt",
+	"message.tag.created": "Das Tag :name wurde erfolgreich erstellt",
 	"message.etype.deleted": "Entitätstyp :name wurde erfolgreich gelöscht",
 	"message.etype.cannotDelete": "Entitätstyp :name konnte nicht gelöscht werden",
 	"message.tag.deleted": "Tag :name wurde erfolgreich gelöscht",

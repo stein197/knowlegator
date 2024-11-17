@@ -66,7 +66,7 @@
 	"message.user.password.couldNotChange": "Unable to change password",
 	"message.etype.deleted": "Entity type :name has been successfully deleted",
 	"message.etype.cannotDelete": "Entity type \":name\" cannot be deleted",
-	"message.tag.created": "Tag :tag has been successfully created",
+	"message.tag.created": "Tag :name has been successfully created",
 	"message.tag.deleted": "Tag :name has been successfully deleted",
 	"message.tag.cannotDelete": "Tag \":name\" cannot be deleted",
 	"message.tag.updated": "Tag \":tag\" has been successfully updated",

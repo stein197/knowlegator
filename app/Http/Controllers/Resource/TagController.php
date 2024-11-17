@@ -24,7 +24,7 @@ class TagController extends ResourceController {
 			return view('page.message', [
 				'title' => __('resource.tag.create.title'),
 				'type' => 'success',
-				'message' => __('message.tag.created', ['tag' => $name])
+				'message' => __('message.tag.created', ['name' => $name])
 			]);
 		} catch (TagInvalidNameException $ex) {
 			return back()->withErrors([

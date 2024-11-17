@@ -10,10 +10,10 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach ($model->getPublicAttributes() as $k => $v)
+			@foreach ($model::getPublicAttributes() as $k)
 				<tr>
 					<td>{{ $k }}</td>
-					<td>{{ $v }}</td>
+					<td>{{ $model->{$k} }}</td>
 				</tr>
 			@endforeach
 		</tbody>

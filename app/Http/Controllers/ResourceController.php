@@ -13,7 +13,6 @@ use function explode;
 use function is_string;
 use function preg_replace;
 use function strtolower;
-use function App\array_entries;
 
 abstract class ResourceController extends Controller {
 
@@ -23,22 +22,22 @@ abstract class ResourceController extends Controller {
 
 	public function index(): View {
 		$q = $this->request->query('q');
-		$name = static::getModelTypeName(true);
+		$tName = static::getModelTypeName(true);
 		if (!is_string($q))
 			$q = null;
 		$data = $this->data($q);
 		return $this->view('index', [
-			'title' => __("resource.{$name}.index.title"),
+			'title' => __("resource.{$tName}.index.title"),
 			'data' => $data,
 			'search' => [
 				'action' => '/' . $this->request->path(),
-				'placeholder' => __("resource.{$name}.index.search-placeholder"),
+				'placeholder' => __("resource.{$tName}.index.search-placeholder"),
 				'value' => $q,
 			],
-			'alert' => $data->isEmpty() ? ($q === null ? __("resource.{$name}.index.message.empty") : __("resource.{$name}.index.message.emptySearchResult")) : null,
+			'alert' => $data->isEmpty() ? ($q === null ? __("resource.{$tName}.index.message.empty") : __("resource.{$tName}.index.message.emptySearchResult")) : null,
 			'action' => [
 				new ButtonRecord(
-					label: __("resource.{$name}.create.title"),
+					label: __("resource.{$tName}.create.title"),
 					type: 'primary',
 					url: $this->getActionUrl('create')
 				)
@@ -47,9 +46,9 @@ abstract class ResourceController extends Controller {
 	}
 
 	public function create(): View {
-		$name = static::getModelTypeName(true);
+		$tName = static::getModelTypeName(true);
 		return $this->view('create', [
-			'title' => __("resource.{$name}.create.title"),
+			'title' => __("resource.{$tName}.create.title"),
 			'action' => $this->getActionUrl('store'),
 			'fields' => static::fields(null),
 			'buttons' => [
@@ -63,17 +62,17 @@ abstract class ResourceController extends Controller {
 
 	public function edit(string $locale, string $id): View {
 		$model = $this->tryFetchModel($id);
-		$name = static::getModelTypeName(true);
+		$tName = static::getModelTypeName(true);
 		return $this->view('edit', [
-			'title' => __("resource.{$name}.index.title") . ' / ' . __('action.edit') . ' / ' . $model->name,
+			'title' => __("resource.{$tName}.index.title") . ' / ' . __('action.edit') . ' / ' . $model->name,
 			'model' => $model,
-			'action' => $this->getActionUrl('update', [$name => $model->id]),
+			'action' => $this->getActionUrl('update', [$tName => $model->id]),
 			'fields' => static::fields($model),
 			'actions' => [
 				new ButtonRecord(
 					label: __('action.cancel'),
 					type: 'warning',
-					url: $this->getActionUrl('show', [$name => $model->id])
+					url: $this->getActionUrl('show', [$tName => $model->id])
 				),
 				new ButtonRecord(
 					label: __('action.save'),
@@ -85,22 +84,22 @@ abstract class ResourceController extends Controller {
 
 	public function show(string $locale, string $id): View {
 		$model = $this->tryFetchModel($id);
-		$name = static::getModelTypeName(true);
+		$tName = static::getModelTypeName(true);
 		return $this->view('show', [
-			'title' => __("resource.{$name}.index.title") . ' / ' . $model->name,
+			'title' => __("resource.{$tName}.index.title") . ' / ' . $model->name,
 			'model' => $model,
 			'buttons' => [
 				new ButtonRecord(
 					label: __('action.edit'),
 					type: 'primary',
 					icon: 'pen-fill',
-					url: $this->getActionUrl('edit', [$name => $model->id])
+					url: $this->getActionUrl('edit', [$tName => $model->id])
 				),
 				new ButtonRecord(
 					label: __('action.delete'),
 					type: 'danger',
 					icon: 'trash-fill',
-					url: $this->getActionUrl('delete', [$name => $model->id])
+					url: $this->getActionUrl('delete', [$tName => $model->id])
 				)
 			]
 		]);
@@ -108,18 +107,21 @@ abstract class ResourceController extends Controller {
 
 	public function delete(string $locale, string $id): View {
 		$model = $this->tryFetchModel($id);
-		$name = static::getModelTypeName(true);
+		$tName = static::getModelTypeName(true);
 		return $this->view('delete', [
-			'title' => __("resource.{$name}.index.title") . ' / ' . __('action.delete') . ' / ' . $model->name,
+			'title' => __("resource.{$tName}.index.title") . ' / ' . __('action.delete') . ' / ' . $model->name,
 			'model' => $model,
-			'message' => __("resource.{$name}.delete.confirmation", ['name' => $model->name]),
-			'action' => $this->getActionUrl('destroy', [$name => $model->id]),
+			'message' => __("resource.{$tName}.delete.confirmation", ['name' => $model->name]),
+			'action' => $this->getActionUrl('destroy', [$tName => $model->id]),
+		]);
+	}
+
 		]);
 	}
 
 	final protected function view(string $action, array $data = []): View {
-		$name = static::getModelTypeName(true);
-		return view("resource.{$name}.{$action}", $data);
+		$tName = static::getModelTypeName(true);
+		return view("resource.{$tName}.{$action}", $data);
 	}
 
 	final protected function tryFetchModel(string $id): Model {
@@ -147,13 +149,13 @@ abstract class ResourceController extends Controller {
 
 	private static function getModelTypeName(bool $lc): string {
 		$class = new ReflectionClass(static::class);
-		$name = preg_replace('/Controller$/', '', $class->getShortName());
-		return $lc ? strtolower($name) : $name;
+		$tName = preg_replace('/Controller$/', '', $class->getShortName());
+		return $lc ? strtolower($tName) : $tName;
 	}
 
 	private static function getModelClass(): string {
-		$name = static::getModelTypeName(false);
-		return "App\\Models\\{$name}";
+		$tName = static::getModelTypeName(false);
+		return "App\\Models\\{$tName}";
 	}
 
 	abstract protected function data(?string $query): Collection;

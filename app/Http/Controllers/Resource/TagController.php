@@ -7,18 +7,17 @@ use App\Model;
 use App\Rules\TagNotExistsRule;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class TagController extends ResourceController {
 
-	public function store(Request $request): View | RedirectResponse {
-		$request->validate([
-			'name' => ['required', 'filled', new TagNotExistsRule($request->user())]
+	public function store(): View | RedirectResponse {
+		$this->request->validate([
+			'name' => ['required', 'filled', new TagNotExistsRule($this->request->user())]
 		]);
-		$name = $request->post('name', '');
+		$name = $this->request->post('name', '');
 		try {
-			$tag = $request->user()->createTag($name);
+			$tag = $this->request->user()->createTag($name);
 			$tag->save();
 			return view('page.message', [
 				'title' => __('resource.tag.create.title'),
@@ -35,12 +34,12 @@ class TagController extends ResourceController {
 		}
 	}
 
-	public function update(string $locale, string $tag, Request $request): View | RedirectResponse {
+	public function update(string $locale, string $tag): View | RedirectResponse {
 		$tag = $this->tryFetchModel($tag);
-		$request->validate([
-			'name' => ['required', 'filled', new TagNotExistsRule($request->user())]
+		$this->request->validate([
+			'name' => ['required', 'filled', new TagNotExistsRule($this->request->user())]
 		]);
-		$name = $request->post('name');
+		$name = $this->request->post('name');
 		try {
 			$tag->name = $name;
 			$result = $tag->save();

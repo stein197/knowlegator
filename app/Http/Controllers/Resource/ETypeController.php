@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Resource;
 use App\Http\Controllers\ResourceController;
 use App\Model;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ETypeController extends ResourceController {

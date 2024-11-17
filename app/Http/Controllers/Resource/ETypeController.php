@@ -26,10 +26,10 @@ class ETypeController extends ResourceController {
 	public function update(Request $request, string $id): void {} // TODO
 
 	protected function data(?string $query): Collection {
-		return $this->request->user()->findEtypesByQuery($query ?? '');
+		return $this->user->findEtypesByQuery($query ?? '');
 	}
 
 	protected function model(string $id): ?Model {
-		return $this->request->user()->findEtypeById($id);
+		return $this->user->findEtypeById($id);
 	}
 }

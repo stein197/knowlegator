@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use App\Model;
+use App\Models\User;
 use App\Records\ButtonRecord;
 use App\Records\FormFieldRecord;
 use Illuminate\Contracts\View\View;
@@ -16,9 +17,13 @@ use function strtolower;
 
 abstract class ResourceController extends Controller {
 
+	protected readonly User $user;
+
 	public function __construct(
 		protected readonly Request $request
-	) {}
+	) {
+		$this->user = $request->user();
+	}
 
 	public function index(): View {
 		$q = $this->request->query('q');

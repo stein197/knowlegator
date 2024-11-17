@@ -60,11 +60,11 @@ class TagController extends ResourceController {
 	}
 
 	protected function data(?string $query): Collection {
-		return $this->request->user()->findTagsByQuery($query ?? '');
+		return $this->user->findTagsByQuery($query ?? '');
 	}
 
 	protected function model(string $id): ?Model {
-		return $this->request->user()->findTagById($id);
+		return $this->user->findTagById($id);
 	}
 
 	// TODO: Replace with tryGetModel()

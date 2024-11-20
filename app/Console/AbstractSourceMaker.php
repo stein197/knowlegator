@@ -11,6 +11,7 @@ abstract class AbstractSourceMaker extends Command {
 	public const int ERR_UNKNOWN = 2;
 
 	final public function tryCreate(string $path, string $content): int {
+		$path = app_path($path);
 		if (file_exists($path)) {
 			$this->error("File {$path} already exists");
 			return self::ERR_EXISTS;

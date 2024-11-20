@@ -1,7 +1,7 @@
 <?php
 namespace Tests\Feature\Console\Commands;
 
-use App\Console\Commands\MakeRecord;
+use App\Console\AbstractSourceMaker;
 use Illuminate\Support\Facades\Artisan;
 use function file_get_contents;
 use function unlink;
@@ -13,7 +13,7 @@ afterAll(function (): void {
 test('should throw an exception when record already exists', function (): void {
 	/** @var \Tests\TestCase $this */
 	$result = Artisan::call('app:make:record', ['record' => 'Menu']);
-	$this->assertSame(MakeRecord::CODE_EXISTS, $result);
+	$this->assertSame(AbstractSourceMaker::ERR_EXISTS, $result);
 });
 
 test('should create a service', function (): void {

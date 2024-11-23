@@ -18,14 +18,11 @@
 			@endforeach
 		</tbody>
 	</table>
-	@foreach ($buttons as $btn)
-		@if ($btn->icon)
-			<a class="btn btn-{{ $btn->type }}" href="{{ $btn->url }}">
+	<div class="btn-group">
+		@foreach ($buttons as $btn)
+			<a class="btn btn-outline-secondary" href="{{ $btn->url }}" data-bs-toggle="tooltip" data-bs-title="{{ $btn->label }}">
 				<i class="bi bi-{{ $btn->icon }} color-inherit"></i>
-				<span>{{ $btn->label }}</span>
 			</a>
-		@else
-			<a class="btn btn-{{ $btn->type }}" href="{{ $btn->url }}">{{ $btn->label }}</a>
-		@endif
-	@endforeach
+		@endforeach
+	</div>
 @endsection

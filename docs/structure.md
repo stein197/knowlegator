@@ -1,9 +1,12 @@
 # Structure
-- `app/`
-	- `Http/`
-		- `Controllers/`
-			- `Resource/`: controllers for resources
-	- `Records/`: readonly classes that extend the [`App\Record`](/app/Record.php) class
-	- `Services/`: application services
-	- `helper.php`: custom helper functions
-- `docs/`: documentation
+- [`app/`](/app/)
+	- [`Enum/`](/app/Enum/): enumerations
+	- [`Http/`](/app/Http/)
+		- [`Controllers/`](/app/Http/Controllers/)
+			- [`Resource/`](/app/Http/Controllers/Resource/): controllers for resources
+		- [`ResourceController.php`](/app/Http/Controllers/ResourceController.php): base class for resource controllers
+	- [`Records/`](/app/Records/): readonly data classes that extend the [`App\Record`](/app/Record.php) class
+	- [`Services/`](/app/Services/): application services
+	- [`helper.php`](/app/helper.php): custom helper functions
+	- [`util.php`](/app/util.php): utility app-independent functions
+- [`docs/`](/docs/): documentation

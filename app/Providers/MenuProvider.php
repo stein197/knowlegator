@@ -4,6 +4,7 @@ namespace App\Providers;
 use App\Records\MenuRecord;
 use App\Services\MenuService;
 use Illuminate\Support\ServiceProvider;
+use function array_map;
 
 final class MenuProvider extends ServiceProvider {
 
@@ -54,5 +55,11 @@ final class MenuProvider extends ServiceProvider {
 				link: lroute('fields')
 			)
 		]);
+
+		$menuService->register('lang', fn (): array => array_map(fn (array $locale): MenuRecord => new MenuRecord(
+			title: $locale['name'],
+			link: $locale['url'],
+			icon: $locale['flag-icon']
+		), $this->app->get('locale')->locales(app()->request)));
 	}
 }

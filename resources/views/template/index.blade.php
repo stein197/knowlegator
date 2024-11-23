@@ -57,11 +57,11 @@
 								<i class="bi bi-globe-americas hover-warning"></i>
 							</button>
 							<ul class="dropdown-menu dropdown-menu-end">
-								@foreach (app('locale')->locales(app()->request) as $k => $locale)
+								@foreach (app('menu')->get('lang') as $item)
 									<li>
-										<a class="dropdown-item {{ app()->getLocale() === $k ? 'active' : '' }}" href="{{ $locale['url'] }}">
-											<span class="fi fi-{{ $locale['flag-icon'] }}"></span>
-											<span>{{ $locale['name'] }}</span>
+										<a @class(['dropdown-item', 'active' => $item->active]) href="{{ $item->link }}">
+											<span class="fi fi-{{ $item->icon }}"></span>
+											<span>{{ $item->title }}</span>
 										</a>
 									</li>
 								@endforeach

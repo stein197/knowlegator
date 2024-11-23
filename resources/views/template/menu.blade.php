@@ -6,10 +6,10 @@
 @endphp
 
 @section('main')
-	<section class="my-5">
+	<section class="mt-3 mt-md-5">
 		<div class="container">
 			<div class="row">
-				<div class="col col-12 col-md-4 col-lg-2">
+				<div class="col col-12 col-md-4 col-lg-2 d-none d-md-block">
 					@if (app('menu')->exists($section))
 						<aside>
 							<div class="list-group">

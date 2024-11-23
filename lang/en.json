@@ -36,6 +36,7 @@
 
 	"menu.main.account": "Account",
 	"menu.main.settings": "Settings",
+	"menu.main.lang": "Language",
 	"menu.main.logout": "Log out",
 
 	"form.field.email": "E-Mail",

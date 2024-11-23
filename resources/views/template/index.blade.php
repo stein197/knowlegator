@@ -1,3 +1,16 @@
+@php
+	$menus = [
+		'account' => [
+			'enabled' => auth()->user() !== null
+		],
+		'settings' => [
+			'enabled' => auth()->user() !== null
+		],
+		'lang' => [
+			'enabled' => true
+		]
+	];
+@endphp
 <!DOCTYPE html>
 <html lang="{{ app()->currentLocale() }}" data-bs-theme="{{ app('theme') }}">
 	<head>
@@ -31,26 +44,16 @@
 		<!-- /app-assets -->
 	</head>
 	<body class="d-flex flex-column">
-		<header>
+		<header class="position-sticky top-0">
 			<nav class="navbar navbar-expand-lg bg-body-tertiary">
 				<div class="container">
 					<a class="navbar-brand" href="/">Knowlegator</a>
-					<div class="d-flex align-items-center">
+					<div class="align-items-center d-none d-md-flex">
 						@auth
 							<em class="mx-2">{{ auth()->user()->email }}</em>
 							<div class="vr"></div>
 						@endauth
-						<form action="{{ lroute('theme') }}" method="POST" enctype="multipart/form-data">
-							@csrf
-							@method('PUT')
-							<button class="reset d-flex align-items-center fs-5 cursor-pointer mx-2">
-								<i class="bi bi-sun-fill"></i>
-								<div class="form-check form-switch p-0 mb-0 mx-2 d-flex align-items-center">
-									<input class="form-check-input cursor-pointer m-0 float-none pe-none" type="checkbox" @checked(app('theme')->dark()) />
-								</div>
-								<i class="bi bi-moon-fill"></i>
-							</button>
-						</form>
+						@include('include.theme-toggle')
 						<div class="vr"></div>
 						<div class="dropdown">
 							<button class="btn dropdown-toggle dropdown-toggle-noarrow text-dark fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -97,9 +100,61 @@
 							</div>
 						@endauth
 					</div>
+					<button class="btn reset d-md-none fs-1" data-bs-toggle="offcanvas" data-bs-target="#menu-mobile">
+						<i class="bi bi-list"></i>
+					</button>
 				</div>
 			</nav>
 		</header>
+
+		<section id="menu-mobile" class="offcanvas offcanvas-start">
+			<div class="offcanvas-header shadow">
+				@auth
+					<em>{{ auth()->user()->email }}</em>
+				@endauth
+				<div class="ms-auto d-flex align-items-center">
+					@include('include.theme-toggle')
+					<button class="btn btn-close ms-0" data-bs-dismiss="offcanvas"></button>
+				</div>
+			</div>
+			<div class="offcanvas-body">
+				<ul class="list-group list-group-flush">
+					@foreach ($menus as $k => ['enabled' => $enabled])
+						@if ($enabled)
+							<li class="list-group-item">
+								<a class="text-decoration-none text-body d-flex justify-content-between align-items-center" href="#menu-mobile-{{ $k }}" data-bs-toggle="offcanvas">
+									<span>{{ __("menu.main.{$k}") }}</span>
+									<i class="bi bi-chevron-right"></i>
+								</a>
+							</li>
+						@endif
+					@endforeach
+					@auth
+						<li class="list-group-item">
+							<form action="{{ lroute('logout') }}" method="POST" enctype="multipart/form-data">
+								@csrf
+								<button class="reset w-100 text-start">
+									<i class="bi bi-box-arrow-left"></i>
+									<span>{{ __('menu.main.logout') }}</span>
+								</button>
+							</form>
+						</li>
+					@endauth
+				</ul>
+			</div>
+		</section>
+
+		@foreach ($menus as $k => ['enabled' => $enabled])
+			@if ($enabled)
+				@include('include.offcanvas', [
+					'id' => "menu-mobile-{$k}",
+					'target' => '#menu-mobile',
+					'header' => __("menu.main.{$k}"),
+					'menu' => app('menu')->get($k)
+				])
+			@endif
+		@endforeach
+
 		<main class="flex-grow-1 d-flex flex-column">@yield('main')</main>
 	</body>
 </html>

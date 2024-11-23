@@ -10,6 +10,7 @@
 		"css",
 		"database",
 		"debug",
+		"enum",
 		"env",
 		"etype",
 		"field",

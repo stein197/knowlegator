@@ -2,6 +2,10 @@
 // TODO: Replace the path_* functions with stein197/path
 namespace App;
 
+use function array_filter;
+use function explode;
+use function sizeof;
+
 /**
  * Return array entries.
  * @param array $array Array to return entries from.
@@ -15,6 +19,31 @@ function array_entries(array $array): array {
 	foreach ($array as $k => $v)
 		$result[] = [$k, $v];
 	return $result;
+}
+
+/**
+ * Get the last array's element.
+ * @param array $array Array to get an element from.
+ * @return mixed Last array element.
+ * ```php
+ * array_get_last(['a', 'b', 'c']); // 'c'
+ * ```
+ */
+function array_get_last(array $array): mixed {
+	return $array ? $array[sizeof($array) - 1] : null;
+}
+
+/**
+ * Return class name without namespace.
+ * @param string $fqcn Fully qualified class name.
+ * @return string Class name without namespace.
+ * ```php
+ * class_get_name('App\\Http\\Controller'); // 'Controller'
+ * ```
+ */
+function class_get_name(string $fqcn): string {
+	$parts = explode('\\', $fqcn);
+	return array_get_last($parts);
 }
 
 /**

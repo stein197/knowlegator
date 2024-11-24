@@ -1,6 +1,7 @@
 # Structure
 - [`app/`](/app/)
 	- [`Enum/`](/app/Enum/): enumerations
+	- [`Fields/`](/app/Fields/): form field types, subclasses of the [`App\Field`](/app/FIeld.php) class
 	- [`Http/`](/app/Http/)
 		- [`Controllers/`](/app/Http/Controllers/)
 			- [`Resource/`](/app/Http/Controllers/Resource/): controllers for resources

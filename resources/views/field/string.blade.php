@@ -1,0 +1,16 @@
+<div class="mb-3 form-floating">
+	<input
+		@class([
+			'form-control',
+			'border-danger bg-danger bg-opacity-10' => isset($errors) && $errors->has($f->name)
+		])
+		type="{{ $f->params['type'] }}"
+		name="{{ $f->name }}"
+		value="{{ $f->value }}"
+		@readonly($f->readonly)
+		@required($f->required) />
+	<label>{{ $f->label }}</label>
+	@if (isset($errors) && $errors->has($f->name))
+		<p class="text-danger">{{ $message }}</p>
+	@endif
+</div>

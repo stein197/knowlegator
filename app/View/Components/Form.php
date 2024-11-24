@@ -5,6 +5,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 use function sizeof;
 
+// TODO: Delete and replace with App\Form
 final class Form extends Component {
 
 	private int $btnBSSize;

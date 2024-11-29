@@ -5,6 +5,7 @@ use App\Enum\Http\Method;
 use App\Records\ButtonRecord;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use function array_map;
 use function sizeof;
 
 final readonly class Form {
@@ -41,6 +42,15 @@ final readonly class Form {
 			if ($f->name === $name)
 				return $f;
 		return null;
+	}
+
+	public function toArray(): array {
+		return array_from_entries(
+			array_map(
+				fn (Field $f): array => [$f->name, $f->value],
+				$this->fields
+			)
+		);
 	}
 
 	public function applyRequest(Request $request): void {

@@ -43,7 +43,7 @@ describe('view()', function (): void {
 			)
 		]))->view()->render());
 		$dom->assertExists('//input[@name = "text" and @required]');
-		$dom->find('label')->assertTextContent('Text label');
+		$dom->find('//label')->assertTextContent('Text label');
 	});
 
 	test('should render <a /> buttons when URL is provided', function (): void {
@@ -85,6 +85,26 @@ describe('field()', function (): void {
 		/** @var \Tests\TestCase $this */
 		$form = new Form(fields: []);
 		$this->assertNull($form->field('string'));
+	});
+});
+
+describe('toArray()', function (): void {
+	test('should return an empty array when there are no fields', function (): void {
+		/** @var \Tests\TestCase $this */
+		$form = new Form();
+		$this->assertSame([], $form->toArray());
+	});
+
+	test('should return an associative array', function (): void {
+		/** @var \Tests\TestCase $this */
+		$form = new Form(fields: [
+			new StringField(
+				label: 'String',
+				name: 'string',
+				value: 'string value'
+			)
+		]);
+		$this->assertSame(['string' => 'string value'], $form->toArray());
 	});
 });
 

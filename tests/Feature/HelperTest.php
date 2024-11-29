@@ -33,4 +33,12 @@ describe('to_lroute()', function (): void {
 		$app->setLocale('ru');
 		$this->assertStringEndsWith('/ru/settings/password', to_lroute('settings.password')->getTargetUrl());
 	});
+
+	test('should accept parameters', function (): void {
+		/** @var \Tests\TestCase $this */
+		$app = $this->createApplication();
+		$app->setLocale('en');
+		$uuid = fake()->uuid();
+		$this->assertStringEndsWith("/en/account/tags/{$uuid}/edit", to_lroute('tags.edit', ['tag' => $uuid])->getTargetUrl());
+	});
 });

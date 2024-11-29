@@ -20,11 +20,12 @@ function lroute(string $name, array $parameters = []): string {
 /**
  * Return a localized redirect route with the current locale.
  * @param string $name Route name.
+ * @param array $parameters Route parameters.
  * @return RedirectResponse
  * @throws BindingResolutionException
  * @throws RouteNotFoundException
  * @throws InvalidArgumentException
  */
-function to_lroute(string $name): RedirectResponse {
-	return to_route($name, ['locale' => app()->getLocale()]);
+function to_lroute(string $name, array $parameters = []): RedirectResponse {
+	return to_route($name, ['locale' => app()->getLocale(), ...$parameters]);
 }

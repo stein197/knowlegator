@@ -47,9 +47,8 @@ final readonly class Form {
 		$rules = [];
 		foreach ($this->fields as $f) {
 			$value = $request->input($f->name);
-			if ($value === null)
-				continue;
-			$f->value = $value;
+			if ($value !== null)
+				$f->value = $value;
 			if ($f->validate !== null)
 				$rules[$f->name] = $f->validate;
 		}

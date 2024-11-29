@@ -1,5 +1,4 @@
 <?php
-// TODO: Replace the path_* functions with stein197/path
 namespace App;
 
 use function array_filter;
@@ -7,7 +6,7 @@ use function explode;
 use function sizeof;
 
 /**
- * Return array entries.
+ * Return array entries. Opposite of `array_from_entries()`.
  * @param array $array Array to return entries from.
  * @return array Array of entries, the first element is key, the second is value.
  * ```php
@@ -18,6 +17,21 @@ function array_entries(array $array): array {
 	$result = [];
 	foreach ($array as $k => $v)
 		$result[] = [$k, $v];
+	return $result;
+}
+
+/**
+ * Create an array from entries. Opposite of `array_entries()`.
+ * @param array $entries Entries to create an array from.
+ * @return array Array with keys and values from the entries.
+ * ```php
+ * array_from_entries([['a', 1]]); // ['a' => 1]
+ * ```
+ */
+function array_from_entries(array $entries): array {
+	$result = [];
+	foreach ($entries as [$k, $v])
+		$result[$k] = $v;
 	return $result;
 }
 

@@ -3,7 +3,8 @@ namespace Tests\Util;
 
 use function App\{
 	array_entries,
-	array_get_last,
+    array_from_entries,
+    array_get_last,
     class_get_name,
     path_split
 };
@@ -17,6 +18,18 @@ describe('array_entries()', function (): void {
 	test('should return array entries', function (): void {
 		/** @var \Tests\TestCase $this */
 		$this->assertSame([['a', 1]], array_entries(['a' => 1]));
+	});
+});
+
+describe('array_from_entries()', function (): void {
+	test('should return an empty array when the array is empty', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertSame([], array_from_entries([]));
+	});
+
+	test('should return an array from entries', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertSame(['a' => 1], array_from_entries([['a', 1]]));
 	});
 });
 

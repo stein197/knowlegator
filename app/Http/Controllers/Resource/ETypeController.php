@@ -9,6 +9,7 @@ use Illuminate\View\View;
 
 class ETypeController extends ResourceController {
 
+	// TODO: Redirect to tags.edit on successfull save
 	public function store(): View {
 		$this->request->validate([
 			'name' => 'required|filled'
@@ -31,7 +32,7 @@ class ETypeController extends ResourceController {
 		$name = $this->request->post('name');
 		$etype->name = $name;
 		$result = $etype->save();
-		return back()->with('alert', [
+		return to_lroute('etypes.edit', ['etype' => $etype->id])->with('alert', [
 			'text' => $result ? __('message.etype.updated', ['name' => $name]) : __('message.etype.cannotUpdate', ['name' => $name]),
 			'type' => $result ? 'success' : 'danger'
 		]);

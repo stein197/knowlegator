@@ -11,6 +11,7 @@ use Illuminate\View\View;
 
 class TagController extends ResourceController {
 
+	// TODO: Redirect to tags.edit on successfull save
 	public function store(): View | RedirectResponse {
 		$this->request->validate([
 			'name' => ['required', 'filled', new TagNotExistsRule($this->request->user())]
@@ -43,12 +44,12 @@ class TagController extends ResourceController {
 		try {
 			$tag->name = $name;
 			$result = $tag->save();
-			return back()->with('alert', [
+			return to_lroute('tags.edit', ['tag' => $tag->id])->with('alert', [
 				'text' => $result ? __('message.tag.updated', ['tag' => $name]) : __('message.tag.cannotUpdate', ['tag' => $name]),
 				'type' => $result ? 'success' : 'danger'
 			]);
 		} catch (TagInvalidNameException $ex) {
-			return back()->withErrors([
+			return to_lroute('tags.edit', ['tag' => $tag->id])->withErrors([
 				'name' => match ($ex->getCode()) {
 					TagInvalidNameException::REASON_EMPTY => __('form.message.name.empty'),
 					TagInvalidNameException::REASON_INVALID => __('form.message.name.invalid', ['name' => $name])

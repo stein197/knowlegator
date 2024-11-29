@@ -228,7 +228,7 @@ describe('tags.update (PUT /{locale}/account/tag/{tag})', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::findByEmail('user-1@example.com');
 		$t = $u->findTagByName('tag-1');
-		$content = $this->actingAs($u)->put("/en/account/tags/{$t->id}", ['name' => 'tag-3'])->getContent();
+		$content = $this->actingAs($u)->followingRedirects()->put("/en/account/tags/{$t->id}", ['name' => 'tag-3'])->getContent();
 		$dom = $this->dom($content);
 		$dom->find('//p[contains(@class, "alert-success")]/span')->assertTextContent('Tag "tag-3" has been successfully updated');
 	});

@@ -24,13 +24,13 @@ class ETypeController extends ResourceController {
 	}
 
 	public function update(string $locale, string $id): RedirectResponse {
-		$tag = $this->tryFetchModel($id);
+		$etype = $this->tryFetchModel($id);
 		$this->request->validate([
 			'name' => 'required|filled'
 		]);
 		$name = $this->request->post('name');
-		$tag->name = $name;
-		$result = $tag->save();
+		$etype->name = $name;
+		$result = $etype->save();
 		return back()->with('alert', [
 			'text' => $result ? __('message.etype.updated', ['name' => $name]) : __('message.etype.cannotUpdate', ['name' => $name]),
 			'type' => $result ? 'success' : 'danger'

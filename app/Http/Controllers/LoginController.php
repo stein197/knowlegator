@@ -1,9 +1,15 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Enum\Http\Method;
 use InvalidArgumentException;
 use App\Enum\LoginAction;
+use App\Fields\CheckboxField;
+use App\Fields\EmailField;
+use App\Fields\PasswordField;
+use App\Form;
 use App\Models\User;
+use App\Records\ButtonRecord;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\RedirectResponse;
@@ -28,7 +34,8 @@ final class LoginController extends Controller {
 	 */
 	public function get(): View {
 		return view('page.login', [
-			'title' => 'Knowlegator'
+			'title' => 'Knowlegator',
+			'form' => static::getForm(LoginAction::Login)
 		]);
 	}
 
@@ -53,10 +60,12 @@ final class LoginController extends Controller {
 	}
 
 	private function login(Request $request): View | RedirectResponse {
-		$credentials = $request->validate([
-			'email' => 'required|filled|email',
-			'password' => 'required|filled'
-		]);
+		$form = self::getForm(LoginAction::Login);
+		$form->applyRequest($request);
+		$credentials = [
+			'email' => $form->field('email')->value,
+			'password' => $form->field('password')->value
+		];
 		$email = $credentials['email'];
 		$user = User::findByEmail($email);
 		if (!$user)
@@ -74,10 +83,12 @@ final class LoginController extends Controller {
 	}
 
 	private function register(Request $request): View {
-		$credentials = $request->validate([
-			'email' => 'required|filled|email|unique:users',
-			'password' => 'required|filled'
-		]);
+		$form = self::getForm(LoginAction::Register);
+		$form->applyRequest($request);
+		$credentials = [
+			'email' => $form->field('email')->value,
+			'password' => $form->field('password')->value
+		];
 		$user = new User($credentials);
 		$email = $credentials['email'];
 		$result = $user->save();
@@ -87,5 +98,45 @@ final class LoginController extends Controller {
 			'message' => $message,
 			'type' => $result ? 'success' : 'danger'
 		]);
+	}
+
+	protected static function getForm(LoginAction $action): Form {
+		return new Form(
+			action: lroute('login'),
+			method: Method::POST,
+			title: __('page.login.title'),
+			fields: [
+				new EmailField(
+					label: __('form.field.email'),
+					name: 'email',
+					required: true,
+					validate: $action === LoginAction::Login ? 'required|filled|email' : 'required|filled|email|unique:users'
+				),
+				new PasswordField(
+					label: __('form.field.password'),
+					name: 'password',
+					required: true,
+					validate: 'required|filled'
+				),
+				new CheckboxField(
+					label: __('form.field.remember'),
+					name: 'remember'
+				)
+			],
+			buttons: [
+				new ButtonRecord(
+					label: __('form.button.login'),
+					type: 'primary',
+					name: 'action',
+					value: 'login'
+				),
+				new ButtonRecord(
+					label: __('form.button.register'),
+					type: 'success',
+					name: 'action',
+					value: 'register'
+				)
+			],
+		);
 	}
 }

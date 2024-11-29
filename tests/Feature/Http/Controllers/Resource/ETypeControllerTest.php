@@ -30,11 +30,11 @@ describe('etypes.index (GET /{locale}/account/etypes)', function (): void {
 		$content = $this->actingAs($u)->get('/en/account/etypes')->getContent();
 		$dom = $this->dom($content);
 		$dom->assertNotExists('//section//p[contains(@class, "alert")]');
-		$badges = $dom->find('//section//a[contains(@class, "list-group-item")]');
-		$badges->assertTextContent('Etype 1');
-		$badges->assertTextContent('Etype 2');
-		$badges->assertLinkExists('/en/account/etypes/' . $u->etypes[0]->id);
-		$badges->assertLinkExists('/en/account/etypes/' . $u->etypes[1]->id);
+		$list = $dom->find('//section//li[contains(@class, "list-group-item")]/a');
+		$list->assertTextContent('Etype 1');
+		$list->assertTextContent('Etype 2');
+		$list->assertLinkExists('/en/account/etypes/' . $u->etypes[0]->id);
+		$list->assertLinkExists('/en/account/etypes/' . $u->etypes[1]->id);
 	});
 
 	test('should show link to create page', function (): void {

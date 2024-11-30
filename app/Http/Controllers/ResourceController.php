@@ -1,6 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Enum\Http\Method;
+use App\Fields\StringField;
+use App\Form;
 use App\Model;
 use App\Models\User;
 use App\Records\ButtonRecord;
@@ -12,6 +15,7 @@ use ReflectionClass;
 use function array_map;
 use function explode;
 use function is_string;
+use function join;
 use function preg_replace;
 use function strtolower;
 
@@ -54,14 +58,7 @@ abstract class ResourceController extends Controller {
 		$tName = static::getModelTypeName(true);
 		return $this->view('create', [
 			'title' => __("resource.{$tName}.create.title"),
-			'action' => $this->getActionUrl('store'),
-			'fields' => static::fields(null),
-			'buttons' => [
-				new ButtonRecord(
-					label: __('action.save'),
-					type: 'success'
-				)
-			]
+			'form' => $this->form(Method::POST, null)
 		]);
 	}
 
@@ -69,22 +66,10 @@ abstract class ResourceController extends Controller {
 		$model = $this->tryFetchModel($id);
 		$tName = static::getModelTypeName(true);
 		return $this->view('edit', [
-			'title' => __("resource.{$tName}.index.title") . ' / ' . __('action.edit') . ' / ' . $model->name,
+			'title' => join(' / ', [__("resource.{$tName}.index.title"), __('action.edit'), $model->name]),
 			'model' => $model,
-			'action' => $this->getActionUrl('update', [$tName => $model->id]),
-			'fields' => static::fields($model),
 			'alert' => $this->request->session()->get('alert'),
-			'actions' => [
-				new ButtonRecord(
-					label: __('action.cancel'),
-					type: 'warning',
-					url: $this->getActionUrl('show', [$tName => $model->id])
-				),
-				new ButtonRecord(
-					label: __('action.save'),
-					type: 'success'
-				)
-			],
+			'form' => $this->form(Method::PUT, $model)
 		]);
 	}
 
@@ -115,10 +100,19 @@ abstract class ResourceController extends Controller {
 		$model = $this->tryFetchModel($id);
 		$tName = static::getModelTypeName(true);
 		return $this->view('delete', [
-			'title' => __("resource.{$tName}.index.title") . ' / ' . __('action.delete') . ' / ' . $model->name,
+			'title' => join(' / ', [__("resource.{$tName}.index.title"), __('action.delete'), $model->name]),
 			'model' => $model,
 			'message' => __("resource.{$tName}.delete.confirmation", ['name' => $model->name]),
-			'action' => $this->getActionUrl('destroy', [$tName => $model->id]),
+			'form' => new Form(
+				action: $this->getActionUrl('destroy', [$tName => $model->id]),
+				method: Method::DELETE,
+				buttons: [
+					new ButtonRecord(
+						label: __('action.delete'),
+						type: 'danger'
+					)
+				]
+			)
 		]);
 	}
 
@@ -147,17 +141,35 @@ abstract class ResourceController extends Controller {
 		return lroute($model . '.' . $action, $parameters);
 	}
 
-	/**
-	 * @param ?Model $model
-	 * @return FormFieldRecord[]
-	 */
-	private static function fields(?Model $model): array {
-		return array_map(
-			fn (string $key) => new FormFieldRecord(
-				name: $key,
-				value: $model?->{$key}
+	private function form(Method $method, ?Model $model): Form {
+		$tName = static::getModelTypeName(true);
+		return new Form(
+			action: $this->getActionUrl($method === Method::PUT ? 'update' : 'store', [$tName => $model?->id]),
+			method: $method,
+			fields: array_map(
+				fn (string $key) => new StringField(
+					label: $key,
+					name: $key,
+					value: $model?->{$key}
+				),
+				static::getModelClass()::getPublicAttributes()
 			),
-			static::getModelClass()::getPublicAttributes()
+			buttons: $method === Method::PUT ? [
+				new ButtonRecord(
+					label: __('action.cancel'),
+					type: 'warning',
+					url: $this->getActionUrl('show', [$tName => $model->id])
+				),
+				new ButtonRecord(
+					label: __('action.save'),
+					type: 'success'
+				)
+			] : [
+				new ButtonRecord(
+					label: __('action.save'),
+					type: 'success'
+				)
+			]
 		);
 	}
 

@@ -7,7 +7,7 @@ return new class extends Migration {
 
 	public function up(): void {
 		Schema::table('etypes', function (Blueprint $table): void {
-			$table->text('description')->nullable(true);
+			$table->text('description')->nullable(true)->after('name');
 		});
 	}
 

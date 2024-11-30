@@ -10,7 +10,6 @@
 	"page.settings.delete.confirmation": "Sind Sie sicher, dass Sie das Konto entfernen möchten?",
 	"page.settings.delete.consequences": "Diese Aktion kann nicht abgebrochen werden",
 	"page.fields.title": "Felder",
-	"page.fields.desc": "Hier ist eine schreibgeschützte Liste der im System festgelegten Feldertypen, die in den Entitätstypen nutzt werden können, um Strukturen der Entitätstypen zu definieren",
 
 	"resource.entity.index.title": "Entitäten",
 	"resource.etype.index.title": "Entitätstypen",

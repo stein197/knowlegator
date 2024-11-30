@@ -28,7 +28,7 @@ abstract class Field {
 		return view("field.{$tName}", ['f' => $this]);
 	}
 
-	private static function getTypeName(): string {
+	public static function getTypeName(): string {
 		$classname = class_get_name(static::class);
 		return preg_replace('/field$/', '', strtolower($classname));
 	}

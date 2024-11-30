@@ -9,7 +9,7 @@ use function strtolower;
 final class MakeField extends AbstractSourceMaker {
 
 	protected $signature = 'app:make:field {field}';
-	protected $description = 'Create a field';
+	protected $description = 'Create a field and a view for it';
 
 	public function handle(): int {
 		$name = $this->argument('field');

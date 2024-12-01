@@ -165,6 +165,11 @@ abstract class ResourceController extends Controller {
 				)
 			] : [
 				new ButtonRecord(
+					label: __('action.cancel'),
+					type: 'warning',
+					url: $this->getActionUrl('index')
+				),
+				new ButtonRecord(
 					label: __('action.save'),
 					type: 'success'
 				)

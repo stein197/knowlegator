@@ -25,6 +25,10 @@ body {
 		transform: scale(.95);
 	}
 }
+
+.form-floating > textarea.form-control {
+	height: auto;
+}
 /* #endregion */
 
 /* #region util */

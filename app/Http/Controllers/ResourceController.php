@@ -80,14 +80,16 @@ abstract class ResourceController extends Controller {
 			'model' => $model,
 			'buttons' => [
 				new ButtonRecord(
+					label: __('back'),
+					url: $this->getActionUrl('index')
+				),
+				new ButtonRecord(
 					label: __('action.edit'),
-					type: 'primary',
 					icon: 'pen-fill',
 					url: $this->getActionUrl('edit', [$tName => $model->id])
 				),
 				new ButtonRecord(
 					label: __('action.delete'),
-					type: 'danger',
 					icon: 'trash-fill',
 					url: $this->getActionUrl('delete', [$tName => $model->id])
 				)

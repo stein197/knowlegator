@@ -16,4 +16,15 @@ describe('*.show (GET /{locale}/account/*/{id})', function (): void {
 		$table->find('//tr/td')->assertTextContent('name');
 		$table->find('//tr/td')->assertTextContent('tag-1');
 	});
+
+	test('should show action buttons', function (): void {
+		$u = User::findByEmail('user-1@example.com');
+		$t = $u->tags[0];
+		$dom = $this->dom($this->actingAs($u)->get("/en/account/tags/{$t->id}")->getContent());
+		$dom->assertExists("//a[@href = \"/en/account/tags\"]");
+		$dom->assertExists("//a[@href = \"/en/account/tags/{$t->id}/edit\"]");
+		$dom->assertExists("//a[@href = \"/en/account/tags/{$t->id}/delete\"]");
+	});
+});
+
 });

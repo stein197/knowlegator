@@ -13,7 +13,7 @@ final class MakeField extends AbstractSourceMaker {
 
 	public function handle(): int {
 		$name = $this->argument('field');
-		$result = $this->tryCreate("Fields/{$name}Field.php", <<<PHP
+		$result = $this->tryCreate("app/Fields/{$name}Field.php", <<<PHP
 		<?php
 		namespace App\Fields;
 

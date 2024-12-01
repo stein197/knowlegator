@@ -10,7 +10,7 @@ class MakeRecord extends AbstractSourceMaker {
 
 	public function handle(): int {
 		$record = $this->argument('record');
-		return $this->tryCreate("Records/{$record}Record.php", <<<PHP
+		return $this->tryCreate("app/Records/{$record}Record.php", <<<PHP
 		<?php
 		namespace App\Records;
 

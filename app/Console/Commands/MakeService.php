@@ -10,7 +10,7 @@ final class MakeService extends AbstractSourceMaker {
 
 	public function handle(): int {
 		$service = $this->argument('service');
-		return $this->tryCreate("Services/{$service}Service.php", <<<PHP
+		return $this->tryCreate("app/Services/{$service}Service.php", <<<PHP
 		<?php
 		namespace App\Services;
 

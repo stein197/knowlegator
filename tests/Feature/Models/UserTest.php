@@ -187,6 +187,13 @@ describe('findEtypesByQuery()', function (): void {
 		$result = [...User::findByEmail('user-1@example.com')->findEtypesByQuery('unknown')];
 		$this->assertEmpty($result);
 	});
+
+	test('should find by description', function (): void {
+		/** @var \Tests\TestCase $this */
+		$result = [...User::findByEmail('user-1@example.com')->findEtypesByQuery('desc')];
+		$this->assertSame(1, sizeof($result));
+		$this->assertSame('Etype 2', $result[0]->name);
+	});
 });
 
 describe('static findByEmail()', function (): void {

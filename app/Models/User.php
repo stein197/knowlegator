@@ -114,7 +114,7 @@ class User extends Authenticatable {
 	 * ```
 	 */
 	public function findEtypesByQuery(string $q): Collection {
-		return $q ? $this->etypes->filter(fn (EType $etype): bool => stripos($etype->name, $q) !== false) : $this->etypes;
+		return $q ? $this->etypes->filter(fn (EType $etype): bool => stripos($etype->name, $q) !== false || stripos($etype->description, $q) !== false) : $this->etypes;
 	}
 
 	/**

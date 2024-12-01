@@ -175,7 +175,7 @@ describe('findEtypesByQuery()', function (): void {
 		$this->assertSame('Etype 1', $result[0]->name);
 	});
 
-	test('should return matching tags when the case doesn\'t match', function (): void {
+	test('should return matching etypes when the case doesn\'t match', function (): void {
 		/** @var \Tests\TestCase $this */
 		$result = [...User::findByEmail('user-1@example.com')->findEtypesByQuery('etype 1')];
 		$this->assertSame(1, sizeof($result));

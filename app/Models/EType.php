@@ -17,6 +17,7 @@ class EType extends Model {
 	protected $table = 'etypes';
 	protected $fillable = [
 		'name',
+		'description',
 		'user_id'
 	];
 }

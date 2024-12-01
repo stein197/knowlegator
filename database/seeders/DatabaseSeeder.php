@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder {
 		]);
 		EType::factory()->createMany([
 			['name' => 'Etype 1', 'user_id' => $u1->id],
-			['name' => 'Etype 2', 'user_id' => $u1->id],
+			['name' => 'Etype 2', 'description' => 'Etype 2 description', 'user_id' => $u1->id],
 			['name' => 'Etype 3', 'user_id' => $u2->id],
-			['name' => 'Etype 4', 'user_id' => $u2->id],
+			['name' => 'Etype 4', 'description' => 'Etype 4 description', 'user_id' => $u2->id],
 		]);
 	}
 }

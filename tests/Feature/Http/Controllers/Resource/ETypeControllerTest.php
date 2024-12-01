@@ -30,11 +30,12 @@ describe('etypes.index (GET /{locale}/account/etypes)', function (): void {
 		$content = $this->actingAs($u)->get('/en/account/etypes')->getContent();
 		$dom = $this->dom($content);
 		$dom->assertNotExists('//section//p[contains(@class, "alert")]');
-		$list = $dom->find('//section//li[contains(@class, "list-group-item")]/a');
-		$list->assertTextContent('Etype 1');
-		$list->assertTextContent('Etype 2');
-		$list->assertLinkExists('/en/account/etypes/' . $u->etypes[0]->id);
-		$list->assertLinkExists('/en/account/etypes/' . $u->etypes[1]->id);
+		$section = $dom->find('//section//*');
+		$section->assertTextContent('Etype 1');
+		$section->assertTextContent('Etype 2');
+		$section->assertTextContent('Etype 2 description');
+		$section->assertLinkExists('/en/account/etypes/' . $u->etypes[0]->id);
+		$section->assertLinkExists('/en/account/etypes/' . $u->etypes[1]->id);
 	});
 
 	test('should show link to create page', function (): void {
@@ -107,7 +108,10 @@ describe('etypes.index (GET /{locale}/account/etypes)', function (): void {
 
 		test('should search by description', function (): void {
 			/** @var \Tests\TestCase $this */
-
+			$u = User::findByEmail('user-1@example.com');
+			$dom = $this->dom($this->actingAs($u)->get('/en/account/etypes?q=desc')->getContent());
+			$dom->find('//section//*')->assertTextContent('Etype 2 description');
+			$dom->assertLinkExists("/en/account/etypes/{$u->etypes[1]->id}");
 		});
 	});
 });

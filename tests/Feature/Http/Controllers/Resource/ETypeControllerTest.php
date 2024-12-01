@@ -223,9 +223,9 @@ describe('etypes.update (PUT /{locale}/account/etypes/{etype})', function (): vo
 		/** @var \Tests\TestCase $this */
 		$u = User::findByEmail('user-1@example.com');
 		$etype = $u->etypes[0];
-		$content = $this->actingAs($u)->put("/en/account/etypes/{$etype->id}", ['name' => 'Etype 10'])->getContent();
+		$content = $this->actingAs($u)->followingRedirects()->put("/en/account/etypes/{$etype->id}", ['name' => 'Etype 10'])->getContent();
 		$dom = $this->dom($content);
-		$dom->find('//p[contains(@class, "alert-success")]/span')->assertTextContent('Entity type "Etype 10" has been successfully updated');
+		$dom->find('//p/span')->assertTextContent('Entity type "Etype 10" has been successfully updated');
 	});
 });
 

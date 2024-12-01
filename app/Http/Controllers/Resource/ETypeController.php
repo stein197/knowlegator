@@ -32,7 +32,7 @@ class ETypeController extends ResourceController {
 		]);
 		$name = $this->request->post('name');
 		$etype->name = $name;
-		$etype->description = $input['description'];
+		$etype->description = @$input['description'];
 		$result = $etype->save();
 		return to_lroute('etypes.edit', ['etype' => $etype->id])->with('alert', [
 			'text' => $result ? __('message.etype.updated', ['name' => $name]) : __('message.etype.cannotUpdate', ['name' => $name]),

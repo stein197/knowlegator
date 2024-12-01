@@ -1,6 +1,8 @@
 <?php
 namespace App\Models;
 
+use App\Fields\StringField;
+use App\Fields\TextareaField;
 use App\Model;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -20,4 +22,11 @@ class EType extends Model {
 		'description',
 		'user_id'
 	];
+
+	public static function getPublicAttributes(): array {
+		return [
+			'name' => StringField::class,
+			'description' => TextareaField::class
+		];
+	}
 }

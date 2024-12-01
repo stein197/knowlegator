@@ -2,16 +2,15 @@
 namespace App\Http\Controllers;
 
 use App\Enum\Http\Method;
-use App\Fields\StringField;
 use App\Form;
 use App\Model;
 use App\Models\User;
 use App\Records\ButtonRecord;
-use App\Records\FormFieldRecord;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use ReflectionClass;
+use function App\array_entries;
 use function array_map;
 use function explode;
 use function is_string;
@@ -147,12 +146,12 @@ abstract class ResourceController extends Controller {
 			action: $this->getActionUrl($method === Method::PUT ? 'update' : 'store', [$tName => $model?->id]),
 			method: $method,
 			fields: array_map(
-				fn (string $key) => new StringField(
-					label: $key,
-					name: $key,
-					value: $model?->{$key}
+				fn (array $entry) => new $entry[1](
+					label: $entry[0],
+					name: $entry[0],
+					value: $model?->{$entry[0]}
 				),
-				static::getModelClass()::getPublicAttributes()
+				array_entries(static::getModelClass()::getPublicAttributes())
 			),
 			buttons: $method === Method::PUT ? [
 				new ButtonRecord(

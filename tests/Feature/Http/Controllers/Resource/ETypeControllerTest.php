@@ -104,6 +104,11 @@ describe('etypes.index (GET /{locale}/account/etypes)', function (): void {
 			$dom->assertLinkExists("/en/account/etypes/{$u->etypes[0]->id}");
 			$dom->assertLinkExists("/en/account/etypes/{$u->etypes[1]->id}");
 		});
+
+		test('should search by description', function (): void {
+			/** @var \Tests\TestCase $this */
+
+		});
 	});
 });
 
@@ -119,6 +124,7 @@ describe('etypes.create (GET /{locale}/account/etypes/create)', function (): voi
 		$dom = $this->dom($content);
 		$dom->assertExists('//form[@action = "/en/account/etypes"]');
 		$dom->assertExists('//form//input[@name = "name"]');
+		$dom->assertExists('//form//textarea[@name = "description"]');
 		$dom->assertExists('//form//button');
 	});
 });
@@ -126,7 +132,7 @@ describe('etypes.create (GET /{locale}/account/etypes/create)', function (): voi
 describe('etypes.store (POST /{locale}/account/etypes)', function (): void {
 	test('should show a success message when a etype is created', function (): void {
 		/** @var \Tests\TestCase $this */
-		$content = $this->actingAs(User::findByEmail('user-1@example.com'))->post('/en/account/etypes', ['name' => 'Etype'])->getContent();
+		$content = $this->actingAs(User::findByEmail('user-1@example.com'))->post('/en/account/etypes', ['name' => 'Etype', 'description' => 'Etype description'])->getContent();
 		$dom = $this->dom($content);
 		$dom->find('//p[contains(@class, "alert")]/span')->assertTextContent(__('message.etype.created', ['name' => 'Etype']));
 	});
@@ -195,6 +201,7 @@ describe('etypes.edit (GET /{locale}/account/etypes/{etype}/edit)', function ():
 		$form = $dom->find("//form[@action = \"/en/account/etypes/{$etype->id}\"]");
 		$form->assertExists('//input[@name = "_method" and @value="PUT"]');
 		$form->assertExists('//input[@name = "name"]');
+		$form->assertExists('//textarea[@name = "description"]');
 		$form->find("//a[@href = \"/en/account/etypes/{$etype->id}\"]")->assertTextContent('Cancel');
 		$form->find('//button')->assertTextContent('Save');
 	});
@@ -212,7 +219,7 @@ describe('etypes.update (PUT /{locale}/account/etypes/{etype})', function (): vo
 		/** @var \Tests\TestCase $this */
 		$u = User::findByEmail('user-1@example.com');
 		$etype = $u->etypes[0];
-		$content = $this->actingAs($u)->followingRedirects()->put("/en/account/etypes/{$etype->id}", ['name' => 'Etype 10'])->getContent();
+		$content = $this->actingAs($u)->put("/en/account/etypes/{$etype->id}", ['name' => 'Etype 10'])->getContent();
 		$dom = $this->dom($content);
 		$dom->find('//p[contains(@class, "alert-success")]/span')->assertTextContent('Entity type "Etype 10" has been successfully updated');
 	});

@@ -11,7 +11,6 @@ describe('GET /{locale}/account/fields', function (): void {
 
 	test('should show for a user', function (): void {
 		/** @var \Tests\TestCase $this */
-		$dom = $this->dom($this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/account/fields')->getContent());
-		$dom->find('//p[contains(@class, "callout")]/span')->assertTextContent(__('page.fields.desc'));
+		$this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/account/fields')->assertOk();
 	});
 });

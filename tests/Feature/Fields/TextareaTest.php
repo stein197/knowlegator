@@ -16,6 +16,6 @@ describe('view()', function (): void {
 		);
 		$dom = $this->dom($f->view()->render());
 		$dom->find('//label')->assertTextContent('Textarea');
-		$dom->assertExists('//textarea[@name = "textarea" and @value = "textarea value" and @readonly and @rows = "5"]');
+		$dom->assertExists('//textarea[@name = "textarea" and @value = "Textarea value" and @readonly and @rows = "5"]');
 	});
 });

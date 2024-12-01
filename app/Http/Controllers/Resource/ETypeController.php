@@ -11,11 +11,11 @@ class ETypeController extends ResourceController {
 
 	// TODO: Redirect to tags.edit on successfull save
 	public function store(): View {
-		$this->request->validate([
+		$input = $this->request->validate([
 			'name' => 'required|filled'
 		]);
 		$name = $this->request->post('name');
-		$etype = $this->request->user()->createEtype($name);
+		$etype = $this->request->user()->createEtype($input);
 		$result = $etype->save();
 		return view('page.message', [
 			'title' => __('resource.etype.create.title'),
@@ -26,11 +26,13 @@ class ETypeController extends ResourceController {
 
 	public function update(string $locale, string $id): RedirectResponse {
 		$etype = $this->tryFetchModel($id);
-		$this->request->validate([
-			'name' => 'required|filled'
+		$input = $this->request->validate([
+			'name' => 'required|filled',
+			'description' => ''
 		]);
 		$name = $this->request->post('name');
 		$etype->name = $name;
+		$etype->description = $input['description'];
 		$result = $etype->save();
 		return to_lroute('etypes.edit', ['etype' => $etype->id])->with('alert', [
 			'text' => $result ? __('message.etype.updated', ['name' => $name]) : __('message.etype.cannotUpdate', ['name' => $name]),

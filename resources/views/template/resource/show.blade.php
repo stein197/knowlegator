@@ -10,7 +10,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			@foreach ($model::getPublicAttributes() as $k)
+			@foreach ($model::getPublicAttributes() as $k => $Field)
 				<tr>
 					<td>{{ $k }}</td>
 					<td>{{ $model->{$k} }}</td>

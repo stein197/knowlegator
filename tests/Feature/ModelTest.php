@@ -1,6 +1,8 @@
 <?php
 namespace Tests\Feature;
 
+use App\Fields\StringField;
+use App\Fields\TextareaField;
 use App\Models\EType;
 use App\Models\Tag;
 use App\Models\User;
@@ -16,7 +18,7 @@ describe('getActionUrl()', function (): void {
 describe('static getPublicAttributes()', function (): void {
 	test('should work', function (): void {
 		/** @var \Tests\TestCase $this */
-		$this->assertSame(['name'], Tag::getPublicAttributes());
-		$this->assertSame(['name'], EType::getPublicAttributes());
+		$this->assertSame(['name' => StringField::class], Tag::getPublicAttributes());
+		$this->assertSame(['name' => StringField::class, 'description' => TextareaField::class], EType::getPublicAttributes());
 	});
 });

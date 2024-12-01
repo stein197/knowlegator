@@ -9,6 +9,6 @@
 		rows="{{ $f->params['rows'] }}"
 		@readonly($f->readonly)
 		@required($f->required)
-		></textarea>
+		>{{ $f->value }}</textarea>
 	<label>{{ $f->label }}</label>
 </div>

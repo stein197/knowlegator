@@ -1,5 +1,4 @@
 <?php
-
 use App\Http\Controllers\FieldListController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;

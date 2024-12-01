@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use App\Fields\StringField;
 use App\Models\User;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -50,11 +51,12 @@ abstract class Model extends EloquentModel {
 	}
 
 	/**
-	 * Return names of publicly available attributes that can be edited or be shown.
-	 * @return string[] Publicly available attributes.
+	 * Return names of publicly available attributes that can be edited or be shown. Key is a column name and value is
+	 * a field classname to be used.
+	 * @return array Publicly available attributes.
 	 */
 	public static function getPublicAttributes(): array {
-		return ['name'];
+		return ['name' => StringField::class];
 	}
 
 	private static function getModelTypeNames(): array {

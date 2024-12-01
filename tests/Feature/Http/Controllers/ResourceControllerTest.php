@@ -27,4 +27,12 @@ describe('*.show (GET /{locale}/account/*/{id})', function (): void {
 	});
 });
 
+describe('*.delete (GET /{locale}/account/*/{id}/delete)', function (): void {
+	test('should have cancel button', function (): void {
+		/** @var \Tests\TestCase $this */
+		$u = User::findByEmail('user-1@example.com');
+		$t = $u->tags[0];
+		$dom = $this->dom($this->actingAs($u)->get("/en/account/tags/{$t->id}/delete")->getContent());
+		$dom->assertExists("//form//a[@href = \"/en/account/tags/{$t->id}\"]");
+	});
 });

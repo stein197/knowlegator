@@ -109,6 +109,11 @@ abstract class ResourceController extends Controller {
 				method: Method::DELETE,
 				buttons: [
 					new ButtonRecord(
+						label: __('action.cancel'),
+						type: 'warning',
+						url: $this->getActionUrl('show', [$tName => $model->id])
+					),
+					new ButtonRecord(
 						label: __('action.delete'),
 						type: 'danger'
 					)

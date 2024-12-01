@@ -6,7 +6,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 uses(DatabaseTransactions::class);
 
-describe('*.show (GET /{locale}/account/*)', function (): void {
+describe('*.show (GET /{locale}/account/*/{id})', function (): void {
 	test('should show attributes table', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::findByEmail('user-1@example.com');

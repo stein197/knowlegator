@@ -12,7 +12,8 @@ class ETypeController extends ResourceController {
 	// TODO: Redirect to tags.edit on successfull save
 	public function store(): View {
 		$input = $this->request->validate([
-			'name' => 'required|filled'
+			'name' => 'required|filled',
+			'description' => ''
 		]);
 		$name = $this->request->post('name');
 		$etype = $this->request->user()->createEtype($input);

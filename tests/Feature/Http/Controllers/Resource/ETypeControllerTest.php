@@ -139,6 +139,8 @@ describe('etypes.store (POST /{locale}/account/etypes)', function (): void {
 		$content = $this->actingAs(User::findByEmail('user-1@example.com'))->post('/en/account/etypes', ['name' => 'Etype', 'description' => 'Etype description'])->getContent();
 		$dom = $this->dom($content);
 		$dom->find('//p[contains(@class, "alert")]/span')->assertTextContent(__('message.etype.created', ['name' => 'Etype']));
+		$dom = $this->dom($this->get('/en/account/etypes')->getContent());
+		$dom->find('//*')->assertTextContent('Etype description');
 	});
 
 	test('should show an error when the name is empty', function (): void {

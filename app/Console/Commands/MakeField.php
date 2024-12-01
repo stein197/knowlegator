@@ -24,6 +24,20 @@ final class MakeField extends AbstractSourceMaker {
 		PHP);
 		if ($result)
 			return $result;
-		return Artisan::call('make:view', ['name' => 'field.' . strtolower($name)]);
+		$result = $this->tryCreate("tests/Feature/Fields/{$name}FieldTest.php", <<<PHP
+		<?php
+		namespace Tests\Feature\Fields;
+
+		describe('view()', function (): void {
+			test('should work', function (): void {
+				/** @var \Tests\TestCase \$this */
+				// TODO
+			});
+		});
+
+		PHP);
+		if ($result)
+			return $result;
+		return Artisan::call('make:view', ['name' => 'field.' . strtolower($name)], $this->output);
 	}
 }

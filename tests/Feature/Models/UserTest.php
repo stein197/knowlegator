@@ -72,8 +72,9 @@ describe('createTag()', function (): void {
 describe('createEtype()', function (): void {
 	test('should create an etype', function (): void {
 		$u = User::findByEmail('user-1@example.com');
-		$etype = $u->createEtype('Entity 1');
-		$this->assertSame('Entity 1', $etype->name);
+		$etype = $u->createEtype(['name' => 'Etype', 'description' => 'Etype description']);
+		$this->assertSame('Etype', $etype->name);
+		$this->assertSame('Etype description', $etype->description);
 		$this->assertSame($u->id, $etype->user_id);
 	});
 });

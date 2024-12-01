@@ -53,14 +53,14 @@ class User extends Authenticatable {
 
 	/**
 	 * Create an etype that automatically linked to this user.
-	 * @param string $name Entity type name.
+	 * @param array $attributes Entity type attributes.
 	 * @return EType Freshly created etype.
 	 * ```php
 	 * $t = $u->createEtype('Entity type');
 	 * ```
 	 */
-	public function createEtype(string $name): EType {
-		return new EType(['name' => $name, 'user' => $this]);
+	public function createEtype(array $attributes): EType {
+		return new EType(['user' => $this, ...$attributes]);
 	}
 
 	/**

@@ -3,6 +3,7 @@
 - `server`: Run server in production mode on port 80
 - `server:dev`: Run server in development mode on port 80
 - `generate-keys`: Generate APP_KEY for production environment
+- `migrate:reseed`: Reset testing database and seed it with test data again
 
 ## Artisan commands
 The naming of the commands should follow the next rules:

@@ -1,6 +1,6 @@
 # Testing
 ## Execution
-1. If tests are run for the first time, initialize a test database and populate with data: `artisan migrate --env=testing --seed`
+1. If tests are run for the first time, initialize a test database and populate with data: `composer migrate:reseed`
 2. Run `artisan test`
 
 ## Structure

@@ -55,12 +55,14 @@
         ],
         "server": "@php artisan serve --port=80 --env=production",
         "server:dev": "@php artisan serve --port=80",
-        "generate-keys": "@php artisan key:generate --env=production"
+        "generate-keys": "@php artisan key:generate --env=production",
+        "migrate:reseed": "artisan migrate:reset --env=testing && artisan migrate --env=testing --seed"
     },
     "scripts-descriptions": {
         "server": "Run server in production mode on port 80",
         "server:dev": "Run server in development mode on port 80",
-        "generate-keys": "Generate APP_KEY for production environment"
+        "generate-keys": "Generate APP_KEY for production environment",
+        "migrate:reseed": "Reset testing database and seed it with test data again"
     },
     "extra": {
         "laravel": {

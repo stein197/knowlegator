@@ -1,6 +1,6 @@
 <section id="{{ $id }}" class="offcanvas offcanvas-start">
-	<div class="offcanvas-header shadow justify-content-between" data-bs-toggle="offcanvas" data-bs-target="{{ $target }}">
-		<bi class="bi-chevron-left"></bi>
+	<div class="offcanvas-header border-bottom justify-content-between" data-bs-toggle="offcanvas" data-bs-target="{{ $target }}">
+		<i class="bi-chevron-left"></i>
 		<span>{{ $header }}</span>
 	</div>
 	<div class="offcanvas-body">

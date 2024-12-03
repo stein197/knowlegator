@@ -44,7 +44,7 @@
 		<!-- /app-assets -->
 	</head>
 	<body class="d-flex flex-column">
-		<header class="position-sticky top-0">
+		<header class="position-sticky top-0 border-bottom">
 			<nav class="navbar navbar-expand-lg bg-body-tertiary">
 				<div class="container">
 					<a class="navbar-brand" href="/">Knowlegator</a>
@@ -108,7 +108,7 @@
 		</header>
 
 		<section id="menu-mobile" class="offcanvas offcanvas-start">
-			<div class="offcanvas-header shadow">
+			<div class="offcanvas-header border-bottom">
 				@auth
 					<em>{{ auth()->user()->email }}</em>
 				@endauth

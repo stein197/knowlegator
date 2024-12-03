@@ -7,11 +7,13 @@
 				<strong>{{ $title }}</strong>
 			</p>
 		@endif
-		<div class="vstack gap-3">
-			@foreach ($fields as $field)
-				{{ $field->view() }}
-			@endforeach
-		</div>
+		@if (!empty($fields))
+			<div class="vstack gap-3">
+				@foreach ($fields as $field)
+					{{ $field->view() }}
+				@endforeach
+			</div>
+		@endif
 		@if ($buttons)
 			<div class="hstack gap-3">
 				@foreach ($buttons as $i => $btn)

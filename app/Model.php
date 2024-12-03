@@ -2,36 +2,30 @@
 namespace App;
 
 use App\Fields\StringField;
-use App\Models\User;
 use Illuminate\Contracts\Container\BindingResolutionException;
-use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\MassAssignmentException;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Pluralizer;
 use InvalidArgumentException;
 use ReflectionClass;
 use function strtolower;
 
-/**
- * Base model class. Provices a convenient way to set `user_id` property.
- * @package App
- */
 abstract class Model extends EloquentModel {
 
+	/**
+	 * Create a new model.
+	 * @param array $attributes Attributes. Can contain instances of the `Model` class.
+	 * @return void
+	 * @throws MassAssignmentException
+	 */
 	public function __construct(array $attributes = []) {
-		if (@$attributes['user']) {
-			$attributes['user_id'] = $attributes['user']->id;
-			unset($attributes['user']);
+		foreach ($attributes as $k => $v) {
+			if (!$v instanceof EloquentModel)
+				continue;
+			$attributes["{$k}_id"] = $v->id;
+			unset($attributes[$k]);
 		}
 		parent::__construct($attributes);
-	}
-
-	final public function user(): Attribute {
-		return new Attribute(
-			get: fn (): User => User::find($this->user_id),
-			set: fn (User $u) => [
-				'user_id' => $u->id
-			]
-		);
 	}
 
 	/**

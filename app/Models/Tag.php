@@ -3,6 +3,7 @@ namespace App\Models;
 
 use App\Exceptions\TagInvalidNameException;
 use App\Model;
+use App\ModelAccessors\UserAccessor;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,6 +13,7 @@ class Tag extends Model {
 
 	use HasFactory;
 	use HasUuids;
+	use UserAccessor;
 
 	public const string NAME_REGEX = '/^[[:alnum:]_-]+$/';
 

@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Fields\StringField;
 use App\Fields\TextareaField;
 use App\Model;
+use App\ModelAccessors\UserAccessor;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -15,6 +16,7 @@ class EType extends Model {
 
 	use HasFactory;
 	use HasUuids;
+	use UserAccessor;
 
 	protected $table = 'etypes';
 	protected $fillable = [

@@ -32,6 +32,7 @@
 	"action.delete": "Löschen",
 	"action.cancel": "Abbrechen",
 	"action.save": "Speichern",
+	"action.back": "Zurück",
 
 	"menu.main.account": "Konto",
 	"menu.main.settings": "Einstellungen",
@@ -82,6 +83,5 @@
 	"rule.userTagNotExists": "Ein Tag mit dem Namen \":tag\" schon existiert",
 
 	"oops": "Hoppla",
-	"back": "Zurück",
 	"yes": "Ja"
 }

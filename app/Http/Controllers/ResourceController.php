@@ -80,7 +80,7 @@ abstract class ResourceController extends Controller {
 			'model' => $model,
 			'buttons' => [
 				new ButtonRecord(
-					label: __('back'),
+					label: __('action.back'),
 					url: $this->getActionUrl('index')
 				),
 				new ButtonRecord(

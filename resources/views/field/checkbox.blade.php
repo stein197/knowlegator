@@ -1,4 +1,4 @@
-<label class="form-label">
+<label class="form-label m-0">
 	<input
 		class="form-check-input"
 		type="checkbox"

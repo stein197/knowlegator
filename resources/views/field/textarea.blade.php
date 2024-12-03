@@ -1,4 +1,4 @@
-<div class="mb-3 form-floating">
+<div class="form-floating">
 	<textarea
 		@class([
 			'form-control',

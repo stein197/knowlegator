@@ -6,7 +6,6 @@ use App\Records\ButtonRecord;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use function array_map;
-use function sizeof;
 
 final readonly class Form {
 
@@ -32,8 +31,7 @@ final readonly class Form {
 			'method' => $this->method->name,
 			'fields' => $this->fields,
 			'buttons' => $this->buttons,
-			'title' => $this->title,
-			'colSize' => $this->buttons ? 12 / sizeof($this->buttons) : 0
+			'title' => $this->title
 		]);
 	}
 

@@ -23,6 +23,7 @@ final readonly class Form {
 		public array $fields = [],
 		public array $buttons = [],
 		public ?string $title = null,
+		public ?array $alert = null
 	) {}
 
 	public function view(): View {
@@ -31,7 +32,8 @@ final readonly class Form {
 			'method' => $this->method->name,
 			'fields' => $this->fields,
 			'buttons' => $this->buttons,
-			'title' => $this->title
+			'title' => $this->title,
+			'alert' => $this->alert
 		]);
 	}
 

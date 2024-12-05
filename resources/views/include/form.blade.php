@@ -7,6 +7,12 @@
 				<strong>{{ $title }}</strong>
 			</p>
 		@endif
+		@notnull ($alert)
+			<p class="alert alert-{{ $alert['type'] }} mb-0 alert-dismissible fade show">
+				<span>{{ $alert['message'] }}</span>
+				<button class="btn-close" data-bs-dismiss="alert"></button>
+			</p>
+		@endnotnull
 		@if (!empty($fields))
 			<div class="vstack gap-3">
 				@foreach ($fields as $field)

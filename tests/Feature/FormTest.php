@@ -68,6 +68,15 @@ describe('view()', function (): void {
 		]))->view()->render());
 		$dom->find('//button[contains(@class, "btn-primary") and @name = "NAME" and @value = "VALUE"]')->assertTextContent('Button label');
 	});
+
+	test('should render alert', function (): void {
+		/** @var \Tests\TestCase $this */
+		$dom = $this->dom((new Form(alert: [
+			'type' => 'success',
+			'message' => 'Alert message'
+		]))->view()->render());
+		$dom->find('//p[contains(@class, "alert-success")]//*')->assertTextContent('Alert message');
+	});
 });
 
 describe('field()', function (): void {

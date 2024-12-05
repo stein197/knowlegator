@@ -11,6 +11,6 @@
 		@required($f->required) />
 	<label>{{ $f->label }}</label>
 	@if (isset($errors) && $errors->has($f->name))
-		<p class="text-danger">{{ $errors->get($f->name)[0] }}</p>
+		<p class="text-danger mb-0">{{ $errors->get($f->name)[0] }}</p>
 	@endif
 </div>

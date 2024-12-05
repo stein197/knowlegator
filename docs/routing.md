@@ -1,5 +1,5 @@
 # Routing
-The routes only exist inside the root locale. Accessing to `/` and `/{locale}` redirects to main page. There is no trailing slash for routes.
+The routes only exist inside the root locale. Accessing to `/` and `/{locale}` redirects to the main page. There is no trailing slash for routes.
 - `/{locale}/login`: login page
 - `/{locale}/logout`: logout page
 - `/{locale}/settings`: user-related settings
@@ -10,6 +10,5 @@ The routes only exist inside the root locale. Accessing to `/` and `/{locale}` r
 	- `/etypes`: resource route - entity types
 	- `/tags`: resource route - tags
 
-In order to show routes in the menu, those routes should be named. The name should be compliant with [translations](/docs/localization.md) `page.{page}.title`. For example, there is a settings menu and in order to show the passwords page in the menu, one needs to:
-1. Name the corresponding menu with `settings.password`. The nesting level should be equal to 2.
-2. Define the correspoding translation with the key `page.password.theme.title`.
+## Route::extendedResource()
+A macro that works the same as `Route::resource($prefix, $Controller)` and adds an additional `<prefix>.delete` route.

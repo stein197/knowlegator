@@ -12,6 +12,18 @@ describe('GET /{locale}/settings/delete', function (): void {
 		$this->get('/en/settings/delete')->assertRedirect('/en/login');
 	});
 
+	test('should have cancel button', function (): void {
+		/** @var \Tests\TestCase $this */
+		$dom = $this->dom($this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/settings/delete')->getContent());
+		$dom->find('//form//a[@href = "/en/settings/password"]')->assertTextContent('Cancel');
+	});
+
+	test('should have only one submit button', function (): void {
+		/** @var \Tests\TestCase $this */
+		$dom = $this->dom($this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/settings/delete')->getContent());
+		$dom->find('//form[@action = "/en/settings/delete"]//button[not(@type = "button")]')->assertAmount(1);
+	});
+
 	test('should show page for users', function (): void {
 		/** @var \Tests\TestCase $this */
 		$content = $this->actingAs(User::findByEmail('user-1@example.com'))->get('/en/settings/delete')->getContent();

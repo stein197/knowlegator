@@ -28,7 +28,8 @@ class DeleteController extends Controller {
 				buttons: [
 					new ButtonRecord(
 						label: __('action.cancel'),
-						type: 'warning'
+						type: 'warning',
+						url: lroute('settings.password')
 					),
 					new ButtonRecord(
 						label: __('yes'),

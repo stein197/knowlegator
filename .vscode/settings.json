@@ -1,5 +1,6 @@
 {
 	"conventionalCommits.scopes": [
+		"alert",
 		"blade",
 		"bootstrap",
 		"component",

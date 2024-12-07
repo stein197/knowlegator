@@ -96,10 +96,13 @@ abstract class ResourceController extends Controller {
 		return $this->view('delete', [
 			'title' => join(' / ', [__("resource.{$tName}.index.title"), __('action.delete'), $model->name]),
 			'model' => $model,
-			'message' => __("resource.{$tName}.delete.confirmation", ['name' => $model->name]),
 			'form' => new Form(
 				action: $this->getActionUrl('destroy', [$tName => $model->id]),
 				method: Method::DELETE,
+				alert: [
+					'type' => 'danger',
+					'message' => __("resource.{$tName}.delete.confirmation", ['name' => $model->name])
+				],
 				buttons: [
 					new ButtonRecord(
 						label: __('action.cancel'),

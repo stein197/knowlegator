@@ -1,4 +1,4 @@
-<p @class(["my-3 alert alert-{$type}", $class, 'callout' => $callout, 'alert-dismissible fade show' => $dismissible])>
+<p @class(["alert alert-{$type}", $class, 'callout' => $callout, 'alert-dismissible fade show' => $dismissible])>
 	@if ($icon)
 		<i class="bi bi-{{ $icon }} color-inherit"></i>
 	@endif

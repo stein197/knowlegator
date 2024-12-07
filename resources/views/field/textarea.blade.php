@@ -2,7 +2,7 @@
 	<textarea
 		@class([
 			'form-control',
-			'border-danger bg-danger bg-opacity-10' => isset($errors) && $errors->has($f->name)
+			'is-invalid' => isset($errors) && $errors->has($f->name)
 		])
 		name="{{ $f->name }}"
 		value="{{ $f->value }}"
@@ -12,6 +12,6 @@
 		>{{ $f->value }}</textarea>
 	<label>{{ $f->label }}</label>
 	@if (isset($errors) && $errors->has($f->name))
-		<p class="text-danger mb-0">{{ $errors->get($f->name)[0] }}</p>
+		<p class="invalid-feedback mb-0">{{ $errors->get($f->name)[0] }}</p>
 	@endif
 </div>

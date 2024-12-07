@@ -1,4 +1,4 @@
-<form class="card shadow" action="{{ $action }}" method="{{ $method === 'GET' ? 'GET' : 'POST' }}" enctype="multipart/form-data">
+<form class="card shadow needs-validation" action="{{ $action }}" method="{{ $method === 'GET' ? 'GET' : 'POST' }}" enctype="multipart/form-data" novalidate>
 	@csrf
 	@method($method)
 	<div class="card-body vstack gap-3">

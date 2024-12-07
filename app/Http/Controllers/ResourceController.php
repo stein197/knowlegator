@@ -38,8 +38,9 @@ abstract class ResourceController extends Controller {
 			'action' => [
 				new ButtonRecord(
 					label: __("resource.{$tName}.create.title"),
-					type: 'primary',
-					url: $this->getActionUrl('create')
+					type: 'outline-secondary',
+					url: $this->getActionUrl('create'),
+					icon: 'plus-lg'
 				)
 			]
 		]);

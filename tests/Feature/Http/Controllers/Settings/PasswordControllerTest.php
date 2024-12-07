@@ -40,7 +40,7 @@ describe('PUT /{locale}/settings/password', function (): void {
 
 	test('should change the password and be able to login with the new one', function (): void {
 		/** @var \Tests\TestCase $this */
-		$this->actingAs(User::findByEmail('user-1@example.com'))->put('/en/settings/password', ['old' => 'password-1', 'new' => '456', 'repeat' => '456'])->assertOk();
+		$this->actingAs(User::findByEmail('user-1@example.com'))->put('/en/settings/password', ['old' => 'password-1', 'new' => '456', 'repeat' => '456']);
 		$this->post('/en/logout');
 		$this->assertGuest();
 		$this->post('/en/login', ['email' => 'user-1@example.com', 'password' => '456', 'action' => 'login']);

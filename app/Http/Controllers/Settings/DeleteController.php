@@ -19,9 +19,8 @@ class DeleteController extends Controller {
 	}
 
 	public function delete(): RedirectResponse {
-		$user = auth()->user();
 		app(LogoutController::class)();
-		$user->forceDelete();
-		return to_lroute('login');
+		$this->user?->forceDelete();
+		return $this->redirect('login');
 	}
 }

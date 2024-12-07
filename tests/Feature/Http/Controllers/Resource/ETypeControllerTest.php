@@ -136,7 +136,7 @@ describe('etypes.create (GET /{locale}/account/etypes/create)', function (): voi
 describe('etypes.store (POST /{locale}/account/etypes)', function (): void {
 	test('should show a success message when a etype is created', function (): void {
 		/** @var \Tests\TestCase $this */
-		$content = $this->actingAs(User::findByEmail('user-1@example.com'))->post('/en/account/etypes', ['name' => 'Etype', 'description' => 'Etype description'])->getContent();
+		$content = $this->actingAs(User::findByEmail('user-1@example.com'))->followingRedirects()->post('/en/account/etypes', ['name' => 'Etype', 'description' => 'Etype description'])->getContent();
 		$dom = $this->dom($content);
 		$dom->find('//p[contains(@class, "alert")]/span')->assertTextContent(__('message.etype.created', ['name' => 'Etype']));
 		$dom = $this->dom($this->get('/en/account/etypes')->getContent());

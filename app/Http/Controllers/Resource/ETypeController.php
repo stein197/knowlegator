@@ -5,12 +5,10 @@ use App\Http\Controllers\ResourceController;
 use App\Model;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\View\View;
 
 class ETypeController extends ResourceController {
 
-	// TODO: Redirect to tags.edit on successfull save
-	public function store(): View {
+	public function store(): RedirectResponse {
 		$input = $this->request->validate([
 			'name' => 'required|filled',
 			'description' => ''
@@ -18,10 +16,12 @@ class ETypeController extends ResourceController {
 		$name = $this->request->post('name');
 		$etype = $this->request->user()->createEtype($input);
 		$result = $etype->save();
-		return view('page.message', [
-			'title' => __('resource.etype.create.title'),
-			'type' => $result ? 'success' : 'danger',
-			'message' => __($result ? 'message.etype.created' : 'message.etype.couldNotCreate', ['name' => $name])
+		return $result ? $this->redirect('etypes.edit', ['etype' => $etype->id])->with('alert', [
+			'type' => 'success',
+			'message' => __('message.etype.created', ['name' => $name])
+		]) : $this->redirect('etypes.create')->with('alert', [
+			'type' => 'danger',
+			'message' => __('message.etype.couldNotCreate', ['name' => $name])
 		]);
 	}
 
@@ -35,9 +35,9 @@ class ETypeController extends ResourceController {
 		$etype->name = $name;
 		$etype->description = @$input['description'];
 		$result = $etype->save();
-		return to_lroute('etypes.edit', ['etype' => $etype->id])->with('alert', [
-			'text' => $result ? __('message.etype.updated', ['name' => $name]) : __('message.etype.cannotUpdate', ['name' => $name]),
-			'type' => $result ? 'success' : 'danger'
+		return $this->redirect('etypes.edit', ['etype' => $etype->id])->with('alert', [
+			'type' => $result ? 'success' : 'danger',
+			'message' => $result ? __('message.etype.updated', ['name' => $name]) : __('message.etype.cannotUpdate', ['name' => $name])
 		]);
 	}
 

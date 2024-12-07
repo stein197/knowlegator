@@ -20,14 +20,6 @@ use function strtolower;
 
 abstract class ResourceController extends Controller {
 
-	protected readonly User $user;
-
-	public function __construct(
-		protected readonly Request $request
-	) {
-		$this->user = $request->user();
-	}
-
 	public function index(): View {
 		$q = $this->request->query('q');
 		$tName = static::getModelTypeName(true);
@@ -68,7 +60,7 @@ abstract class ResourceController extends Controller {
 			'title' => join(' / ', [__("resource.{$tName}.index.title"), __('action.edit'), $model->name]),
 			'model' => $model,
 			'alert' => $this->request->session()->get('alert'),
-			'form' => $this->form(Method::PUT, $model)
+			'form' => $this->form(Method::PUT, $model, )
 		]);
 	}
 
@@ -152,6 +144,7 @@ abstract class ResourceController extends Controller {
 		return new Form(
 			action: $this->getActionUrl($method === Method::PUT ? 'update' : 'store', [$tName => $model?->id]),
 			method: $method,
+			alert: session()->get('alert'),
 			fields: array_map(
 				fn (array $entry) => new $entry[1](
 					label: $entry[0],

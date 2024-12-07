@@ -69,20 +69,18 @@ final class LoginController extends Controller {
 		$email = $credentials['email'];
 		$user = User::findByEmail($email);
 		if (!$user)
-			return view('page.message', [
-				'title' => __('oops'),
+			return $this->redirect('login')->with('alert', [
+				'type' => 'danger',
 				'message' => __('message.user.doesNotExist', ['user' => $email]),
-				'type' => 'danger'
 			]);
 		$result = Auth::attempt($credentials, $request->has('remember'));
-		return $result ? to_lroute('account') : view('page.message', [
-			'title' => __('oops'),
+		return $result ? $this->redirect('account') : $this->redirect('login')->with('alert', [
 			'message' => __('message.user.cannotLogin', ['user' => $email]),
 			'type' => 'danger'
 		]);
 	}
 
-	private function register(Request $request): View {
+	private function register(Request $request): RedirectResponse {
 		$form = self::getForm(LoginAction::Register);
 		$form->applyRequest($request);
 		$credentials = [
@@ -93,8 +91,7 @@ final class LoginController extends Controller {
 		$email = $credentials['email'];
 		$result = $user->save();
 		$message = $result ? __('message.user.created', ['user' => $email]) : __('message.user.cannotCreate', ['user' => $email]);
-		return view('page.message', [
-			'title' => $message,
+		return $this->redirect('login')->with('alert', [
 			'message' => $message,
 			'type' => $result ? 'success' : 'danger'
 		]);
@@ -102,9 +99,10 @@ final class LoginController extends Controller {
 
 	protected static function getForm(LoginAction $action): Form {
 		return new Form(
+			title: __('page.login.title'),
+			alert: session()->get('alert'),
 			action: lroute('login'),
 			method: Method::POST,
-			title: __('page.login.title'),
 			fields: [
 				new EmailField(
 					label: __('form.field.email'),

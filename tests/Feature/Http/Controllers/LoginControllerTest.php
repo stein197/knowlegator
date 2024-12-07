@@ -9,7 +9,7 @@ uses(DatabaseTransactions::class);
 describe('Login (POST /{locale}/login)', function (): void {
 	test('should show an error message when the user does not exist', function (): void {
 		/** @var \Tests\TestCase $this */
-		$content = $this->post('/en/login', ['email' => 'unknown@user.com', 'password' => '1234', 'action' => 'login'])->getContent();
+		$content = $this->followingRedirects()->post('/en/login', ['email' => 'unknown@user.com', 'password' => '1234', 'action' => 'login'])->getContent();
 		$this->dom($content)->find('//p[contains(@class, "alert")]/span')->assertTextContent('User unknown@user.com does not exist');
 		$this->assertGuest();
 	});
@@ -17,7 +17,7 @@ describe('Login (POST /{locale}/login)', function (): void {
 	test('should show an error message when the password is not correct', function (): void {
 		/** @var \Tests\TestCase $this */
 		$u = User::findByEmail('user-1@example.com');
-		$content = $this->post('/en/login', ['email' => $u->email, 'password' => 'qwerty', 'action' => 'login'])->getContent();
+		$content = $this->followingRedirects()->post('/en/login', ['email' => $u->email, 'password' => 'qwerty', 'action' => 'login'])->getContent();
 		$this->assertGuest();
 		$this->dom($content)->find('//p[contains(@class, "alert")]/span')->assertTextContent("Cannot login as {$u->email}");
 	});
@@ -76,7 +76,7 @@ describe('Register (POST /{locale}/login)', function (): void {
 		/** @var \Tests\TestCase $this */
 		$email = 'new@user.com';
 		$password = '12345';
-		$content = $this->post('/en/login', ['email' => $email, 'password' => $password, 'action' => 'register'])->getContent();
+		$content = $this->followingRedirects()->post('/en/login', ['email' => $email, 'password' => $password, 'action' => 'register'])->getContent();
 		$this->dom($content)->find('//p[contains(@class, "alert")]/span')->assertTextContent('User new@user.com has been successfully created');
 	});
 });
@@ -102,7 +102,7 @@ test('should successfully login after a successfull registration', function (): 
 	/** @var \Tests\TestCase $this */
 	$email = 'new@user.com';
 	$password = '12345';
-	$content = $this->post('/en/login', ['email' => $email, 'password' => $password, 'action' => 'register'])->getContent();
+	$content = $this->followingRedirects()->post('/en/login', ['email' => $email, 'password' => $password, 'action' => 'register'])->getContent();
 	$this->dom($content)->find('//p[contains(@class, "alert")]/span')->assertTextContent('User new@user.com has been successfully created');
 	$response = $this->post('/en/login', ['email' => $email, 'password' => $password, 'action' => 'login']);
 	$this->assertAuthenticated();

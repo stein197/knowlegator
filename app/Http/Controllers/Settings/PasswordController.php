@@ -19,19 +19,17 @@ class PasswordController extends Controller {
 		]);
 	}
 
-	public function put(Request $request): View | RedirectResponse {
+	public function put(Request $request): RedirectResponse {
 		$form = self::form();
 		$form->applyRequest($request);
 		$input = $form->toArray();
 		if ($input['new'] !== $input['repeat'])
-			return back()->withErrors([
+			return $this->redirect('settings.password')->withErrors([
 				'repeat' => __('message.user.password.doesNotMatch')
 			]);
-		$user = auth()->user();
-		$user->password = $input['new'];
-		$result = $user->save();
-		return view('page.message', [
-			'title' => __('page.settings.password.title'),
+		$this->user->password = $input['new'];
+		$result = $this->user->save();
+		return $this->redirect('settings.password')->with('alert', [
 			'message' => __('message.user.password.' . ($result ? 'changed' : 'cannotChange')),
 			'type' => $result ? 'success' : 'danger'
 		]);
@@ -40,6 +38,7 @@ class PasswordController extends Controller {
 	private static function form(): Form {
 		return new Form(
 			action: lroute('settings.password'),
+			alert: session()->get('alert'),
 			method: Method::PUT,
 			fields: [
 				new PasswordField(

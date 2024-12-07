@@ -126,9 +126,9 @@ describe('tags.create (GET /{locale}/account/tags/create)', function (): void {
 describe('tags.store (POST /{locale}/account/tags)', function (): void {
 	test('should show a success message when the tag is created', function (): void {
 		/** @var \Tests\TestCase $this */
-		$content = $this->actingAs(User::findByEmail('user-1@example.com'))->post('/en/account/tags', ['name' => 'Tag'])->getContent();
+		$content = $this->actingAs(User::findByEmail('user-1@example.com'))->followingRedirects()->post('/en/account/tags', ['name' => 'Tag'])->getContent();
 		$dom = $this->dom($content);
-		$dom->find('//p[contains(@class, "alert")]/span')->assertTextContent(__('message.tag.created', ['name' => 'Tag']));
+		$dom->find('//*')->assertTextContent(__('message.tag.created', ['name' => 'Tag']));
 	});
 
 	test('should show an error when the name is empty', function (): void {

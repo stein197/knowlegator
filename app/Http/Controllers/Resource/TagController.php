@@ -11,22 +11,20 @@ use Illuminate\View\View;
 
 class TagController extends ResourceController {
 
-	// TODO: Redirect to tags.edit on successfull save
 	public function store(): View | RedirectResponse {
 		$this->request->validate([
-			'name' => ['required', 'filled', new TagNotExistsRule($this->request->user())]
+			'name' => ['required', 'filled', new TagNotExistsRule($this->user)]
 		]);
 		$name = $this->request->post('name', '');
 		try {
 			$tag = $this->request->user()->createTag($name);
 			$tag->save();
-			return view('page.message', [
-				'title' => __('resource.tag.create.title'),
+			return $this->redirect('tags.edit', ['tag' => $tag->id])->with('alert', [
 				'type' => 'success',
 				'message' => __('message.tag.created', ['name' => $name])
 			]);
 		} catch (TagInvalidNameException $ex) {
-			return back()->withErrors([
+			return $this->redirect('tags.create')->withErrors([
 				'name' => match ($ex->getCode()) {
 					TagInvalidNameException::REASON_EMPTY => __('form.message.name.empty'),
 					TagInvalidNameException::REASON_INVALID => __('form.message.name.invalid', ['name' => $name])
@@ -44,12 +42,12 @@ class TagController extends ResourceController {
 		try {
 			$tag->name = $name;
 			$result = $tag->save();
-			return to_lroute('tags.edit', ['tag' => $tag->id])->with('alert', [
-				'text' => $result ? __('message.tag.updated', ['tag' => $name]) : __('message.tag.cannotUpdate', ['tag' => $name]),
-				'type' => $result ? 'success' : 'danger'
+			return $this->redirect('tags.edit', ['tag' => $tag->id])->with('alert', [
+				'type' => $result ? 'success' : 'danger',
+				'message' => $result ? __('message.tag.updated', ['tag' => $name]) : __('message.tag.cannotUpdate', ['tag' => $name])
 			]);
 		} catch (TagInvalidNameException $ex) {
-			return to_lroute('tags.edit', ['tag' => $tag->id])->withErrors([
+			return $this->redirect('tags.edit', ['tag' => $tag->id])->withErrors([
 				'name' => match ($ex->getCode()) {
 					TagInvalidNameException::REASON_EMPTY => __('form.message.name.empty'),
 					TagInvalidNameException::REASON_INVALID => __('form.message.name.invalid', ['name' => $name])

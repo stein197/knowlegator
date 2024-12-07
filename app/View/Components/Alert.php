@@ -10,7 +10,8 @@ final class Alert extends Component {
 		private readonly string $type = '',
 		private readonly ?string $icon = null,
 		private readonly ?string $class = null,
-		private readonly bool $callout = false
+		private readonly bool $callout = false,
+		private readonly bool $dismissible = false
 	) {}
 
 	public function render(): View {
@@ -18,7 +19,8 @@ final class Alert extends Component {
 			'type' => $this->type,
 			'icon' => $this->icon,
 			'class' => $this->class,
-			'callout' => $this->callout
+			'callout' => $this->callout,
+			'dismissible' => $this->dismissible
 		]);
 	}
 }

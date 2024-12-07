@@ -35,3 +35,8 @@ test('should have the \'callout\' css-class when the \'callout\' parameter is pr
 	/** @var \Tests\TestCase */
 	$this->domComponent(Alert::class, ['callout' => true])->assertExists('//p[contains(@class, "callout")]');
 });
+
+test('should be dismissible when dismissible is true', function (): void {
+	/** @var \Tests\TestCase $this */
+	$this->domComponent(Alert::class, ['dismissible' => true])->assertExists('//p[contains(@class, "alert-dismissible")]//button[@data-bs-dismiss="alert"]');
+});

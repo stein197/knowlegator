@@ -4,11 +4,11 @@ namespace App\Http\Controllers;
 use App\Enum\Http\Method;
 use App\Form;
 use App\Model;
-use App\Models\User;
 use App\Records\ButtonRecord;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Pluralizer;
 use ReflectionClass;
 use function App\array_entries;
 use function array_map;
@@ -29,12 +29,12 @@ abstract class ResourceController extends Controller {
 		return $this->view('index', [
 			'title' => __("resource.{$tName}.index.title"),
 			'data' => $data,
+			'alert' => session()->get('alert'),
 			'search' => [
 				'action' => '/' . $this->request->path(),
 				'placeholder' => __("resource.{$tName}.index.search-placeholder"),
 				'value' => $q,
 			],
-			'alert' => $data->isEmpty() ? ($q === null ? __("resource.{$tName}.index.message.empty") : __("resource.{$tName}.index.message.emptySearchResult")) : null,
 			'action' => [
 				new ButtonRecord(
 					label: __("resource.{$tName}.create.title"),
@@ -114,14 +114,15 @@ abstract class ResourceController extends Controller {
 		]);
 	}
 
-	public function destroy(string $locale, string $id): View {
+	public function destroy(string $locale, string $id): RedirectResponse {
 		$model = $this->tryFetchModel($id);
 		$tName = static::getModelTypeName(true);
+		$routePrefix = Pluralizer::plural($tName);
 		$result = $model->forceDelete();
-		return view('page.message', [
-			'title' => __("resource.{$tName}.delete.title"),
+		return $this->redirect("{$routePrefix}.index")->with('alert', [
 			'message' => __($result ? "message.{$tName}.deleted" : "message.{$tName}.cannotDelete", ['name' => $model->name]),
-			'type' => $result ? 'success' : 'danger'
+			'type' => $result ? 'success' : 'danger',
+			'dismissible' => true
 		]);
 	}
 

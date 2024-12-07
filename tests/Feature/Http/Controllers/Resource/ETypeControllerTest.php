@@ -21,7 +21,7 @@ describe('etypes.index (GET /{locale}/account/etypes)', function (): void {
 		/** @var \Tests\TestCase $this */
 		$content = $this->actingAs(User::findByEmail('user-3@example.com'))->get('/en/account/etypes')->getContent();
 		$dom = $this->dom($content);
-		$dom->find('//section//p[contains(@class, "alert")]/span')->assertTextContent(__('resource.etype.index.message.empty'));
+		$dom->find('//section//p[contains(@class, "alert")]/span')->assertTextContent(__('resource.index.message.empty'));
 	});
 
 	test('should show list of etypes without message when there are etypes', function (): void {
@@ -92,7 +92,7 @@ describe('etypes.index (GET /{locale}/account/etypes)', function (): void {
 			/** @var \Tests\TestCase $this */
 			$u = User::findByEmail('user-1@example.com');
 			$dom = $this->dom($this->actingAs($u)->get('/en/account/etypes?q=unknown')->getContent());
-			$dom->find('//p[contains(@class, "alert-info")]/span')->assertTextContent('No entity types matching the query');
+			$dom->find('//p[contains(@class, "alert-info")]/span')->assertTextContent(__('resource.index.message.emptySearchResult'));
 			$dom->assertNotExists("//a[@href = \"/en/account/etypes/{$u->etypes[0]->id}\"]");
 			$dom->assertNotExists("//a[@href = \"/en/account/etypes/{$u->etypes[1]->id}\"]");
 		});
@@ -236,8 +236,9 @@ describe('etypes.destroy (DELETE /{locale}/account/etypes/{etype})', function ()
 		/** @var \Tests\TestCase $this */
 		$u = User::findByEmail('user-1@example.com');
 		$etype = $u->etypes[0];
-		$content = $this->actingAs($u)->delete("/en/account/etypes/{$etype->id}")->getContent();
-		$this->dom($content)->find('//p[contains(@class, "alert-success")]/span')->assertTextContent(__('message.etype.deleted', ['name' => $etype->name]));
+		$response = $this->actingAs($u)->followingRedirects()->delete("/en/account/etypes/{$etype->id}");
+		$dom = $this->dom($response->getContent());
+		$dom->find('//p[contains(@class, "alert-success")]//*')->assertTextContent(__('message.etype.deleted', ['name' => $etype->name]));
 		$this->assertFalse(auth()->user()->findEtypeById($etype->id)->exists);
 	});
 });

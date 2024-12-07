@@ -1,5 +1,4 @@
 <?php
-use App\Http\Controllers\FieldListController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\Resource\EntityController;
@@ -30,7 +29,6 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 				Route::extendedResource('entities', EntityController::class);
 				Route::extendedResource('etypes', ETypeController::class);
 				Route::extendedResource('tags', TagController::class);
-				Route::get('/fields', FieldListController::class)->name('fields');
 			});
 			Route::prefix('/settings')->group(function (): void {
 				Route::prefix('/password')->group(function (): void {

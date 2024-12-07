@@ -8,9 +8,11 @@
 			</p>
 		@endif
 		@notnull ($alert)
-			<p class="alert alert-{{ $alert['type'] }} mb-0 alert-dismissible fade show">
+			<p @class(["alert alert-{$alert['type']} mb-0", 'alert-dismissible fade show' => @$alert['dismissible']])>
 				<span>{{ $alert['message'] }}</span>
-				<button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+				@isset ($alert['dismissible'])
+					<button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+				@endisset
 			</p>
 		@endnotnull
 		@if (!empty($fields))

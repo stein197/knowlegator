@@ -10,6 +10,7 @@ use PHPUnit\Framework\GeneratorNotSupportedException;
 use function array_map;
 use function array_reduce;
 use function preg_match;
+use function sizeof;
 
 // TODO: assertLength()
 // TODO: assertNotTextContent()
@@ -24,7 +25,8 @@ final readonly class TestDOM {
 	public function __construct(
 		/** @var string[] */
 		private array $source,
-		private TestCase $testCase
+		private TestCase $testCase,
+		private ?string $xpath = null
 	) {
 		$nodes = [];
 		foreach ($source as $src) {
@@ -123,6 +125,20 @@ final readonly class TestDOM {
 	}
 
 	/**
+	 * Assert that the current XPath (called from `find()`) matches only the specified amount of elements.
+	 * @param int $amount Expected amount of elements.
+	 * @return void
+	 * @throws ExpectationFailedException
+	 * ```php
+	 * $this->find('//p')->assertAmount(2); // Assert that the "//p" matches only 2 times
+	 * ```
+	 */
+	public function assertAmount(int $amount): void {
+		$sizeof = sizeof($this->nodes);
+		$this->testCase->assertSame($amount, $sizeof, "Expected XPath {$this->xpath} to select {$amount} elements, actual elements: {$sizeof}");
+	}
+
+	/**
 	 * Find a set of elements by the given XPath.
 	 * @param string $xpath XPath to find elements by.
 	 * @return static
@@ -140,7 +156,8 @@ final readonly class TestDOM {
 				],
 				[]
 			),
-			$this->testCase
+			$this->testCase,
+			$xpath
 		);
 	}
 }

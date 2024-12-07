@@ -14,6 +14,8 @@ final class TestDOMTest extends TestCase {
 		$this->testDom = $this->dom(<<<'HTML'
 			<html lang="en" data-bs-theme="dark">
 				<head>
+					<meta />
+					<meta />
 					<title>Title</title>
 				</head>
 				<body>
@@ -99,5 +101,15 @@ final class TestDOMTest extends TestCase {
 
 	public function testAssertLinkExists(): void {
 		$this->testDom->assertLinkExists('/link-1');
+	}
+
+	public function testAssertAmountFailsWhenAmountDoesntMatch(): void {
+		$this->expectException(AssertionFailedError::class);
+		$this->expectExceptionMessage('Expected XPath //head/meta to select 1 elements, actual elements: 2');
+		$this->testDom->find('//head/meta')->assertAmount(1);
+	}
+
+	public function testAssertAmountPassesWhenAmountMatches(): void {
+		$this->testDom->find('//head/meta')->assertAmount(2);
 	}
 }

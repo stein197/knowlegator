@@ -7,7 +7,6 @@
 	"page.settings.title": "Настройки",
 	"page.settings.delete.title": "Удалить аккаунт",
 	"page.settings.password.title": "Изменить пароль",
-	"page.settings.delete.confirmation": "Вы уверены, что хотите удалить аккаунт?",
 	"page.settings.delete.consequences": "Это действие нельзя будет отменить",
 	"page.fields.title": "Поля",
 

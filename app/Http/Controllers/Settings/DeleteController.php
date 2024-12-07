@@ -1,8 +1,11 @@
 <?php
 namespace App\Http\Controllers\Settings;
 
+use App\Enum\Http\Method;
+use App\Form;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LogoutController;
+use App\Records\ButtonRecord;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -14,7 +17,25 @@ class DeleteController extends Controller {
 
 	public function get(): View {
 		return view('page.settings.delete', [
-			'title' => __('page.settings.delete.title')
+			'title' => __('page.settings.delete.title'),
+			'form' => new Form(
+				method: Method::DELETE,
+				action: lroute('settings.delete'),
+				alert: [
+					'type' => 'danger',
+					'message' => __('page.settings.delete.consequences')
+				],
+				buttons: [
+					new ButtonRecord(
+						label: __('action.cancel'),
+						type: 'warning'
+					),
+					new ButtonRecord(
+						label: __('yes'),
+						type: 'danger'
+					)
+				]
+			)
 		]);
 	}
 

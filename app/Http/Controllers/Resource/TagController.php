@@ -17,7 +17,7 @@ class TagController extends ResourceController {
 		]);
 		$name = $this->request->post('name', '');
 		try {
-			$tag = $this->request->user()->createTag($name);
+			$tag = $this->user->createTag($name);
 			$tag->save();
 			return $this->redirect('tags.edit', ['tag' => $tag->id])->with('alert', [
 				'type' => 'success',
@@ -36,7 +36,7 @@ class TagController extends ResourceController {
 	public function update(string $locale, string $id): View | RedirectResponse {
 		$tag = $this->tryFetchModel($id);
 		$this->request->validate([
-			'name' => ['required', 'filled', new TagNotExistsRule($this->request->user())]
+			'name' => ['required', 'filled', new TagNotExistsRule($this->user)]
 		]);
 		$name = $this->request->post('name');
 		try {

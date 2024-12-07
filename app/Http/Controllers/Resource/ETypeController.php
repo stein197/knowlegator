@@ -14,7 +14,7 @@ class ETypeController extends ResourceController {
 			'description' => ''
 		]);
 		$name = $this->request->post('name');
-		$etype = $this->request->user()->createEtype($input);
+		$etype = $this->user->createEtype($input);
 		$result = $etype->save();
 		return $result ? $this->redirect('etypes.edit', ['etype' => $etype->id])->with('alert', [
 			'type' => 'success',

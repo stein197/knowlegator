@@ -13,11 +13,11 @@ class Button extends Component {
 		private ?string $class = null,
 		private ?string $name = null,
 		private ?string $value = null,
-		private ?string $url = null,
+		private ?string $href = null,
 		private ?string $icon = null
 	) {}
 
-	public function render(): View {
+	public function render(array $parameters = []): View {
 		return view('components.button', [
 			'label' => $this->label,
 			'type' => $this->type,
@@ -25,8 +25,9 @@ class Button extends Component {
 			'class' => $this->class,
 			'name' => $this->name,
 			'value' => $this->value,
-			'url' => $this->url,
-			'icon' => $this->icon
+			'href' => $this->href,
+			'icon' => $this->icon,
+			...$parameters
 		]);
 	}
 }

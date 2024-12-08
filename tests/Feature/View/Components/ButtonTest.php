@@ -8,7 +8,7 @@ test('default', function (): void {
 	$this->domComponent(Button::class)->assertExists('//button[@type = "button" and contains(@class, "btn-primary")]');
 });
 
-test('<a /> when $url is privided', function (): void {
+test('<a /> when $href is privided', function (): void {
 	/** @var \Tests\TestCase $this */
 	$this->domComponent(Button::class, [
 		'label' => 'Button',
@@ -16,7 +16,7 @@ test('<a /> when $url is privided', function (): void {
 		'class' => 'custom-class',
 		'name' => 'key',
 		'value' => 'value',
-		'url' => '/en/login',
+		'href' => '/en/login',
 	])->find('//a[contains(@class, "btn-danger") and contains(@class, "custom-class") and @href = "/en/login"]')->assertTextContent('Button');
 	$this->domComponent(Button::class, [
 		'label' => 'Button',
@@ -24,12 +24,12 @@ test('<a /> when $url is privided', function (): void {
 		'class' => 'custom-class',
 		'name' => 'key',
 		'value' => 'value',
-		'url' => '/en/login',
+		'href' => '/en/login',
 		'icon' => 'plus'
 	])->assertExists('//a[contains(@class, "btn-danger") and contains(@class, "custom-class") and @href = "/en/login" and @data-bs-toggle = "tooltip" and @data-bs-title = "Button"]//i[@class = "bi bi-plus"]');
 });
 
-test('<button /> when $url is not provided', function (): void {
+test('<button /> when $href is not provided', function (): void {
 	/** @var \Tests\TestCase $this */
 	/** @var \Tests\TestCase $this */
 	$this->domComponent(Button::class, [

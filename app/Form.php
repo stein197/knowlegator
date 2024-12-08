@@ -2,7 +2,7 @@
 namespace App;
 
 use App\Enum\Http\Method;
-use App\Records\ButtonRecord;
+use App\View\Components\Button;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use function array_map;
@@ -13,7 +13,7 @@ final readonly class Form {
 	 * @param string $action
 	 * @param Method $method
 	 * @param Field[] $fields
-	 * @param ButtonRecord[] $buttons
+	 * @param Button[] $buttons
 	 * @param null|string $title
 	 * @return void
 	 */

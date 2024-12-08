@@ -9,7 +9,7 @@ use App\Fields\EmailField;
 use App\Fields\PasswordField;
 use App\Form;
 use App\Models\User;
-use App\Records\ButtonRecord;
+use App\View\Components\Button;
 use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\RedirectResponse;
@@ -122,15 +122,17 @@ final class LoginController extends Controller {
 				)
 			],
 			buttons: [
-				new ButtonRecord(
+				new Button(
 					label: __('form.button.login'),
-					type: 'primary',
+					variant: 'primary',
+					type: 'submit',
 					name: 'action',
 					value: 'login'
 				),
-				new ButtonRecord(
+				new Button(
 					label: __('form.button.register'),
-					type: 'success',
+					variant: 'success',
+					type: 'submit',
 					name: 'action',
 					value: 'register'
 				)

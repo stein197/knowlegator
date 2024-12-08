@@ -3,13 +3,14 @@ namespace App\View\Components;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use function App\classname;
 
 class Button extends Component {
 
 	public function __construct(
 		private ?string $label = null,
 		private string $type = 'button',
-		private string $variant = 'primary',
+		private ?string $variant = null,
 		private ?string $class = null,
 		private ?string $name = null,
 		private ?string $value = null,
@@ -22,12 +23,12 @@ class Button extends Component {
 			'label' => $this->label,
 			'type' => $this->type,
 			'variant' => $this->variant,
-			'class' => $this->class,
 			'name' => $this->name,
 			'value' => $this->value,
 			'href' => $this->href,
 			'icon' => $this->icon,
-			...$parameters
+			...$parameters,
+			'class' => classname('btn', ["btn-{$this->variant}" => $this->variant], $this->class, @$parameters['class'])
 		]);
 	}
 }

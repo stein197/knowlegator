@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Enum\Http\Method;
 use App\Form;
 use App\Model;
-use App\Records\ButtonRecord;
+use App\View\Components\Button;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
@@ -36,10 +36,10 @@ abstract class ResourceController extends Controller {
 				'value' => $q,
 			],
 			'action' => [
-				new ButtonRecord(
+				new Button(
 					label: __("resource.{$tName}.create.title"),
-					type: 'outline-secondary',
-					url: $this->getActionUrl('create'),
+					variant: 'outline-secondary',
+					href: $this->getActionUrl('create'),
 					icon: 'plus-lg'
 				)
 			]
@@ -72,19 +72,22 @@ abstract class ResourceController extends Controller {
 			'title' => __("resource.{$tName}.index.title") . ' / ' . $model->name,
 			'model' => $model,
 			'buttons' => [
-				new ButtonRecord(
+				new Button(
 					label: __('action.back'),
-					url: $this->getActionUrl('index')
+					variant: 'outline-secondary color-inherit',
+					href: $this->getActionUrl('index')
 				),
-				new ButtonRecord(
+				new Button(
 					label: __('action.edit'),
+					variant: 'outline-secondary color-inherit',
 					icon: 'pen-fill',
-					url: $this->getActionUrl('edit', [$tName => $model->id])
+					href: $this->getActionUrl('edit', [$tName => $model->id])
 				),
-				new ButtonRecord(
+				new Button(
 					label: __('action.delete'),
+					variant: 'outline-secondary color-inherit',
 					icon: 'trash-fill',
-					url: $this->getActionUrl('delete', [$tName => $model->id])
+					href: $this->getActionUrl('delete', [$tName => $model->id])
 				)
 			]
 		]);
@@ -104,14 +107,15 @@ abstract class ResourceController extends Controller {
 					'message' => __("resource.{$tName}.delete.confirmation", ['name' => $model->name])
 				],
 				buttons: [
-					new ButtonRecord(
+					new Button(
 						label: __('action.cancel'),
-						type: 'warning',
-						url: $this->getActionUrl('show', [$tName => $model->id])
+						variant: 'warning',
+						href: $this->getActionUrl('show', [$tName => $model->id])
 					),
-					new ButtonRecord(
+					new Button(
 						label: __('action.delete'),
-						type: 'danger'
+						variant: 'danger',
+						type: 'submit'
 					)
 				]
 			)
@@ -159,24 +163,26 @@ abstract class ResourceController extends Controller {
 				array_entries(static::getModelClass()::getPublicAttributes())
 			),
 			buttons: $method === Method::PUT ? [
-				new ButtonRecord(
+				new Button(
 					label: __('action.cancel'),
-					type: 'warning',
-					url: $this->getActionUrl('show', [$tName => $model->id])
+					variant: 'warning',
+					href: $this->getActionUrl('show', [$tName => $model->id])
 				),
-				new ButtonRecord(
+				new Button(
 					label: __('action.save'),
-					type: 'success'
+					variant: 'success',
+					type: 'submit'
 				)
 			] : [
-				new ButtonRecord(
+				new Button(
 					label: __('action.cancel'),
-					type: 'warning',
-					url: $this->getActionUrl('index')
+					variant: 'warning',
+					href: $this->getActionUrl('index')
 				),
-				new ButtonRecord(
+				new Button(
 					label: __('action.save'),
-					type: 'success'
+					variant: 'success',
+					type: 'submit'
 				)
 			]
 		);

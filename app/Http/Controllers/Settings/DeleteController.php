@@ -5,7 +5,7 @@ use App\Enum\Http\Method;
 use App\Form;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LogoutController;
-use App\Records\ButtonRecord;
+use App\View\Components\Button;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
@@ -26,14 +26,15 @@ class DeleteController extends Controller {
 					'message' => __('page.settings.delete.consequences')
 				],
 				buttons: [
-					new ButtonRecord(
+					new Button(
 						label: __('action.cancel'),
-						type: 'warning',
-						url: lroute('settings.password')
+						variant: 'warning',
+						href: lroute('settings.password')
 					),
-					new ButtonRecord(
+					new Button(
 						label: __('yes'),
-						type: 'danger'
+						variant: 'danger',
+						type: 'submit'
 					)
 				]
 			)

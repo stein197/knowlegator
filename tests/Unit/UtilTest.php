@@ -6,6 +6,7 @@ use function App\{
     array_from_entries,
     array_get_last,
     class_get_name,
+    classname,
     path_split
 };
 
@@ -56,6 +57,44 @@ describe('class_get_name()', function (): void {
 		$this->assertSame('App', class_get_name('App'));
 	});
 });
+
+describe('classname()', function (): void {
+	test('should return empty string when there are no arguments', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertSame('', classname());
+	});
+
+	test('should accept string varags', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertSame('a b c', classname('a', 'b', 'c'));
+	});
+
+	test('should accept null varags', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertSame('', classname(null, null));
+	});
+
+	test('should accept array varags', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertSame('a b c', classname(['a'], ['b', 'c']));
+	});
+
+	test('should accept array with nulls varags', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertSame('a b c', classname(['a', null], ['b', 'c']));
+	});
+
+	test('should accept map varags', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertSame('a c', classname(['a' => true, 'b' => false, 'c' => true]));
+	});
+
+	test('should accept string, array, map and nulls varargs', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertSame('a b c', classname('a', null, ['b', null], null, ['c' => true, 'd' => false]));
+	});
+});
+
 
 describe('path_split()', function (): void {
 	test('should return an empty array when the path is root', function (): void {

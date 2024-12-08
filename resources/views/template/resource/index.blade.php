@@ -14,13 +14,7 @@
 	@endif
 	<div class="mt-3">
 		@foreach ($action as $btn)
-			@if ($btn->icon)
-				<a class="btn btn-{{ $btn->type }}" href="{{ $btn->url }}" data-bs-toggle="tooltip" data-bs-title="{{ $btn->label }}">
-					<i class="bi bi-{{ $btn->icon }}"></i>
-				</a>
-			@else
-				<a class="btn btn-{{ $btn->type }}" href="{{ $btn->url }}">{{ $btn->label }}</a>
-			@endif
+			{{ $btn->render() }}
 		@endforeach
 	</div>
 @endsection

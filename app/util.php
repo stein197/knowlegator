@@ -3,6 +3,7 @@ namespace App;
 
 use function array_filter;
 use function explode;
+use function join;
 use function sizeof;
 
 /**
@@ -60,6 +61,30 @@ function class_get_name(string $fqcn): string {
 	return array_get_last($parts);
 }
 
+/**
+ * Take an array of strings and convert into an HTML classname.
+ * @param array|string|null ...$classname Classnames. Empty values are not considered.
+ * @return string CSS-class.
+ * ```php
+ * classname('a', null, 'b'); // 'a b'
+ * classname(['a', 'b']);     // 'a b'
+ * classname(['a' => true, 'b' => false, 'c', null], 'd', ['e']); // 'a c d e'
+ * ```
+ */
+function classname(array | string | null ...$classname): string {
+	$result = [];
+	foreach ($classname as $arg)
+		if (is_array($arg))
+			foreach ($arg as $k => $v) {
+				if (is_int($k) && $v)
+					$result[] = $v;
+				elseif ($v)
+					$result[] = $k;
+			}
+		elseif ($arg)
+			$result[] = $arg;
+	return join(' ', $result);
+}
 /**
  * Split path into an array of segments
  * @param string $path Path to split

@@ -40,8 +40,9 @@ abstract class Model extends EloquentModel {
 	 * ```
 	 */
 	final public function getActionUrl(string $action): string {
-		[$singular, $plural] = static::getModelTypeNames();
-		return lroute("{$plural}.{$action}", [$singular => $this->id]);
+		$tName = static::getTypeName();
+		$plural = Pluralizer::plural($tName);
+		return lroute("{$plural}.{$action}", [$tName => $this->id]);
 	}
 
 	/**
@@ -53,9 +54,16 @@ abstract class Model extends EloquentModel {
 		return ['name' => StringField::class];
 	}
 
-	private static function getModelTypeNames(): array {
+	/**
+	 * Return model type name in lowercase.
+	 * @return string Type name.
+	 * ```php
+	 * User::getTypeName(); // 'user'
+	 * Tag::getTypeName();  // 'tag'
+	 * ```
+	 */
+	final public static function getTypeName(): string {
 		$class = new ReflectionClass(static::class);
-		$name = strtolower($class->getShortName());
-		return [$name, Pluralizer::plural($name)];
+		return strtolower($class->getShortName());
 	}
 }

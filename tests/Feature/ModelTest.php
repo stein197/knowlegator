@@ -22,3 +22,11 @@ describe('static getPublicAttributes()', function (): void {
 		$this->assertSame(['name' => StringField::class, 'description' => TextareaField::class], EType::getPublicAttributes());
 	});
 });
+
+describe('static getTypeName()', function (): void {
+	test('should work', function (): void {
+		/** @var \Tests\TestCase $this */
+		$this->assertSame('tag', Tag::getTypeName());
+		$this->assertSame('etype', EType::getTypeName());
+	});
+});

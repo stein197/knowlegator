@@ -17,7 +17,7 @@ class TagController extends ResourceController {
 		]);
 		$name = $this->request->post('name', '');
 		try {
-			$tag = $this->user->createTag($name);
+			$tag = $this->user->createTag(['name' => $name]);
 			$tag->save();
 			return $this->redirect('tags.edit', ['tag' => $tag->id])->with('alert', [
 				'type' => 'success',

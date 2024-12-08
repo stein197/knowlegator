@@ -41,14 +41,14 @@ class User extends Authenticatable {
 
 	/**
 	 * Create a tag that automatically linked to this user.
-	 * @param string $name Tag name.
+	 * @param array $attributes Tag attributes.
 	 * @return Tag Freshly created tag.
 	 * ```php
-	 * $t = $u->createTag('tag-1');
+	 * $t = $u->createTag(['name' => 'tag-1']);
 	 * ```
 	 */
-	public function createTag(string $name): Tag {
-		return new Tag(['name' => $name, 'user' => $this]);
+	public function createTag(array $attributes): Tag {
+		return new Tag(['user' => $this, ...$attributes]);
 	}
 
 	/**

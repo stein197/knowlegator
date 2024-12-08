@@ -63,7 +63,7 @@ describe('etypes', function (): void {
 describe('createTag()', function (): void {
 	test('should create a tag', function (): void {
 		$u = User::findByEmail('user-1@example.com');
-		$t = $u->createTag('tag-3');
+		$t = $u->createTag(['name' => 'tag-3']);
 		$this->assertSame('tag-3', $t->name);
 		$this->assertSame($u->id, $t->user_id);
 	});

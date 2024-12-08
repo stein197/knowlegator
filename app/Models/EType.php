@@ -5,6 +5,7 @@ use App\Fields\StringField;
 use App\Fields\TextareaField;
 use App\Model;
 use App\ModelAccessors\UserAccessor;
+use App\Serializable;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -17,6 +18,7 @@ class EType extends Model {
 	use HasFactory;
 	use HasUuids;
 	use UserAccessor;
+	use Serializable;
 
 	protected $table = 'etypes';
 	protected $fillable = [
@@ -30,5 +32,16 @@ class EType extends Model {
 			'name' => StringField::class,
 			'description' => TextareaField::class
 		];
+	}
+
+	public static function export(User $u): array {
+		return array_map(
+			function (self $etype): array {
+				$attributes = $etype->toArray();
+				unset($attributes['user_id']);
+				return $attributes;
+			},
+			[...static::all()->where('user_id', $u->id)]
+		);
 	}
 }

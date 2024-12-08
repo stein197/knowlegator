@@ -21,7 +21,7 @@ final class ImportExportService {
 
 	public function import(string $data): void {} // TODO
 
-	public function export(User $u): string {
+	public function export(): string {
 		$result = [];
 		foreach (self::models() as $Model)
 			$result[$Model::getTypeName()] = $Model::export($this->user);

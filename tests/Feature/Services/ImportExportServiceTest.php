@@ -15,7 +15,7 @@ test('export()', function (): void {
 	/** @var \Tests\TestCase $this */
 	$u = User::findByEmail('user-1@example.com');
 	$ieService = $this->createApplication()->makeWith(ImportExportService::class, ['user' => $u]);
-	$actual = json_decode($ieService->export($u), true);
+	$actual = json_decode($ieService->export(), true);
 	$this->assertSame(2, sizeof($actual));
 	$this->assertSame(2, sizeof($actual['tag']));
 	$this->assertSame($u->tags[0]->id, $actual['tag'][0]['id']);

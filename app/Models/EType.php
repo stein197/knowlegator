@@ -33,15 +33,4 @@ class EType extends Model {
 			'description' => TextareaField::class
 		];
 	}
-
-	public static function export(User $u): array {
-		return array_map(
-			function (self $etype): array {
-				$attributes = $etype->toArray();
-				unset($attributes['user_id']);
-				return $attributes;
-			},
-			[...static::all()->where('user_id', $u->id)]
-		);
-	}
 }

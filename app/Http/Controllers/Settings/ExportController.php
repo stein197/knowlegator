@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class ExportController extends Controller {
 
 	public function __construct(
-		private readonly ImportExportService $importExportService,
+		private readonly ImportExportService $ieService,
 		Request $request
 	) {
 		parent::__construct($request);

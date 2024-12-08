@@ -4,7 +4,7 @@ namespace Tests\Feature;
 use App\Enum\Http\Method;
 use App\Fields\StringField;
 use App\Form;
-use App\Records\ButtonRecord;
+use App\View\Components\Button;
 use Illuminate\Support\Facades\Request;
 
 describe('view()', function (): void {
@@ -49,8 +49,8 @@ describe('view()', function (): void {
 	test('should render <a /> buttons when URL is provided', function (): void {
 		/** @var \Tests\TestCase $this */
 		$dom = $this->dom((new Form(buttons: [
-			new ButtonRecord(
-				url: '/en'
+			new Button(
+				href: '/en'
 			)
 		]))->view()->render());
 		$dom->assertExists('//a[@href = "/en"]');
@@ -59,9 +59,9 @@ describe('view()', function (): void {
 	test('should render buttons correctly', function (): void {
 		/** @var \Tests\TestCase $this */
 		$dom = $this->dom((new Form(buttons: [
-			new ButtonRecord(
+			new Button(
 				label: 'Button label',
-				type: 'primary',
+				variant: 'primary',
 				name: 'NAME',
 				value: 'VALUE',
 			)

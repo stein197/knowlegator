@@ -25,11 +25,7 @@
 		@if ($buttons)
 			<div class="hstack gap-3">
 				@foreach ($buttons as $i => $btn)
-					@if ($btn->url)
-						<a class="btn btn-{{ $btn->type }} flex-grow-1" href="{{ $btn->url }}">{{ $btn->label }}</a>
-					@else
-						<button class="btn btn-{{ $btn->type }} flex-grow-1" name="{{ $btn->name }}" value="{{ $btn->value }}">{{ $btn->label }}</button>
-					@endif
+					{{ $btn->render(['class' => 'flex-grow-1']) }}
 				@endforeach
 			</div>
 		@endif

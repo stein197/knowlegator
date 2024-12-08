@@ -5,7 +5,7 @@ use App\Enum\Http\Method;
 use App\Fields\PasswordField;
 use App\Form;
 use App\Http\Controllers\Controller;
-use App\Records\ButtonRecord;
+use App\View\Components\Button;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -61,9 +61,10 @@ class PasswordController extends Controller {
 				),
 			],
 			buttons: [
-				new ButtonRecord(
+				new Button(
 					label: __('form.button.confirm'),
-					type: 'primary'
+					variant: 'primary',
+					type: 'submit'
 				)
 			]
 		);

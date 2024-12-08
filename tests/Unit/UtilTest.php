@@ -6,6 +6,7 @@ use function App\{
     array_from_entries,
     array_get_last,
     class_get_name,
+    classname,
     path_split
 };
 
@@ -75,12 +76,12 @@ describe('classname()', function (): void {
 
 	test('should accept array varags', function (): void {
 		/** @var \Tests\TestCase $this */
-		$this->assertSame('a', 'b', 'c', classname(['a'], ['b', 'c']));
+		$this->assertSame('a b c', classname(['a'], ['b', 'c']));
 	});
 
 	test('should accept array with nulls varags', function (): void {
 		/** @var \Tests\TestCase $this */
-		$this->assertSame('a', 'b', 'c', classname(['a', null], ['b', 'c']));
+		$this->assertSame('a b c', classname(['a', null], ['b', 'c']));
 	});
 
 	test('should accept map varags', function (): void {

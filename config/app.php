@@ -124,7 +124,6 @@ return [
     ],
 
     'aliases' => [
-        'ButtonRecord' => App\Records\ButtonRecord::class,
         'FormFieldRecord' => App\Records\FormFieldRecord::class,
         'FormFieldType' => App\Enum\FormFieldType::class
     ]

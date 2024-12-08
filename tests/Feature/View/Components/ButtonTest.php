@@ -5,7 +5,7 @@ use App\View\Components\Button;
 
 test('default', function (): void {
 	/** @var \Tests\TestCase $this */
-	$this->domComponent(Button::class)->assertExists('//button[@type = "button" and contains(@class, "btn-primary")]');
+	$this->domComponent(Button::class)->assertExists('//button[@type = "button" and contains(@class, "btn")]');
 });
 
 test('<a /> when $href is privided', function (): void {

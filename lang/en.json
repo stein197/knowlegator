@@ -10,6 +10,7 @@
 	"page.settings.delete.consequences": "This action cannot be rewoked",
 	"page.settings.import.title": "Import",
 	"page.settings.export.title": "Export",
+	"page.settings.export.message": "Click here to export data",
 	"page.fields.title": "Fields",
 
 	"resource.index.message.empty": "How empty!",

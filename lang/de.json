@@ -10,6 +10,7 @@
 	"page.settings.delete.consequences": "Diese Aktion kann nicht abgebrochen werden",
 	"page.settings.import.title": "Import",
 	"page.settings.export.title": "Export",
+	"page.settings.export.message": "Hier klicken, um die Daten herunterzuladen",
 	"page.fields.title": "Felder",
 
 	"resource.index.message.empty": "Voll leer!",

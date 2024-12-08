@@ -10,6 +10,7 @@
 	"page.settings.delete.consequences": "Это действие нельзя будет отменить",
 	"page.settings.import.title": "Импорт",
 	"page.settings.export.title": "Экспорт",
+	"page.settings.export.message": "Кликните сюда, чтобы скачать данные",
 	"page.fields.title": "Поля",
 
 	"resource.index.message.empty": "Как пусто!",

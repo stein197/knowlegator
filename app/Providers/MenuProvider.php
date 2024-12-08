@@ -34,6 +34,14 @@ final class MenuProvider extends ServiceProvider {
 			new MenuRecord(
 				title: __('page.settings.delete.title'),
 				link: lroute('settings.delete')
+			),
+			new MenuRecord(
+				title: __('page.settings.import.title'),
+				link: lroute('settings.import')
+			),
+			new MenuRecord(
+				title: __('page.settings.export.title'),
+				link: lroute('settings.export')
 			)
 		]);
 

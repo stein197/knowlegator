@@ -5,6 +5,8 @@ use App\Http\Controllers\Resource\EntityController;
 use App\Http\Controllers\Resource\ETypeController;
 use App\Http\Controllers\Resource\TagController;
 use App\Http\Controllers\Settings\DeleteController;
+use App\Http\Controllers\Settings\ExportController;
+use App\Http\Controllers\Settings\ImportController;
 use App\Http\Controllers\Settings\PasswordController;
 use App\Http\Controllers\Settings\ThemeController;
 use App\Http\Middleware\CheckLocaleMiddleware;
@@ -39,6 +41,11 @@ Route::group(['prefix' => '/{locale}'], function (): void {
 					Route::get('/', [DeleteController::class, 'get'])->name('settings.delete');
 					Route::delete('/', [DeleteController::class, 'delete']);
 				});
+				Route::prefix('/import')->group(function (): void {
+					Route::get('/', [ImportController::class, 'get'])->name('settings.import');
+					Route::post('/', [ImportController::class, 'post']);
+				});
+				Route::get('/export', ExportController::class)->name('settings.export');
 			});
 		});
 	});

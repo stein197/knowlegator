@@ -8,6 +8,8 @@
 	"page.settings.delete.title": "Delete account",
 	"page.settings.password.title": "Change password",
 	"page.settings.delete.consequences": "This action cannot be rewoked",
+	"page.settings.import.title": "Import",
+	"page.settings.export.title": "Export",
 	"page.fields.title": "Fields",
 
 	"resource.index.message.empty": "How empty!",

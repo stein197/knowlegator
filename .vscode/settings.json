@@ -22,6 +22,7 @@
 		"html",
 		"icon",
 		"ide",
+		"import-export",
 		"locale",
 		"menu",
 		"middleware",

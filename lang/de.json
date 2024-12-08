@@ -8,6 +8,8 @@
 	"page.settings.delete.title": "Konto entfernen",
 	"page.settings.password.title": "Passwort ändern",
 	"page.settings.delete.consequences": "Diese Aktion kann nicht abgebrochen werden",
+	"page.settings.import.title": "Import",
+	"page.settings.export.title": "Export",
 	"page.fields.title": "Felder",
 
 	"resource.index.message.empty": "Voll leer!",

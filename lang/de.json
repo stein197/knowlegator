@@ -30,6 +30,8 @@
 	"action.cancel": "Abbrechen",
 	"action.save": "Speichern",
 	"action.back": "Zurück",
+	"action.reset": "Zurücksetzen",
+	"action.search": "Suchen",
 
 	"menu.main.account": "Konto",
 	"menu.main.settings": "Einstellungen",

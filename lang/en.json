@@ -30,6 +30,8 @@
 	"action.cancel": "Cancel",
 	"action.save": "Save",
 	"action.back": "Back",
+	"action.reset": "Reset",
+	"action.search": "Search",
 
 	"menu.main.account": "Account",
 	"menu.main.settings": "Settings",

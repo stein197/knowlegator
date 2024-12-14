@@ -30,6 +30,8 @@
 	"action.cancel": "Отменить",
 	"action.save": "Сохранить",
 	"action.back": "Назад",
+	"action.reset": "Сбросить",
+	"action.search": "Поиск",
 
 	"menu.main.account": "Аккаунт",
 	"menu.main.settings": "Настройки",

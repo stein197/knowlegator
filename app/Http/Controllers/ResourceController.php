@@ -4,20 +4,28 @@ namespace App\Http\Controllers;
 use App\Enum\Http\Method;
 use App\Form;
 use App\Model;
+use App\Services\ModelRoutingService;
 use App\View\Components\Button;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Pluralizer;
 use function App\array_entries;
 use function App\class_get_name;
 use function array_map;
-use function explode;
 use function is_string;
 use function join;
 use function str_replace;
 
 abstract class ResourceController extends Controller {
+
+	public function __construct(
+		Request $request,
+		protected readonly ModelRoutingService $modelRoutingService
+	) {
+		parent::__construct($request);
+	}
 
 	public function index(): View {
 		$q = $this->request->query('q');
@@ -38,7 +46,7 @@ abstract class ResourceController extends Controller {
 				new Button(
 					label: __("resource.{$tName}.create.title"),
 					variant: 'outline-secondary',
-					href: $this->getActionUrl('create'),
+					href: $this->modelRoutingService->route(static::getModelClass(), 'create'),
 					icon: 'plus-lg'
 				)
 			]
@@ -74,19 +82,19 @@ abstract class ResourceController extends Controller {
 				new Button(
 					label: __('action.back'),
 					variant: 'outline-secondary color-inherit',
-					href: $this->getActionUrl('index')
+					href: $this->modelRoutingService->route(static::getModelClass(), 'index')
 				),
 				new Button(
 					label: __('action.edit'),
 					variant: 'outline-secondary color-inherit',
 					icon: 'pen-fill',
-					href: $this->getActionUrl('edit', [$tName => $model->id])
+					href: $this->modelRoutingService->route($model, 'edit')
 				),
 				new Button(
 					label: __('action.delete'),
 					variant: 'outline-secondary color-inherit',
 					icon: 'trash-fill',
-					href: $this->getActionUrl('delete', [$tName => $model->id])
+					href: $this->modelRoutingService->route($model, 'delete')
 				)
 			]
 		]);
@@ -99,7 +107,7 @@ abstract class ResourceController extends Controller {
 			'title' => join(' / ', [__("resource.{$tName}.index.title"), __('action.delete'), $model->name]),
 			'model' => $model,
 			'form' => new Form(
-				action: $this->getActionUrl('destroy', [$tName => $model->id]),
+				action: $this->modelRoutingService->route($model, 'destroy'),
 				method: Method::DELETE,
 				alert: [
 					'type' => 'danger',
@@ -109,7 +117,7 @@ abstract class ResourceController extends Controller {
 					new Button(
 						label: __('action.cancel'),
 						variant: 'warning',
-						href: $this->getActionUrl('show', [$tName => $model->id])
+						href: $this->modelRoutingService->route($model, 'show')
 					),
 					new Button(
 						label: __('action.delete'),
@@ -142,15 +150,9 @@ abstract class ResourceController extends Controller {
 		return $this->model($id) ?? abort(404);
 	}
 
-	private function getActionUrl(string $action, array $parameters = []): string {
-		[$model] = explode('.', $this->request->route()->getName());
-		return lroute($model . '.' . $action, $parameters);
-	}
-
 	private function form(Method $method, ?Model $model): Form {
-		$tName = static::getModelClass()::getTypeName();
 		return new Form(
-			action: $this->getActionUrl($method === Method::PUT ? 'update' : 'store', [$tName => $model?->id]),
+			action: $method === Method::PUT ? $this->modelRoutingService->route($model, 'update') : $this->modelRoutingService->route(static::getModelClass(), 'store'),
 			method: $method,
 			alert: session()->get('alert'),
 			fields: array_map(
@@ -165,7 +167,7 @@ abstract class ResourceController extends Controller {
 				new Button(
 					label: __('action.cancel'),
 					variant: 'warning',
-					href: $this->getActionUrl('show', [$tName => $model->id])
+					href: $this->modelRoutingService->route($model, 'show')
 				),
 				new Button(
 					label: __('action.save'),
@@ -176,7 +178,7 @@ abstract class ResourceController extends Controller {
 				new Button(
 					label: __('action.cancel'),
 					variant: 'warning',
-					href: $this->getActionUrl('index')
+					href: $this->modelRoutingService->route(static::getModelClass(), 'index')
 				),
 				new Button(
 					label: __('action.save'),

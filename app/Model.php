@@ -29,23 +29,6 @@ abstract class Model extends EloquentModel {
 	}
 
 	/**
-	 * Return absolute URL link to this entity based on resource controllers.
-	 * @param string $action Resource action, like 'show', 'edit'
-	 * @return string URL to the action of the resource.
-	 * @throws InvalidArgumentException
-	 * @throws BindingResolutionException
-	 * ```php
-	 * $t = new Tag();
-	 * $t->getActionUrl('edit'); // "/en/account/tags/<uuid>/edit"
-	 * ```
-	 */
-	final public function getActionUrl(string $action): string {
-		$tName = static::getTypeName();
-		$plural = Pluralizer::plural($tName);
-		return lroute("{$plural}.{$action}", [$tName => $this->id]);
-	}
-
-	/**
 	 * Return names of publicly available attributes that can be edited or be shown. Key is a column name and value is
 	 * a field classname to be used.
 	 * @return array Publicly available attributes.

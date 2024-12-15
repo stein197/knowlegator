@@ -4,12 +4,15 @@ namespace App\Services;
 use App\Model;
 use Exception;
 use Illuminate\Support\Pluralizer;
+use function in_array;
 
 /**
  * This service class generates URL routes for a given model.
  * @package App\Services
  */
 final readonly class ModelRoutingService {
+
+	private const array ACTIONS_STATIC = ['index', 'create', 'store'];
 
 	/**
 	 * Generate an URL for the given model or model class and action.
@@ -27,7 +30,7 @@ final readonly class ModelRoutingService {
 		$tName = $class::getTypeName();
 		$plural = Pluralizer::plural($tName);
 		try {
-			return lroute("{$plural}.{$action}", $isModel ? [$tName => $model->id] : []);
+			return lroute("{$plural}.{$action}", $isModel && !in_array($action, self::ACTIONS_STATIC) ? [$tName => $model->id] : []);
 		} catch (Exception) {
 			return null;
 		}

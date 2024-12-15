@@ -25,7 +25,8 @@ final readonly class ModelFormService {
 			method: $this->getMethod($action),
 			fields: $this->getFields($modelOrClass, $action),
 			buttons: $this->getButtons($modelOrClass, $action),
-			readonly: $action === 'show'
+			readonly: $action === 'show',
+			groupButtons: $action === 'show'
 		);
 	}
 

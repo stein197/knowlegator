@@ -17,6 +17,7 @@ final readonly class Form {
 	 * @param null|string $title
 	 * @param ?array $alert
 	 * @param bool $readonly
+	 * @param bool $groupButtons
 	 * @return void
 	 */
 	public function __construct(
@@ -26,7 +27,8 @@ final readonly class Form {
 		public array $buttons = [],
 		public ?string $title = null,
 		public ?array $alert = null,
-		private bool $readonly = false
+		private bool $readonly = false,
+		private bool $groupButtons = false
 	) {}
 
 	public function view(): View {
@@ -37,7 +39,8 @@ final readonly class Form {
 			'buttons' => $this->buttons,
 			'title' => $this->title,
 			'alert' => $this->alert,
-			'readonly' => $this->readonly
+			'readonly' => $this->readonly,
+			'groupButtons' => $this->groupButtons
 		]);
 	}
 

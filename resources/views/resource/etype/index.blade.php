@@ -9,9 +9,9 @@
 		<div @class(['card', 'mb-3' => !$loop->last])>
 			<div class="card-header d-flex">
 				<a class="flex-grow-1" href="{{ lroute('etypes.show', ['etype' => $etype->id]) }}">{{ $etype->name }}</a>
-				<x-button class="reset text-decoration-none mx-2" icon="eye-fill" label="{{ __('action.show') }}" href="{{ $routing->route($etype, 'show') }}" />
-				<x-button class="reset text-decoration-none mx-2" icon="pen-fill" label="{{ __('action.edit') }}" href="{{ $routing->route($etype, 'edit') }}" />
-				<x-button class="reset text-decoration-none mx-2" icon="trash-fill" label="{{ __('action.delete') }}" href="{{ $routing->route($etype, 'delete') }}" />
+				<x-button class="reset text-decoration-none mx-2" icon="eye-fill" icon-class="hover-warning" label="{{ __('action.show') }}" href="{{ $routing->route($etype, 'show') }}" />
+				<x-button class="reset text-decoration-none mx-2" icon="pen-fill" icon-class="hover-warning" label="{{ __('action.edit') }}" href="{{ $routing->route($etype, 'edit') }}" />
+				<x-button class="reset text-decoration-none mx-2" icon="trash-fill" icon-class="hover-warning" label="{{ __('action.delete') }}" href="{{ $routing->route($etype, 'delete') }}" />
 			</div>
 			@if ($etype->description)
 				<div class="card-body">

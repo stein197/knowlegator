@@ -44,7 +44,7 @@
 		<!-- /app-assets -->
 	</head>
 	<body class="d-flex flex-column">
-		<header class="position-sticky top-0 border-bottom">
+		<header class="position-sticky top-0 border-bottom z-3">
 			<nav class="navbar navbar-expand-lg bg-body-tertiary">
 				<div class="container">
 					<a class="navbar-brand" href="/">Knowlegator</a>

@@ -1,9 +1,8 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Enum\Http\Method;
-use App\Form;
 use App\Model;
+use App\Services\ModelFormService;
 use App\Services\ModelRoutingService;
 use App\View\Components\Button;
 use Illuminate\Contracts\View\View;
@@ -11,9 +10,7 @@ use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Pluralizer;
-use function App\array_entries;
 use function App\class_get_name;
-use function array_map;
 use function is_string;
 use function join;
 use function str_replace;
@@ -22,7 +19,8 @@ abstract class ResourceController extends Controller {
 
 	public function __construct(
 		Request $request,
-		protected readonly ModelRoutingService $modelRoutingService
+		protected readonly ModelRoutingService $modelRoutingService,
+		protected readonly ModelFormService $modelFormService
 	) {
 		parent::__construct($request);
 	}
@@ -54,10 +52,11 @@ abstract class ResourceController extends Controller {
 	}
 
 	public function create(): View {
-		$tName = static::getModelClass()::getTypeName();
+		$class = static::getModelClass();
+		$tName = $class::getTypeName();
 		return $this->view('create', [
 			'title' => __("resource.{$tName}.create.title"),
-			'form' => $this->form(Method::POST, null)
+			'form' => $this->modelFormService->form($class, 'store')
 		]);
 	}
 
@@ -68,10 +67,11 @@ abstract class ResourceController extends Controller {
 			'title' => join(' / ', [__("resource.{$tName}.index.title"), __('action.edit'), $model->name]),
 			'model' => $model,
 			'alert' => $this->request->session()->get('alert'),
-			'form' => $this->form(Method::PUT, $model, )
+			'form' => $this->modelFormService->form($model, 'update')
 		]);
 	}
 
+	// TODO: Replace with readonly form
 	public function show(string $locale, string $id): View {
 		$model = $this->tryFetchModel($id);
 		$tName = static::getModelClass()::getTypeName();
@@ -106,26 +106,7 @@ abstract class ResourceController extends Controller {
 		return $this->view('delete', [
 			'title' => join(' / ', [__("resource.{$tName}.index.title"), __('action.delete'), $model->name]),
 			'model' => $model,
-			'form' => new Form(
-				action: $this->modelRoutingService->route($model, 'destroy'),
-				method: Method::DELETE,
-				alert: [
-					'type' => 'danger',
-					'message' => __("resource.{$tName}.delete.confirmation", ['name' => $model->name])
-				],
-				buttons: [
-					new Button(
-						label: __('action.cancel'),
-						variant: 'warning',
-						href: $this->modelRoutingService->route($model, 'show')
-					),
-					new Button(
-						label: __('action.delete'),
-						variant: 'danger',
-						type: 'submit'
-					)
-				]
-			)
+			'form' => $this->modelFormService->form($model, 'destroy')
 		]);
 	}
 
@@ -148,45 +129,6 @@ abstract class ResourceController extends Controller {
 
 	final protected function tryFetchModel(string $id): Model {
 		return $this->model($id) ?? abort(404);
-	}
-
-	private function form(Method $method, ?Model $model): Form {
-		return new Form(
-			action: $method === Method::PUT ? $this->modelRoutingService->route($model, 'update') : $this->modelRoutingService->route(static::getModelClass(), 'store'),
-			method: $method,
-			alert: session()->get('alert'),
-			fields: array_map(
-				fn (array $entry) => new $entry[1](
-					label: $entry[0],
-					name: $entry[0],
-					value: $model?->{$entry[0]}
-				),
-				array_entries(static::getModelClass()::getPublicAttributes())
-			),
-			buttons: $method === Method::PUT ? [
-				new Button(
-					label: __('action.cancel'),
-					variant: 'warning',
-					href: $this->modelRoutingService->route($model, 'show')
-				),
-				new Button(
-					label: __('action.save'),
-					variant: 'success',
-					type: 'submit'
-				)
-			] : [
-				new Button(
-					label: __('action.cancel'),
-					variant: 'warning',
-					href: $this->modelRoutingService->route(static::getModelClass(), 'index')
-				),
-				new Button(
-					label: __('action.save'),
-					variant: 'success',
-					type: 'submit'
-				)
-			]
-		);
 	}
 
 	private static function getModelClass(): string {

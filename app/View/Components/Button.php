@@ -8,15 +8,15 @@ use function App\classname;
 class Button extends Component {
 
 	public function __construct(
-		public ?string $label = null,
+		private ?string $label = null,
 		public string $type = 'button',
-		public ?string $variant = null,
-		public ?string $class = null,
-		public ?string $name = null,
-		public ?string $value = null,
+		private ?string $variant = null,
+		private ?string $class = null,
+		private ?string $name = null,
+		private ?string $value = null,
 		public ?string $href = null,
-		public ?string $icon = null,
-		public ?string $iconClass = null
+		private ?string $icon = null,
+		private ?string $iconClass = null
 	) {}
 
 	public function render(array $parameters = []): View {

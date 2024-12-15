@@ -41,6 +41,7 @@ final class TestDOMTest extends TestCase {
 
 	public function testAssertExistsShouldFailWhenElementsDoNotExist(): void {
 		$this->expectException(ExpectationFailedException::class);
+		$this->expectExceptionMessage('No elements matching the XPath \'//element\'');
 		$this->testDom->assertExists('//element');
 	}
 

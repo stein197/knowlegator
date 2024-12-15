@@ -96,7 +96,7 @@ final readonly class TestDOM {
 	 * @throws GeneratorNotSupportedException
 	 */
 	public function assertNotEmpty(): void {
-		$this->testCase->assertNotEmpty($this->nodes);
+		$this->testCase->assertNotEmpty($this->nodes, "No elements matching the XPath '{$this->xpath}'");
 	}
 
 	/**

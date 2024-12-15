@@ -53,10 +53,6 @@
 	"form.message.name.invalid": "Name \":name\" ist invalid",
 	"form.tooltip.tagName": "Der Name muss einzig sein und enthält \"_\", \"-\", Buchstaben und Ziffern",
 
-	"table.resource.caption": "Attribute",
-	"table.resource.col.key": "Schlüssel",
-	"table.resource.col.value": "Wert",
-
 	"theme.light": "Hell",
 	"theme.dark": "Dunkel",
 

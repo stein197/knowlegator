@@ -71,32 +71,12 @@ abstract class ResourceController extends Controller {
 		]);
 	}
 
-	// TODO: Replace with readonly form
 	public function show(string $locale, string $id): View {
 		$model = $this->tryFetchModel($id);
 		$tName = static::getModelClass()::getTypeName();
 		return $this->view('show', [
 			'title' => __("resource.{$tName}.index.title") . ' / ' . $model->name,
-			'model' => $model,
-			'buttons' => [
-				new Button(
-					label: __('action.back'),
-					variant: 'outline-secondary color-inherit',
-					href: $this->modelRoutingService->route(static::getModelClass(), 'index')
-				),
-				new Button(
-					label: __('action.edit'),
-					variant: 'outline-secondary color-inherit',
-					icon: 'pen-fill',
-					href: $this->modelRoutingService->route($model, 'edit')
-				),
-				new Button(
-					label: __('action.delete'),
-					variant: 'outline-secondary color-inherit',
-					icon: 'trash-fill',
-					href: $this->modelRoutingService->route($model, 'delete')
-				)
-			]
+			'form' => $this->modelFormService->form($model, 'show'),
 		]);
 	}
 

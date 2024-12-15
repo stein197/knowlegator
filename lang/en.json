@@ -53,10 +53,6 @@
 	"form.message.name.invalid": "Name \":name\" has an invalid format",
 	"form.tooltip.tagName": "The name should be unique and contain only \"_\", \"-\" or alphanumeric characters",
 
-	"table.resource.caption": "Attributes",
-	"table.resource.col.key": "Key",
-	"table.resource.col.value": "Value",
-
 	"theme.light": "Light",
 	"theme.dark": "Dark",
 

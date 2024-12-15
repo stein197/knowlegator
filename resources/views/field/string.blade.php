@@ -7,7 +7,7 @@
 		type="{{ $f->params['type'] }}"
 		name="{{ $f->name }}"
 		value="{{ $f->value }}"
-		@readonly($readonly || $f->readonly)
+		@readonly(isset($readonly) && $readonly || $f->readonly)
 		@required($f->required) />
 	<label>{{ $f->label }}</label>
 	@if (isset($errors) && $errors->has($f->name))

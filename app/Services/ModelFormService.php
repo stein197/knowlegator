@@ -20,11 +20,12 @@ final readonly class ModelFormService {
 
 	public function form(string | Model $modelOrClass, string $action): Form {
 		return new Form(
-			action: $this->routing->route($modelOrClass, $action),
+			action: $action === 'show' ? '' : $this->routing->route($modelOrClass, $action),
 			alert: $this->getAlert($modelOrClass, $action),
 			method: $this->getMethod($action),
 			fields: $this->getFields($modelOrClass, $action),
-			buttons: $this->getButtons($modelOrClass, $action)
+			buttons: $this->getButtons($modelOrClass, $action),
+			readonly: $action === 'show'
 		);
 	}
 
@@ -65,6 +66,25 @@ final readonly class ModelFormService {
 
 	private function getButtons(string | Model $modelOrClass, string $action): array {
 		return match ($action) {
+			'show' => [
+				new Button(
+					label: __('action.back'),
+					variant: 'outline-secondary color-inherit',
+					href: $this->routing->route($modelOrClass, 'index')
+				),
+				new Button(
+					label: __('action.edit'),
+					variant: 'outline-secondary color-inherit',
+					icon: 'pen-fill',
+					href: $this->routing->route($modelOrClass, 'edit')
+				),
+				new Button(
+					label: __('action.delete'),
+					variant: 'outline-secondary color-inherit',
+					icon: 'trash-fill',
+					href: $this->routing->route($modelOrClass, 'delete')
+				)
+			],
 			'store' => [
 				new Button(
 					label: __('action.cancel'),

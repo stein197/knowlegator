@@ -6,6 +6,24 @@ use App\Models\EType;
 use App\Models\User;
 use App\Services\ModelFormService;
 
+test('Action: show', function (): void {
+	/** @var \Tests\TestCase $this */
+	$etype = User::findByEmail('user-1@example.com')->etypes[0];
+	/** @var \App\Form */
+	$form = $this->createApplication()->make(ModelFormService::class)->form($etype, 'show');
+	$this->assertSame('', $form->action);
+	$this->assertSame(Method::GET, $form->method);
+	$this->assertCount(2, $form->fields);
+	$this->assertSame('name', $form->fields[0]->name);
+	$this->assertSame($etype->name, $form->fields[0]->value);
+	$this->assertSame('description', $form->fields[1]->name);
+	$this->assertSame($etype->description, $form->fields[1]->value);
+	$this->assertCount(3, $form->buttons);
+	$this->assertSame('/en/account/etypes', $form->buttons[0]->href);
+	$this->assertSame("/en/account/etypes/{$etype->id}/edit", $form->buttons[1]->href);
+	$this->assertSame("/en/account/etypes/{$etype->id}/delete", $form->buttons[2]->href);
+});
+
 test('Action: store', function (): void {
 	/** @var \Tests\TestCase $this */
 	/** @var \App\Form */

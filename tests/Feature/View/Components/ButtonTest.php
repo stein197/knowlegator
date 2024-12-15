@@ -16,7 +16,7 @@ test('<a /> when $href is privided', function (): void {
 		'class' => 'custom-class',
 		'name' => 'key',
 		'value' => 'value',
-		'href' => '/en/login',
+		'href' => '/en/login'
 	])->find('//a[contains(@class, "btn-danger") and contains(@class, "custom-class") and @href = "/en/login"]')->assertTextContent('Button');
 	$this->domComponent(Button::class, [
 		'label' => 'Button',
@@ -25,8 +25,9 @@ test('<a /> when $href is privided', function (): void {
 		'name' => 'key',
 		'value' => 'value',
 		'href' => '/en/login',
-		'icon' => 'plus'
-	])->assertExists('//a[contains(@class, "btn-danger") and contains(@class, "custom-class") and @href = "/en/login" and @data-bs-toggle = "tooltip" and @data-bs-title = "Button"]//i[@class = "bi bi-plus"]');
+		'icon' => 'plus',
+		'iconClass' => 'custom-icon'
+	])->assertExists('//a[contains(@class, "btn-danger") and contains(@class, "custom-class") and @href = "/en/login" and @data-bs-toggle = "tooltip" and @data-bs-title = "Button"]//i[@class = "bi bi-plus custom-icon"]');
 });
 
 test('<button /> when $href is not provided', function (): void {
@@ -37,7 +38,7 @@ test('<button /> when $href is not provided', function (): void {
 		'variant' => 'danger',
 		'class' => 'custom-class',
 		'name' => 'key',
-		'value' => 'value',
+		'value' => 'value'
 	])->find('//button[contains(@class, "btn-danger") and contains(@class, "custom-class") and @name = "key" and @value = "value" and @type = "button"]')->assertTextContent('Button');
 	$this->domComponent(Button::class, [
 		'label' => 'Button',
@@ -46,6 +47,7 @@ test('<button /> when $href is not provided', function (): void {
 		'class' => 'custom-class',
 		'name' => 'key',
 		'value' => 'value',
-		'icon' => 'plus'
-	])->assertExists('//button[contains(@class, "btn-danger") and contains(@class, "custom-class") and @name = "key" and @value = "value" and @type = "submit"]/i[@class = "bi bi-plus"]');
+		'icon' => 'plus',
+		'iconClass' => 'custom-icon'
+	])->assertExists('//button[contains(@class, "btn-danger") and contains(@class, "custom-class") and @name = "key" and @value = "value" and @type = "submit"]/i[@class = "bi bi-plus custom-icon"]');
 });

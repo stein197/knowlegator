@@ -18,12 +18,12 @@ final readonly class Form {
 	 * @return void
 	 */
 	public function __construct(
-		private string $action = '',
-		private Method $method = Method::POST,
-		private array $fields = [],
-		private array $buttons = [],
-		private ?string $title = null,
-		private ?array $alert = null
+		public string $action = '',
+		public Method $method = Method::POST,
+		public array $fields = [],
+		public array $buttons = [],
+		public ?string $title = null,
+		public ?array $alert = null
 	) {}
 
 	public function view(): View {

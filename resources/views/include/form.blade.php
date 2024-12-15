@@ -18,7 +18,7 @@
 		@if (!empty($fields))
 			<div class="vstack gap-3">
 				@foreach ($fields as $field)
-					{{ $field->view() }}
+					{{ $field->view(['readonly' => $readonly]) }}
 				@endforeach
 			</div>
 		@endif

@@ -2,7 +2,11 @@
 namespace Tests\Feature;
 
 use App\Enum\Http\Method;
+use App\Fields\CheckboxField;
+use App\Fields\EmailField;
+use App\Fields\PasswordField;
 use App\Fields\StringField;
+use App\Fields\TextareaField;
 use App\Form;
 use App\View\Components\Button;
 use Illuminate\Support\Facades\Request;
@@ -76,6 +80,22 @@ describe('view()', function (): void {
 			'message' => 'Alert message'
 		]))->view()->render());
 		$dom->find('//p[contains(@class, "alert-success")]//*')->assertTextContent('Alert message');
+	});
+
+	test('should render all fields as readonly when the form is readonly', function (): void {
+		/** @var \Tests\TestCase $this */
+		$dom = $this->dom((new Form(fields: [
+			new StringField(label: 'String', name: 'string'),
+			new EmailField(label: 'Email', name: 'email'),
+			new PasswordField(label: 'Password', name: 'password'),
+			new CheckboxField(label: 'Checkbox', name: 'checkbox'),
+			new TextareaField(label: 'Textarea', name: 'textarea')
+		], readonly: true))->view()->render());
+		$dom->assertExists('//input[@name = "string" and @readonly]');
+		$dom->assertExists('//input[@name = "email" and @readonly]');
+		$dom->assertExists('//input[@name = "password" and @readonly]');
+		$dom->assertExists('//input[@name = "checkbox" and @readonly]');
+		$dom->assertExists('//textarea[@name = "textarea" and @readonly]');
 	});
 });
 

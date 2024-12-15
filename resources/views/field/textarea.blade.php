@@ -7,7 +7,7 @@
 		name="{{ $f->name }}"
 		value="{{ $f->value }}"
 		rows="{{ $f->params['rows'] }}"
-		@readonly($f->readonly)
+		@readonly($readonly || $f->readonly)
 		@required($f->required)
 		>{{ $f->value }}</textarea>
 	<label>{{ $f->label }}</label>

@@ -25,6 +25,7 @@
 		"ide",
 		"import",
 		"import-export",
+		"js",
 		"locale",
 		"menu",
 		"middleware",

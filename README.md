@@ -12,6 +12,7 @@
 - [Bootstrap](https://getbootstrap.com/)
 - [Bootstrap Icons](https://icons.getbootstrap.com/)
 - [flag-icons](https://flagicons.lipis.dev/)
+- [jQuery](https://jquery.com)
 
 **Server:**
 - [Laravel](https://laravel.com/)

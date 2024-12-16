@@ -2,11 +2,8 @@
 namespace App;
 
 use App\Fields\StringField;
-use Illuminate\Contracts\Container\BindingResolutionException;
 use Illuminate\Database\Eloquent\MassAssignmentException;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
-use Illuminate\Support\Pluralizer;
-use InvalidArgumentException;
 use ReflectionClass;
 use function strtolower;
 
@@ -26,23 +23,6 @@ abstract class Model extends EloquentModel {
 			unset($attributes[$k]);
 		}
 		parent::__construct($attributes);
-	}
-
-	/**
-	 * Return absolute URL link to this entity based on resource controllers.
-	 * @param string $action Resource action, like 'show', 'edit'
-	 * @return string URL to the action of the resource.
-	 * @throws InvalidArgumentException
-	 * @throws BindingResolutionException
-	 * ```php
-	 * $t = new Tag();
-	 * $t->getActionUrl('edit'); // "/en/account/tags/<uuid>/edit"
-	 * ```
-	 */
-	final public function getActionUrl(string $action): string {
-		$tName = static::getTypeName();
-		$plural = Pluralizer::plural($tName);
-		return lroute("{$plural}.{$action}", [$tName => $this->id]);
 	}
 
 	/**

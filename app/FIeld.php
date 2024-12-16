@@ -23,9 +23,9 @@ abstract class Field {
 		$this->params = [...static::PARAMS_DEFAULT, ...$params];
 	}
 
-	final public function view(): View {
+	final public function view(array $parameters = []): View {
 		$tName = static::getTypeName();
-		return view("field.{$tName}", ['f' => $this]);
+		return view("field.{$tName}", ['f' => $this, ...$parameters]);
 	}
 
 	public static function getTypeName(): string {

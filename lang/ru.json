@@ -33,6 +33,8 @@
 	"action.cancel": "Отменить",
 	"action.save": "Сохранить",
 	"action.back": "Назад",
+	"action.reset": "Сбросить",
+	"action.search": "Поиск",
 
 	"menu.main.account": "Аккаунт",
 	"menu.main.settings": "Настройки",
@@ -53,10 +55,6 @@
 	"form.message.name.exists": "Имя \":name\" уже существует",
 	"form.message.name.invalid": "Имя \":name\" некорректно",
 	"form.tooltip.tagName": "Имя должно быть уникальным и содержать \"_\", \"-\", буквы или цифры",
-
-	"table.resource.caption": "Атрибуты",
-	"table.resource.col.key": "Ключ",
-	"table.resource.col.value": "Значение",
 
 	"theme.light": "Светлая",
 	"theme.dark": "Тёмная",

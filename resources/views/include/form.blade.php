@@ -18,12 +18,12 @@
 		@if (!empty($fields))
 			<div class="vstack gap-3">
 				@foreach ($fields as $field)
-					{{ $field->view() }}
+					{{ $field->view(['readonly' => $readonly]) }}
 				@endforeach
 			</div>
 		@endif
 		@if ($buttons)
-			<div class="hstack gap-3">
+			<div class="{{ $groupButtons ? 'btn-group' : 'hstack gap-3' }}">
 				@foreach ($buttons as $i => $btn)
 					{{ $btn->render(['class' => 'flex-grow-1']) }}
 				@endforeach

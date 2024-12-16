@@ -33,6 +33,8 @@
 	"action.cancel": "Abbrechen",
 	"action.save": "Speichern",
 	"action.back": "Zurück",
+	"action.reset": "Zurücksetzen",
+	"action.search": "Suchen",
 
 	"menu.main.account": "Konto",
 	"menu.main.settings": "Einstellungen",
@@ -53,10 +55,6 @@
 	"form.message.name.exists": "Name \":name\" ist schon vorhanden",
 	"form.message.name.invalid": "Name \":name\" ist invalid",
 	"form.tooltip.tagName": "Der Name muss einzig sein und enthält \"_\", \"-\", Buchstaben und Ziffern",
-
-	"table.resource.caption": "Attribute",
-	"table.resource.col.key": "Schlüssel",
-	"table.resource.col.value": "Wert",
 
 	"theme.light": "Hell",
 	"theme.dark": "Dunkel",

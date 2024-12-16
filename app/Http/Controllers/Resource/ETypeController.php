@@ -16,6 +16,7 @@ class ETypeController extends ResourceController {
 		$name = $this->request->post('name');
 		$etype = $this->user->createEtype($input);
 		$result = $etype->save();
+		$this->user->refresh();
 		return $result ? $this->redirect('etypes.edit', ['etype' => $etype->id])->with('alert', [
 			'type' => 'success',
 			'message' => __('message.etype.created', ['name' => $name])

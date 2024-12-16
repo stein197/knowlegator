@@ -41,6 +41,7 @@ final class TestDOMTest extends TestCase {
 
 	public function testAssertExistsShouldFailWhenElementsDoNotExist(): void {
 		$this->expectException(ExpectationFailedException::class);
+		$this->expectExceptionMessage('No elements matching the XPath \'//element\'');
 		$this->testDom->assertExists('//element');
 	}
 
@@ -53,20 +54,20 @@ final class TestDOMTest extends TestCase {
 		$this->testDom->assertNotExists('//div');
 	}
 
-	public function testAssertTextContextShouldPassWhenRegexIsProvidedAndMatches(): void {
+	public function testassertTextContentShouldPassWhenRegexIsProvidedAndMatches(): void {
 		$this->testDom->assertTextContent('/Depth/', true);
 	}
 
-	public function testAssertTextContextShouldPassWhenRegexIsNotProvidedAndMatches(): void {
+	public function testassertTextContentShouldPassWhenRegexIsNotProvidedAndMatches(): void {
 		$this->markTestSkipped();
 	}
 
-	public function testAssertTextContextShouldFailWhenRegexIsProvidedAndDoesNotMatch(): void {
+	public function testassertTextContentShouldFailWhenRegexIsProvidedAndDoesNotMatch(): void {
 		$this->expectException(AssertionFailedError::class);
 		$this->testDom->assertTextContent('/text/', true);
 	}
 
-	public function testAssertTextContextShouldFailWhenRegexIsNotProvidedAndDoesNotMatch(): void {
+	public function testassertTextContentShouldFailWhenRegexIsNotProvidedAndDoesNotMatch(): void {
 		$this->expectException(AssertionFailedError::class);
 		$this->testDom->assertTextContent('Depth');
 	}
@@ -79,7 +80,7 @@ final class TestDOMTest extends TestCase {
 		$this->testDom->find('//body/*[@class]')->assertNotExists('//element');
 	}
 
-	public function testAssertTextContextShouldPassAfterFindWhenElementExist(): void {
+	public function testassertTextContentShouldPassAfterFindWhenElementExist(): void {
 		$this->testDom->find('//p')->assertTextContent('Depth 1');
 		$this->testDom->find('//p')->assertTextContent('/Depth/', true);
 	}
@@ -94,8 +95,9 @@ final class TestDOMTest extends TestCase {
 		$this->testDom->find('//div')->assertNotExists('//p');
 	}
 
-	public function testAssertTextContextShouldFailAfterFindWhenElementDoNotExist(): void {
+	public function testassertTextContentShouldFailAfterFindWhenElementDoNotExist(): void {
 		$this->expectException(AssertionFailedError::class);
+		$this->expectExceptionMessage('No elements with the XPath \'//span\' contain text \'Depth N\'');
 		$this->testDom->find('//span')->assertTextContent('Depth N');
 	}
 

@@ -15,15 +15,20 @@ final readonly class Form {
 	 * @param Field[] $fields
 	 * @param Button[] $buttons
 	 * @param null|string $title
+	 * @param ?array $alert
+	 * @param bool $readonly
+	 * @param bool $groupButtons
 	 * @return void
 	 */
 	public function __construct(
-		private string $action = '',
-		private Method $method = Method::POST,
-		private array $fields = [],
-		private array $buttons = [],
-		private ?string $title = null,
-		private ?array $alert = null
+		public string $action = '',
+		public Method $method = Method::POST,
+		public array $fields = [],
+		public array $buttons = [],
+		public ?string $title = null,
+		public ?array $alert = null,
+		private bool $readonly = false,
+		private bool $groupButtons = false
 	) {}
 
 	public function view(): View {
@@ -33,7 +38,9 @@ final readonly class Form {
 			'fields' => $this->fields,
 			'buttons' => $this->buttons,
 			'title' => $this->title,
-			'alert' => $this->alert
+			'alert' => $this->alert,
+			'readonly' => $this->readonly,
+			'groupButtons' => $this->groupButtons
 		]);
 	}
 

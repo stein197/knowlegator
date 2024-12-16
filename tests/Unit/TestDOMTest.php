@@ -97,6 +97,7 @@ final class TestDOMTest extends TestCase {
 
 	public function testassertTextContentShouldFailAfterFindWhenElementDoNotExist(): void {
 		$this->expectException(AssertionFailedError::class);
+		$this->expectExceptionMessage('No elements with the XPath \'//span\' contain text \'Depth N\'');
 		$this->testDom->find('//span')->assertTextContent('Depth N');
 	}
 

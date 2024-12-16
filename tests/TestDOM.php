@@ -119,7 +119,7 @@ final readonly class TestDOM {
 				return;
 			}
 		}
-		$this->testCase->fail("No elements contain text '$content'");
+		$this->testCase->fail("No elements with the XPath '{$this->xpath}' contain text '$content'");
 	}
 
 	/**

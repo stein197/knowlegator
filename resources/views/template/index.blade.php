@@ -19,32 +19,15 @@
 		<link rel="icon" href="/favicon.ico" />
 		<title>{{ $title }}</title>
 
-		<!-- jQuery -->
-		<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer=""></script>
-		<!-- /jQuery -->
-
-		<!-- bootstrap -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer=""></script>
-		<!-- /bootstrap -->
-
-		<!-- bootstrap-icons -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-		<!-- /bootstrap-icons -->
-
 		<!-- google-fonts -->
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet" />
 		<!-- /google-fonts -->
 
-		<!-- flag-icons -->
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css" />
-		<!-- /flag-icons -->
-
 		<!-- app-assets -->
-		<link rel="stylesheet" href="/index.css?{{ filemtime(public_path('index.css')) }}" />
-		<script src="/index.js?{{ filemtime(public_path('index.js')) }}" defer=""></script>
+		<link rel="stylesheet" href="{{ mix('index.min.css') }}" />
+		<script src="{{ mix('index.min.js') }}" defer=""></script>
 		<!-- /app-assets -->
 	</head>
 	<body class="d-flex flex-column">

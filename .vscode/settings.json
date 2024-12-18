@@ -28,6 +28,7 @@
 		"middleware",
 		"migration",
 		"model",
+		"npm",
 		"provider",
 		"route",
 		"readme",

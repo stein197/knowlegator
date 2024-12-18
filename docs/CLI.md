@@ -1,4 +1,8 @@
 # CLI
+## npm scripts
+- `build`: build the TypeScript source code with Laravel Mix
+- `watch`: build and watch the changes to the TypeScript source code with Laravel Mix
+
 ## Composer scripts
 - `server`: Run server in production mode on port 80
 - `server:dev`: Run server in development mode on port 80

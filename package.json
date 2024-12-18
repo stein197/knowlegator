@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "Knowlegator frontend",
   "main": "index.js",
+  "scripts": {
+    "build": "mix build",
+    "watch": "mix watch"
+  },
   "devDependencies": {
     "laravel-mix": "^6.0.49"
   }

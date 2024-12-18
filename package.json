@@ -2,5 +2,8 @@
   "name": "@stein197/knowlegator",
   "version": "0.1.0",
   "description": "Knowlegator frontend",
-  "main": "index.js"
+  "main": "index.js",
+  "devDependencies": {
+    "laravel-mix": "^6.0.49"
+  }
 }
